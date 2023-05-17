@@ -1,3 +1,4 @@
+// Hashmap
 // 1. Two Sum
 /**
  * @param {number[]} nums
@@ -45,3 +46,23 @@ var merge = function (nums1, m, nums2, n) {
   nums1.sort((a, b) => a - b) // Sort
 }
 // merge(nums1, m, nums2, n); console.log(nums1)
+
+// 27. Remove Element
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+// ;(nums = [3, 2, 2, 3]), (val = 3) // Output: 2, nums = [2,2,_,_]
+// ;(nums = [0, 1, 2, 2, 3, 0, 4, 2]), (val = 2) //Output: 5, nums = [0,1,4,0,3,_,_,_]
+// ;(nums = [3, 3]), (val = 3) // Output [3]
+var removeElement = function (nums, val) {
+  let length = nums.length
+  for (let i = 0; i < length; i++) {
+    if (nums.indexOf(val) > -1) {
+      nums.splice(nums.indexOf(val), 1)
+    }
+  }
+  return nums.length
+}
+// const k = removeElement(nums, val) // Calls your implementation
