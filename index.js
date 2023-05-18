@@ -59,6 +59,7 @@ var merge = function (nums1, m, nums2, n) {
 var removeElement = function (nums, val) {
   let length = nums.length
   for (let i = 0; i < length; i++) {
+    // Only splice array when item is found
     if (nums.indexOf(val) > -1) {
       nums.splice(nums.indexOf(val), 1)
     }
@@ -66,3 +67,22 @@ var removeElement = function (nums, val) {
   return nums.length
 }
 // const k = removeElement(nums, val) // Calls your implementation
+
+// 26. Remove Duplicates from Sorted Array
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// nums = [1, 1, 2] // Output: 2, nums = [1,2,_]
+// nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4] // Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+var removeDuplicates = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    // If current element equals next element
+    if (nums[i] == nums[i + 1]) {
+      nums.splice(i, 1) // Remove current element
+      i-- // Reset i, to be current again, otherwise it will jump to next element
+    }
+  }
+  return nums.length
+}
+// let k = removeDuplicates(nums)
