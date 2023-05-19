@@ -80,9 +80,27 @@ var removeDuplicates = function (nums) {
     // If current element equals next element
     if (nums[i] == nums[i + 1]) {
       nums.splice(i, 1) // Remove current element
-      i-- // Reset i, to be current again, otherwise it will jump to next element
+      i-- // Reset i, to be current element again, otherwise it will jump to next element
     }
   }
   return nums.length
 }
 // let k = removeDuplicates(nums)
+
+//80. Remove Duplicates from Sorted Array II
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// nums = [1, 1, 1, 2, 2, 3] // Output: 5, nums = [1,1,2,2,3,_]
+// nums = [0, 0, 1, 1, 1, 1, 2, 3, 3] // Output: 7, nums = [0,0,1,1,2,3,3,_,_]
+var removeDuplicates2 = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    // If current element equals next element and element before current
+    if (nums[i] == nums[i + 1] && nums[i - 1] == nums[i]) {
+      nums.splice(i, 1) // Remove current element
+      i-- // Reset i, to be current element again, otherwise it will jump to next element
+    }
+  }
+}
+// let k = removeDuplicates2(nums)
