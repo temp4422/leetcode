@@ -25,7 +25,7 @@ var twoSum = function (nums, target) {
 // Array / String
 //*****************************************************************************
 
-// 88. Merge Sorted Array
+// 88. Merge Sorted Array, Easy
 /**
  * @param {number[]} nums1
  * @param {number} m
@@ -47,7 +47,7 @@ var merge = function (nums1, m, nums2, n) {
 }
 // merge(nums1, m, nums2, n); console.log(nums1)
 
-// 27. Remove Element
+// 27. Remove Element, Easy
 /**
  * @param {number[]} nums
  * @param {number} val
@@ -68,7 +68,7 @@ var removeElement = function (nums, val) {
 }
 // const k = removeElement(nums, val) // Calls your implementation
 
-// 26. Remove Duplicates from Sorted Array
+// 26. Remove Duplicates from Sorted Array, Easy
 /**
  * @param {number[]} nums
  * @return {number}
@@ -87,7 +87,7 @@ var removeDuplicates = function (nums) {
 }
 // let k = removeDuplicates(nums)
 
-//80. Remove Duplicates from Sorted Array II
+// 80. Remove Duplicates from Sorted Array II, Medium
 /**
  * @param {number[]} nums
  * @return {number}
@@ -104,3 +104,31 @@ var removeDuplicates2 = function (nums) {
   }
 }
 // let k = removeDuplicates2(nums)
+
+// 169. Majority Element, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// Brute force approach.
+// Time complexity: O(n²). Two nested "for" loops each run "n" iterations.
+// Space complexity: O(1). Does not allocate additional space proportional to input size.
+// nums = [3, 2, 3] // Output: 3
+// nums = [2, 2, 1, 1, 1, 2, 2] //Output: 2
+var majorityElement = function (nums) {
+  // prettier-ignore
+  let el, count = 0
+  for (let j = 0; j < nums.length; j++) {
+    el = nums[j]
+    for (let i = 0; i < nums.length; i++) {
+      if (el == nums[i]) {
+        count++
+      }
+      if (count > nums.length / 2) {
+        return el
+      }
+    }
+    count = 0
+  }
+}
+// let k = majorityElement(nums)
