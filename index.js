@@ -132,3 +132,73 @@ var majorityElement = function (nums) {
   }
 }
 // let k = majorityElement(nums)
+
+// 189. Rotate Array, Medium
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+// ;(nums = [1, 2, 3, 4, 5, 6, 7]), (k = 3) // Output: [5,6,7,1,2,3,4]
+// ;(nums = [-1, -100, 3, 99]), (k = 2) // Output: [3,99,-1,-100]
+// ;(nums = [-1]), (k = 2) // Output: [-1]
+// ;(nums = [1, 2]), (k = 3) // Output: [2,1]
+// ;(nums = [1, 2, 3]), (k = 4) // Output: [3,1,2]
+var rotate = function (nums, k) {
+  // Variant 1
+  // for (let i = 0; i < k; i++) {
+  //   // Add to begining of array last element of this array
+  //   nums.unshift(nums[nums.length - 1])
+  //   // Remove last element
+  //   nums.pop()
+  // }
+  // Variant 2
+  // while (k != 0) {
+  //   nums.unshift(nums[nums.length - 1])
+  //   nums.pop()
+  //   k--
+  // }
+  // Variant 3
+  // if (nums.length == 1) {
+  //   return
+  // }
+  // if (nums.length == 2 && k % 2 == 1) {
+  //   // Add elements to start of array with spread '...' operator
+  //   nums.unshift(nums[nums.length - 1])
+  //   // Remove k elements from length - k index
+  //   nums.splice(nums.length - 1, 1)
+  //   return
+  // }
+  // if (nums.length < k) {
+  //   for (let i = 0; i < k; i++) {
+  //     nums.unshift(nums[nums.length - 1])
+  //     nums.pop()
+  //   }
+  //   return
+  // }
+  // // Cut last k elements into new array
+  // let arrX = nums.slice(nums.length - k, nums.length)
+  // // Add elements to start of array with spread '...' operator
+  // nums.unshift(...arrX)
+  // // Remove k elements from length - k index
+  // nums.splice(nums.length - k, k)
+  // Variant 4
+  // while (k > 0) {
+  //   nums.unshift(nums.pop())
+  //   k--
+  // }
+  // Variant 4 Alternative https://leetcode.com/problems/rotate-array/solutions/487529/py3-js-5-different-simple-solutions/
+  // while (k--) {
+  //   nums.unshift(nums.pop())
+  // }
+  // Variant 5 with help https://leetcode.com/problems/rotate-array/solutions/1917874/js-rotate-array-time-limit-exceeded/
+  // Shifting items one by one k times is too slow, you have to do it in o(n) amount of time instead of o(k*n)
+  if (nums.length > k) {
+    nums.unshift(...nums.splice(-k))
+  } else {
+    while (k--) {
+      nums.unshift(nums.pop())
+    }
+  }
+}
+// rotate(nums, k)
