@@ -202,3 +202,46 @@ var rotate = function (nums, k) {
   }
 }
 // rotate(nums, k)
+
+// 121. Best Time to Buy and Sell Stock, Easy
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// Search MAXIMUM pforit in O(n) times
+// ascii graph with understanding
+/* For [7, 1, 5, 3, 6, 4]; points of interest: 2(1) and 5(6).
+8
+7    *                  v
+6     \                /*\
+5      \      /*\     /   \
+4       \    /   \   /      *
+3        \  /      *
+2         \/
+1         *
+0    1    2    3   4   5   6
+          ^
+*/
+// prices = [7, 1, 5, 3, 6, 4] // Output: 5
+// prices = [7, 6, 4, 3, 1] // Output: 0
+// prices = [1] // Output: 0
+// prices = [1, 2] // Output: 1
+// prices = [2, 4, 1] // Output: 2
+// prices = [3, 2, 6, 5, 0, 3] // Output: 4
+// prices = [2, 1, 2, 1, 0, 1, 2] // Output: 2
+// prices = [1, 2, 4, 7, 11] // Output: 10
+var maxProfit = function (prices) {
+  let profit = -1 // Set negative profit
+  let current = prices[0] // Set current
+  for (let i = 0; i < prices.length; i++) {
+    // If difference between index value and current value bigger then profit, this difference become new profit
+    if (prices[i] - current > profit) {
+      profit = prices[i] - current
+      // If NOT and also current value bigger then index value, set current value to be lower than it was (same as value at current index)
+    } else if (current > prices[i]) {
+      current = prices[i]
+    }
+  }
+  return profit
+}
+// maxProfit(prices)
