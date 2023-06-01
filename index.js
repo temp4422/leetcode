@@ -208,7 +208,7 @@ var rotate = function (nums, k) {
  * @param {number[]} prices
  * @return {number}
  */
-// Search MAXIMUM pforit in O(n) times
+// TODO Search MAXIMUM pforit in O(n) times
 // ascii graph with understanding
 /* For [7, 1, 5, 3, 6, 4]; points of interest: 2(1) and 5(6).
 8
@@ -243,5 +243,51 @@ var maxProfit = function (prices) {
     }
   }
   return profit
+}
+// maxProfit(prices)
+
+// 122. Best Time to Buy and Sell Stock II, Medium
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// prices = [7, 1, 5, 3, 6, 4] // Output: 7
+// prices = [7, 6, 4, 3, 1] // Output: 0
+// prices = [1] // Output: 0
+// prices = [1, 2] // Output: 1
+// prices = [2, 4, 1] // Output: 2
+// prices = [1,2,4,7,11] // Output: 10
+// prices = [1,2,3,4,5] // Output: 4
+// prices = [7,6,4,3,1] // Output: 0
+// TODO Search sum of profits in O(n) times
+var maxProfit = function (prices) {
+  let profit = -1
+  let current = prices[0]
+  let profits = []
+  let profitsSum = 0
+
+  for (let i = 0; i < prices.length; i++) {
+    // If difference between index value and current value bigger then profit, this difference become new profit
+    if (prices[i] - current > profit) {
+      profit = prices[i] - current
+      // Add profit to profits array
+      profits.push(profit)
+      // Reset current value to count from current index
+      current = prices[i]
+      // If NOT and also current value bigger then index value, set current value to be lower than it was (same as value at current index)
+    } else if (current > prices[i]) {
+      current = prices[i]
+    }
+    // Reset profit after each cycle
+    profit = 0
+  }
+  // Sum profits
+  for (let i = 0; i < profits.length; i++) {
+    profitsSum += profits[i]
+  }
+  // profitsSum = profits.reduce((a, b) => a + b)
+  console.log(profits)
+  console.log(profitsSum)
+  return profitsSum
 }
 // maxProfit(prices)
