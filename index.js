@@ -293,6 +293,7 @@ var maxProfit = function (prices) {
 // maxProfit(prices)
 
 // 55. Jump Game, Medium
+// With hellp of https://leetcode.com/problems/jump-game/solutions/273641/javascript-simple-o-n-greedy-solution/?envType=study-plan-v2&envId=top-interview-150
 /**
  * @param {number[]} nums
  * @return {boolean}
@@ -305,7 +306,7 @@ var maxProfit = function (prices) {
 // nums = [3, 2, 1, 0, 4] // false
 // nums = [0, 2, 3] // false
 // nums = [3, 0, 8, 2, 0, 0, 1] // true
-nums = [1, 0, 1, 0] // false
+// nums = [1, 0, 1, 0] // false
 // nums = [5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0] // true
 // nums = [1, 1, 2, 2, 0, 1, 1] // true
 // nums = [8, 2, 4, 4, 4, 9, 5, 2, 5, 8, 8, 0, 8, 6, 9, 1, 1, 6, 3, 5, 1, 2, 6, 6, 0, 4, 8, 6, 0, 3, 2, 8, 7,6, 5, 1, 7, 0, 3, 4, 8, 3, 5, 9, 0, 4, 0, 1, 0, 5, 9, 2, 0, 7, 0, 2, 1, 0, 8, 2, 5, 1, 2, 3, 9, 7,  4, 7, 0, 0, 1, 8, 5, 6, 7, 5, 1, 9, 9, 3, 5, 0, 7, 5,] // true
@@ -320,14 +321,12 @@ var canJump = function (nums) {
     if (jump >= lastIndex) {
       return true // If so we can reach end of array
     }
-    // If we reach 0 index and there are no jumpers before, that can jump beyond this index
+    // If we reach 0 at this index and there are no jumpers before, that can jump beyond this index  (jump < i) we reach end of our jumps
     if (jump <= i && nums[i] === 0) {
       return false
     }
     // Increment counter
     i++
   }
-  return false
 }
 // canJump(nums)
-console.log(canJump(nums))
