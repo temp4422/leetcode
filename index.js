@@ -330,3 +330,62 @@ var canJump = function (nums) {
   }
 }
 // canJump(nums)
+
+// 45. Jump Game II, Medium
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// TODO return minimum number of jumps to reach nums[n-1]
+// nums = [2, 3, 1, 1, 4] // Output: 2
+// nums = [0] // 0
+// nums = [1, 2, 1, 1, 1] // 3
+// nums = [7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3] // 2
+// nums = [4, 1, 1, 3, 1, 1, 1] // 2
+// TODO jump 3 even if max jump could be 4, then jump 3; Need minimum number of jumps
+var jump = function (nums) {
+  let i = 0
+  let lastIndex = nums.length - 1
+  let jump = 0
+  let lastJump = 0
+  let count = 0
+
+  if (nums.length == 1) return 0
+
+  while (i < nums.length) {
+    // Hold last jump to compare with new jump after this
+    lastJump = jump
+    // Set jumper to be maximum value of 2: 'last jump' and 'new possible jump from current index + index value'
+    jump = Math.max(jump, i + nums[i], jump + nums[jump])
+    // Count jumps if new jump happens
+    if (jump > lastJump) count++
+    // Check if we can jump beyond or equal to last index
+    if (jump >= lastIndex) {
+      return count // If so we can reach end of array
+    }
+    // If we reach 0 at this index and there are no jumpers before, that can jump beyond this index  (jump < i) we reach end of our jumps
+    if (jump <= i && nums[i] === 0) {
+      return false
+    }
+    // Increment counter
+    i++
+  }
+}
+console.log(jump(nums))
+/* TODO
+https://leetcode.com/problems/jump-game-ii/solutions/443098/javascript-solution-w-explanation/?envType=study-plan-v2&envId=top-interview-150
+
+var jump = function(nums) {
+  let newMax = 0;
+  let jump = 0;
+  let oldMax = 0;
+  for (let i=0;i<nums.length-1;i++) {
+      newMax = Math.max(newMax, i+nums[i]);
+      if (i == oldMax) {
+          jump++;
+          oldMax = newMax;
+      }
+  }
+  return jump;
+};
+*/
