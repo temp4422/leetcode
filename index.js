@@ -371,7 +371,8 @@ var jump = function (nums) {
     i++
   }
 }
-console.log(jump(nums))
+// console.log(jump(nums))
+
 /* TODO
 https://leetcode.com/problems/jump-game-ii/solutions/443098/javascript-solution-w-explanation/?envType=study-plan-v2&envId=top-interview-150
 
