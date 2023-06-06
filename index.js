@@ -332,6 +332,7 @@ var canJump = function (nums) {
 // canJump(nums)
 
 // 45. Jump Game II, Medium
+// Array, Dynamic Programming, Greedy, BFS
 /**
  * @param {number[]} nums
  * @return {number}
@@ -390,3 +391,94 @@ var jump = function(nums) {
   return jump;
 };
 */
+
+// 13. Roman to Integer, Easy, 00:30
+// Hash Table, Math, String
+/*
+Roman numerals are represented by seven different symbols:
+
+Symbol  Value
+I       1
+V       5
+X       10
+L       50
+C       100
+D       500
+M       1000
+
+Six instances where subtraction is used:
+I can be placed before V (5) and X (10) to make 4 and 9.
+X can be placed before L (50) and C (100) to make 40 and 90.
+C can be placed before D (500) and M (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to an integer.
+*/
+// Alternative solution https://leetcode.com/problems/roman-to-integer/solutions/326345/simple-javascript-solution-easy-understanding/?envType=study-plan-v2&envId=top-interview-150
+// symbols = {
+//   I: 1,
+//   V: 5,
+//   X: 10,
+//   L: 50,
+//   C: 100,
+//   D: 500,
+//   M: 1000,
+// }
+
+// var romanToInt = function (s) {
+//   value = 0
+//   for (let i = 0; i < s.length; i += 1) {
+//     symbols[s[i]] < symbols[s[i + 1]] ? (value -= symbols[s[i]]) : (value += symbols[s[i]])
+//   }
+//   return value
+// }
+
+// s = 'I' // Output: 1
+// s = 'III' // Output: 3
+// s = 'LVIII' // Output: 58
+// s = 'MCMXCIV' // Output: 1994
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  let res = 0
+  for (let i = 0; i < s.length; i++) {
+    switch (s[i]) {
+      case 'I':
+        if (s[i + 1] != undefined && (s[i + 1] == 'V' || s[i + 1] == 'X')) {
+          res -= 1
+        } else {
+          res += 1
+        }
+        break
+      case 'V':
+        res += 5
+        break
+      case 'X':
+        if (s[i + 1] != undefined && (s[i + 1] == 'L' || s[i + 1] == 'C')) {
+          res -= 10
+        } else {
+          res += 10
+        }
+        break
+      case 'L':
+        res += 50
+        break
+      case 'C':
+        if (s[i + 1] != undefined && (s[i + 1] == 'D' || s[i + 1] == 'M')) {
+          res -= 100
+        } else {
+          res += 100
+        }
+        break
+      case 'D':
+        res += 500
+        break
+      case 'M':
+        res += 1000
+        break
+    }
+  }
+  return res
+}
+// console.log(romanToInt(s))
