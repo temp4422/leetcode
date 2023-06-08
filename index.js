@@ -413,25 +413,6 @@ C can be placed before D (500) and M (1000) to make 400 and 900.
 
 Given a roman numeral, convert it to an integer.
 */
-// Alternative solution https://leetcode.com/problems/roman-to-integer/solutions/326345/simple-javascript-solution-easy-understanding/?envType=study-plan-v2&envId=top-interview-150
-// symbols = {
-//   I: 1,
-//   V: 5,
-//   X: 10,
-//   L: 50,
-//   C: 100,
-//   D: 500,
-//   M: 1000,
-// }
-
-// var romanToInt = function (s) {
-//   value = 0
-//   for (let i = 0; i < s.length; i += 1) {
-//     symbols[s[i]] < symbols[s[i + 1]] ? (value -= symbols[s[i]]) : (value += symbols[s[i]])
-//   }
-//   return value
-// }
-
 // s = 'I' // Output: 1
 // s = 'III' // Output: 3
 // s = 'LVIII' // Output: 58
@@ -440,45 +421,117 @@ Given a roman numeral, convert it to an integer.
  * @param {string} s
  * @return {number}
  */
+// Alternative solution https://leetcode.com/problems/roman-to-integer/solutions/326345/simple-javascript-solution-easy-understanding/?envType=study-plan-v2&envId=top-interview-150
 var romanToInt = function (s) {
-  let res = 0
-  for (let i = 0; i < s.length; i++) {
-    switch (s[i]) {
-      case 'I':
-        if (s[i + 1] != undefined && (s[i + 1] == 'V' || s[i + 1] == 'X')) {
-          res -= 1
-        } else {
-          res += 1
-        }
-        break
-      case 'V':
-        res += 5
-        break
-      case 'X':
-        if (s[i + 1] != undefined && (s[i + 1] == 'L' || s[i + 1] == 'C')) {
-          res -= 10
-        } else {
-          res += 10
-        }
-        break
-      case 'L':
-        res += 50
-        break
-      case 'C':
-        if (s[i + 1] != undefined && (s[i + 1] == 'D' || s[i + 1] == 'M')) {
-          res -= 100
-        } else {
-          res += 100
-        }
-        break
-      case 'D':
-        res += 500
-        break
-      case 'M':
-        res += 1000
-        break
-    }
+  const symbols = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
   }
+  let res = 0
+
+  for (let i = 0; i < s.length; i++) {
+    symbols[s[i]] < symbols[s[i + 1]] ? (res -= symbols[s[i]]) : (res += symbols[s[i]])
+  }
+
   return res
 }
 // console.log(romanToInt(s))
+
+// My solution
+// var romanToInt = function (s) {
+//   let res = 0
+//   for (let i = 0; i < s.length; i++) {
+//     switch (s[i]) {
+//       case 'I':
+//         if (s[i + 1] != undefined && (s[i + 1] == 'V' || s[i + 1] == 'X')) {
+//           res -= 1
+//         } else {
+//           res += 1
+//         }
+//         break
+//       case 'V':
+//         res += 5
+//         break
+//       case 'X':
+//         if (s[i + 1] != undefined && (s[i + 1] == 'L' || s[i + 1] == 'C')) {
+//           res -= 10
+//         } else {
+//           res += 10
+//         }
+//         break
+//       case 'L':
+//         res += 50
+//         break
+//       case 'C':
+//         if (s[i + 1] != undefined && (s[i + 1] == 'D' || s[i + 1] == 'M')) {
+//           res -= 100
+//         } else {
+//           res += 100
+//         }
+//         break
+//       case 'D':
+//         res += 500
+//         break
+//       case 'M':
+//         res += 1000
+//         break
+//     }
+//   }
+//   return res
+// }
+// console.log(romanToInt(s))
+
+// 12. Integer to Roman, Medium
+// Hash Table, Math, String
+// num = 1 // Output: "I"
+// num = 4 // Output: "IV"
+// num = 3 // Output: "III"
+// num = 58 // Output: "LVIII"
+// num = 1994 // Output: "MCMXCIV"
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function (num) {
+  // Consider 4,9,40,90,400,900 - as separate values
+  const symbols = {
+    M: 1000,
+    CM: 900,
+    D: 500,
+    CD: 400,
+    C: 100,
+    XC: 90,
+    L: 50,
+    XL: 40,
+    X: 10,
+    IX: 9,
+    V: 5,
+    IV: 4,
+    I: 1,
+  }
+
+  let res = []
+
+  while (num > 0) {
+    function loop() {
+      for (let i in symbols) {
+        if (num - symbols[i] >= 0) {
+          res.push(i)
+          num -= symbols[i]
+          // Break the loop, thus start looking for symbols from beginning after each found value
+          return
+        }
+      }
+    }
+    loop()
+  }
+
+  res = res.join('')
+  return res
+}
+// console.log(intToRoman(num))
