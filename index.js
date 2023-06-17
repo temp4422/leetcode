@@ -1,6 +1,7 @@
 // Hashmap
 // 1. Two Sum
-
+// Array, Hash Table
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -19,14 +20,16 @@ var twoSum = function (nums, target) {
 }
 // console.log(twoSum([3, 2, 3], 6)) // Expected [0,2]
 
-//*****************************************************************************
-// Top Interview 150
-//*****************************************************************************
+/*****************************************************************************/
+/********************* TOP INTERVIEW 150  ************************************/
+/*****************************************************************************/
 
-// Array / String
-//*****************************************************************************
+/******************** Array / String *****************************************/
+/*****************************************************************************/
 
 // 88. Merge Sorted Array, Easy
+// Array, Two Pointers, Sorting
+/*****************************************************************************/
 /**
  * @param {number[]} nums1
  * @param {number} m
@@ -49,6 +52,8 @@ var merge = function (nums1, m, nums2, n) {
 // merge(nums1, m, nums2, n); console.log(nums1)
 
 // 27. Remove Element, Easy
+// Array, Two Pointers
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @param {number} val
@@ -70,6 +75,8 @@ var removeElement = function (nums, val) {
 // const k = removeElement(nums, val) // Calls your implementation
 
 // 26. Remove Duplicates from Sorted Array, Easy
+// Array, Two Pointers
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @return {number}
@@ -89,6 +96,8 @@ var removeDuplicates = function (nums) {
 // let k = removeDuplicates(nums)
 
 // 80. Remove Duplicates from Sorted Array II, Medium
+// Array, Two Pointers
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @return {number}
@@ -107,6 +116,8 @@ var removeDuplicates2 = function (nums) {
 // let k = removeDuplicates2(nums)
 
 // 169. Majority Element, Easy
+// Array, Hash Table, Divide and Conquer, Sorting, Counting
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @return {number}
@@ -135,6 +146,8 @@ var majorityElement = function (nums) {
 // let k = majorityElement(nums)
 
 // 189. Rotate Array, Medium
+// Array, Math, Two Pointers
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @param {number} k
@@ -205,6 +218,8 @@ var rotate = function (nums, k) {
 // rotate(nums, k)
 
 // 121. Best Time to Buy and Sell Stock, Easy
+// Array, Dynamic Programming
+/*****************************************************************************/
 /**
  * @param {number[]} prices
  * @return {number}
@@ -248,6 +263,8 @@ var maxProfit = function (prices) {
 // maxProfit(prices)
 
 // 122. Best Time to Buy and Sell Stock II, Medium
+// Array, Dynamic Programming, Greedy
+/*****************************************************************************/
 /**
  * @param {number[]} prices
  * @return {number}
@@ -294,6 +311,8 @@ var maxProfit = function (prices) {
 // maxProfit(prices)
 
 // 55. Jump Game, Medium
+// Array, Dynamic Programming, Greedy
+/*****************************************************************************/
 // With hellp of https://leetcode.com/problems/jump-game/solutions/273641/javascript-simple-o-n-greedy-solution/?envType=study-plan-v2&envId=top-interview-150
 /**
  * @param {number[]} nums
@@ -334,6 +353,7 @@ var canJump = function (nums) {
 
 // 45. Jump Game II, Medium
 // Array, Dynamic Programming, Greedy, BFS
+/*****************************************************************************/
 /**
  * @param {number[]} nums
  * @return {number}
@@ -395,6 +415,7 @@ var jump = function(nums) {
 
 // 13. Roman to Integer, Easy, 00:30
 // Hash Table, Math, String
+/*****************************************************************************/
 /*
 Roman numerals are represented by seven different symbols:
 
@@ -489,6 +510,7 @@ var romanToInt = function (s) {
 
 // 12. Integer to Roman, Medium
 // Hash Table, Math, String
+/*****************************************************************************/
 // num = 1 // Output: "I"
 // num = 4 // Output: "IV"
 // num = 3 // Output: "III"
@@ -539,6 +561,7 @@ var intToRoman = function (num) {
 
 // 274. H-Index, Medium
 // Array, Sorting, Counting Sort
+/*****************************************************************************/
 /*
 Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith paper, return the researcher's h-index.
 h-index(f) = max{i є N : f(i) >_ i}
