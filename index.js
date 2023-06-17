@@ -1,5 +1,6 @@
 // Hashmap
 // 1. Two Sum
+
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -535,3 +536,51 @@ var intToRoman = function (num) {
   return res
 }
 // console.log(intToRoman(num))
+
+// 274. H-Index, Medium
+// Array, Sorting, Counting Sort
+/*
+Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith paper, return the researcher's h-index.
+h-index(f) = max{i є N : f(i) >_ i}
+
+Example:
+Articles Citations
+  1        33
+  2        30
+  3        20
+  4        15
+  5        7
+  6        6 <-
+  ----------
+  7        5
+  8        4
+An h-index of 6 means that this author has published at least 6 papers that have each received at least 6 citations.
+https://subjectguides.uwaterloo.ca/calculate-academic-footprint/YourHIndex
+*/
+// citations = [3, 0, 6, 1, 5] // Output: 3
+// citations = [1, 3, 1] // Output: 1
+// citations = [100] // Output: 1
+// citations = [0] // Output: 0
+// citations = [0, 1] // Output: 1
+// citations = [1, 0] // Output: 1
+// citations = [11, 15] // Output: 2
+// citations = [10, 8, 5, 4, 3] // 4
+// citations = [25, 8, 5, 3, 3] // 3
+/**
+ * @param {number[]} ciktations
+ * @return {number}
+ */
+var hIndex = function (citations) {
+  let res = 0
+  // Sort descending
+  citations.sort((a, b) => a - b).reverse()
+  // If number of citations less then total publication number -> not count. Thus we count only most cited publications, starting in descending order
+  for (let i = 0; i < citations.length; i++) {
+    if (citations[i] > i) {
+      res++
+    }
+  }
+
+  return res
+}
+console.log(hIndex(citations))
