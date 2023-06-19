@@ -635,11 +635,8 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
  * var param_2 = obj.remove(val)
  * var param_3 = obj.getRandom()
  */
-// TODO time complexity O(1)
-// TODO Create shadow array with elements and swap deleted element with last one
 const RandomizedSet = function () {
   this.map = new Map()
-  this.arr = []
 }
 /**
  * @param {number} val
@@ -650,8 +647,7 @@ RandomizedSet.prototype.insert = function (val) {
   if (this.map.has(val)) {
     return false
   } else {
-    this.map.set(val, this.arr.length)
-    this.arr.push(val)
+    this.map.set(val, val)
     return true
   }
 }
@@ -661,15 +657,6 @@ RandomizedSet.prototype.insert = function (val) {
  */
 RandomizedSet.prototype.remove = function (val) {
   if (this.map.has(val)) {
-    // Get index of element to remove -> same as array index
-    let index = this.map.get(val)
-    // Change element on this index with last element of array, i.e. reassign element at index with element at last index
-    this.arr[index] = this.arr.at(-1)
-    // Remove last element from array, because it's already on the new index
-    this.arr.pop()
-    // Reset map with reassigned element (change index of this element)
-    this.map.set(this.arr[index], index)
-    // Delete element from map
     this.map.delete(val)
     return true
   } else {
@@ -680,10 +667,11 @@ RandomizedSet.prototype.remove = function (val) {
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function () {
-  let randomIndex = Math.floor(Math.random() * this.arr.length)
-  return this.arr.at(randomIndex)
+  let arr = Array.from(this.map, ([name, value]) => value)
+  let randomIndex = Math.floor(Math.random() * arr.length)
+  return arr.at(randomIndex)
 }
-// Test cases
+
 const randomizedSet = new RandomizedSet() //?
 randomizedSet.insert(1) //?
 randomizedSet.remove(2) //?
@@ -692,4 +680,3 @@ randomizedSet.getRandom() //?
 randomizedSet.remove(1) //?
 randomizedSet.insert(2) //?
 randomizedSet.getRandom() //?
-console.log(randomizedSet.map)
