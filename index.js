@@ -635,48 +635,31 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
  * var param_2 = obj.remove(val)
  * var param_3 = obj.getRandom()
  */
-const RandomizedSet = function () {
-  this.map = new Map()
-}
-/**
- * @param {number} val
- * @return {boolean}
- */
-RandomizedSet.prototype.insert = function (val) {
-  // If value exsists return false, else set new value
-  if (this.map.has(val)) {
-    return false
-  } else {
+class RandomizedSet {
+  constructor() {
+    this.map = new Map()
+  }
+  insert(val) {
+    if (this.map.has(val)) return false
     this.map.set(val, val)
     return true
   }
-}
-/**
- * @param {number} val
- * @return {boolean}
- */
-RandomizedSet.prototype.remove = function (val) {
-  if (this.map.has(val)) {
+  remove(val) {
+    if (!this.map.has(val)) return false
     this.map.delete(val)
     return true
-  } else {
-    return false
+  }
+  getRandom() {
+    const arr = Array.from(this.map, ([name, value]) => value)
+    const randomIndex = Math.floor(Math.random() * arr.length)
+    return arr[randomIndex]
   }
 }
-/**
- * @return {number}
- */
-RandomizedSet.prototype.getRandom = function () {
-  let arr = Array.from(this.map, ([name, value]) => value)
-  let randomIndex = Math.floor(Math.random() * arr.length)
-  return arr.at(randomIndex)
-}
-
-const randomizedSet = new RandomizedSet() //?
-randomizedSet.insert(1) //?
-randomizedSet.remove(2) //?
-randomizedSet.insert(2) //?
-randomizedSet.getRandom() //?
-randomizedSet.remove(1) //?
-randomizedSet.insert(2) //?
-randomizedSet.getRandom() //?
+// const randomizedSet = new RandomizedSet() //?
+// randomizedSet.insert(1) //?
+// randomizedSet.remove(2) //?
+// randomizedSet.insert(2) //?
+// randomizedSet.getRandom() //?
+// randomizedSet.remove(1) //?
+// randomizedSet.insert(2) //?
+// randomizedSet.getRandom() //?
