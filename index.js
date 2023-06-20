@@ -313,14 +313,17 @@ var maxProfit = function (prices) {
 // 55. Jump Game, Medium
 // Array, Dynamic Programming, Greedy
 /*****************************************************************************/
-// With hellp of https://leetcode.com/problems/jump-game/solutions/273641/javascript-simple-o-n-greedy-solution/?envType=study-plan-v2&envId=top-interview-150
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
+/*
+First approach with Math.max():
+https://leetcode.com/problems/jump-game/solutions/273641/javascript-simple-o-n-greedy-solution/?envType=study-plan-v2&envId=top-interview-150
+
+Second appoach with "for loop" - my choice 🌟:
+https://leetcode.com/problems/jump-game/solutions/2336291/very-easy-100-fully-explained-java-c-python-js-c-python3/?envType=study-plan-v2&envId=top-interview-150
+*/
 // nums = [2, 3, 1, 1, 4] // Output: true
 // nums = [3, 2, 1, 0, 4] // Output: false
 // nums = [0] // true
+// nums = [0, 1] // false
 // nums = [2, 0] // true
 // nums = [2, 5, 0, 0] // true
 // nums = [3, 2, 1, 0, 4] // false
@@ -329,27 +332,41 @@ var maxProfit = function (prices) {
 // nums = [1, 0, 1, 0] // false
 // nums = [5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0] // true
 // nums = [1, 1, 2, 2, 0, 1, 1] // true
-// nums = [8, 2, 4, 4, 4, 9, 5, 2, 5, 8, 8, 0, 8, 6, 9, 1, 1, 6, 3, 5, 1, 2, 6, 6, 0, 4, 8, 6, 0, 3, 2, 8, 7,6, 5, 1, 7, 0, 3, 4, 8, 3, 5, 9, 0, 4, 0, 1, 0, 5, 9, 2, 0, 7, 0, 2, 1, 0, 8, 2, 5, 1, 2, 3, 9, 7,  4, 7, 0, 0, 1, 8, 5, 6, 7, 5, 1, 9, 9, 3, 5, 0, 7, 5,] // true
-var canJump = function (nums) {
-  let i = 0
-  let lastIndex = nums.length - 1
+nums = [
+  8, 2, 4, 4, 4, 9, 5, 2, 5, 8, 8, 0, 8, 6, 9, 1, 1, 6, 3, 5, 1, 2, 6, 6, 0, 4, 8, 6, 0, 3, 2, 8, 7,
+  6, 5, 1, 7, 0, 3, 4, 8, 3, 5, 9, 0, 4, 0, 1, 0, 5, 9, 2, 0, 7, 0, 2, 1, 0, 8, 2, 5, 1, 2, 3, 9, 7,
+  4, 7, 0, 0, 1, 8, 5, 6, 7, 5, 1, 9, 9, 3, 5, 0, 7, 5,
+] // true
+/**l
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJumpXXX = function (nums) {
+  let target = nums.length - 1
   let jump = 0
+  let i = 0
+
   while (i < nums.length) {
-    // Set jumper to be maximum value of 2: 'last jump' and 'new possible jump from current index + index value'
-    jump = Math.max(jump, i + nums[i])
-    // Check if we can jump beyond or equal to last index
-    if (jump >= lastIndex) {
-      return true // If so we can reach end of array
-    }
-    // If we reach 0 at this index and there are no jumpers before, that can jump beyond this index  (jump < i) we reach end of our jumps
-    if (jump <= i && nums[i] === 0) {
-      return false
-    }
-    // Increment counter
-    i++
+    jump = Math.max(jump, i + nums[i]) // Set jumper one of two: 'last jump' and 'new possible jump from current index + index value'
+    if (jump >= target) return true // If jump >= target, we can reach target
+    if (jump <= i && nums[i] === 0) return false // If we reach index with 0 and there are no jumpers before this index, that can jump beyond this index we reach end
+    i++ // Increment counter
   }
 }
-// canJump(nums)
+var canJump = function (nums) {
+  let target = nums.length - 1 // We need to reach last index
+  let jump = nums[0] // We start jumping from first value
+
+  if (nums.length <= 1) return true // Simply check if array is one element long
+
+  for (let i = 0; i < nums.length; i++) {
+    if (jump <= i && nums[i] == 0) return false // If we can't jump further than current index and current index == 0, stop loop
+    if (i + nums[i] > jump) jump = i + nums[i] // If current value on current index > than last jump, update jump
+    if (jump >= target) return true // If jump >= target, we can reach target
+  }
+  return false
+}
+// console.log(canJump(nums))
 
 // 45. Jump Game II, Medium
 // Array, Dynamic Programming, Greedy, BFS
