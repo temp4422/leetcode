@@ -332,11 +332,7 @@ https://leetcode.com/problems/jump-game/solutions/2336291/very-easy-100-fully-ex
 // nums = [1, 0, 1, 0] // false
 // nums = [5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0] // true
 // nums = [1, 1, 2, 2, 0, 1, 1] // true
-nums = [
-  8, 2, 4, 4, 4, 9, 5, 2, 5, 8, 8, 0, 8, 6, 9, 1, 1, 6, 3, 5, 1, 2, 6, 6, 0, 4, 8, 6, 0, 3, 2, 8, 7,
-  6, 5, 1, 7, 0, 3, 4, 8, 3, 5, 9, 0, 4, 0, 1, 0, 5, 9, 2, 0, 7, 0, 2, 1, 0, 8, 2, 5, 1, 2, 3, 9, 7,
-  4, 7, 0, 0, 1, 8, 5, 6, 7, 5, 1, 9, 9, 3, 5, 0, 7, 5,
-] // true
+// nums = [8, 2, 4, 4, 4, 9, 5, 2, 5, 8, 8, 0, 8, 6, 9, 1, 1, 6, 3, 5, 1, 2, 6, 6, 0, 4, 8, 6, 0, 3, 2, 8, 7,6, 5, 1, 7, 0, 3, 4, 8, 3, 5, 9, 0, 4, 0, 1, 0, 5, 9, 2, 0, 7, 0, 2, 1, 0, 8, 2, 5, 1, 2, 3, 9, 7,4, 7, 0, 0, 1, 8, 5, 6, 7, 5, 1, 9, 9, 3, 5, 0, 7, 5,] // true
 /**l
  * @param {number[]} nums
  * @return {boolean}
@@ -353,6 +349,7 @@ var canJumpXXX = function (nums) {
     i++ // Increment counter
   }
 }
+
 var canJump = function (nums) {
   let target = nums.length - 1 // We need to reach last index
   let jump = nums[0] // We start jumping from first value
@@ -381,33 +378,30 @@ var canJump = function (nums) {
 // nums = [1, 2, 1, 1, 1] // 3
 // nums = [7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3] // 2
 // nums = [4, 1, 1, 3, 1, 1, 1] // 2
+// nums = [1, 2] // 1
+// nums = [1, 3, 2] // 2
 // TODO jump 3 even if max jump could be 4, then jump 3; Need minimum number of jumps
 var jump = function (nums) {
-  let i = 0
-  let lastIndex = nums.length - 1
-  let jump = 0
-  let lastJump = 0
-  let count = 0
+  let target = nums.length - 1 // Last index we need to reach
+  let index = 0 // Index at which we start
+  let jump = 0 // How far lwe can jump
+  let count = 0 // Count jumps (cycles)
+  let max = 0 // Set max value for current slice of array from i+nums[i] to (i+n)+nums[i+n]
 
   if (nums.length == 1) return 0
 
-  while (i < nums.length) {
-    // Hold last jump to compare with new jump after this
-    lastJump = jump
-    // Set jumper to be maximum value of 2: 'last jump' and 'new possible jump from current index + index value'
-    jump = Math.max(jump, i + nums[i], jump + nums[jump])
-    // Count jumps if new jump happens
-    if (jump > lastJump) count++
-    // Check if we can jump beyond or equal to last index
-    if (jump >= lastIndex) {
-      return count // If so we can reach end of array
+  while (index < target) {
+    for (let i = index + 1; i <= index + nums[index]; i++) {
+      if (i == target) {
+        jump = i // Early check if we reached our target, jump to target
+      } else if (max <= i + nums[i]) {
+        max = i + nums[i] // Update max value
+        jump = i // If we can jump further from this index than from index before, it's our new jump
+      }
     }
-    // If we reach 0 at this index and there are no jumpers before, that can jump beyond this index  (jump < i) we reach end of our jumps
-    if (jump <= i && nums[i] === 0) {
-      return false
-    }
-    // Increment counter
-    i++
+    index = jump // Jump to highest value
+    count++ // Count jumps
+    if (index >= target) return count
   }
 }
 // console.log(jump(nums))
