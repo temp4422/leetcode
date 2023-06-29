@@ -783,3 +783,20 @@ class RandomizedSet {
 // randomizedSet.remove(1) //?
 // randomizedSet.insert(2) //?
 // randomizedSet.getRandom() //?
+
+// 58. Length of Last Word, Easy
+// String
+/*****************************************************************************/
+// s = 'Hello World' // Output: 5
+// s = '   fly me   to   the moon  ' //Output: 4
+// s = "luffy is still joyboy" // Output: 6
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function (s) {
+  let arrS = s.split(/\s+/)
+  if (arrS.at(-1) == '') arrS.pop()
+  return arrS.at(-1).length
+}
+// console.log(lengthOfLastWord(s))
