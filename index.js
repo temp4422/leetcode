@@ -800,3 +800,34 @@ var lengthOfLastWord = function (s) {
   return arrS.at(-1).length
 }
 // console.log(lengthOfLastWord(s))
+
+// 238. Product of Array Except Self, Medium
+// Array, Prefix Sum
+/*****************************************************************************/
+// Return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+// nums = [1, 2, 3, 4] // Output: [24,12,8,6]
+// nums = [-1, 1, 0, -3, 3] // Output: [0,0,9,0,0]
+// nums = [2, 3, 0, 0] // [0,0,0,0]
+// nums = [4, 3, 2, 1, 2] // [12,16,24,48,24]
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function (nums) {
+  const answer = []
+
+  for (let i = 0; i < nums.length; i++) {
+    let el = 1
+
+    for (let j = 0; j < nums.length; j++) {
+      if (j != i) {
+        el *= nums[j]
+      }
+    }
+
+    answer.push(el)
+  }
+
+  return answer
+}
+// console.log(productExceptSelf(nums))
