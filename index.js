@@ -831,3 +831,61 @@ var productExceptSelf = function (nums) {
   return answer
 }
 // console.log(productExceptSelf(nums))
+
+// 134. Gas Station, Medium
+// Array, Greedy
+// Return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.
+/*
+At first try i tried to loop through array in cicrcle: from i to arr.length and from 0 to i.
+  for (let i = 0; i < gas.length; i++) {
+    // Loop array in circle: create gasX array with first element at i
+    let res = 0
+    let gasX = gas.slice(i).concat(gas.slice(0, i))
+    let costX = cost.slice(i).concat(cost.slice(0, i))
+    for (let j = 0; j < gasX.length; j++) {
+      res += gasX[j] - costX[j]
+      if (res < 0) j = gasX.length // If res < 0, break this loop
+    }
+    // console.log(res)
+    if (res >= 0) return i //? You can make circle from this gas station index
+  }
+  This works, but time complexity (time limit exceed) is too high, we can't pass tests.
+
+But after elaborating on problem, find out, that total gas shoul be >= cost, otherwise we will not be able to complete circle anyway.
+
+So if we know we can circle (gas >= cost), where is start index than ?
+From this point I'm confused to give exact answer, but as for probable answer I'll say:
+"Find sequence without interruption -> positive values in sequence until end of array."
+
+For complete explanation see comments in https://www.youtube.com/watch?v=lJwbPZGo05A
+Also https://leetcode.com/problems/gas-station/solutions/3011143/js-greedy-commented-you-will-get-it/
+*/
+// ;(gas = [1, 2, 3, 4, 5]), (cost = [3, 4, 5, 1, 2]) // Output: 3
+// ;(gas = [2, 3, 4]), (cost = [3, 4, 3]) // Output: -1
+// ;(gas = [5, 8, 2, 8]), (cost = [6, 5, 6, 6]) // 3
+// ;(gas = [1, 2, 3, 4, 5]), (cost = [3, 4, 5, 1, 2]) // 3
+// ;(gas = [5, 1, 2, 3, 4]), (cost = [4, 4, 1, 5, 1]) //4
+/**
+ * @param {number[]} gas
+ * @param {number[]} cost
+ * @return {number}
+ */
+var canCompleteCircuit = function (gas, cost) {
+  if (gas.reduce((a, i) => a + i) < cost.reduce((a, i) => a + i)) return -1
+  // If gas >= cost, find start index
+  // Iterate over the gas and cost array.
+  // If a position reached with a tank <0, that means we should
+  // reset the tank and try to start in the next position.
+  let tank = 0
+  let start = 0
+
+  for (let i = 0; i < gas.length; i++) {
+    tank += gas[i] - cost[i]
+    if (tank < 0) {
+      tank = 0
+      start = i + 1
+    }
+  }
+  return start
+}
+// console.log(canCompleteCircuit(gas, cost))
