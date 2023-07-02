@@ -889,3 +889,29 @@ var canCompleteCircuit = function (gas, cost) {
   return start
 }
 // console.log(canCompleteCircuit(gas, cost))
+
+// 14. Longest Common Prefix, Easy
+// String, Trie
+// strs = ['flower', 'flow', 'flight'] // Output: "fl"
+// strs = ['dog', 'racecar', 'car'] // Output: ""
+// strs = ['flower', 'flower', 'flower', 'flower']
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+  let check = strs[0]
+  let res = ''
+
+  for (let i = 0; i < check.length; i++) {
+    for (let j = 1; j < strs.length; j++) {
+      if (check[i] !== strs[j][i]) {
+        return res
+      }
+    }
+    res += check[i]
+  }
+
+  return res
+}
+// console.log(longestCommonPrefix(strs))
