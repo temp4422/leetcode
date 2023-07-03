@@ -915,3 +915,27 @@ var longestCommonPrefix = function (strs) {
   return res
 }
 // console.log(longestCommonPrefix(strs))
+
+// 151. Reverse Words in a String, Medium
+// Two Pointers, String
+// s = 'the sky is blue' // Output: "blue is sky the"
+// s = '  hello world  ' // Output: "world hello"
+// s = 'a good   example' // Output: "example good a"
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function (s) {
+  let res = ''
+  let arr = s.split(/\s+/)
+  for (let i = arr.length - 1; i >= 0; i--) {
+    console.log(arr[i])
+    if (arr[i] !== '') {
+      res += arr[i] + ' '
+    }
+  }
+  return res.trim()
+  // Alternative
+  // return s.split(' ').reverse().filter(i => i !== '').join(' ');
+}
+// console.log(reverseWords(s))
