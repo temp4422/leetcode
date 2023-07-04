@@ -939,3 +939,69 @@ var reverseWords = function (s) {
   // return s.split(' ').reverse().filter(i => i !== '').join(' ');
 }
 // console.log(reverseWords(s))
+
+// 6. Zigzag Conversion, Medium
+// String
+/*
+numRows = 3    | numRows = 4    | numRows = 5
+P   A   H   N  | P     I     N  | P       H
+A P L S I I G  | A   L S   I G  | A     S I
+Y   I   R      | Y A   H R      | Y    I  R
+PAHNAPLSIIGYIR | P     I        | P  L    I  G
+               | PINALSIGYAHRPI | A       N
+                                  PHASIYIRPLIGAN
+Algorithm:
+1. Make zigzag (each column)
+  (Cycle with %: 1 -> 2 -> ... numRows; because (i % numRows) never bigger than numRows)
+  1.1 push numRows on arr: [PAY] (we count from 0, so: numRows -1)
+  1.2 jump to i + numRows
+  1.3 push padding + P + padding
+    1.3.1 make each padding = (i % numRows) and reverse = (numRows - (i % numRows))
+2. Read rows
+  2.1 read first letter on each column
+*/
+// ;(s = 'PAYPALISHIRING'), (numRows = 3) // Output: "PAHNAPLSIIGYIR"
+// ;(s = 'PAYPALISHIRING'), (numRows = 4) // Output: "PINALSIGYAHRPI"
+// ;(s = 'A'), (numRows = 1) // Output: "A"
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function (s, numRows) {
+  numRows = numRows - 1 // Because we count from 0
+  let arr = []
+  let res = ''
+
+  // 1. Make zigzag (each column)
+  for (let i = 0; i < s.length; i++) {
+    if (i % numRows == 0) {
+      arr.push(s.slice(i, i + numRows + 1))
+      i += numRows
+    } else {
+      let tmp1 = numRows - (i % numRows)
+      let tmp2 = i % numRows // reverse to tmp1
+      let pad1 = ''
+      let pad2 = ''
+      for (let j = 0; j < tmp1; j++) {
+        pad1 += '_'
+      }
+      for (let j = 0; j < tmp2; j++) {
+        pad2 += '_'
+      }
+      arr.push(pad1 + s[i] + pad2)
+    }
+  }
+
+  //2. Read rows
+  for (let i = 0; i < numRows + 1; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j][i] != '_' && arr[j][i] != undefined) {
+        res += arr[j][i]
+      }
+    }
+  }
+
+  return res
+}
+// console.log(convert(s, numRows))
