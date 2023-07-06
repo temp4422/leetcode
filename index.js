@@ -1005,3 +1005,33 @@ var convert = function (s, numRows) {
   return res
 }
 // console.log(convert(s, numRows))
+
+// 28. Find the Index of the First Occurrence in a String, Easy
+// Two Pointers, String, String Matching
+// ;(haystack = 'sadbutsad'), (needle = 'sad') // Output: 0
+// ;(haystack = 'leetcode'), (needle = 'leeto') // Output: -1
+// ;(haystack = 'hello'), (needle = 'll') // 2
+// ;(haystack = 'mississippi'), (needle = 'issip') // 4
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function (haystack, needle) {
+  let res = ''
+  for (let i = 0; i < haystack.length; i++) {
+    for (let j = 0; j < needle.length; j++) {
+      if (needle[j] == haystack[i]) {
+        res += needle[j]
+        i++
+        if (res == needle) return i - needle.length
+      } else {
+        j = needle.length
+        i -= res.length
+        res = ''
+      }
+    }
+  }
+  return -1
+}
+// console.log(strStr(haystack, needle))
