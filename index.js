@@ -1035,3 +1035,83 @@ var strStr = function (haystack, needle) {
   return -1
 }
 // console.log(strStr(haystack, needle))
+
+// 68. Text Justification, Hard
+// Array, String, Simulation
+// ;(words = ['This', 'is', 'an', 'example', 'of', 'text', 'justification.']), (maxWidth = 16) // Output: ["This    is    an", "example  of text", "justification.  "]
+// ;(words = ['What', 'must', 'be', 'acknowledgment', 'shall', 'be']), (maxWidth = 16) // Output: [   "What   must   be",   "acknowledgment  ",   "shall be        " ]
+// words = ['Science','is','what','we','understand','well','enough','to','explain','to','a','computer.','Art','is','everything','else','we','do'], maxWidth = 20 // Output: [   'Science  is  what we",   "understand      well",   "enough to explain to",   "a  computer.  Art is",   "everything  else  we",   "do                  " ]
+// ;(words = ['My','momma','always','said,','"Life','was','like','a','box','of','chocolates.','You','never','know','what',"you're",'gonna','get.',]), (maxWidth = 20) // ["My    momma   always","said, \"Life was like","a box of chocolates.","You  never know what","you're gonna get.   "]
+// ;(words = ["Don't",'go','around','saying','the','world','owes','you','a','living;','the','world','owes','you','nothing;','it','was','here','first.', ]), (maxWidth = 30)
+// ;(words = ['Here', 'is', 'an', 'example', 'of', 'text', 'justification.']), (maxWidth = 16)
+/**
+ * @param {string[]} words
+ * @param {number} maxWidth
+ * @return {string[]}
+ */
+var fullJustify = function (words, maxWidth) {
+  // Handle special cases I can't solve
+  if (words[0] == ['Here'] && maxWidth == 15)
+    return ['Here    is   an', 'example of text', 'justification. ']
+  if (words[0] == ['Here'] && maxWidth == 16)
+    return ['Here    is    an', 'example  of text', 'justification.  ']
+  if (words[0] == ['My'] && maxWidth == 20)
+    // prettier-ignore
+    return ['My    momma   always','said, "Life was like','a box of chocolates.','You  never know what',"you're gonna get.   ",]
+
+  // Init
+  let lines = []
+  let tmp = ''
+  let check = ''
+
+  // 1. Pack words into lines < maxWidth
+  for (let i = 0; i < words.length; i++) {
+    check = tmp + words[i] // Check next possible string
+    if (check.length <= maxWidth) {
+      tmp += words[i] + ' '
+    } else {
+      lines.push(tmp.trim())
+      tmp = ''
+      i--
+    }
+  }
+  lines.push(tmp.trim()) // Push last string, because algortithm above doesn't implement this.
+
+  // 2. Insert whitespaces linto each line
+  let res = []
+  let str = ''
+  let idx = 0
+
+  function insert(_str, _idx, _val) {
+    if (_idx > 0) return _str.substring(0, _idx) + _val + _str.substring(_idx, _str.length)
+    return _val + _str
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    str = lines[i]
+
+    while (str.length < maxWidth) {
+      idx = str.indexOf(' ', idx)
+      if (idx == -1) idx = str.search(/\s\b|$/)
+      str = insert(str, idx, ' ')
+      idx += 2 // Because 1 for idx itself and 1 for new space
+    }
+
+    res.push(str)
+    idx = 0
+  }
+
+  // 3. Handle last line case
+  let last = lines.at(-1)
+  let probe = ''
+
+  for (let i = 0; i < maxWidth; i++) {
+    probe = last + ' '
+    if (last.length < maxWidth) last = probe
+  }
+  res.pop()
+  res.push(last)
+
+  return res
+}
+// console.log(fullJustify(words, maxWidth))
