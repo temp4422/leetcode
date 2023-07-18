@@ -1115,3 +1115,38 @@ var fullJustify = function (words, maxWidth) {
   return res
 }
 // console.log(fullJustify(words, maxWidth))
+
+/********************** Two Pointers *****************************************/
+/*****************************************************************************/
+// 125. Valid Palindrome, Easy
+// Two Pointers, String
+// s = 'analana' // Output: true
+// s = 'A man, a plan, a canal: Panama' // Output: true
+// s = 'race a car' // Output: false
+// s = ' ' // Output: true
+// s = ".," // true
+// s = 'abb' // false
+// s = 'ab_a' // true
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  let palindrome = s
+    .split('')
+    .filter((i) => i.match(/[A-Za-z0-9]/))
+    .join('')
+    .toLowerCase()
+  let middle = Math.floor(palindrome.length / 2)
+
+  console.log(palindrome)
+  if (palindrome == '') return true
+  for (let i = 0; i < palindrome.length; i++) {
+    if (palindrome.at(i) == palindrome.at(palindrome.length - 1 - i)) {
+      if (i == middle) return true
+    } else {
+      return false
+    }
+  }
+}
+// console.log(isPalindrome(s))
