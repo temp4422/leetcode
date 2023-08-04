@@ -1150,3 +1150,25 @@ var isPalindrome = function (s) {
   }
 }
 // console.log(isPalindrome(s))
+
+// 392. Is Subsequence, Easy
+// Two Pointers, String, Dynamic Programming
+// ;(s = 'abc'), (t = 'ahbgdc') // Output: true
+// ;(s = 'axc'), (t = 'ahbgdc') // Output: false
+// ;(s = ''), (t = '') // true
+// ;(s = 'abc'), (t = '') // false
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function (s, t) {
+  if (t.length == 0 && s.length == 0) return true
+  let j = 0 // 's' pointer
+  for (let i = 0; i < t.length; i++) {
+    if (s[j] == t[i]) j++
+    if (j == s.length) return true
+  }
+  return false
+}
+// console.log(isSubsequence(s, t))
