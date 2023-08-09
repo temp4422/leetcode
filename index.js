@@ -1172,3 +1172,27 @@ var isSubsequence = function (s, t) {
   return false
 }
 // console.log(isSubsequence(s, t))
+
+// 167. Two Sum II - Input Array Is Sorted, Medium
+// Array, Two Pointers, Binary Search
+// ;(numbers = [2, 7, 11, 15]), (target = 9) // Output: [1,2]
+// ;(numbers = [2, 3, 4]), (target = 6) // Output: [1,3]
+// ;(numbers = [-1, 0]), (target = -1) // Output: [1,2]
+// ;(numbers = [0, 0, 3, 4]), (target = 0) // [1,2]
+// ;(numbers = [5, 25, 75]), (target = 100) // [2,3]
+// ;(numbers = [1, 2, 3, 4, 4, 9, 56, 90]), (target = 8) // [4,5]
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (numbers, target) {
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[j] + numbers[i] == target) {
+        return [i + 1, j + 1]
+      }
+    }
+  }
+}
+// console.log(twoSum(numbers, target))
