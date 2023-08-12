@@ -1196,3 +1196,66 @@ var twoSum = function (numbers, target) {
   }
 }
 // console.log(twoSum(numbers, target))
+
+// 15. 3Sum, Medium
+// Array Two Pointers Sorting
+// nums = [-1, 0, 1, 2, -1, -4] // Output: [[-1,-1,2],[-1,0,1]]
+// nums = [0, 1, 1] // Output: []
+// nums = [0, 0, 0] // Output: [[0,0,0]]
+// nums = [0, 0, 0, 0] // Output: [[0,0,0]]
+// nums = [0, 1, 1] // []
+// nums = [-2, 0, 1, 1, 2] // [[-2,0,2],[-2,1,1]]
+// nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6] // [[-4,-2,6],[-4,0,4],[-4,1,3],[-4,2,2],[-2,-2,4],[-2,0,2]]
+// nums = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4] // [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+  const target = 0
+  const result = []
+  let sum
+  let triplet
+
+  if (nums.length < 3) return result
+  nums.sort((a, b) => a - b)
+
+  // Make 3 pointers move and check if triple == sum, if so -> push result, if duplicate -> skip
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (nums[i] > target) break // No need to go past target
+
+    /*
+      Remove duplicates logic
+      If 'i>0' important -> skip nums[i] at position 0 (first element).
+      Same logic for j and k, but there could be multiple dups, so we use while loop to cycle through them.
+    */
+    // Remove dup start
+    if (i > 0 && nums[i] == nums[i - 1]) continue
+    // Remove dup end
+
+    let j = i + 1
+    let k = nums.length - 1
+
+    while (j < k) {
+      sum = nums[i] + nums[j] + nums[k]
+      triplet = [nums[i], nums[j], nums[k]]
+
+      if (sum == target) {
+        result.push(triplet)
+
+        //Remove dup start
+        while (nums[j] == nums[j + 1]) j++
+        while (nums[k] == nums[k - 1]) k--
+        // Remove dup end
+
+        j++
+        k--
+      }
+      if (sum < target) j++
+      if (sum > target) k--
+    }
+  }
+
+  return result
+}
+// console.log(threeSum(nums))
