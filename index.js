@@ -1259,3 +1259,28 @@ var threeSum = function (nums) {
   return result
 }
 // console.log(threeSum(nums))
+
+// 383. Ransom Note, Easy
+// Original solution in leetcode.com;
+// Here copy from https://leetcode.com/problems/ransom-note/solutions/2136886/javascript-readable/?envType=study-plan-v2&envId=top-interview-150
+// Hash Table, String, Counting
+// ;(ransomNote = 'a'), (magazine = 'b') // Output: false
+// ;(ransomNote = 'aa'), (magazine = 'ab') // Output: false
+// ;(ransomNote = 'aa'), (magazine = 'aab') // Output: true
+// ;(ransomNote = 'bg'), (magazine = 'efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj') // true
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
+  for (let char of ransomNote) {
+    if (magazine.includes(char)) {
+      magazine = magazine.replace(char, 0)
+    } else {
+      return false
+    }
+  }
+  return true
+}
+// console.log(canConstruct(ransomNote, magazine))
