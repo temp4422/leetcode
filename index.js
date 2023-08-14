@@ -584,50 +584,6 @@ var romanToInt = function (s) {
 }
 // console.log(romanToInt(s))
 
-// My solution
-// var romanToInt = function (s) {
-//   let res = 0
-//   for (let i = 0; i < s.length; i++) {
-//     switch (s[i]) {
-//       case 'I':
-//         if (s[i + 1] != undefined && (s[i + 1] == 'V' || s[i + 1] == 'X')) {
-//           res -= 1
-//         } else {
-//           res += 1
-//         }
-//         break
-//       case 'V':
-//         res += 5
-//         break
-//       case 'X':
-//         if (s[i + 1] != undefined && (s[i + 1] == 'L' || s[i + 1] == 'C')) {
-//           res -= 10
-//         } else {
-//           res += 10
-//         }
-//         break
-//       case 'L':
-//         res += 50
-//         break
-//       case 'C':
-//         if (s[i + 1] != undefined && (s[i + 1] == 'D' || s[i + 1] == 'M')) {
-//           res -= 100
-//         } else {
-//           res += 100
-//         }
-//         break
-//       case 'D':
-//         res += 500
-//         break
-//       case 'M':
-//         res += 1000
-//         break
-//     }
-//   }
-//   return res
-// }
-// console.log(romanToInt(s))
-
 // 12. Integer to Roman, Medium
 // Hash Table, Math, String
 /*****************************************************************************/
@@ -1284,3 +1240,37 @@ var canConstruct = function (ransomNote, magazine) {
   return true
 }
 // console.log(canConstruct(ransomNote, magazine))
+
+// 205. Isomorphic Strings Easy
+// Hash Table String
+// ;(s = 'egg'), (t = 'add') // true
+// ;(s = 'foo'), (t = 'bar') // false
+// ;(s = 'paper'), (t = 'title') // true
+// ;(s = 'badc'), (t = 'baba') // false
+// ;(s = 'egcd'), (t = 'adfd') // false
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function (s, t) {
+  let map = new Map()
+  let set = new Set()
+  let count = t.length
+
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) continue
+    if (set.has(t[i])) return false
+    map.set(s[i], t[i])
+    set.add(t[i])
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    if (t[i] == map.get(s[i])) {
+      count--
+    }
+  }
+
+  return count == 0 ? true : false
+}
+// console.log(isIsomorphic(s, t))
