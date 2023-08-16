@@ -1274,3 +1274,40 @@ var isIsomorphic = function (s, t) {
   return count == 0 ? true : false
 }
 // console.log(isIsomorphic(s, t))
+
+// 290. Word Pattern, Easy
+// Hash Table, String
+// ;(pattern = 'abba'), (s = 'dog cat cat dog') // true
+// ;(pattern = 'abba'), (s = 'dog cat cat fish') // false
+// ;(pattern = 'aaaa'), (s = 'dog cat cat dog') // false
+// ;(pattern = 'abba'), (s = 'dog dog dog dog') // false
+// ;(pattern = 'aaa'), (s = 'aa aa aa aa') // false
+/**
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+var wordPattern = function (pattern, s) {
+  let map = new Map()
+  let set = new Set()
+  let count = pattern.length
+  let string = s.split(' ')
+
+  if (pattern.length != string.length) return false
+
+  for (let i = 0; i < pattern.length; i++) {
+    if (map.has(pattern[i])) continue
+    if (set.has(string[i])) return false
+    map.set(pattern[i], string[i])
+    set.add(string[i])
+  }
+
+  for (let i = 0; i < pattern.length; i++) {
+    if (string[i] == map.get(pattern[i])) {
+      count--
+    }
+  }
+
+  return count == 0 ? true : false
+}
+// console.log(wordPattern(pattern, s))
