@@ -1311,3 +1311,32 @@ var wordPattern = function (pattern, s) {
   return count == 0 ? true : false
 }
 // console.log(wordPattern(pattern, s))
+
+// 242. Valid Anagram, Easy
+// Hash Table, String, Sorting
+// ;(s = 'anagram'), (t = 'nagaram') //  true
+// ;(s = 'rat'), (t = 'car') //  false
+// ;(s = 'a'), (t = 'ab')
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function (s, t) {
+  if (t.length > s.length) return false
+
+  let count = s.length
+  let j = 0
+
+  s = s.split('').sort()
+  t = t.split('').sort()
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == t[j]) {
+      j++
+      count--
+    }
+  }
+  return count == 0 ? true : false
+}
+// console.log(isAnagram(s, t))
