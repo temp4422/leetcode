@@ -1340,3 +1340,31 @@ var isAnagram = function (s, t) {
   return count == 0 ? true : false
 }
 // console.log(isAnagram(s, t))
+
+// 202. Happy Number, Easy
+// Hash Table, Math, Two Pointers
+// n = 19 //Output: true
+// n = 2 //Output: false
+// n = 7 // true
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+  let res = 0
+  let set = new Set()
+  if (n == 1) return true
+
+  while (res != 1) {
+    n = n.toString().split('')
+    for (let i = 0; i < n.length; i++) {
+      res += Math.pow(n[i], 2)
+    }
+    if (res == 1) return true
+    if (set.has(res)) return false
+    set.add(res)
+    n = res
+    res = 0
+  }
+}
+// console.log(isHappy(n))
