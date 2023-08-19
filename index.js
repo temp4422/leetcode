@@ -1368,3 +1368,32 @@ var isHappy = function (n) {
   }
 }
 // console.log(isHappy(n))
+
+// 49. Group Anagrams, Medium
+// Array, Hash Table, String, Sorting
+// strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+// strs = [''] // Output: [[""]]
+// strs = ['a'] // Output: [["a"]]
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
+  const map = new Map()
+  let result
+  let tmp
+
+  for (let i = 0; i < strs.length; i++) {
+    tmp = strs[i].split('').sort().join('')
+
+    if (map.has(tmp)) {
+      map.set(tmp, [...map.get(tmp), strs[i]])
+    } else {
+      map.set(tmp, [strs[i]])
+    }
+  }
+
+  result = [...map.values()]
+  return result
+}
+// console.log(groupAnagrams(strs))
