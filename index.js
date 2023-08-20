@@ -1397,3 +1397,25 @@ var groupAnagrams = function (strs) {
   return result
 }
 // console.log(groupAnagrams(strs))
+
+// 219. Contains Duplicate II, Easy
+// Array, Hash Table, Sliding Window
+// ;(nums = [1, 2, 3, 1]), (k = 3) // Output: true
+// ;(nums = [1, 0, 1, 1]), (k = 1) // Output: true
+// ;(nums = [1, 2, 3, 1, 2, 3]), (k = 2) // Output: false
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function (nums, k) {
+  for (let j = 0; j < nums.length; j++) {
+    for (let i = j + 1; i < nums.length; i++) {
+      if (nums[i] == nums[j] && i - j <= k) {
+        return true
+      }
+    }
+  }
+  return false
+}
+// console.log(containsNearbyDuplicate(nums, k))
