@@ -1452,3 +1452,30 @@ var longestConsecutive = function (nums) {
   return max
 }
 // console.log(longestConsecutive(nums))
+
+// 11. Container With Most Water, Medium
+// Array, Two Pointers, Greedy
+// height = [1, 8, 6, 2, 5, 4, 8, 3, 7] // Output: 49
+// height = [1, 1] // Output: 1
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+  let result = 0
+  let i = 0 // left pointer
+  let j = height.length - 1 // right pointer
+  let area, length, width // length * width
+
+  while (i < j) {
+    length = Math.min(height[i], height[j])
+    width = j - i
+    area = length * width
+    result = Math.max(result, area)
+
+    if (height[i] <= height[j]) i++
+    else j--
+  }
+  return result
+}
+// console.log(maxArea(height))
