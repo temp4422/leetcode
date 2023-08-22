@@ -1419,3 +1419,36 @@ var containsNearbyDuplicate = function (nums, k) {
   return false
 }
 // console.log(containsNearbyDuplicate(nums, k))
+
+// 128. Longest Consecutive Sequence, Medium
+// Array, Hash Table, Union Find
+// nums = [100, 4, 200, 1, 3, 2] // Output: 4
+// nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1] // Output: 9
+// nums = [9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6] // 7
+// nums = [1, 2, 0, 1] // 3
+// nums = []
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function (nums) {
+  if (nums.length == 0) return 0
+  let count = 1
+  let max = 1
+
+  nums.sort((a, b) => a - b)
+  const set = new Set(nums)
+  const numsX = Array.from(set)
+
+  for (let i = 1; i < numsX.length; i++) {
+    if (numsX[i - 1] + 1 == numsX[i]) {
+      count++
+      if (count > max) max = count
+    } else {
+      if (count > max) max = count
+      count = 1
+    }
+  }
+  return max
+}
+// console.log(longestConsecutive(nums))
