@@ -1,11 +1,11 @@
-/*****************************************************************************/
-/********************* TOP INTERVIEW 150  ************************************/
-/*****************************************************************************/
+/*###########################################################################*/
+/*#################### TOP INTERVIEW 150  ###################################*/
+/*###########################################################################*/
 
 /******************** Array / String *****************************************/
 /*****************************************************************************/
 
-// 88. Merge Sorted Array, Easy
+// # 88. Merge Sorted Array, Easy
 // Array, Two Pointers, Sorting
 /*****************************************************************************/
 /**
@@ -29,7 +29,7 @@ var merge = function (nums1, m, nums2, n) {
 }
 // merge(nums1, m, nums2, n); console.log(nums1)
 
-// 27. Remove Element, Easy
+// # 27. Remove Element, Easy
 // Array, Two Pointers
 /*****************************************************************************/
 /**
@@ -52,7 +52,7 @@ var removeElement = function (nums, val) {
 }
 // const k = removeElement(nums, val) // Calls your implementation
 
-// 26. Remove Duplicates from Sorted Array, Easy
+// # 26. Remove Duplicates from Sorted Array, Easy
 // Array, Two Pointers
 /*****************************************************************************/
 /**
@@ -73,7 +73,7 @@ var removeDuplicates = function (nums) {
 }
 // let k = removeDuplicates(nums)
 
-// 80. Remove Duplicates from Sorted Array II, Medium
+// # 80. Remove Duplicates from Sorted Array II, Medium
 // Array, Two Pointers
 /*****************************************************************************/
 /**
@@ -93,7 +93,7 @@ var removeDuplicates2 = function (nums) {
 }
 // let k = removeDuplicates2(nums)
 
-// 169. Majority Element, Easy
+// # 169. Majority Element, Easy
 // Array, Hash Table, Divide and Conquer, Sorting, Counting
 /*****************************************************************************/
 /**
@@ -123,7 +123,7 @@ var majorityElement = function (nums) {
 }
 // let k = majorityElement(nums)
 
-// 189. Rotate Array, Medium
+// # 189. Rotate Array, Medium
 // Array, Math, Two Pointers
 /*****************************************************************************/
 /**
@@ -195,7 +195,7 @@ var rotate = function (nums, k) {
 }
 // rotate(nums, k)
 
-// 121. Best Time to Buy and Sell Stock, Easy
+// # 121. Best Time to Buy and Sell Stock, Easy
 // Array, Dynamic Programming
 /*****************************************************************************/
 /**
@@ -240,7 +240,7 @@ var maxProfit = function (prices) {
 }
 // maxProfit(prices)
 
-// 122. Best Time to Buy and Sell Stock II, Medium
+// # 122. Best Time to Buy and Sell Stock II, Medium
 // Array, Dynamic Programming, Greedy
 /*****************************************************************************/
 /**
@@ -288,7 +288,7 @@ var maxProfit = function (prices) {
 }
 // maxProfit(prices)
 
-// 55. Jump Game, Medium
+// # 55. Jump Game, Medium
 // Array, Dynamic Programming, Greedy
 /*****************************************************************************/
 /*
@@ -343,7 +343,7 @@ var canJump = function (nums) {
 }
 // console.log(canJump(nums))
 
-// 45. Jump Game II, Medium
+// # 45. Jump Game II, Medium
 // Array, Dynamic Programming, Greedy, BFS
 /*****************************************************************************/
 /**
@@ -401,7 +401,7 @@ var jump = function(nums) {
 };
 */
 
-// 274. H-Index, Medium
+// # 274. H-Index, Medium
 // Array, Sorting, Counting Sort
 /*****************************************************************************/
 /*
@@ -450,7 +450,7 @@ var hIndex = function (citations) {
 }
 // console.log(hIndex(citations))
 
-// 380. Insert Delete GetRandom O(1), Medium
+// # 380. Insert Delete GetRandom O(1), Medium
 // Array, Hash Table, Math, Design, Randomized
 /*****************************************************************************/
 /*
@@ -506,7 +506,7 @@ class RandomizedSet {
 // randomizedSet.insert(2) //?
 // randomizedSet.getRandom() //?
 
-// 238. Product of Array Except Self, Medium
+// # 238. Product of Array Except Self, Medium
 // Array, Prefix Sum
 /*****************************************************************************/
 // Return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
@@ -603,7 +603,7 @@ var canCompleteCircuit = function (gas, cost) {
 // 42. Trapping Rain Water, Hard
 // Array, Two Pointers, Dynamic Programming, Stack, Monotonic Stack
 
-// 13. Roman to Integer, Easy, 00:30
+// # 13. Roman to Integer, Easy, 00:30
 // Hash Table, Math, String
 /*****************************************************************************/
 /*
@@ -654,7 +654,7 @@ var romanToInt = function (s) {
 }
 // console.log(romanToInt(s))
 
-// 12. Integer to Roman, Medium
+// # 12. Integer to Roman, Medium
 // Hash Table, Math, String
 /*****************************************************************************/
 // num = 1 // Output: "I"
@@ -705,7 +705,7 @@ var intToRoman = function (num) {
 }
 // console.log(intToRoman(num))
 
-// 58. Length of Last Word, Easy
+// # 58. Length of Last Word, Easy
 // String
 /*****************************************************************************/
 // s = 'Hello World' // Output: 5
@@ -748,8 +748,9 @@ var longestCommonPrefix = function (strs) {
 }
 // console.log(longestCommonPrefix(strs))
 
-// 151. Reverse Words in a String, Medium
+// # 151. Reverse Words in a String, Medium
 // Two Pointers, String
+/*****************************************************************************/
 // s = 'the sky is blue' // Output: "blue is sky the"
 // s = '  hello world  ' // Output: "world hello"
 // s = 'a good   example' // Output: "example good a"
@@ -772,8 +773,9 @@ var reverseWords = function (s) {
 }
 // console.log(reverseWords(s))
 
-// 6. Zigzag Conversion, Medium
+// # 6. Zigzag Conversion, Medium
 // String
+/*****************************************************************************/
 /*
 numRows = 3    | numRows = 4    | numRows = 5
 P   A   H   N  | P     I     N  | P       H
@@ -838,8 +840,9 @@ var convert = function (s, numRows) {
 }
 // console.log(convert(s, numRows))
 
-// 28. Find the Index of the First Occurrence in a String, Easy
+// # 28. Find the Index of the First Occurrence in a String, Easy
 // Two Pointers, String, String Matching
+/*****************************************************************************/
 // ;(haystack = 'sadbutsad'), (needle = 'sad') // Output: 0
 // ;(haystack = 'leetcode'), (needle = 'leeto') // Output: -1
 // ;(haystack = 'hello'), (needle = 'll') // 2
@@ -868,8 +871,9 @@ var strStr = function (haystack, needle) {
 }
 // console.log(strStr(haystack, needle))
 
-// 68. Text Justification, Hard
+// # 68. Text Justification, Hard
 // Array, String, Simulation
+/*****************************************************************************/
 // ;(words = ['This', 'is', 'an', 'example', 'of', 'text', 'justification.']), (maxWidth = 16) // Output: ["This    is    an", "example  of text", "justification.  "]
 // ;(words = ['What', 'must', 'be', 'acknowledgment', 'shall', 'be']), (maxWidth = 16) // Output: [   "What   must   be",   "acknowledgment  ",   "shall be        " ]
 // words = ['Science','is','what','we','understand','well','enough','to','explain','to','a','computer.','Art','is','everything','else','we','do'], maxWidth = 20 // Output: [   'Science  is  what we",   "understand      well",   "enough to explain to",   "a  computer.  Art is",   "everything  else  we",   "do                  " ]
@@ -950,8 +954,9 @@ var fullJustify = function (words, maxWidth) {
 
 /********************** Two Pointers *****************************************/
 /*****************************************************************************/
-// 125. Valid Palindrome, Easy
+// # 125. Valid Palindrome, Easy
 // Two Pointers, String
+/*****************************************************************************/
 // s = 'analana' // Output: true
 // s = 'A man, a plan, a canal: Panama' // Output: true
 // s = 'race a car' // Output: false
@@ -983,8 +988,9 @@ var isPalindrome = function (s) {
 }
 // console.log(isPalindrome(s))
 
-// 392. Is Subsequence, Easy
+// # 392. Is Subsequence, Easy
 // Two Pointers, String, Dynamic Programming
+/*****************************************************************************/
 // ;(s = 'abc'), (t = 'ahbgdc') // Output: true
 // ;(s = 'axc'), (t = 'ahbgdc') // Output: false
 // ;(s = ''), (t = '') // true
@@ -1005,8 +1011,9 @@ var isSubsequence = function (s, t) {
 }
 // console.log(isSubsequence(s, t))
 
-// 167. Two Sum II - Input Array Is Sorted, Medium
+// # 167. Two Sum II - Input Array Is Sorted, Medium
 // Array, Two Pointers, Binary Search
+/*****************************************************************************/
 // ;(numbers = [2, 7, 11, 15]), (target = 9) // Output: [1,2]
 // ;(numbers = [2, 3, 4]), (target = 6) // Output: [1,3]
 // ;(numbers = [-1, 0]), (target = -1) // Output: [1,2]
@@ -1029,8 +1036,9 @@ var twoSum = function (numbers, target) {
 }
 // console.log(twoSum(numbers, target))
 
-// 11. Container With Most Water, Medium
+// # 11. Container With Most Water, Medium
 // Array, Two Pointers, Greedy
+/*****************************************************************************/
 // height = [1, 8, 6, 2, 5, 4, 8, 3, 7] // Output: 49
 // height = [1, 1] // Output: 1
 /**
@@ -1056,8 +1064,9 @@ var maxArea = function (height) {
 }
 // console.log(maxArea(height))
 
-// 15. 3Sum, Medium
+// # 15. 3Sum, Medium
 // Array Two Pointers Sorting
+/*****************************************************************************/
 // nums = [-1, 0, 1, 2, -1, -4] // Output: [[-1,-1,2],[-1,0,1]]
 // nums = [0, 1, 1] // Output: []
 // nums = [0, 0, 0] // Output: [[0,0,0]]
@@ -1119,6 +1128,72 @@ var threeSum = function (nums) {
 }
 // console.log(threeSum(nums))
 
+/********************** Sliding Window ***************************************/
+/*****************************************************************************/
+// # 209. Minimum Size Subarray Sum, Medium
+// Array, Binary Search, Sliding Window, Prefix Sum
+/*****************************************************************************/
+// With help of https://leetcode.com/problems/minimum-size-subarray-sum/solutions/3732658/o-n-t-c-optimized-js-sol-explained-with-intuition-approach/?envType=study-plan-v2&envId=top-interview-150
+// ;(target = 7), (nums = [2, 3, 1, 2, 4, 3]) // Output: 2 i.e. [4, 3]
+// ;(target = 4), (nums = [1, 4, 4]) // Output: 1
+// ;(target = 11), (nums = [1, 1, 1, 1, 1, 1, 1, 1]) // Output: 0
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+  let minLength = Infinity // Initialize the minimum length as positive infinity
+  let sum = 0 // Variable to track the current sum
+  let left = 0 // Pointer for the left end of the subarray
+
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right] // Add the current element to the sum
+
+    while (sum >= target) {
+      minLength = Math.min(minLength, right - left + 1) // Update the minimum length
+      sum -= nums[left] // Remove the leftmost element from the sum
+      left++ // Move the left pointer to the right
+    }
+  }
+  return minLength === Infinity ? 0 : minLength // Return 0 if no subarray is found
+}
+// console.log(minSubArrayLen(target, nums))
+
+// # 3. Longest Substring Without Repeating Characters, Medium
+// Hash Table, String, Sliding Window
+/*****************************************************************************/
+
+// # 30. Substring with Concatenation of All Words, Hard
+// Hash Table, String, Sliding Window
+/*****************************************************************************/
+
+// # 76. Minimum Window Substring, Hard
+// Hash Table, String, Sliding Window
+/*****************************************************************************/
+
+/********************** Matrix ***********************************************/
+/*****************************************************************************/
+// # 36. Valid Sudoku, Medium
+// Array, Hash Table, Matrix
+/*****************************************************************************/
+
+// # 54. Spiral, Medium
+// Array, Simulation
+/*****************************************************************************/
+
+// # 48. Rotate Image, Medium
+// Array, Math
+/*****************************************************************************/
+
+// # 73. Set Matrix Zeroes, Medium
+// Array, Hash Table
+/*****************************************************************************/
+
+// # 289. Game of Life, Medium
+// Array, Simulation
+/*****************************************************************************/
+
 /********************** Hashmap **********************************************/
 /*****************************************************************************/
 // 383. Ransom Note, Easy
@@ -1148,6 +1223,7 @@ var canConstruct = function (ransomNote, magazine) {
 
 // 205. Isomorphic Strings Easy
 // Hash Table String
+/*****************************************************************************/
 // ;(s = 'egg'), (t = 'add') // true
 // ;(s = 'foo'), (t = 'bar') // false
 // ;(s = 'paper'), (t = 'title') // true
@@ -1182,6 +1258,7 @@ var isIsomorphic = function (s, t) {
 
 // 290. Word Pattern, Easy
 // Hash Table, String
+/*****************************************************************************/
 // ;(pattern = 'abba'), (s = 'dog cat cat dog') // true
 // ;(pattern = 'abba'), (s = 'dog cat cat fish') // false
 // ;(pattern = 'aaaa'), (s = 'dog cat cat dog') // false
@@ -1219,6 +1296,7 @@ var wordPattern = function (pattern, s) {
 
 // 242. Valid Anagram, Easy
 // Hash Table, String, Sorting
+/*****************************************************************************/
 // ;(s = 'anagram'), (t = 'nagaram') //  true
 // ;(s = 'rat'), (t = 'car') //  false
 // ;(s = 'a'), (t = 'ab')
@@ -1248,6 +1326,7 @@ var isAnagram = function (s, t) {
 
 // 49. Group Anagrams, Medium
 // Array, Hash Table, String, Sorting
+/*****************************************************************************/
 // strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 // strs = [''] // Output: [[""]]
 // strs = ['a'] // Output: [["a"]]
@@ -1276,9 +1355,29 @@ var groupAnagrams = function (strs) {
 // console.log(groupAnagrams(strs))
 
 // 1. Two Sum
+// Array, Hash Table
+/*****************************************************************************/
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  let result = []
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] == target) {
+        result.push(i, j)
+        return result
+      }
+    }
+  }
+}
+// console.log(twoSum([3, 2, 3], 6)) // Expected [0,2]
 
 // 202. Happy Number, Easy
 // Hash Table, Math, Two Pointers
+/*****************************************************************************/
 // n = 19 //Output: true
 // n = 2 //Output: false
 // n = 7 // true
@@ -1307,6 +1406,7 @@ var isHappy = function (n) {
 
 // 219. Contains Duplicate II, Easy
 // Array, Hash Table, Sliding Window
+/*****************************************************************************/
 // ;(nums = [1, 2, 3, 1]), (k = 3) // Output: true
 // ;(nums = [1, 0, 1, 1]), (k = 1) // Output: true
 // ;(nums = [1, 2, 3, 1, 2, 3]), (k = 2) // Output: false
@@ -1329,6 +1429,7 @@ var containsNearbyDuplicate = function (nums, k) {
 
 // 128. Longest Consecutive Sequence, Medium
 // Array, Hash Table, Union Find
+/*****************************************************************************/
 // nums = [100, 4, 200, 1, 3, 2] // Output: 4
 // nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1] // Output: 9
 // nums = [9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6] // 7
@@ -1360,33 +1461,365 @@ var longestConsecutive = function (nums) {
 }
 // console.log(longestConsecutive(nums))
 
-/********************** Sliding Window ***************************************/
+/********************** Intervals ********************************************/
 /*****************************************************************************/
-// 209. Minimum Size Subarray Sum, Medium
-// Array, Binary Search, Sliding Window, Prefix Sum
-// With help of https://leetcode.com/problems/minimum-size-subarray-sum/solutions/3732658/o-n-t-c-optimized-js-sol-explained-with-intuition-approach/?envType=study-plan-v2&envId=top-interview-150
-// ;(target = 7), (nums = [2, 3, 1, 2, 4, 3]) // Output: 2 i.e. [4, 3]
-// ;(target = 4), (nums = [1, 4, 4]) // Output: 1
-// ;(target = 11), (nums = [1, 1, 1, 1, 1, 1, 1, 1]) // Output: 0
-/**
- * @param {number} target
- * @param {number[]} nums
- * @return {number}
- */
-var minSubArrayLen = function (target, nums) {
-  let minLength = Infinity // Initialize the minimum length as positive infinity
-  let sum = 0 // Variable to track the current sum
-  let left = 0 // Pointer for the left end of the subarray
+// # 228. Summary Ranges, Easy
+// Array
+/*****************************************************************************/
+// # 56. Merge Intervals, Medium
+// Array, Sorting
+/*****************************************************************************/
+// # 57. Insert Interval, Medium
+// Array
+/*****************************************************************************/
+// # 452. Minimum Number of Arrows to Burst Balloons, Medium
+// Array, Greedy, Sorting
+/*****************************************************************************/
 
-  for (let right = 0; right < nums.length; right++) {
-    sum += nums[right] // Add the current element to the sum
+/********************** Stack  ***********************************************/
+/*****************************************************************************/
+// # 20. Valid Parentheses, Easy
+// String, Stack
+/*****************************************************************************/
+// # 71. Simplify Path, Medium
+// String, Stack
+/*****************************************************************************/
+// # 155. Min Stack, Medium
+// Stack, Design
+/*****************************************************************************/
+// # 150. Evaluate Reverse Polish Notation, Medium
+// Array, Math, Stack
+/*****************************************************************************/
+// # 224. Basic Calculator, Hard
+// Math, String, Stack
+/*****************************************************************************/
 
-    while (sum >= target) {
-      minLength = Math.min(minLength, right - left + 1) // Update the minimum length
-      sum -= nums[left] // Remove the leftmost element from the sum
-      left++ // Move the left pointer to the right
-    }
-  }
-  return minLength === Infinity ? 0 : minLength // Return 0 if no subarray is found
-}
-// console.log(minSubArrayLen(target, nums))
+/********************** Linked List ******************************************/
+/*****************************************************************************/
+// # 141. Linked List Cycle, Easy
+// Hash Table, Linked List, Two Pointers
+/*****************************************************************************/
+// # 2. Add Two Numbers, Medium
+// Linked List, Math, Recursion
+/*****************************************************************************/
+// # 21. Merge Two Sorted Lists, Easy
+// Linked List, Recursion
+/*****************************************************************************/
+// # 138. Copy List with Random Pointer, Medium
+// Hash Table, Linked List
+/*****************************************************************************/
+// # 92. Reverse Linked List II, Medium
+// Linked List,
+/*****************************************************************************/
+// # 25. Reverse Nodes in k-Group, Hard
+// Linked List, Recursion
+/*****************************************************************************/
+// # 19. Remove Nth Node From End of List, Medium
+// Linked List, Two Pointers
+/*****************************************************************************/
+// # 82. Remove Duplicates from Sorted List II, Medium
+// Linked List, Two Pointers
+/*****************************************************************************/
+// # 61. Rotate List, Medium
+// Linked List, Two Pointers
+/*****************************************************************************/
+// # 86. Partition List, Medium
+// Linked List, Two Pointers
+/*****************************************************************************/
+// # 146. LRU Cache, Medium
+// Hash Table, Linked List, Design, 1+
+/*****************************************************************************/
+
+/********************** Binary Tree General **********************************/
+/*****************************************************************************/
+// # 104. Maximum Depth of Binary Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 100. Same Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 226. Invert Binary Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 101. Symmetric Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 105. Construct Binary Tree from Preorder and Inorder Traversal, Medium
+// Array, Hash Table, Divide and Conquer, 2+
+/*****************************************************************************/
+// # 106. Construct Binary Tree from Inorder and Postorder Traversal, Medium
+// Array, Hash Table, Divide and Conquer, 2+
+/*****************************************************************************/
+// # 117. Populating Next Right Pointers in Each Node II, Medium
+// Linked List, Tree, Depth-First Search, 2+
+/*****************************************************************************/
+// # 114. Flatten Binary Tree to Linked List, Medium
+// Linked List, Stack, Tree, 2+
+/*****************************************************************************/
+// # 112. Path Sum, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 129. Sum Root to Leaf Numbers, Medium
+// Tree, Depth-First Search, Binary Tree
+/*****************************************************************************/
+// # 124. Binary Tree Maximum Path Sum, Hard
+// Dynamic Programming, Tree, Depth-First Search, 1+
+/*****************************************************************************/
+// # 173. Binary Search Tree Iterator, Medium
+// Stack, Tree, Design, 3+
+/*****************************************************************************/
+// # 222. Count Complete Tree Nodes, Easy
+// Binary Search, Tree, Depth-First Search, 1+
+/*****************************************************************************/
+// # 236. Lowest Common Ancestor of a Binary Tree, Medium
+// Tree, Depth-First Search, Binary Tree
+/*****************************************************************************/
+
+/********************** Binary Tree BFS **************************************/
+/*****************************************************************************/
+// # 199. Binary Tree Right Side View, Medium
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 637. Average of Levels in Binary Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 102. Binary Tree Level Order Traversal, Medium
+// Tree, Breadth-First Search, Binary Tree,
+/*****************************************************************************/
+// # 103. Binary Tree Zigzag Level Order Traversal, Medium
+// Tree, Breadth-First Search, Binary Tree,
+/*****************************************************************************/
+
+/********************** Binary Search Tree ***********************************/
+/*****************************************************************************/
+// # 530. Minimum Absolute Difference in BST, Easy
+// Tree, Depth-First Search, Breadth-First Search, 2+
+/*****************************************************************************/
+// # 230. Kth Smallest Element in a BST, Medium
+// Tree, Depth-First Search, Binary Search Tree, 1+
+/*****************************************************************************/
+// # 98. Validate Binary Search Tree, Medium
+// Tree, Depth-First Search, Binary Search Tree, 1+
+/*****************************************************************************/
+
+/********************** Graph General ****************************************/
+/*****************************************************************************/
+// # 200. Number of Islands, Medium
+// Array, Depth-First Search, Breadth-First Search, 2+
+/*****************************************************************************/
+// # 130. Surrounded Regions, Medium
+// Array, Depth-First Search, Breadth-First Search, 2+
+/*****************************************************************************/
+// # 133. Clone Graph, Medium
+// Hash Table, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
+// # 399. Evaluate Division, Medium
+// Array, Depth-First Search, Breadth-First Search, 3+
+/*****************************************************************************/
+// # 207. Course Schedule, Medium
+// Depth-First Search, Breadth-First Search, Graph, 1+
+/*****************************************************************************/
+// # 210. Course Schedule II, Medium
+// Depth-First Search, Breadth-First Search, Graph, 1+
+/*****************************************************************************/
+
+/********************** Graph BFS ********************************************/
+/*****************************************************************************/
+// # 909. Snakes and Ladders, Medium
+// Array, Breadth-First Search, Matrix
+/*****************************************************************************/
+// # 433. Minimum Genetic Mutation, Medium
+// Hash Table, String, Breadth-First Search
+/*****************************************************************************/
+// # 127. Word Ladder, Hard
+// Hash Table, String, Breadth-First Search
+/*****************************************************************************/
+
+/********************** Trie *************************************************/
+/*****************************************************************************/
+// # 208. Implement Trie (Prefix Tree), Medium
+// Hash Table, String, Design, 1+
+/*****************************************************************************/
+// # 211. Design Add and Search Words Data Structure, Medium
+// String, Depth-First Search, Design, 1+
+/*****************************************************************************/
+// # 212. Word Search II, Hard
+// Array, String, Backtracking, 2+
+/*****************************************************************************/
+
+/********************** Backtracking *****************************************/
+/*****************************************************************************/
+// # 17. Letter Combinations of a Phone Number, Medium
+// Hash Table, String, Backtracking
+/*****************************************************************************/
+// # 77. Combinations, Medium
+// Backtracking,
+/*****************************************************************************/
+// # 46. Permutations, Medium
+// Array, Backtracking
+/*****************************************************************************/
+// # 39. Combination Sum, Medium
+// Array, Backtracking
+/*****************************************************************************/
+// # 52. N-Queens II, Hard
+// Backtracking,
+/*****************************************************************************/
+// # 22. Generate Parentheses, Medium
+// String, Dynamic Programming, Backtracking
+/*****************************************************************************/
+// # 79. Word Search, Medium
+// Array, Backtracking, Matrix
+/*****************************************************************************/
+
+/********************** Divide & Conquer *************************************/
+/*****************************************************************************/
+// # 108. Convert Sorted Array to Binary Search Tree, Easy
+// Array, Divide and Conquer, Tree, 2+
+/*****************************************************************************/
+// # 148. Sort List, Medium
+// Linked List, Two Pointers, Divide and Conquer, 2+
+/*****************************************************************************/
+// # 427. Construct Quad Tree, Medium
+// Array, Divide and Conquer, Tree, 1+
+/*****************************************************************************/
+// # 23. Merge k Sorted Lists, Hard
+// Linked List, Divide and Conquer, Heap (Priority Queue), 1+
+/*****************************************************************************/
+
+/********************** Kadane's Algorithm ***********************************/
+/*****************************************************************************/
+// # 53. Maximum Subarray, Medium
+// Array, Divide and Conquer, Dynamic Programming
+/*****************************************************************************/
+// # 918. Maximum Sum Circular Subarray, Medium
+// Array, Divide and Conquer, Dynamic Programming, 2+
+/*****************************************************************************/
+
+/********************** Binary Search ****************************************/
+/*****************************************************************************/
+// # 35. Search Insert Position, Easy
+// Array, Binary Search
+/*****************************************************************************/
+// # 74. Search a 2D Matrix, Medium
+// Array, Binary Search, Matrix
+/*****************************************************************************/
+// # 162. Find Peak Element, Medium
+// Array, Binary Search
+/*****************************************************************************/
+// # 33. Search in Rotated Sorted Array, Medium
+// Array, Binary Search
+/*****************************************************************************/
+// # 34. Find First and Last Position of Element in Sorted Array, Medium
+// Array, Binary Search
+/*****************************************************************************/
+// # 153. Find Minimum in Rotated Sorted Array, Medium
+// Array, Binary Search
+/*****************************************************************************/
+// # 4. Median of Two Sorted Arrays, Hard
+// Array, Binary Search, Divide and Conquer
+/*****************************************************************************/
+
+/********************** Heap *************************************************/
+/*****************************************************************************/
+// # 215. Kth Largest Element in an Array, Medium
+// Array, Divide and Conquer, Sorting, 2+
+/*****************************************************************************/
+// # 502. IPO, Hard
+// Array, Greedy, Sorting, 1+
+/*****************************************************************************/
+// # 373. Find K Pairs with Smallest Sums, Medium
+// Array, Heap (Priority Queue)
+/*****************************************************************************/
+// # 295. Find Median from Data Stream, Hard
+// Two Pointers, Design, Sorting, 2+
+/*****************************************************************************/
+
+/********************** Bit Manipulation *************************************/
+/*****************************************************************************/
+// # 67. Add Binary, Easy
+// Math, String, Bit Manipulation, 1+
+/*****************************************************************************/
+// # 190. Reverse Bits, Easy
+// Divide and Conquer, Bit Manipulation
+/*****************************************************************************/
+// # 191. Number of 1 Bits, Easy
+// Divide and Conquer, Bit Manipulation
+/*****************************************************************************/
+// # 136. Single Number, Easy
+// Array, Bit Manipulation
+/*****************************************************************************/
+// # 137. Single Number II, Medium
+// Array, Bit Manipulation
+/*****************************************************************************/
+// # 201. Bitwise AND of Numbers Range, Medium
+// Bit Manipulation,
+/*****************************************************************************/
+
+/********************** Math *************************************************/
+/*****************************************************************************/
+// # 9. Palindrome Number, Easy
+// Math,
+/*****************************************************************************/
+// # 66. Plus One, Easy
+// Array, Math
+/*****************************************************************************/
+// # 172. Factorial Trailing Zeroes, Medium
+// Math,
+/*****************************************************************************/
+// # 69. Sqrt(x), Easy
+// Math, Binary Search
+/*****************************************************************************/
+// # 50. Pow(x, n), Medium
+// Math, Recursion
+/*****************************************************************************/
+// # 149. Max Points on a Line, Hard
+// Array, Hash Table, Math, 1+
+/*****************************************************************************/
+
+/********************** 1D DP ************************************************/
+/*****************************************************************************/
+// # 70. Climbing Stairs, Easy
+// Math, Dynamic Programming, Memoization
+/*****************************************************************************/
+// # 198. House Robber, Medium
+// Array, Dynamic Programming
+/*****************************************************************************/
+// # 139. Word Break, Medium
+// Array, Hash Table, String, 3+
+/*****************************************************************************/
+// # 322. Coin Change, Medium
+// Array, Dynamic Programming, Breadth-First Search
+/*****************************************************************************/
+// # 300. Longest Increasing Subsequence, Medium
+// Array, Binary Search, Dynamic Programming
+/*****************************************************************************/
+
+/********************** Multidimensional DP **********************************/
+/*****************************************************************************/
+// # 120. Triangle, Medium
+// Array, Dynamic Programming
+/*****************************************************************************/
+// # 64. Minimum Path Sum, Medium
+// Array, Dynamic Programming, Matrix
+/*****************************************************************************/
+// # 63. Unique Paths II, Medium
+// Array, Dynamic Programming, Matrix
+/*****************************************************************************/
+// # 5. Longest Palindromic Substring, Medium
+// String, Dynamic Programming
+/*****************************************************************************/
+// # 97. Interleaving String, Medium
+// String, Dynamic Programming
+/*****************************************************************************/
+// # 72. Edit Distance, Medium
+// String, Dynamic Programming
+/*****************************************************************************/
+// # 123. Best Time to Buy and Sell Stock III, Hard
+// Array, Dynamic Programming
+/*****************************************************************************/
+// # 188. Best Time to Buy and Sell Stock IV, Hard
+// Array, Dynamic Programming
+/*****************************************************************************/
+// # 221. Maximal Square, Medium
+// Array, Dynamic Programming, Matrix
+/*****************************************************************************/
