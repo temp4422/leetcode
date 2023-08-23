@@ -1153,6 +1153,33 @@ var twoSum = function (numbers, target) {
 }
 // console.log(twoSum(numbers, target))
 
+// 11. Container With Most Water, Medium
+// Array, Two Pointers, Greedy
+// height = [1, 8, 6, 2, 5, 4, 8, 3, 7] // Output: 49
+// height = [1, 1] // Output: 1
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+  let result = 0
+  let i = 0 // left pointer
+  let j = height.length - 1 // right pointer
+  let area, length, width // length * width
+
+  while (i < j) {
+    length = Math.min(height[i], height[j])
+    width = j - i
+    area = length * width
+    result = Math.max(result, area)
+
+    if (height[i] <= height[j]) i++
+    else j--
+  }
+  return result
+}
+// console.log(maxArea(height))
+
 // 15. 3Sum, Medium
 // Array Two Pointers Sorting
 // nums = [-1, 0, 1, 2, -1, -4] // Output: [[-1,-1,2],[-1,0,1]]
@@ -1216,6 +1243,8 @@ var threeSum = function (nums) {
 }
 // console.log(threeSum(nums))
 
+/********************** Hashmap **********************************************/
+/*****************************************************************************/
 // 383. Ransom Note, Easy
 // Original solution in leetcode.com;
 // Here copy from https://leetcode.com/problems/ransom-note/solutions/2136886/javascript-readable/?envType=study-plan-v2&envId=top-interview-150
@@ -1341,34 +1370,6 @@ var isAnagram = function (s, t) {
 }
 // console.log(isAnagram(s, t))
 
-// 202. Happy Number, Easy
-// Hash Table, Math, Two Pointers
-// n = 19 //Output: true
-// n = 2 //Output: false
-// n = 7 // true
-/**
- * @param {number} n
- * @return {boolean}
- */
-var isHappy = function (n) {
-  let res = 0
-  let set = new Set()
-  if (n == 1) return true
-
-  while (res != 1) {
-    n = n.toString().split('')
-    for (let i = 0; i < n.length; i++) {
-      res += Math.pow(n[i], 2)
-    }
-    if (res == 1) return true
-    if (set.has(res)) return false
-    set.add(res)
-    n = res
-    res = 0
-  }
-}
-// console.log(isHappy(n))
-
 // 49. Group Anagrams, Medium
 // Array, Hash Table, String, Sorting
 // strs = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
@@ -1397,6 +1398,36 @@ var groupAnagrams = function (strs) {
   return result
 }
 // console.log(groupAnagrams(strs))
+
+// 1. Two Sum
+
+// 202. Happy Number, Easy
+// Hash Table, Math, Two Pointers
+// n = 19 //Output: true
+// n = 2 //Output: false
+// n = 7 // true
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function (n) {
+  let res = 0
+  let set = new Set()
+  if (n == 1) return true
+
+  while (res != 1) {
+    n = n.toString().split('')
+    for (let i = 0; i < n.length; i++) {
+      res += Math.pow(n[i], 2)
+    }
+    if (res == 1) return true
+    if (set.has(res)) return false
+    set.add(res)
+    n = res
+    res = 0
+  }
+}
+// console.log(isHappy(n))
 
 // 219. Contains Duplicate II, Easy
 // Array, Hash Table, Sliding Window
@@ -1453,29 +1484,33 @@ var longestConsecutive = function (nums) {
 }
 // console.log(longestConsecutive(nums))
 
-// 11. Container With Most Water, Medium
-// Array, Two Pointers, Greedy
-// height = [1, 8, 6, 2, 5, 4, 8, 3, 7] // Output: 49
-// height = [1, 1] // Output: 1
+/********************** Sliding Window ***************************************/
+/*****************************************************************************/
+// 209. Minimum Size Subarray Sum, Medium
+// Array, Binary Search, Sliding Window, Prefix Sum
+// With help of https://leetcode.com/problems/minimum-size-subarray-sum/solutions/3732658/o-n-t-c-optimized-js-sol-explained-with-intuition-approach/?envType=study-plan-v2&envId=top-interview-150
+// ;(target = 7), (nums = [2, 3, 1, 2, 4, 3]) // Output: 2 i.e. [4, 3]
+// ;(target = 4), (nums = [1, 4, 4]) // Output: 1
+// ;(target = 11), (nums = [1, 1, 1, 1, 1, 1, 1, 1]) // Output: 0
 /**
- * @param {number[]} height
+ * @param {number} target
+ * @param {number[]} nums
  * @return {number}
  */
-var maxArea = function (height) {
-  let result = 0
-  let i = 0 // left pointer
-  let j = height.length - 1 // right pointer
-  let area, length, width // length * width
+var minSubArrayLen = function (target, nums) {
+  let minLength = Infinity // Initialize the minimum length as positive infinity
+  let sum = 0 // Variable to track the current sum
+  let left = 0 // Pointer for the left end of the subarray
 
-  while (i < j) {
-    length = Math.min(height[i], height[j])
-    width = j - i
-    area = length * width
-    result = Math.max(result, area)
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right] // Add the current element to the sum
 
-    if (height[i] <= height[j]) i++
-    else j--
+    while (sum >= target) {
+      minLength = Math.min(minLength, right - left + 1) // Update the minimum length
+      sum -= nums[left] // Remove the leftmost element from the sum
+      left++ // Move the left pointer to the right
+    }
   }
-  return result
+  return minLength === Infinity ? 0 : minLength // Return 0 if no subarray is found
 }
-// console.log(maxArea(height))
+// console.log(minSubArrayLen(target, nums))
