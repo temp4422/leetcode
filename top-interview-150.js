@@ -1163,6 +1163,38 @@ var minSubArrayLen = function (target, nums) {
 // # 3. Longest Substring Without Repeating Characters, Medium
 // Hash Table, String, Sliding Window
 /*****************************************************************************/
+// s = 'abcabcbb' // Output: 3
+// s = 'bbbbb' // Output: 1
+// s = 'pwwkew' // Output: 3
+// s = 'dvdf' // 3
+// s = 'ohvhjdml' // 6
+// s = 'anviaj' // 5
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  let max = 0
+  let arr = []
+
+  for (let i = 0; i < s.length; i++) {
+    if (arr.includes(s[i])) {
+      for (let j = 0; j < arr.length; j++) {
+        if (arr[j] != s[i]) {
+          arr.shift()
+          j -= 1 // Reset, loop arr from beginning
+        } else {
+          arr.shift()
+          break
+        }
+      }
+    }
+    arr.push(s[i])
+    if (arr.length > max) max = arr.length
+  }
+  return max
+}
+// console.log(lengthOfLongestSubstring(s))
 
 // # 30. Substring with Concatenation of All Words, Hard
 // Hash Table, String, Sliding Window
