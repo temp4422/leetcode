@@ -106,3 +106,29 @@ const canReach = function (arr, start) {
   // return dfsRecursive()
 }
 // console.log(canReach(arr, start))
+
+// 2621. Sleep, Easy
+// timeout = 100
+/**
+ * @param {number} millis
+ */
+// v0 Explained
+async function sleep(timeout) {
+  // alternative use 'await'
+  // Create new promise and  set setTimeout() to return 'resolve' of this promise after 'timeout'
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(timeout)
+    }, timeout)
+  })
+}
+// // v1
+// async function sleep(millis) {
+//   await new Promise((resolve) => setTimeout(resolve, millis))
+// }
+// // v2 Oneline
+// const sleep = async (millis) => new Promise((resolve) => setTimeout(() => resolve(millis), millis))
+// // v3 Oneline shortenting setTimeout()
+// const sleep = async (timeout) => new Promise((resolve) => setTimeout(resolve, timeout))
+// let t = Date.now()
+// sleep(timeout).then(() => console.log(Date.now() - t)) // 100
