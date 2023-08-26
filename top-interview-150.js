@@ -1495,9 +1495,46 @@ var longestConsecutive = function (nums) {
 
 /********************** Intervals ********************************************/
 /*****************************************************************************/
+
 // # 228. Summary Ranges, Easy
 // Array
 /*****************************************************************************/
+// nums = [0, 1, 2, 4, 5, 7] // Output: ["0->2","4->5","7"]
+// nums = [0, 2, 3, 4, 6, 8, 9] // Output: ["0","2->4","6","8->9"]
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function (nums) {
+  if (nums.length == 0) return []
+
+  let tmp = [[nums[0]]]
+  let ans = []
+  let j = 0
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] == nums[i - 1] + 1) {
+      tmp[j].push(nums[i])
+    } else {
+      tmp.push([])
+      j++
+      tmp[j].push(nums[i])
+    }
+  }
+
+  for (let i = 0; i < tmp.length; i++) {
+    let lastNum = tmp[i][tmp[i].length - 1]
+    if (tmp[i].length > 1) {
+      ans.push(`${tmp[i][0]}->${lastNum}`)
+    } else {
+      ans.push(`${tmp[i][0]}`)
+    }
+  }
+
+  return ans
+}
+// console.log(summaryRanges(nums))
+
 // # 56. Merge Intervals, Medium
 // Array, Sorting
 /*****************************************************************************/
