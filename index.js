@@ -132,3 +132,21 @@ async function sleep(timeout) {
 // const sleep = async (timeout) => new Promise((resolve) => setTimeout(resolve, timeout))
 // let t = Date.now()
 // sleep(timeout).then(() => console.log(Date.now() - t)) // 100
+
+// 2620. Counter, Easy
+// n = 10 // Output: [10,11,12]
+// n = -2 // Output: [-2,-1,0,1,2]
+/**
+ * @param {number} n
+ * @return {Function} counter
+ */
+var createCounter = function (n) {
+  let tmp = n // Alternative 'n - 1'
+  return function () {
+    // First evaluate value, then increment: return tmp && tmp += 1
+    return tmp++ // Alternative '++tmp'
+  }
+}
+// const counter = createCounter(n)
+// console.log(counter()) // 10
+// console.log(counter()) // 11
