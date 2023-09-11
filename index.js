@@ -150,3 +150,18 @@ var createCounter = function (n) {
 // const counter = createCounter(n)
 // console.log(counter()) // 10
 // console.log(counter()) // 11
+
+// 2619. Array Prototype Last, Easy
+// nums = [1, 2, 3]
+// nums = [null, {}, 3] // Output: 3
+// nums = [] // Output: -1
+Array.prototype.last = function () {
+  const arr = [...this]
+  if (arr.length == 0) {
+    return -1
+  } else {
+    return arr[arr.length - 1]
+  }
+  // return this.length ? this[this.length - 1] : -1;
+}
+// console.log(nums.last()) // 3
