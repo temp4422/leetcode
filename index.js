@@ -165,3 +165,32 @@ Array.prototype.last = function () {
   // return this.length ? this[this.length - 1] : -1;
 }
 // console.log(nums.last()) // 3
+
+// 2629. Function Composition, Easy
+// ;(functions = [(x) => x + 1, (x) => x * x, (x) => 2 * x]), (x = 4) // Output: 65
+// ;(functions = [(x) => 10 * x, (x) => 10 * x, (x) => 10 * x]), (x = 1) // Output: 1000
+// ;(functions = []), (x = 42) // Output: 42
+/**
+ * @param {Function[]} functions
+ * @return {Function}
+ */
+var compose = function (functions) {
+  return function (x) {
+    if (functions.length === 0) {
+      return x
+    } else {
+      // Declare 'result' variable to store output from functions and initialize it with argument from 'fn' function
+      let result = x
+
+      // Loop through array of functions from end to start (right to left)
+      for (let i = functions.length - 1; i >= 0; i--) {
+        // Apply function to output of another function and save in result variable
+        result = functions[i](result)
+      }
+      return result
+    }
+  }
+}
+// const fn = compose([(x) => x + 1, (x) => 2 * x])
+// const fn = compose(functions)
+// console.log(fn(x)) // 9
