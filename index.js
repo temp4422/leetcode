@@ -194,3 +194,49 @@ var compose = function (functions) {
 // const fn = compose([(x) => x + 1, (x) => 2 * x])
 // const fn = compose(functions)
 // console.log(fn(x)) // 9
+
+// 2634. Filter Elements from Array, Easy
+//prettier-ignore
+// arr = [0,10,20,30], fn = function greaterThan10(n) { return n > 10; } // Output: [20,30]
+//prettier-ignore
+// arr = [1,2,3], fn = function firstIndex(n, i) { return i === 0; } // Output: [1]
+//prettier-ignore
+// arr = [-2,-1,0,1,2], fn = function plusOne(n) { return n + 1 } // Output: [-2,0,1,2]
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+var filter = function (arr, fn) {
+  let arrX = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (fn(arr[i], i)) {
+      arrX.push(arr[i])
+    }
+  }
+  return arrX
+}
+// console.log(filter(arr, fn))
+
+// 2635. Apply Transform Over Each Element in Array, Easy
+//prettier-ignore
+// arr = [1,2,3], fn = function plusone(n) { return n + 1; } //Output: [2,3,4]
+//prettier-ignore
+// arr = [1,2,3], fn = function plusI(n, i) { return n + i; } //Output: [1,3,5]
+//prettier-ignore
+// arr = [10,20,30], fn = function constant() { return 42; } //Output: [42,42,42]
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+var map = function (arr, fn) {
+  let arrX = []
+
+  for (let i = 0; i < arr.length; i++) {
+    arrX.push(fn(arr[i], i))
+  }
+  return arrX
+}
+// console.log(map(arr, fn))
