@@ -269,3 +269,27 @@ var reduce = function (nums, fn, init) {
   return arrX[arrX.length - 1]
 }
 // console.log(reduce(nums, fn, init))
+
+// 2648. Generate Fibonacci Sequence, Easy
+// callCount = 5 // Output: [0,1,1,2,3]
+// callCount = 0 // Output: []
+/**
+ * @return {Generator<number>}
+ */
+var fibGenerator = function* () {
+  // Xn = Xn-1 + Xn-2
+  let fib = [0, 1]
+  for (let i = 1; i < fib.length; i++) {
+    let curr = fib.at(-1) + fib.at(-2)
+    fib.push(curr)
+    yield fib[i - 1]
+  }
+}
+// const gen = fibGenerator()
+// console.log(gen.next().value) // 0
+// console.log(gen.next().value) // 1
+// console.log(gen.next().value) // 1
+// console.log(gen.next().value) // 2
+// console.log(gen.next().value) // 3
+// console.log(gen.next().value) // 5
+// console.log(gen.next().value) // 8
