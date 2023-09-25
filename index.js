@@ -293,3 +293,28 @@ var fibGenerator = function* () {
 // console.log(gen.next().value) // 3
 // console.log(gen.next().value) // 5
 // console.log(gen.next().value) // 8
+
+// 2665. Counter II, Easy
+// ;(init = 5), (calls = ['increment', 'reset', 'decrement']) // Output: [6,5,4]
+// ;(init = 0), (calls = ['increment', 'increment', 'decrement', 'reset', 'reset']) // Output: [1,2,1,0,0]
+/**
+ * @param {integer} init
+ * @return { increment: Function, decrement: Function, reset: Function }
+ */
+var createCounter = function (init) {
+  const val = init
+  let tmp = val
+
+  //prettier-ignore
+  const obj = {
+    increment() {return ++tmp},
+    decrement() {return --tmp},
+    reset() {return tmp = val},
+  }
+
+  return obj
+}
+// const counter = createCounter(5)
+// console.log(counter.increment()) // 6
+// console.log(counter.reset()) // 5
+// console.log(counter.decrement()) // 4
