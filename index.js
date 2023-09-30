@@ -318,3 +318,29 @@ var createCounter = function (init) {
 // console.log(counter.increment()) // 6
 // console.log(counter.reset()) // 5
 // console.log(counter.decrement()) // 4
+
+// 2666. Allow One Function Call, Easy
+//prettier-ignore
+// fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]] // Output: [{"calls":1,"value":6}]
+// prettier-ignore
+// fn = (a,b,c) => (a * b * c), calls = [[5,7,4],[2,3,6],[4,6,8]] // Output: [{"calls":1,"value":140}]
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+var once = function (fn) {
+  let flag = true // If function was called once, it changes to false
+
+  return function (...args) {
+    if (flag) {
+      flag = false
+      return fn(...args)
+    } else {
+      return undefined
+    }
+  }
+}
+// let fn = (a, b, c) => a + b + c
+// let onceFn = once(fn)
+// console.log(onceFn(1, 2, 3)) // 6
+// console.log(onceFn(2, 3, 6)) // returns undefined without calling fn
