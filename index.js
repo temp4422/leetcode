@@ -344,3 +344,24 @@ var once = function (fn) {
 // let onceFn = once(fn)
 // console.log(onceFn(1, 2, 3)) // 6
 // console.log(onceFn(2, 3, 6)) // returns undefined without calling fn
+
+// 2677. Chunk Array, Easy
+// ;(arr = [1, 2, 3, 4, 5]), (size = 1) // Output: [[1],[2],[3],[4],[5]]
+// ;(arr = [1, 9, 6, 3, 2]), (size = 3) // Output: [[1,9,6],[3,2]]
+// ;(arr = [8, 5, 3, 2, 6]), (size = 6) // Output: [[8,5,3,2,6]]
+// ;(arr = []), (size = 1) // Output: []
+/**
+ * @param {Array} arr
+ * @param {number} size
+ * @return {Array}
+ */
+var chunk = function (arr, size) {
+  const arrX = []
+
+  for (let i = 0; i < arr.length; i = i + size) {
+    arrX.push(arr.slice(i, i + size))
+  }
+
+  return arrX
+}
+// console.log(chunk(arr, size))
