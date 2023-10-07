@@ -365,3 +365,84 @@ var chunk = function (arr, size) {
   return arrX
 }
 // console.log(chunk(arr, size))
+
+// 2695. Array Wrapper, Easy
+//prettier-ignore
+// nums = [[1, 2],[3, 4],], operation = 'Add' // Output: 10
+// ;(nums = [[23, 98, 42, 70]]), (operation = 'String') // Output: "[23,98,42,70]"
+// ;(nums = [[], []]), (operation = 'Add') // Output: 0
+/**
+ * @param {number[]} nums
+ * @return {void}
+ */
+var ArrayWrapper = function (nums) {
+  this.nums = nums
+}
+/**
+ * @return {number}
+ */
+ArrayWrapper.prototype.valueOf = function () {
+  return this.nums.reduce((a, c) => a + c, 0)
+}
+/**
+ * @return {string}
+ */
+ArrayWrapper.prototype.toString = function () {
+  return `[${this.nums.join()}]`
+}
+// const obj1 = new ArrayWrapper([1, 2])
+// const obj2 = new ArrayWrapper([3, 4])
+// console.log(obj1 + obj2) // 10
+// console.log(String(obj1)) // "[1,2]"
+// console.log(String(obj2)) // "[3,4]"
+
+// Explanation https://leetcode.com/problems/array-wrapper/solutions/3584650/2695-array-wrapper-level-up-your-js-skills-with-these-intuitive-implementations-day-28/
+
+// Alternative with Class Declaration
+// class ArrayWrapper2 {
+//   constructor(nums) {
+//     this.nums = nums
+//   }
+//   valueOf() {
+//     return this.nums.reduce((acc, curr) => acc + curr, 0) // override the default behavior of valueOf()
+//   }
+//   toString() {
+//     return `[${this.nums.join()}]` // override the default behavior of toString()
+//   }
+// }
+// const obj1 = new ArrayWrapper2([1, 2])
+// const obj2 = new ArrayWrapper2([3, 4])
+// console.log(obj1)
+// console.log(obj1.valueOf())
+// console.log(obj1.toString())
+// console.log(obj1 + obj2) // Same as .valueOf()
+// console.log(String(obj1)) // Same as .toString()
+
+/*
+  The valueOf method is defined on the prototype of the ArrayWrapper class. This method is automatically called when the instance is used in a context where a primitive value is expected, such as addition with the + operator.
+
+  The toString method is also defined on the prototype of the ArrayWrapper class. This method is automatically called when the instance is converted to a string, such as when using String(obj) or implicitly during string concatenation.
+*/
+
+// Alternative TypeScript
+/*
+  Implementing in a production system, you generally want to cache the results of the reduce and toString operations so they are not re-executed on every call of the methods. A best practice would be to compute them in the constructor and store the results in private properties. This practice avoids unnecessary computational cost and optimizes your code performance.
+*/
+// interface IArrayWrapper {
+//   valueOf(): number;
+//   toString(): string;
+// }
+// class ArrayWrapper implements IArrayWrapper {
+//   private val: number;
+//   private str: string;
+//   constructor(nums: number[]) {
+//       this.val = nums.reduce((a, c) => a + c, 0);
+//       this.str = `[${nums.toString()}]`;
+//   }
+//   valueOf(): number {
+//       return this.val;
+//   }
+//   toString(): string {
+//       return this.str;
+//   }
+// }
