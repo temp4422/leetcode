@@ -446,3 +446,17 @@ ArrayWrapper.prototype.toString = function () {
 //       return this.str;
 //   }
 // }
+
+// 2667. Create Hello World Function, Easy
+args = [] // Output: "Hello World"
+args = [{}, null, 42] // Output: "Hello World"
+/**
+ * @return {Function}
+ */
+var createHelloWorld = function () {
+  return function (...args) {
+    return 'Hello World'
+  }
+}
+// const f = createHelloWorld()
+// console.log(f())
