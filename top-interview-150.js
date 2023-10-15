@@ -1538,6 +1538,46 @@ var summaryRanges = function (nums) {
 // # 56. Merge Intervals, Medium
 // Array, Sorting
 /*****************************************************************************/
+//prettier-ignore
+// intervals = [[1,3],[2,6],[8,10],[15,18]] // Output: [[1,6],[8,10],[15,18]]
+// prettier-ignore
+// intervals = [[1,4],[4,5]] // Output: [[1,5]]
+// intervals = [[1,3]] // [[1,3]]
+// intervals = [[1,4],[5,6]] // [[1,4],[5,6]]
+// intervals = [[1,4],[0,4]] // [[0,4]]
+// intervals = [[1,4],[0,1]] // [[0,4]]
+// intervals = [[1,4],[0,0]] // [[0,0],[1,4]]
+// intervals = [[1,4],[0,2],[3,5]] // [[0,5]]
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function (intervals) {
+  if (intervals.length <= 1) return intervals
+  const result = []
+
+  // Sort array in place
+  const arr = intervals.sort((a, b) => a[0] - b[0])
+  let prev = intervals[0]
+
+  for (let i = 1; i < arr.length; i++) {
+    let curr = arr[i]
+    // If previous interval >= current interval, then replace previous interval with new one
+    if (prev[1] >= curr[0]) {
+      prev = [prev[0], Math.max(prev[1], curr[1])]
+    } else {
+      // Push previous interval and go to next interval
+      result.push(prev)
+      prev = curr
+    }
+  }
+  result.push(prev) // Default push previous interval
+
+  return result
+}
+// console.log(merge(intervals))
+// https://leetcode.com/problems/merge-intervals/solutions/3462073/ex-amazon-explains-a-solution-with-a-video-python-javascript-java-and-c/?envType=study-plan-v2&envId=top-interview-150
+
 // # 57. Insert Interval, Medium
 // Array
 /*****************************************************************************/
