@@ -1581,354 +1581,488 @@ var merge = function (intervals) {
 // # 57. Insert Interval, Medium
 // Array
 /*****************************************************************************/
+// prettier-ignore
+// intervals = [[1,3],[6,9]], newInterval = [2,5] // Output: [[1,5],[6,9]]
+// prettier-ignore
+// intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8] // Output: [[1,2],[3,10],[12,16]]
+// intervals = [], newInterval = [5,7] // [[5,7]]
+// intervals = [[1,5]], newInterval = [0,3] // [[0,5]]
+/**
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
+ * @return {number[][]}
+ */
+// Reused code from # 56. Merge Intervals, Medium
+var insert = function (intervals, newInterval) {
+  const result = []
+  const tmp = intervals.concat([newInterval])
+
+  const arr = tmp.sort((a, b) => a[0] - b[0])
+  let prev = tmp[0]
+
+  for (let i = 1; i < arr.length; i++) {
+    let curr = arr[i]
+
+    if (prev[1] >= curr[0]) {
+      prev = [prev[0], Math.max(prev[1], curr[1])]
+    } else {
+      result.push(prev)
+      prev = curr
+    }
+  }
+  result.push(prev)
+
+  return result
+}
+// console.log(insert(intervals, newInterval))
+
 // # 452. Minimum Number of Arrows to Burst Balloons, Medium
 // Array, Greedy, Sorting
 /*****************************************************************************/
 
 /********************** Stack  ***********************************************/
 /*****************************************************************************/
+
 // # 20. Valid Parentheses, Easy
 // String, Stack
 /*****************************************************************************/
+
 // # 71. Simplify Path, Medium
 // String, Stack
 /*****************************************************************************/
+
 // # 155. Min Stack, Medium
 // Stack, Design
 /*****************************************************************************/
+
 // # 150. Evaluate Reverse Polish Notation, Medium
 // Array, Math, Stack
 /*****************************************************************************/
+
 // # 224. Basic Calculator, Hard
 // Math, String, Stack
 /*****************************************************************************/
 
 /********************** Linked List ******************************************/
 /*****************************************************************************/
+
 // # 141. Linked List Cycle, Easy
 // Hash Table, Linked List, Two Pointers
 /*****************************************************************************/
+
 // # 2. Add Two Numbers, Medium
 // Linked List, Math, Recursion
 /*****************************************************************************/
+
 // # 21. Merge Two Sorted Lists, Easy
 // Linked List, Recursion
 /*****************************************************************************/
+
 // # 138. Copy List with Random Pointer, Medium
 // Hash Table, Linked List
 /*****************************************************************************/
+
 // # 92. Reverse Linked List II, Medium
 // Linked List,
 /*****************************************************************************/
+
 // # 25. Reverse Nodes in k-Group, Hard
 // Linked List, Recursion
 /*****************************************************************************/
+
 // # 19. Remove Nth Node From End of List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+
 // # 82. Remove Duplicates from Sorted List II, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+
 // # 61. Rotate List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+
 // # 86. Partition List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+
 // # 146. LRU Cache, Medium
 // Hash Table, Linked List, Design, 1+
 /*****************************************************************************/
 
 /********************** Binary Tree General **********************************/
 /*****************************************************************************/
+
 // # 104. Maximum Depth of Binary Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 100. Same Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 226. Invert Binary Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 101. Symmetric Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 105. Construct Binary Tree from Preorder and Inorder Traversal, Medium
 // Array, Hash Table, Divide and Conquer, 2+
 /*****************************************************************************/
+
 // # 106. Construct Binary Tree from Inorder and Postorder Traversal, Medium
 // Array, Hash Table, Divide and Conquer, 2+
 /*****************************************************************************/
+
 // # 117. Populating Next Right Pointers in Each Node II, Medium
 // Linked List, Tree, Depth-First Search, 2+
 /*****************************************************************************/
+
 // # 114. Flatten Binary Tree to Linked List, Medium
 // Linked List, Stack, Tree, 2+
 /*****************************************************************************/
+
 // # 112. Path Sum, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 129. Sum Root to Leaf Numbers, Medium
 // Tree, Depth-First Search, Binary Tree
 /*****************************************************************************/
+
 // # 124. Binary Tree Maximum Path Sum, Hard
 // Dynamic Programming, Tree, Depth-First Search, 1+
 /*****************************************************************************/
+
 // # 173. Binary Search Tree Iterator, Medium
 // Stack, Tree, Design, 3+
 /*****************************************************************************/
+
 // # 222. Count Complete Tree Nodes, Easy
 // Binary Search, Tree, Depth-First Search, 1+
 /*****************************************************************************/
+
 // # 236. Lowest Common Ancestor of a Binary Tree, Medium
 // Tree, Depth-First Search, Binary Tree
 /*****************************************************************************/
 
 /********************** Binary Tree BFS **************************************/
 /*****************************************************************************/
+
 // # 199. Binary Tree Right Side View, Medium
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 637. Average of Levels in Binary Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 102. Binary Tree Level Order Traversal, Medium
 // Tree, Breadth-First Search, Binary Tree,
 /*****************************************************************************/
+
 // # 103. Binary Tree Zigzag Level Order Traversal, Medium
 // Tree, Breadth-First Search, Binary Tree,
 /*****************************************************************************/
 
 /********************** Binary Search Tree ***********************************/
 /*****************************************************************************/
+
 // # 530. Minimum Absolute Difference in BST, Easy
 // Tree, Depth-First Search, Breadth-First Search, 2+
 /*****************************************************************************/
+
 // # 230. Kth Smallest Element in a BST, Medium
 // Tree, Depth-First Search, Binary Search Tree, 1+
 /*****************************************************************************/
+
 // # 98. Validate Binary Search Tree, Medium
 // Tree, Depth-First Search, Binary Search Tree, 1+
 /*****************************************************************************/
 
 /********************** Graph General ****************************************/
 /*****************************************************************************/
+
 // # 200. Number of Islands, Medium
 // Array, Depth-First Search, Breadth-First Search, 2+
 /*****************************************************************************/
+
 // # 130. Surrounded Regions, Medium
 // Array, Depth-First Search, Breadth-First Search, 2+
 /*****************************************************************************/
+
 // # 133. Clone Graph, Medium
 // Hash Table, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+
 // # 399. Evaluate Division, Medium
 // Array, Depth-First Search, Breadth-First Search, 3+
 /*****************************************************************************/
+
 // # 207. Course Schedule, Medium
 // Depth-First Search, Breadth-First Search, Graph, 1+
 /*****************************************************************************/
+
 // # 210. Course Schedule II, Medium
 // Depth-First Search, Breadth-First Search, Graph, 1+
 /*****************************************************************************/
 
 /********************** Graph BFS ********************************************/
 /*****************************************************************************/
+
 // # 909. Snakes and Ladders, Medium
 // Array, Breadth-First Search, Matrix
 /*****************************************************************************/
+
 // # 433. Minimum Genetic Mutation, Medium
 // Hash Table, String, Breadth-First Search
 /*****************************************************************************/
+
 // # 127. Word Ladder, Hard
 // Hash Table, String, Breadth-First Search
 /*****************************************************************************/
 
 /********************** Trie *************************************************/
 /*****************************************************************************/
+
 // # 208. Implement Trie (Prefix Tree), Medium
 // Hash Table, String, Design, 1+
 /*****************************************************************************/
+
 // # 211. Design Add and Search Words Data Structure, Medium
 // String, Depth-First Search, Design, 1+
 /*****************************************************************************/
+
 // # 212. Word Search II, Hard
 // Array, String, Backtracking, 2+
 /*****************************************************************************/
 
 /********************** Backtracking *****************************************/
 /*****************************************************************************/
+
 // # 17. Letter Combinations of a Phone Number, Medium
 // Hash Table, String, Backtracking
 /*****************************************************************************/
+
 // # 77. Combinations, Medium
 // Backtracking,
 /*****************************************************************************/
+
 // # 46. Permutations, Medium
 // Array, Backtracking
 /*****************************************************************************/
+
 // # 39. Combination Sum, Medium
 // Array, Backtracking
 /*****************************************************************************/
+
 // # 52. N-Queens II, Hard
 // Backtracking,
 /*****************************************************************************/
+
 // # 22. Generate Parentheses, Medium
 // String, Dynamic Programming, Backtracking
 /*****************************************************************************/
+
 // # 79. Word Search, Medium
 // Array, Backtracking, Matrix
 /*****************************************************************************/
 
 /********************** Divide & Conquer *************************************/
 /*****************************************************************************/
+
 // # 108. Convert Sorted Array to Binary Search Tree, Easy
 // Array, Divide and Conquer, Tree, 2+
 /*****************************************************************************/
+
 // # 148. Sort List, Medium
 // Linked List, Two Pointers, Divide and Conquer, 2+
 /*****************************************************************************/
+
 // # 427. Construct Quad Tree, Medium
 // Array, Divide and Conquer, Tree, 1+
 /*****************************************************************************/
+
 // # 23. Merge k Sorted Lists, Hard
 // Linked List, Divide and Conquer, Heap (Priority Queue), 1+
 /*****************************************************************************/
 
 /********************** Kadane's Algorithm ***********************************/
 /*****************************************************************************/
+
 // # 53. Maximum Subarray, Medium
 // Array, Divide and Conquer, Dynamic Programming
 /*****************************************************************************/
+
 // # 918. Maximum Sum Circular Subarray, Medium
 // Array, Divide and Conquer, Dynamic Programming, 2+
 /*****************************************************************************/
 
 /********************** Binary Search ****************************************/
 /*****************************************************************************/
+
 // # 35. Search Insert Position, Easy
 // Array, Binary Search
 /*****************************************************************************/
+
 // # 74. Search a 2D Matrix, Medium
 // Array, Binary Search, Matrix
 /*****************************************************************************/
+
 // # 162. Find Peak Element, Medium
 // Array, Binary Search
 /*****************************************************************************/
+
 // # 33. Search in Rotated Sorted Array, Medium
 // Array, Binary Search
 /*****************************************************************************/
+
 // # 34. Find First and Last Position of Element in Sorted Array, Medium
 // Array, Binary Search
 /*****************************************************************************/
+
 // # 153. Find Minimum in Rotated Sorted Array, Medium
 // Array, Binary Search
 /*****************************************************************************/
+
 // # 4. Median of Two Sorted Arrays, Hard
 // Array, Binary Search, Divide and Conquer
 /*****************************************************************************/
 
 /********************** Heap *************************************************/
 /*****************************************************************************/
+
 // # 215. Kth Largest Element in an Array, Medium
 // Array, Divide and Conquer, Sorting, 2+
 /*****************************************************************************/
+
 // # 502. IPO, Hard
 // Array, Greedy, Sorting, 1+
 /*****************************************************************************/
+
 // # 373. Find K Pairs with Smallest Sums, Medium
 // Array, Heap (Priority Queue)
 /*****************************************************************************/
+
 // # 295. Find Median from Data Stream, Hard
 // Two Pointers, Design, Sorting, 2+
 /*****************************************************************************/
 
 /********************** Bit Manipulation *************************************/
 /*****************************************************************************/
+
 // # 67. Add Binary, Easy
 // Math, String, Bit Manipulation, 1+
 /*****************************************************************************/
+
 // # 190. Reverse Bits, Easy
 // Divide and Conquer, Bit Manipulation
 /*****************************************************************************/
+
 // # 191. Number of 1 Bits, Easy
 // Divide and Conquer, Bit Manipulation
 /*****************************************************************************/
+
 // # 136. Single Number, Easy
 // Array, Bit Manipulation
 /*****************************************************************************/
+
 // # 137. Single Number II, Medium
 // Array, Bit Manipulation
 /*****************************************************************************/
+
 // # 201. Bitwise AND of Numbers Range, Medium
 // Bit Manipulation,
 /*****************************************************************************/
 
 /********************** Math *************************************************/
 /*****************************************************************************/
+
 // # 9. Palindrome Number, Easy
 // Math,
 /*****************************************************************************/
+
 // # 66. Plus One, Easy
 // Array, Math
 /*****************************************************************************/
+
 // # 172. Factorial Trailing Zeroes, Medium
 // Math,
 /*****************************************************************************/
+
 // # 69. Sqrt(x), Easy
 // Math, Binary Search
 /*****************************************************************************/
+
 // # 50. Pow(x, n), Medium
 // Math, Recursion
 /*****************************************************************************/
+
 // # 149. Max Points on a Line, Hard
 // Array, Hash Table, Math, 1+
 /*****************************************************************************/
 
 /********************** 1D DP ************************************************/
 /*****************************************************************************/
+
 // # 70. Climbing Stairs, Easy
 // Math, Dynamic Programming, Memoization
 /*****************************************************************************/
+
 // # 198. House Robber, Medium
 // Array, Dynamic Programming
 /*****************************************************************************/
+
 // # 139. Word Break, Medium
 // Array, Hash Table, String, 3+
 /*****************************************************************************/
+
 // # 322. Coin Change, Medium
 // Array, Dynamic Programming, Breadth-First Search
 /*****************************************************************************/
+
 // # 300. Longest Increasing Subsequence, Medium
 // Array, Binary Search, Dynamic Programming
 /*****************************************************************************/
 
 /********************** Multidimensional DP **********************************/
 /*****************************************************************************/
+
 // # 120. Triangle, Medium
 // Array, Dynamic Programming
 /*****************************************************************************/
+
 // # 64. Minimum Path Sum, Medium
 // Array, Dynamic Programming, Matrix
 /*****************************************************************************/
+
 // # 63. Unique Paths II, Medium
 // Array, Dynamic Programming, Matrix
 /*****************************************************************************/
+
 // # 5. Longest Palindromic Substring, Medium
 // String, Dynamic Programming
 /*****************************************************************************/
+
 // # 97. Interleaving String, Medium
 // String, Dynamic Programming
 /*****************************************************************************/
+
 // # 72. Edit Distance, Medium
 // String, Dynamic Programming
 /*****************************************************************************/
+
 // # 123. Best Time to Buy and Sell Stock III, Hard
 // Array, Dynamic Programming
 /*****************************************************************************/
+
 // # 188. Best Time to Buy and Sell Stock IV, Hard
 // Array, Dynamic Programming
 /*****************************************************************************/
+
 // # 221. Maximal Square, Medium
 // Array, Dynamic Programming, Matrix
 /*****************************************************************************/
