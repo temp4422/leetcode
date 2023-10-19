@@ -460,3 +460,26 @@ var createHelloWorld = function () {
 }
 // const f = createHelloWorld()
 // console.log(f())
+
+// 2704. To Be Or Not To Be, Easy
+// func = () => expect(5).toBe(5) // Output: {"value": true}
+// func = () => expect(5).toBe(null) // Output: {"error": "Not Equal"}
+// func = () => expect(5).notToBe(null) // Output: {"value": true}
+/**
+ * @param {string} val
+ * @return {Object}
+ */
+const expect = function (val) {
+  return {
+    toBe(val2) {
+      if (val === val2) return true
+      if (val !== val2) throw new Error('Not Equal')
+    },
+    notToBe(val2) {
+      if (val !== val2) return true
+      if (val === val2) throw new Error('Equal')
+    },
+  }
+}
+// console.log(expect(5).toBe(5)) // true
+// console.log(expect(5).notToBe(5)) // throws "Equal"
