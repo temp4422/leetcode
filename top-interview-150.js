@@ -1619,6 +1619,42 @@ var insert = function (intervals, newInterval) {
 // # 452. Minimum Number of Arrows to Burst Balloons, Medium
 // Array, Greedy, Sorting
 /*****************************************************************************/
+// prettier-ignore
+// points = [[10,16],[2,8],[1,6],[7,12]] // Output: 2
+// prettier-ignore
+// points = [[1,2],[3,4],[5,6],[7,8]] // Output: 4
+// prettier-ignore
+// points = [[1,2],[2,3],[3,4],[4,5]] // Output: 2
+// prettier-ignore
+// points = [[3,9],[7,12],[3,8],[6,8],[9,10],[2,9],[0,9],[3,9],[0,6],[2,8]] // 2
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var findMinArrowShots = function (points) {
+  const result = []
+  // const arr = points.sort((a, b) => a[0] - b[0])
+  const arr = points.sort((a, b) => a[1] - b[1])
+
+  let prev = points[0]
+  let tmp = points[0]
+
+  for (let i = 1; i < arr.length; i++) {
+    let curr = arr[i]
+
+    if (prev[1] >= curr[0]) {
+      tmp = [prev[0], curr[1]]
+    } else {
+      result.push(tmp)
+      prev = curr
+      tmp = prev
+    }
+  }
+  result.push(tmp)
+
+  return result.length
+}
+// console.log(findMinArrowShots(points))
 
 /********************** Stack  ***********************************************/
 /*****************************************************************************/
