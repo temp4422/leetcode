@@ -1670,6 +1670,54 @@ var findMinArrowShots = function (points) {
 // # 155. Min Stack, Medium
 // Stack, Design
 /*****************************************************************************/
+// ["MinStack","push","push","push","getMin","pop","top","getMin"][[],[-2],[0],[-3],[],[],[],[]] // [null,null,null,null,-3,null,0,-2]
+class MinStack {
+  constructor() {
+    this.stack = []
+  }
+  push(val) {
+    this.stack.push(val)
+  }
+  pop() {
+    this.stack.pop()
+  }
+  top() {
+    return this.stack.at(-1)
+  }
+  getMin() {
+    return Math.min(...this.stack)
+  }
+}
+// Alternative with O(1) speed
+// var MinStack = function () {
+//   this.stack = []
+// }
+// MinStack.prototype.push = function (val) {
+//   if (this.stack.length === 0) {
+//     this.stack.push({ value: val, minimum: val })
+//   } else {
+//     // Take min value from 2 values only, is faster than from array (class above)
+//     let min = Math.min(val, this.stack.at(-1).minimum)
+//     this.stack.push({ value: val, minimum: min })
+//   }
+// }
+// MinStack.prototype.pop = function () {
+//   this.stack.pop()
+// }
+// MinStack.prototype.top = function () {
+//   return this.stack.at(-1).value
+// }
+// MinStack.prototype.getMin = function () {
+//   return this.stack.at(-1).minimum
+// }
+// const minStack = new MinStack()
+// minStack.push(-2)
+// minStack.push(0)
+// minStack.push(-3)
+// minStack.getMin() // return -3
+// minStack.pop()
+// minStack.top() // return 0
+// minStack.getMin() // return -2
 
 // # 150. Evaluate Reverse Polish Notation, Medium
 // Array, Math, Stack
