@@ -1662,6 +1662,38 @@ var findMinArrowShots = function (points) {
 // # 20. Valid Parentheses, Easy
 // String, Stack
 /*****************************************************************************/
+// s = '()' // Output: true
+// s = '()[]{}' // Output: true
+// s = '(]' // Output: false
+// s = '(){}}{' // flase
+// s = '{[]}' // true
+// s = '[' // false
+// s = '((' // false
+// s = '){' // false
+// s = '[[[[[[[[[[[[[[[[[[[' // false
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  const stack = []
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == '(') {
+      stack.push(')')
+    } else if (s[i] == '[') {
+      stack.push(']')
+    } else if (s[i] == '{') {
+      stack.push('}')
+    } else {
+      if (stack.pop() == s[i]) continue
+      return false
+    }
+  }
+
+  return stack.length == 0 ? true : false
+}
+// console.log(isValid(s))
 
 // # 71. Simplify Path, Medium
 // String, Stack
