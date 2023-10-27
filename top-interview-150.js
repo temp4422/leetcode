@@ -1698,6 +1698,65 @@ var isValid = function (s) {
 // # 71. Simplify Path, Medium
 // String, Stack
 /*****************************************************************************/
+// path = '/a/../../b/../c//.///.../..hidden///.' // /c/.../..hidden
+// path = '/home/' // Output: "/home"
+// path = '/../' // Output: "/"
+// path = '/home//foo//////' // Output: "/home/foo"
+// path = '/a/./b/../../c/' // "/c"
+// path = '/a/../../b/../c//.//' // "/c"
+// path = '/' // /
+// path = "///" // /
+// path = '/...' // "/..."
+// path = '/..hidden' // "/..hidden"
+/**
+ * @param {string} path
+ * @return {string}
+ */
+// var simplifyPath = function (path) {
+//   const stack = []
+
+//   // Filter string
+//   path = path.replace(/[\/]+/g, '/')
+//   if (path.at(-1) == '/' && path.length > 1) path = path.slice(0, -1)
+
+//   // Tokenize string to array
+//   // i.e. Match all alphanumeric characters and dot = \w + '.' OR slash = /
+//   path = path.match(/\/[A-Za-z0-9_.]+|\//g)
+
+//   for (let i = 0; i < path.length; i++) {
+//     if (path[i] == '/.') {
+//       continue
+//     } else if (path[i] == '/..' && stack.length >= 1) {
+//       stack.pop()
+//     } else if (path[i] == '/..' && stack.length == 0) {
+//       continue
+//     } else {
+//       stack.push(path[i])
+//     }
+//   }
+
+//   let result = stack.length > 0 ? stack.join('') : '/'
+//   return result
+// }
+
+// Alternative
+var simplifyPath = function (path) {
+  const stack = []
+  path = path.split('/')
+
+  for (let i = 0; i < path.length; i++) {
+    if (!path[i] || path[i] == '.') {
+      continue
+    } else if (path[i] == '..') {
+      stack.pop()
+    } else {
+      stack.push(path[i])
+    }
+  }
+
+  return '/' + stack.join('/')
+}
+// console.log(simplifyPath(path))
 
 // # 155. Min Stack, Medium
 // Stack, Design
