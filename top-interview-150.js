@@ -1,7 +1,7 @@
 // EXPERIMENTAL! My simple test framework for faster iteration
-let functionToTest // function placeholder to use inside 'input' function
+let testFunction // function placeholder to use inside 'input' function
 const input = (inputValue) => {
-  functionOutput = functionToTest(inputValue) // set function result
+  functionOutput = testFunction(inputValue) // set function result
   return {
     output(outputValue) {
       if (functionOutput !== outputValue) return false
@@ -1825,6 +1825,38 @@ class MinStack {
 // # 150. Evaluate Reverse Polish Notation, Medium
 // Array, Math, Stack
 /*****************************************************************************/
+/**
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function (tokens) {
+  const stack = []
+  const operators = ['+', '-', '*', '/']
+
+  for (let i = 0; i < tokens.length; i++) {
+    let token = tokens[i]
+
+    if (operators.includes(token)) {
+      let operator = token
+      // Add parentheses for proper eval((2) - (-3))
+      let operand2 = '(' + stack.pop() + ')'
+      let operand1 = '(' + stack.pop() + ')'
+      let result = eval(operand1 + operator + operand2)
+      result = Math.trunc(result) // truncates toward zero
+      stack.push(result)
+    } else {
+      stack.push(token)
+    }
+  }
+
+  return stack.pop()
+}
+// testFunction = evalRPN
+// input(['2', '1', '+', '3', '*']).output(9) //?
+// input(['4', '13', '5', '/', '+']).output(6) //?
+// input(['10', '6', '9', '3', '+', '-11', '*', '/', '*', '17', '+', '5', '+']).output(22) //?
+// input(['2', '-3', '-']).output(5) //?
+// input(['4', '-2', '/', '2', '-3', '-', '-']).output(-7) //?
 
 // # 224. Basic Calculator, Hard
 // Math, String, Stack
