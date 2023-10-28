@@ -1,3 +1,15 @@
+// EXPERIMENTAL! My simple test framework for faster iteration
+let functionToTest // function placeholder to use inside 'input' function
+const input = (inputValue) => {
+  functionOutput = functionToTest(inputValue) // set function result
+  return {
+    output(outputValue) {
+      if (functionOutput !== outputValue) return false
+      if (functionOutput === outputValue) return true
+    },
+  }
+}
+
 /*###########################################################################*/
 /*#################### TOP INTERVIEW 150  ###################################*/
 /*###########################################################################*/
