@@ -1861,6 +1861,108 @@ var evalRPN = function (tokens) {
 // # 224. Basic Calculator, Hard
 // Math, String, Stack
 /*****************************************************************************/
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var calculate = function (s) {
+  // 1. Tokenize string to array
+  const tokens = []
+  let curr = ''
+
+  for (let i = 0; i < s.length; i++) {
+    // Filter spaces
+    if (s[i] !== ' ') {
+      // Tokenize
+      if (['+', '-', '(', ')'].includes(s[i])) {
+        if (curr) tokens.push(Number(curr))
+        curr = ''
+        tokens.push(s[i])
+      } else {
+        curr += s[i]
+      }
+    }
+  }
+  if (curr) tokens.push(Number(curr))
+
+  // 2. Perform calculations on array
+  const stack = []
+  let result = 0
+  let sign = 1 // Declare sign to change value +/- e.g. +1 or -1
+
+  for (let i = 0; i < tokens.length; i++) {
+    let item = tokens[i]
+
+    switch (item) {
+      case '(':
+        // Push previous items to stack for later use
+        stack.push(result)
+        stack.push(sign)
+        result = 0
+        sign = 1
+        break
+      case ')':
+        // Pop previous items from stack and calculate new result
+        let lastSign = stack.pop()
+        let lastResult = stack.pop()
+        result = lastResult + lastSign * result
+        break
+      case '+':
+        sign = 1 // Change sign to positive
+        break
+      case '-':
+        sign = -1 // Change sign to negative
+        break
+      default: // item === number
+        // Change item sign depending on preceding sign
+        result += item * sign
+        break
+    }
+  }
+  return result
+}
+// testFunction = calculate
+// input('1 + 1').output(2) //?
+// input('2 - 1 + 2').output(3) //?
+// input('10 - 11 - 1').output(-2) //?
+// input('4+(3-2)').output(5) //?
+// input('4-(3-2)').output(3) //?
+// input('(1+(4+5+2)-3)+(6+8)').output(23) //?
+// input('(2+2)-3').output(1) //?
+
+// With help of https://www.youtube.com/watch?v=081AqOuasw0
+// And alternative https://leetcode.com/problems/basic-calculator/solutions/2832796/javascript-linear-time-o-n/?envType=study-plan-v2&envId=top-interview-150
+// var calculateX = function (s) {
+//   let num = 0
+//   let sign = 1
+//   let stack = [0]
+
+//   for (let char of s) {
+//     if (char === ' ') continue
+//     else if ('1234567890'.includes(char)) {
+//       num = num * 10 + parseInt(char)
+//     } else if (char === '+') {
+//       stack[stack.length - 1] += num * sign
+//       num = 0
+//       sign = 1
+//     } else if (char === '-') {
+//       stack[stack.length - 1] += num * sign
+//       num = 0
+//       sign = -1
+//     } else if (char === '(') {
+//       stack.push(sign)
+//       stack.push(num)
+//       sign = 1
+//       num = 0
+//     } else if (char === ')') {
+//       lastNum = (stack.pop() + num * sign) * stack.pop()
+//       stack[stack.length - 1] += lastNum
+//       num = 0
+//       sign = 1
+//     }
+//   }
+//   return stack[stack.length - 1] + num * sign
+// }
 
 /********************** Linked List ******************************************/
 /*****************************************************************************/
