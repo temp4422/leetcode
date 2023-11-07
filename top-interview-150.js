@@ -1970,6 +1970,31 @@ var calculate = function (s) {
 // # 141. Linked List Cycle, Easy
 // Hash Table, Linked List, Two Pointers
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+// Solution from https://leetcode.com/problems/linked-list-cycle/solutions/3999014/99-68-two-pointer-hash-table/?envType=study-plan-v2&envId=top-interview-150
+var hasCycle = function (head) {
+  // head '[1]' to string: '{"val":1,"next":null}'. This mean there are nor 'next' pointer.
+  const set = new Set()
+  let node = head
+
+  while (node) {
+    if (set.has(node)) return true
+    set.add(node)
+    node = node.next
+  }
+
+  return false
+}
 
 // # 2. Add Two Numbers, Medium
 // Linked List, Math, Recursion
