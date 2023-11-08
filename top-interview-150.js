@@ -1,14 +1,46 @@
-// EXPERIMENTAL! My simple test framework for faster iteration
+/*
+
+  MY HELPER FUNCTIONS START
+
+*/
+// Simple test framework for faster iteration
 let testFunction // function placeholder to use inside 'input' function
-const input = (inputValue) => {
-  functionOutput = testFunction(inputValue) // set function result
+const input = (inputValue, ...args) => {
+  // Accept other multiple arguments with '...args'
+  functionOutput = testFunction(inputValue, ...args) // set function result
   return {
     output(outputValue) {
+      // Can NOT check equality for object types: [1,2,3] !== [1,2,3]
       if (functionOutput !== outputValue) return false
       if (functionOutput === outputValue) return true
     },
   }
 }
+
+// Array to Linked list converter. JS doesn't have many use cases because natively implemented ways of handling collections https://www.raulmelo.me/en/blog/data-structure-with-javascript-linked-list
+// From array [1, 2, 3] to linked list with nodes: {val: 1, next: {val: 2, next: {val: 3, next: null}}}
+function arrayToList(arr) {
+  let list = null
+  for (let i = arr.length - 1; i >= 0; i--) {
+    list = {
+      val: arr[i],
+      next: list, // Insert current list inside list
+    }
+  }
+  return list
+  /**
+   * LeetCode Definition for singly-linked list.
+   * function ListNode(val, next) {
+   *     this.val = (val===undefined ? 0 : val)
+   *     this.next = (next===undefined ? null : next)
+   * }
+   */
+}
+/*
+
+  MY HELPER FUNCTIONS END
+
+*/
 
 /*###########################################################################*/
 /*#################### TOP INTERVIEW 150  ###################################*/
