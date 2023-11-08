@@ -2031,6 +2031,105 @@ var hasCycle = function (head) {
 // # 2. Add Two Numbers, Medium
 // Linked List, Math, Recursion
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+/*
+  Explanation of linked list
+
+  Linked list !== array, so array methods not work on list
+
+  Example:
+  ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐
+  |   3    |-->|   4    |-->|   2    |-->|   7    |
+  └────────┘   └────────┘   └────────┘   └────────┘
+
+  Code:
+
+  let list = {
+    val: 3,
+    next: {
+        val: 4,
+        next: {
+            val: 2,
+            next: {
+                val: 7,
+                next: null
+            }
+        }
+    }
+  }
+
+*/
+// const l1 = arrayToList([2, 4, 3])
+// const l2 = arrayToList([5, 6, 4])
+// Expected [7,0,8]
+// const l1 = arrayToList([0, 9])
+// const l2 = arrayToList([0, 1])
+// Expected [0,0,1]
+// const l1 = arrayToList([9, 9, 9, 9, 9, 9, 9])
+// const l2 = arrayToList([9, 9, 9, 9])
+// Expected [8,9,9,9,0,0,0,1]
+
+var addTwoNumbers = function (l1, l2) {
+  // Define linked list, by LeetCode
+  function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val
+    this.next = next === undefined ? null : next
+  }
+
+  // Our result is new linked list composed of l1 and l2. Build with nodes
+  let previousNode = new ListNode()
+  let headNode = previousNode
+  let sum = 0
+  let carry = 0 // Carry if sum > 9
+
+  // Check if object is not null.
+  // Explanation: last object of linked list === null, so 'while loop' will reach 'null'
+  // E.g. { val: 1, next: { val: 2, next: { val: 3, next:   >--> null <--<   }}}
+  while (l1 || l2) {
+    let num1 = 0
+    let num2 = 0
+
+    if (l1) {
+      num1 = l1.val
+      l1 = l1.next
+    }
+    if (l2) {
+      num2 = l2.val
+      l2 = l2.next
+    }
+
+    sum = num1 + num2 + carry
+
+    carry = sum > 9 ? 1 : 0
+
+    sum = sum % 10 // Cut tenths
+
+    // Set linked list with sum
+    let currentNode = new ListNode(sum)
+    previousNode.next = currentNode
+    previousNode = currentNode
+  }
+  // If carry, add 1
+  if (carry) {
+    let currentNode = new ListNode(carry)
+    previousNode.next = currentNode
+    previousNode = currentNode
+  }
+
+  return headNode.next
+}
+// console.log(addTwoNumbers(l1, l2))
 
 // # 21. Merge Two Sorted Lists, Easy
 // Linked List, Recursion
