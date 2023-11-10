@@ -483,3 +483,17 @@ const expect = function (val) {
 }
 // console.log(expect(5).toBe(5)) // true
 // console.log(expect(5).notToBe(5)) // throws "Equal"
+
+// 2703. Return Length of Arguments Passed, Easy, Companies
+/**
+ * @param {...(null|boolean|number|string|Array|Object)} args
+ * @return {number}
+ */
+var argumentsLength = function (...args) {
+  let tmp = [...args]
+  // console.log([...args])
+  return [...args].length
+}
+// args = [5] // Output: 1
+// args = [{}, null, '3'] // Output: 3
+// console.log(argumentsLength(args)) // 3
