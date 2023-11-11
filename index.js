@@ -448,8 +448,8 @@ ArrayWrapper.prototype.toString = function () {
 // }
 
 // 2667. Create Hello World Function, Easy
-args = [] // Output: "Hello World"
-args = [{}, null, 42] // Output: "Hello World"
+// args = [] // Output: "Hello World"
+// args = [{}, null, 42] // Output: "Hello World"
 /**
  * @return {Function}
  */
@@ -497,3 +497,49 @@ var argumentsLength = function (...args) {
 // args = [5] // Output: 1
 // args = [{}, null, '3'] // Output: 3
 // console.log(argumentsLength(args)) // 3
+
+// 2715. Timeout Cancellation, Easy
+/**
+ * @param {Function} fn
+ * @param {Array} args
+ * @param {number} t
+ * @return {Function}
+ */
+var cancellable = function (fn, args, t) {
+  // Prepare (put) function in event loop queue for later execution.
+  // I.e.: start execution of fn() with delay of 't'
+  const timeoutID = setTimeout(() => {
+    // Also fn() take all arguments in array form with rest operator -> '...args'
+    fn(...args) // Not executed yet, until 't' goes out
+  }, t)
+
+  // If we call cancelFn() before 't' goes out, it will remove fn() from event loop execution queue (macrotask queue)
+  // If 't' goes out first, fn() will be executed anyway
+  const cancelFn = () => {
+    clearTimeout(timeoutID)
+  }
+
+  return cancelFn // return this function but not call
+  // If we call someOtherFunction() wich got assigned to cancelFn() before 't' (what depends on 'cancelT')
+  // Than clearTimeout(timeoutID) will be executed and setTimeout() (what set above) will be interrupted
+}
+// Example
+// ;(fn = (x) => x * 5), (args = [2]), (t = 20), (cancelT = 50) // Output: [{"time": 20, "returned": 10}]
+// ;(fn = (x) => x ** 2), (args = [2]), (t = 100), (cancelT = 50) // Output: []
+// ;(fn = (x1, x2) => x1 * x2), (args = [2, 4]), (t = 30), (cancelT = 100) // Output: [{"time": 30, "returned": 8}]
+// const result = []
+// const fn = (x) => x * 5
+// const args = [2], t = 20, cancelT = 50
+// const start = performance.now()
+// const log = (...argsArr) => {
+//   const diff = Math.floor(performance.now() - start)
+//   result.push({ time: diff, returned: fn(...argsArr) })
+// }
+// const cancel = cancellable(log, args, t)
+// const maxT = Math.max(t, cancelT)
+// setTimeout(() => {
+//   cancel()
+// }, cancelT)
+// setTimeout(() => {
+//   console.log(result) // [{"time":20,"returned":10}]
+// }, maxT + 15)
