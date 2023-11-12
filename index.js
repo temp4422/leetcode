@@ -543,3 +543,17 @@ var cancellable = function (fn, args, t) {
 // setTimeout(() => {
 //   console.log(result) // [{"time":20,"returned":10}]
 // }, maxT + 15)
+
+// 2725. Interval Cancellation, Easy
+/**
+ * @param {Function} fn
+ * @param {Array} args
+ * @param {number} t
+ * @return {Function}
+ */
+// var cancellable = function (fn, args, t) {
+//   fn(...args)
+//   const intervalID = setInterval(() => fn(...args), t)
+//   const cancelFn = () => clearInterval(intervalID)
+//   return cancelFn
+// }
