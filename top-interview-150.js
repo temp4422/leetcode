@@ -3,16 +3,33 @@
   MY HELPER FUNCTIONS START
 
 */
-// Simple test framework for faster iteration
+// Test framework for faster iteration
 let testFunction // function placeholder to use inside 'input' function
 const input = (inputValue, ...args) => {
   // Accept other multiple arguments with '...args'
   functionOutput = testFunction(inputValue, ...args) // set function result
   return {
     output(outputValue) {
-      // Can NOT check equality for object types: [1,2,3] !== [1,2,3]
-      if (functionOutput !== outputValue) return false
-      if (functionOutput === outputValue) return true
+      // If primitive value
+      if (
+        typeof functionOutput === 'boolean' ||
+        typeof functionOutput === 'string' ||
+        typeof functionOutput === 'number' ||
+        typeof functionOutput === 'undefined' ||
+        typeof functionOutput === 'symbol' ||
+        typeof functionOutput === 'bigint'
+      ) {
+        if (functionOutput !== outputValue) return false
+        if (functionOutput === outputValue) return true
+      }
+      // If object value
+      if (
+        typeof functionOutput === 'object'
+        // typeof functionOutput === 'function' ||
+      ) {
+        if (JSON.stringify(functionOutput) !== JSON.stringify(outputValue)) return false
+        if (JSON.stringify(functionOutput) === JSON.stringify(outputValue)) return true
+      }
     },
   }
 }
