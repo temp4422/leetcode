@@ -36,7 +36,34 @@ const input = (inputValue, ...args) => {
 
 // Array to Linked list converter. JS doesn't have many use cases because natively implemented ways of handling collections https://www.raulmelo.me/en/blog/data-structure-with-javascript-linked-list
 // From array [1, 2, 3] to linked list with nodes: {val: 1, next: {val: 2, next: {val: 3, next: null}}}
-function arrayToList(arr) {
+/*
+  Explanation of linked list
+
+  Linked list !== array, so array methods not work on list
+
+  Example:
+  ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐
+  |   3    |-->|   4    |-->|   2    |-->|   7    |
+  └────────┘   └────────┘   └────────┘   └────────┘
+
+  Code:
+
+  let list = {
+    val: 3,
+    next: {
+        val: 4,
+        next: {
+            val: 2,
+            next: {
+                val: 7,
+                next: null
+            }
+        }
+    }
+  }
+
+*/
+function arrayToLinkedList(arr) {
   let list = null
   for (let i = arr.length - 1; i >= 0; i--) {
     list = {
@@ -2060,43 +2087,15 @@ var hasCycle = function (head) {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-/*
-  Explanation of linked list
-
-  Linked list !== array, so array methods not work on list
-
-  Example:
-  ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐
-  |   3    |-->|   4    |-->|   2    |-->|   7    |
-  └────────┘   └────────┘   └────────┘   └────────┘
-
-  Code:
-
-  let list = {
-    val: 3,
-    next: {
-        val: 4,
-        next: {
-            val: 2,
-            next: {
-                val: 7,
-                next: null
-            }
-        }
-    }
-  }
-
-*/
-// const l1 = arrayToList([2, 4, 3])
-// const l2 = arrayToList([5, 6, 4])
+// const l1 = arrayToLinkedList([2, 4, 3])
+// const l2 = arrayToLinkedList([5, 6, 4])
 // Expected [7,0,8]
-// const l1 = arrayToList([0, 9])
-// const l2 = arrayToList([0, 1])
+// const l1 = arrayToLinkedList([0, 9])
+// const l2 = arrayToLinkedList([0, 1])
 // Expected [0,0,1]
-// const l1 = arrayToList([9, 9, 9, 9, 9, 9, 9])
-// const l2 = arrayToList([9, 9, 9, 9])
+// const l1 = arrayToLinkedList([9, 9, 9, 9, 9, 9, 9])
+// const l2 = arrayToLinkedList([9, 9, 9, 9])
 // Expected [8,9,9,9,0,0,0,1]
-
 var addTwoNumbers = function (l1, l2) {
   // Define linked list, by LeetCode
   function ListNode(val, next) {
@@ -2151,6 +2150,51 @@ var addTwoNumbers = function (l1, l2) {
 // # 21. Merge Two Sorted Lists, Easy
 // Linked List, Recursion
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (l1, l2) {
+  // Define linked list, by LeetCode
+  function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val
+    this.next = next === undefined ? null : next
+  }
+
+  const resultHead = new ListNode() // return {val: 0, next: null}, pointer to head node
+  let nextNode = resultHead // return same pointer as resultHead
+
+  // If botch lists not empty, keep adding nodes to resultHead and update pointers correspondly
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      nextNode.next = l1
+      l1 = l1.next
+    } else {
+      nextNode.next = l2
+      l2 = l2.next
+    }
+    nextNode = nextNode.next
+  }
+  // If any lists still exits, add it to end of resultHead
+  if (l1) nextNode.next = l1
+  if (l2) nextNode.next = l2
+
+  return resultHead.next
+}
+// const l1 = arrayToLinkedList([1, 2, 4])
+// const l2 = arrayToLinkedList([1, 3, 4])
+// const expectedOutput = arrayToLinkedList([1, 1, 2, 3, 4, 4])
+
+// testFunction = mergeTwoLists
+// input(l1, l2).output(expectedOutput) //?
 
 // # 138. Copy List with Random Pointer, Medium
 // Hash Table, Linked List
