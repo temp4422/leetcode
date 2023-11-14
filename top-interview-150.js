@@ -2199,6 +2199,36 @@ var mergeTwoLists = function (l1, l2) {
 // # 138. Copy List with Random Pointer, Medium
 // Hash Table, Linked List
 /*****************************************************************************/
+/**
+ * // Definition for a Node.
+ * function Node(val, next, random) {
+ *    this.val = val;
+ *    this.next = next;
+ *    this.random = random;
+ * };
+ */
+/**
+ * @param {Node} head
+ * @return {Node}
+ */
+// ! NOT SOLVED BY MYSELF, only with help of https://leetcode.com/problems/copy-list-with-random-pointer/solutions/4003262/97-92-hash-table-linked-list
+var copyRandomList = function (head) {
+  // if (!head) return null
+  // let hash = new Map()
+  // let curr = head
+  // while (curr) {
+  //   hash.set(curr, new Node(curr.val))
+  //   curr = curr.next
+  // }
+  // curr = head
+  // while (curr) {
+  //   hash.get(curr).next = hash.get(curr.next) || null
+  //   hash.get(curr).random = hash.get(curr.random) || null
+  //   curr = curr.next
+  // }
+  // const newListHead = hash.get(head)
+  // return newListHead
+}
 
 // # 92. Reverse Linked List II, Medium
 // Linked List,
