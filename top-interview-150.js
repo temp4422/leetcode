@@ -2233,6 +2233,52 @@ var copyRandomList = function (head) {
 // # 92. Reverse Linked List II, Medium
 // Linked List,
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} left
+ * @param {number} right
+ * @return {ListNode}
+ */
+var reverseBetween = function (head, left, right) {
+  function ListNode(val, next) {
+    this.val = val === undefined ? 0 : val
+    this.next = next === undefined ? null : next
+  }
+  // Declare head pointer and pop child nodes to head. Notice, that tmpNode always changing, but is pushed to head.next
+  const resultHead = new ListNode() // return {val: 0, next: null}, pointer to head node
+  let tmpNode = resultHead // return same pointer as resultHead
+
+  // const head2 = head
+  // let headCopy = new ListNode()
+  // headCopy.next = head
+
+  // for (let i = 0; i < left - 1; i++) {
+  //   tmpNode.next = head
+  //   tmpNode = tmpNode.next
+  //   head = head.next
+  // }
+
+  // while (head) {
+  //   tmpNode.next = head
+  //   tmpNode = tmpNode.next
+  //   head = head.next
+  // }
+
+  console.log(resultHead)
+  return resultHead.next
+}
+//prettier-ignore
+// const head = arrayToLinkedList([1, 2, 3, 4, 5]), left = 2, right = 4, expectedOutput = arrayToLinkedList([1, 4, 3, 2, 5])
+// const head = arrayToLinkedList([3,5]), left = 1, right = 2, expectedOutput = arrayToLinkedList([5,3])
+// testFunction = reverseBetween
+// input(head, left, right).output(expectedOutput) //?
 
 // # 25. Reverse Nodes in k-Group, Hard
 // Linked List, Recursion
