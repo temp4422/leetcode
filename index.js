@@ -557,3 +557,19 @@ var cancellable = function (fn, args, t) {
 //   const cancelFn = () => clearInterval(intervalID)
 //   return cancelFn
 // }
+
+// 2723. Add Two Promises, Easy
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+var addTwoPromises = async function (promise1, promise2) {
+  // const promise1 = () => new Promise((resolve) => setTimeout(() => resolve(2), 20))
+  // const promise2 = () => new Promise((resolve) => setTimeout(() => resolve(5), 60))
+  const val1 = await promise1
+  const val2 = await promise2
+  return val1 + val2
+}
+// addTwoPromises(promise1, promise2) // 4
+// addTwoPromises(Promise.resolve(2), Promise.resolve(2)).then(console.log) // 4
