@@ -588,3 +588,40 @@ var sortBy = function (arr, fn) {
 // arr = [5, 4, 1, 2, 3], fn = (x) => x // Output: [1, 2, 3, 4, 5]
 // arr = [{"x": 1}, {"x": 0}, {"x": -1}], fn = (d) => d.x // Output: [{"x": -1}, {"x": 0}, {"x": 1}]
 // arr = [[3, 4], [5, 2], [10, 1]], fn = (x) => x[1] // Output: [[10, 1], [5, 2], [3, 4]]
+
+// 206. Reverse Linked List, Easy
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+  // Explanation:
+  // 1) Declare basics. Add two pointers to watch for the list
+  let p1 = null // Point pointer 1 to null
+  let p2 = head // Point pointer 2 to head
+
+  // 2) Move pointers and head references
+  while (head) {
+    p2 = p2.next // 1) Point p2 to next node
+    head.next = p1 // 2) Point head to new node
+    p1 = head // 3) Point p1 to old head
+    head = p2 // 4) Point head to next node (thus head become new head)
+  }
+
+  // 3) Pointer 1 become new head, that points to reversed list
+  return p1
+}
+// Helper function convert arr to list
+//prettier-ignore
+// function arrayToLinkedList(arr) {let list = null;for (let i = arr.length - 1; i >= 0;i--) {list = {val: arr[i],next: list,}};return list}
+// const head = arrayToLinkedList([1, 2, 3, 4, 5]) //?
+// const expected = arrayToLinkedList([5, 4, 3, 2, 1]) //?
+// Run function with linked list as input
+// console.log(reverseList(head))
