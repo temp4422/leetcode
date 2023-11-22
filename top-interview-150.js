@@ -2599,6 +2599,26 @@ var reverseBetween = function (head, left, right) {
 // # 9. Palindrome Number, Easy
 // Math,
 /*****************************************************************************/
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+  const xString = x.toString()
+  const stringLength = xString.length -1
+  for (let i = 0; i < xString.length; i++) {
+    if (xString[i] !== xString[stringLength-i]) {
+      return false
+    }
+  }
+  return true
+
+  // Alternative
+  // return x < 0 ? false : (x === +x.toString().split("").reverse().join(""));
+}
+// testFunction = isPalindrome
+// input(121).output(true) //?
+// input(-121).output(true) //?
 
 // # 66. Plus One, Easy
 // Array, Math
