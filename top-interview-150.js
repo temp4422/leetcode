@@ -2623,6 +2623,24 @@ var isPalindrome = function(x) {
 // # 66. Plus One, Easy
 // Array, Math
 /*****************************************************************************/
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function (digits) {
+  // Because some digits > Number.MAX_SAFE_INTEGER use BigInt
+  const largeInteger = digits.join('')
+  const xBigInt = BigInt(largeInteger)
+  const sum = String(xBigInt + 1n)
+  const result = Array.from(sum, (i) => Number(i))
+  return result
+}
+// testFunction = plusOne
+// input([1, 2, 3]).output([1, 2, 4]) //?
+// input([4, 3, 2, 1]).output([4, 3, 2, 2]) //?
+// input([9]).output([1, 0]) //?
+//prettier-ignore
+// input([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3]).output([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,4]) //?
 
 // # 172. Factorial Trailing Zeroes, Medium
 // Math,
