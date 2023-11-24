@@ -2649,6 +2649,24 @@ var plusOne = function (digits) {
 // # 69. Sqrt(x), Easy
 // Math, Binary Search
 /*****************************************************************************/
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+  for (let i = 0; i <= x; i++) {
+    let tmp = Math.round(i * i)
+
+    if (tmp === x) {
+      return i
+    } else if (tmp > x){
+      return i - 1
+    }
+  }
+}
+// testFunction = mySqrt
+// input(4).output(2) //?
+// input(8).output(2) //?
 
 // # 50. Pow(x, n), Medium
 // Math, Recursion
