@@ -2645,6 +2645,31 @@ var plusOne = function (digits) {
 // # 172. Factorial Trailing Zeroes, Medium
 // Math,
 /*****************************************************************************/
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var trailingZeroes = function(n) {
+  if (n === 0) return 0
+
+  let factorial = BigInt(1)
+  for (let i = 1; i <= n; i++) factorial *= BigInt(i)
+
+  let factorialString = factorial.toString()
+  let zeroes = 0
+
+  for (let i = factorialString.length - 1; i >= 0; i--) {
+    if (factorialString[i] == 0) zeroes++
+    if (factorialString[i] != 0) return zeroes
+  }
+}
+// testFunction = trailingZeroes
+// input(3).output(0) //?
+// input(5).output(1) //?
+// input(0).output(0) //?
+// input(7).output(1) //?
+// input(10).output(2) //?
+// input(30).output(7) //?
 
 // # 69. Sqrt(x), Easy
 // Math, Binary Search
@@ -2653,13 +2678,13 @@ var plusOne = function (digits) {
  * @param {number} x
  * @return {number}
  */
-var mySqrt = function(x) {
+var mySqrt = function (x) {
   for (let i = 0; i <= x; i++) {
     let tmp = Math.round(i * i)
 
     if (tmp === x) {
       return i
-    } else if (tmp > x){
+    } else if (tmp > x) {
       return i - 1
     }
   }
