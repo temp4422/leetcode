@@ -2696,6 +2696,19 @@ var mySqrt = function (x) {
 // # 50. Pow(x, n), Medium
 // Math, Recursion
 /*****************************************************************************/
+/**
+ * @param {number} x
+ * @param {number} n
+ * @return {number}
+ */
+var myPow = function (x, n) {
+  return Number(Math.pow(x, n).toFixed(14))
+}
+// testFunction = myPow
+// input(2.0, 10).output(1024.0) //?
+// input(2.1, 3).output(9.261) //?
+// input(2.0, -2).output(0.25) //?
+// input(1, -2147483648).output(1) //?
 
 // # 149. Max Points on a Line, Hard
 // Array, Hash Table, Math, 1+
