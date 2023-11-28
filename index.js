@@ -625,3 +625,69 @@ var reverseList = function (head) {
 // const expected = arrayToLinkedList([5, 4, 3, 2, 1]) //?
 // Run function with linked list as input
 // console.log(reverseList(head))
+
+// 2726. Calculator with Method Chaining, Easy
+class Calculator {
+  /**
+   * @param {number} value
+   */
+  constructor(value) {
+    // Within a class constructor, the value of `this` points to the newly created instance. You can assign properties to it, or read existing properties.
+    // The `this` value will be automatically returned as the result of `new`. You are advised to not return any value from the constructor — because if you return a non-primitive value, it will become the value of the `new` expression, and the value of `this` is dropped.
+    this.num = value
+    return this
+  }
+  /**
+   * @param {number} value
+   * @return {Calculator}
+   */
+  add(value) {
+    this.num = this.num + value
+    return this
+  }
+  /**
+   * @param {number} value
+   * @return {Calculator}
+   */
+  subtract(value) {
+    this.num = this.num - value
+    return this
+  }
+  /**
+   * @param {number} value
+   * @return {Calculator}
+   */
+  multiply(value) {
+    this.num = this.num * value
+    return this
+  }
+  /**
+   * @param {number} value
+   * @return {Calculator}
+   */
+  divide(value) {
+    if (value === 0) {
+      // throw new Error("Division by zero is not allowed");
+      throw new Error('Division by zero is not allowed');
+    } else {
+      this.num = this.num / value
+      return this
+    }
+  }
+  /**
+   * @param {number} value
+   * @return {Calculator}
+   */
+  power(value) {
+    this.num = this.num ** value
+    return this
+  }
+  /**
+   * @return {number}
+   */
+  getResult() {
+    return this.num
+  }
+}
+// Input: actions = ["Calculator", "add", "subtract", "getResult"], values = [10, 5, 7] // Output: 8
+// const result = new Calculator(10).add(5).subtract(7).getResult() // 10 + 5 - 7 = 8
