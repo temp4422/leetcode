@@ -691,3 +691,24 @@ class Calculator {
 }
 // Input: actions = ["Calculator", "add", "subtract", "getResult"], values = [10, 5, 7] // Output: 8
 // const result = new Calculator(10).add(5).subtract(7).getResult() // 10 + 5 - 7 = 8
+
+// 2727. Is Object Empty, Easy
+/**
+ * @param {Object|Array} obj
+ * @return {boolean}
+ */
+var isEmpty = function (obj) {
+  // Aletrnative return !Object.keys(obj).length;
+  if (obj instanceof Array) {
+    if (obj.length > 0) return false
+    else return true
+  } else {
+    if (Object.keys(obj).length > 0) return false
+    else return true
+  }
+}
+// obj = { x: 5, y: 42 } // Output: false
+// obj = {} // Output: true
+// obj = [null, false, 0] // Output: false
+// obj = [] // Output: true
+// console.log(isEmpty(obj))
