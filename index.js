@@ -712,3 +712,32 @@ var isEmpty = function (obj) {
 // obj = [null, false, 0] // Output: false
 // obj = [] // Output: true
 // console.log(isEmpty(obj))
+
+// 2623. Memoize, Medium
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+function memoize(fn) {
+  const map = new Map()
+
+  return function (...args) {
+    const fnArgs = [...args].toString()
+    if (map.has(fnArgs)) {
+      return map.get(fnArgs)
+    } else {
+      const fnOut = fn(...args)
+      map.set(fnArgs, fnOut)
+      return fnOut
+    }
+  }
+}
+// let callCount = 0
+// const memoizedFn = memoize(function (a, b) {
+//   callCount += 1
+//   return a + b
+// })
+// console.log(memoizedFn(2, 3))
+// console.log(memoizedFn(2, 4))
+// console.log(memoizedFn(2, 3))
+// console.log(callCount)
