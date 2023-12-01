@@ -741,3 +741,38 @@ function memoize(fn) {
 // console.log(memoizedFn(2, 4))
 // console.log(memoizedFn(2, 3))
 // console.log(callCount)
+
+// 2631. Group By, Medium
+/**
+ * @param {Function} fn
+ * @return {Object}
+ */
+Array.prototype.groupBy = function (fn) {
+  const arr = this // this array
+  const result = {}
+
+  for (let i = 0; i < arr.length; i++) {
+    let item = fn(arr[i])
+
+    // Check if item (given function output) already exist in result object
+    if (item in result) {
+      result[item].push(arr[i])
+    } else {
+      result[item] = [arr[i]]
+    }
+  }
+
+  return result
+}
+// 1
+// console.log([1, 2, 3].groupBy(String)) // {"1":[1],"2":[2],"3":[3]}
+// 2
+// ;(array = [{ id: '1' }, { id: '1' }, { id: '2' }]), (fn = (item) => item.id)
+// console.log(array.groupBy(fn)) // Output: {"1": [{"id": "1"}, {"id": "1"}], "2": [{"id": "2"}]}
+// 3
+// prettier-ignore
+// array = [[1, 2, 3], [1, 3, 5], [1, 5, 9]], fn = (list) => String(list[0]);
+// console.log(array.groupBy(fn)) // Output: {"1": [[1, 2, 3], [1, 3, 5], [1, 5, 9]]}
+// 4
+// array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], fn =  (n) => String(n > 5);
+// console.log(array.groupBy(fn)) // Output: {"true": [6, 7, 8, 9, 10], "false": [1, 2, 3, 4, 5]}
