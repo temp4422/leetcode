@@ -2713,6 +2713,52 @@ var myPow = function (x, n) {
 // # 149. Max Points on a Line, Hard
 // Array, Hash Table, Math, 1+
 /*****************************************************************************/
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var maxPoints = function (points) {
+  if (points.length <= 2) return points.length
+
+  let map = new Map()
+  let result = 0
+
+  for (let i = 0; i < points.length; i++) {
+    let [x0, y0] = points[i]
+
+    for (let j = i + 1; j < points.length; j++) {
+      let [x1, y1] = points[j]
+
+      let slope
+
+      // if points on same horizontal line
+      if (x0 === x1) {
+        slope = Number.MAX_VALUE // Why ?
+        // if points on same vertical line
+      } else if (y0 === y1) {
+        slope = 0 // Why ?
+        // neither
+      } else {
+        slope = (y0 - y1) / (x0 - x1) // Why ?
+      }
+
+      // We got new slope ?
+      // new slope ? 2 points : +1 point to what we had
+      let nextSlope = map.has(slope) ? map.get(slope) + 1 : 2
+      map.set(slope, nextSlope)
+      result = Math.max(result, nextSlope)
+    }
+    // we have finished counting the results relative to the point i and should clean up this trash
+    map.clear() // Why ?
+  }
+
+  return result
+}
+// testFunction = maxPoints
+//prettier-ignore
+// input([[1,1],[2,2],[3,3]]).output(3) //?
+//prettier-ignore
+// input([[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]).output(4) //?
 
 /********************** 1D DP ************************************************/
 /*****************************************************************************/
