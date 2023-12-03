@@ -508,7 +508,7 @@ var argumentsLength = function (...args) {
 var cancellable = function (fn, args, t) {
   // Prepare (put) function in event loop queue for later execution.
   // I.e.: start execution of fn() with delay of 't'
-  const timeoutID = setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     // Also fn() take all arguments in array form with rest operator -> '...args'
     fn(...args) // Not executed yet, until 't' goes out
   }, t)
@@ -516,12 +516,12 @@ var cancellable = function (fn, args, t) {
   // If we call cancelFn() before 't' goes out, it will remove fn() from event loop execution queue (macrotask queue)
   // If 't' goes out first, fn() will be executed anyway
   const cancelFn = () => {
-    clearTimeout(timeoutID)
+    clearTimeout(timeoutId)
   }
 
   return cancelFn // return this function but not call
   // If we call someOtherFunction() wich got assigned to cancelFn() before 't' (what depends on 'cancelT')
-  // Than clearTimeout(timeoutID) will be executed and setTimeout() (what set above) will be interrupted
+  // Than clearTimeout(timeoutId) will be executed and setTimeout() (what set above) will be interrupted
 }
 // Example
 // ;(fn = (x) => x * 5), (args = [2]), (t = 20), (cancelT = 50) // Output: [{"time": 20, "returned": 10}]
@@ -776,3 +776,30 @@ Array.prototype.groupBy = function (fn) {
 // 4
 // array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], fn =  (n) => String(n > 5);
 // console.log(array.groupBy(fn)) // Output: {"true": [6, 7, 8, 9, 10], "false": [1, 2, 3, 4, 5]}
+
+// 2627. Debounce, Medium
+/**
+ * @param {Function} fn
+ * @param {number} t milliseconds
+ * @return {Function}
+ */
+var debounce = function(fn, t) {
+  let timeoutId
+
+  return function(...args) {
+    // On each call of this function: clear and run timeout (with timeoutId from closure of it's lexical environment), i.e. reset timeout.
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      fn(...args)
+    }, t)
+  }
+}
+// //Input: t = 50, calls = [ {"t": 50, inputs: [1]}, {"t": 75, inputs: [2]}]
+// //Output: [{"t": 125, inputs: [2]}]
+// let start = Date.now()
+// function log(...inputs) {
+//   console.log([Date.now() - start, inputs])
+// }
+// const dlog = debounce(log, 50)
+// setTimeout(() => dlog(1), 50)
+// setTimeout(() => dlog(2), 75)
