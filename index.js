@@ -803,3 +803,45 @@ var debounce = function(fn, t) {
 // const dlog = debounce(log, 50)
 // setTimeout(() => dlog(1), 50)
 // setTimeout(() => dlog(2), 75)
+
+// 2637. Promise Time Limit, Medium
+/**
+ * @param {Function} fn
+ * @param {number} t
+ * @return {Function}
+ */
+var timeLimit = function (fn, t) {
+  return async function (...args) {
+    const promise1 = new Promise((resolve, reject) =>
+      setTimeout(() => {
+        reject('Time Limit Exceeded')
+      }, t)
+    )
+    const promise2 = fn(...args)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race
+    const firstResponse = await Promise.race([promise1, promise2])
+    return firstResponse
+  }
+}
+// /**
+//  * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
+//  * limited(150).catch(console.log) // "Time Limit Exceeded" at t=100ms
+//  */
+// fn = async (n) => {
+//   await new Promise((res) => setTimeout(res, 100))
+//   return n * n
+// }
+// inputs = [5]
+// t = 50
+
+// const limited = timeLimit(fn, t)
+// const start = performance.now()
+// let result
+// try {
+//   const res = await limited(...inputs)
+//   result = { resolved: res, time: Math.floor(performance.now() - start) }
+// } catch (err) {
+//   result = { rejected: err, time: Math.floor(performance.now() - start) }
+// }
+// console.log(result) // Output
+// // Expected Output: {"rejected":"Time Limit Exceeded","time":50}
