@@ -845,3 +845,76 @@ var timeLimit = function (fn, t) {
 // }
 // console.log(result) // Output
 // // Expected Output: {"rejected":"Time Limit Exceeded","time":50}
+
+// 2622. Cache With Time Limit, Medium
+// var TimeLimitedCache = function () {
+// }
+// /**
+//  * @param {number} key
+//  * @param {number} value
+//  * @param {number} duration time until expiration in ms
+//  * @return {boolean} if un-expired key already existed
+//  */
+// TimeLimitedCache.prototype.set = function (key, value, duration) {
+// }
+// /**
+//  * @param {number} key
+//  * @return {number} value associated with key
+//  */
+// TimeLimitedCache.prototype.get = function (key) {}
+// /**
+//  * @return {number} count of non-expired keys
+//  */
+// TimeLimitedCache.prototype.count = function () {}
+class TimeLimitedCache {
+  constructor() {
+    this.cache = {}
+  }
+
+  set(key, value, duration) {
+    const keyExist = this.cache[key]
+
+    if (keyExist) {
+      clearTimeout(this.cache[key][1])
+      delete this.cache[key]
+    }
+
+    const timeoutId = setTimeout(() => {
+      delete this.cache[key]
+    }, duration)
+
+    this.cache[key] = [value, timeoutId]
+
+    return keyExist ? true : false
+  }
+
+  get(key) {
+    return this.cache[key] ? this.cache[key][0] : -1
+  }
+
+  count() {
+    return Object.keys(this.cache).length
+  }
+}
+// const timeLimitedCache = new TimeLimitedCache()
+// // Exmaple 2
+// console.log(timeLimitedCache.set(1, 42, 50)) // false
+// setTimeout(() => {
+//   console.log(timeLimitedCache.set(1, 50, 100)) // true
+// }, 40)
+// setTimeout(() => {
+//   console.log(timeLimitedCache.get(1)) // 50
+// }, 50)
+// setTimeout(() => {
+//   console.log(timeLimitedCache.get(1)) // 50
+// }, 120)
+// setTimeout(() => {
+//   console.log(timeLimitedCache.get(1)) // -1
+// }, 200)
+// // Exmple 3
+// console.log(timeLimitedCache.set(1, 'test1', 200)) // false
+// console.log(timeLimitedCache.set(2, 'test2', 400)) // false
+// console.log(timeLimitedCache.count()) // 2
+// setTimeout(() => {
+//   console.log(timeLimitedCache.count()) // 1
+// }, 300)
