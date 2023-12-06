@@ -918,3 +918,32 @@ class TimeLimitedCache {
 // setTimeout(() => {
 //   console.log(timeLimitedCache.count()) // 1
 // }, 300)
+
+// 2649. Nested Array Generator, Medium
+/**
+ * @param {Array} arr
+ * @return {Generator}
+ */
+var inorderTraversal = function* (arr) {
+  const flatArr = []
+
+  function flatting(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+        flatting(arr[i])
+      } else {
+        flatArr.push(arr[i])
+      }
+    }
+  }
+  flatting(arr)
+
+  for (let i = 0; i < flatArr.length; i++) {
+    yield flatArr[i]
+  }
+}
+// const gen = inorderTraversal([1, [2, 3]])
+// const gen = inorderTraversal([[[[[]]]]])
+// console.log(gen.next().value) // 1
+// console.log(gen.next().value) // 2
+// console.log(gen.next().value) // 3
