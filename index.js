@@ -947,3 +947,34 @@ var inorderTraversal = function* (arr) {
 // console.log(gen.next().value) // 1
 // console.log(gen.next().value) // 2
 // console.log(gen.next().value) // 3
+
+// 2625. Flatten Deeply Nested Array, Medium
+/**
+ * @param {Array} arr
+ * @param {number} depth
+ * @return {Array}
+ */
+var flat = function (arr, n) {
+  if (n === 0) return arr
+
+  const newArr = []
+  let count = 0
+
+  function flatting(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i]) && count < n) {
+        // Don't let go inside more times than `count`
+        count++
+        flatting(arr[i])
+      } else {
+        newArr.push(arr[i])
+      }
+    }
+    count--
+  }
+  flatting(arr)
+
+  return newArr
+}
+// ;(arr = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]]), (n = 1)
+// console.log(flat(arr, n)) // Output [1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]
