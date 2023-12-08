@@ -1,3 +1,5 @@
+'use strict'
+
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
 /*****************************************************************************/
@@ -978,3 +980,21 @@ var flat = function (arr, n) {
 }
 // ;(arr = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]]), (n = 1)
 // console.log(flat(arr, n)) // Output [1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]
+
+// 2693. Call Function with Custom Context, Medium
+/**
+ * @param {Object} context
+ * @param {Array} args
+ * @return {null|boolean|number|string|Array|Object}
+ */
+Function.prototype.callPolyfill = function (context, ...args) {
+  return this.bind(context)(...args)
+}
+// //prettier-ignore
+// function increment() {return ++this.count}
+// console.log(increment.callPolyfill({ count: 1 })) //2
+// function tax(price, taxRate) {
+//   const totalCost = price * (1 + taxRate)
+//   console.log(`The cost of ${this.item} is ${totalCost}`)
+// }
+// console.log(tax.callPolyfill({ item: 'burger' }, 10, 1.1))
