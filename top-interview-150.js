@@ -1,3 +1,4 @@
+'use strict'
 /*
 
   MY HELPER FUNCTIONS START
@@ -2572,6 +2573,20 @@ var reverseBetween = function (head, left, right) {
 // # 67. Add Binary, Easy
 // Math, String, Bit Manipulation, 1+
 /*****************************************************************************/
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function(a, b) {
+  const bigA = `0b${a}`
+  const bigB = `0b${b}`
+  const sum = BigInt(bigA) + BigInt(bigB)
+  return sum.toString(2)
+}
+// testFunction = addBinary
+// input('11', '1').output('100') //?
+// input('1010', '1011').output('10101') //?
 
 // # 190. Reverse Bits, Easy
 // Divide and Conquer, Bit Manipulation
@@ -2603,11 +2618,11 @@ var reverseBetween = function (head, left, right) {
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
+var isPalindrome = function (x) {
   const xString = x.toString()
-  const stringLength = xString.length -1
+  const stringLength = xString.length - 1
   for (let i = 0; i < xString.length; i++) {
-    if (xString[i] !== xString[stringLength-i]) {
+    if (xString[i] !== xString[stringLength - i]) {
       return false
     }
   }
