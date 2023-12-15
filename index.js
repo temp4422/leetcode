@@ -998,3 +998,25 @@ Function.prototype.callPolyfill = function (context, ...args) {
 //   console.log(`The cost of ${this.item} is ${totalCost}`)
 // }
 // console.log(tax.callPolyfill({ item: 'burger' }, 10, 1.1))
+
+// 35. Search Insert Position, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function (nums, target) {
+  let tmp = nums.indexOf(target)
+  if (tmp === -1) {
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] > target) return i
+      if (i === nums.length - 1) return i + 1
+    }
+  } else {
+    return tmp
+  }
+}
+// let nums = [1, 3, 5, 6], target = 5 //2
+// let nums = [1, 3, 5, 6],target = 2 // 1
+// let nums = [1, 3, 5, 6], target = 7 //4
+// console.log(searchInsert(nums, target))
