@@ -1020,3 +1020,30 @@ var searchInsert = function (nums, target) {
 // let nums = [1, 3, 5, 6],target = 2 // 1
 // let nums = [1, 3, 5, 6], target = 7 //4
 // console.log(searchInsert(nums, target))
+
+// 70. Climbing Stairs, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function (n) {
+  // https://leetcode.com/problems/climbing-stairs/solutions/2810612/4-ways-to-solve-with-detailed-diagrams-no-memoization-beats-100-time-memory/
+  // ways to reach given step = ways to reach last step + ways to reach second-last step
+
+  let step = 1
+  let previousStep = 0
+
+  for (let i = 0; i < n; i++) {
+    // ;[previousStep, step] = [step, previousStep + step]
+    let tmp = previousStep
+    previousStep = step
+    step = tmp + step
+  }
+
+  return step
+}
+// console.log(climbStairs(1)) // 1
+// console.log(climbStairs(2)) // 2
+// console.log(climbStairs(3)) // 3
+// console.log(climbStairs(4)) // 5
+// console.log(climbStairs(5)) // 8
