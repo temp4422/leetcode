@@ -8,7 +8,7 @@
 let testFunction // function placeholder to use inside 'input' function
 const input = (inputValue, ...args) => {
   // Accept other multiple arguments with '...args'
-  functionOutput = testFunction(inputValue, ...args) // set function result
+  let functionOutput = testFunction(inputValue, ...args) // set function result
   return {
     output(outputValue) {
       // If primitive value
@@ -2591,6 +2591,27 @@ var addBinary = function(a, b) {
 // # 190. Reverse Bits, Easy
 // Divide and Conquer, Bit Manipulation
 /*****************************************************************************/
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits = function (n) {
+  // Convert decimal to binary
+  let str = n.toString(2)
+  // Fill bits of 32 bit integer
+  if (str.length < 32) {
+    let count = 32 - str.length
+    for (let i = 0; i < count; i++) str = '0' + str
+  }
+  // Reverse
+  let reverse = str.split('').reverse().join('')
+  // Convert binary to decimal
+  let result = parseInt(reverse, 2)
+  return result
+}
+// testFunction = reverseBits
+// input(43261596).output(964176192) //?
+// input(4294967293).output(3221225471) //?
 
 // # 191. Number of 1 Bits, Easy
 // Divide and Conquer, Bit Manipulation
