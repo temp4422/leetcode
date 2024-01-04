@@ -2638,6 +2638,27 @@ var hammingWeight = function (n) {
 // # 136. Single Number, Easy
 // Array, Bit Manipulation
 /*****************************************************************************/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  const set = new Set()
+  set.add(nums[0])
+
+  for (let i = 1; i < nums.length; i++) {
+    if (set.has(nums[i])) {
+      set.delete(nums[i])
+    } else {
+      set.add(nums[i])
+    }
+  }
+
+  return [...set][0]
+}
+// testFunction = singleNumber
+// input([2, 2, 1]).output(1) //?
+// input([4, 1, 2, 1, 2]).output(4) //?
 
 // # 137. Single Number II, Medium
 // Array, Bit Manipulation
