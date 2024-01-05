@@ -2663,6 +2663,29 @@ var singleNumber = function (nums) {
 // # 137. Single Number II, Medium
 // Array, Bit Manipulation
 /*****************************************************************************/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  const map = new Map()
+
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) {
+      if (map.get(nums[i]).length < 2) map.get(nums[i]).push(nums[i])
+      if (map.get(nums[i]).length === 2) map.delete(nums[i])
+    } else {
+      map.set(nums[i], [])
+    }
+  }
+
+  // return iterator object, so to access value -> use next()
+  const result = map.keys().next().value
+  return result
+}
+// testFunction = singleNumber
+// input([2, 2, 3, 2]).output(3) //?
+// input([0, 1, 0, 1, 0, 1, 99]).output(99) //?
 
 // # 201. Bitwise AND of Numbers Range, Medium
 // Bit Manipulation,
