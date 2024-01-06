@@ -1047,3 +1047,26 @@ var climbStairs = function (n) {
 // console.log(climbStairs(3)) // 3
 // console.log(climbStairs(4)) // 5
 // console.log(climbStairs(5)) // 8
+
+// 260. Single Number III, Medium
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var singleNumber = function (nums) {
+  const map = new Map()
+
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) {
+      if (map.get(nums[i]).length < 1) map.get(nums[i]).push(nums[i])
+      if (map.get(nums[i]).length === 1) map.delete(nums[i])
+    } else {
+      map.set(nums[i], [])
+    }
+  }
+
+  // Destructure map iterator object
+  const result = [...map.keys()]
+  return result
+}
+// console.log(singleNumber([1, 2, 1, 3, 2, 5]))
