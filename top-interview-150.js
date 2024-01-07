@@ -2690,6 +2690,29 @@ var singleNumber = function (nums) {
 // # 201. Bitwise AND of Numbers Range, Medium
 // Bit Manipulation,
 /*****************************************************************************/
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+var rangeBitwiseAnd = function (left, right) {
+  // Work, but exceed time limit
+  // let bitwise = left
+  // for (let i = left + 1; i < right + 1; i++) bitwise = bitwise & i
+  let count = 0
+
+  while (left != right) {
+    count++
+    left >>= 1 // Shift by bit right
+    right >>= 1 // Shift by bit right
+  }
+
+  return left << count // Shift by bits left
+}
+// testFunction = rangeBitwiseAnd
+// input(5, 7).output(4) //?
+// input(1, 2147483647).output(0) //?
+// input([0, 1, 0, 1, 0, 1, 99]).output(99) //?
 
 /********************** Math *************************************************/
 /*****************************************************************************/
