@@ -694,10 +694,12 @@ var canCompleteCircuit = function (gas, cost) {
 // - Each child must have at least one candy.
 // - Children with a higher rating get more candies than their neighbors.
 // Example
-//        |           |
-//        V           V
+//      |             |
+//      V             V
 //      .   ..      ..... ....  ...  ..   .
 // [1,  2,  87,  87,  87,  86,  85,  84,  2, 1] -> 10 + 18 = 28
+// With help of https://leetcode.com/problems/candy/solutions/4037646/99-20-greedy-two-one-pass/
+// My Two-Pass solution; time O(n), space O(n)
 var candy = function (ratings) {
   // Give everyone at least 1 candy
   let candies = new Array(ratings.length).fill(1)
@@ -721,7 +723,132 @@ var candy = function (ratings) {
   // return amount
   return candies.reduce((a, b) => a + b)
 }
-// ALTERNATIVE NOT WORK!
+// My One-Pass solution; time O(n), space O(1)
+var candy = function (ratings) {
+  let candies = ratings.length // Give everyone at least 1 candy
+  //prettier-ignore
+  let up = 0, down = 0, peak = 0
+
+  for (let i = 0; i < ratings.length; i++) {
+    //prettier-ignore
+    let curr = ratings[i], next = ratings[i+1]
+
+    if (curr === next) {
+      up = down = peak = 0
+    } else if (curr < next) {
+      down = 0 // reset down counter
+      up++ // count ups in ascending sequence
+      candies += up // add ups to candies
+      peak = up // IMPORTANT! Save 'peak' for later use
+    } else if (curr > next) {
+      up = 0 // reset up counter
+      down++ // count downs in descending sequence
+      // IMPORTANT!
+      // We reach breakpoint, when our 'peak' is less/more than 'down' value, this mean we add/subtract some value from candies.
+      candies += down // Work in pair with magic trick
+      if (peak >= down) candies-- // Magic trick
+      // // Alternative magic
+      // if (peak < down) {
+      //   candies += down
+      // } else if (peak >= down) {
+      //   candies += down - 1
+      // }
+      // Explanation
+      // Remove candies above threshold -> https://www.youtube.com/watch?v=_l9N_LcplLs
+      // This is because the peak child can share the same number of candies as one of the children in the decreasing sequence, which allows us to reduce the total number of candies.
+      // Aletrnative approach and explanation from https://leetcode.com/problems/candy/solutions/4037646/99-20-greedy-two-one-pass/comments/2127821
+      // "Add down to ret. Additionally, if peak is smaller than down, increase ret by 1". "This is because the peak child should get additional candies if the decrease sequence is longer than previous increasing sequence"
+    }
+  }
+  // console.log(candies) // expect 18 and 28
+  return candies
+}
+// // My one pass solution remastered from https://leetcode.com/problems/candy/solutions/4037646/99-20-greedy-two-one-pass/
+// var candy = function (ratings) {
+//   let candies = ratings.length
+//   //prettier-ignore
+//   let up = 0, down = 0, peak = 0
+//   for (let i = 1; i < ratings.length; i++) {
+//     //prettier-ignore
+//     let prev = ratings[i-1], curr = ratings[i]
+//     if (prev === curr) {
+//       up = down = peak = 0
+//     } else if (prev < curr) {
+//       down = 0
+//       up++
+//       candies += up
+//       peak = up
+//     } else if (prev > curr) {
+//       up = 0
+//       down++
+//       candies += down
+//       if (peak >= down) candies-- // Magic
+//       // Alternative, magic explained
+//       // if (peak < down) {
+//       //   candies += down
+//       // } else if (peak >= down) {
+//       //   candies += down - 1
+//       // }
+//     }
+//   }
+//   // console.log(candies)
+//   return candies
+// }
+// One pass solution from https://leetcode.com/problems/candy/solutions/4037646/99-20-greedy-two-one-pass/
+// var candy = function (ratings) {
+//   let ret = 1
+//   //prettier-ignore
+//   let up = 0, down = 0, peak = 0
+//   for (let i = 0; i < ratings.length; i++) {
+//     //prettier-ignore
+//     let prev = ratings[i], curr = ratings[i + 1]
+//     if (prev === curr) {
+//       up = down = peak = 0
+//       ret += 1
+//     } else if (prev < curr) {
+//       down = 0
+//       up++
+//       ret += up + 1
+//       peak = up
+//     } else if (prev > curr) {
+//       up = 0
+//       down++
+//       ret += down + 1
+//       if (peak >= down) ret-- // This work!
+//       // if (peak <= down) ret++ // This DOESN'T work!? Why?
+//     }
+//   }
+//   console.log(ret)
+//   return ret
+// }
+// Alternative speed test
+// var candy = function (ratings) {
+//   let candies = ratings.length
+//   let up = 0
+//   let down = 0
+//   let peak = 0
+//   for (let i = 1; i < ratings.length; i++) {
+//     if (ratings[i - 1] === ratings[i]) {
+//       up = down = peak = 0
+//     } else if (ratings[i - 1] < ratings[i]) {
+//       down = 0
+//       up++
+//       candies += up
+//       peak = up
+//     } else {
+//       up = 0
+//       down++
+//       candies += down
+//       if (peak >= down) candies--
+//     }
+//   }
+//   return candies
+// }
+// Another alternatives fro one pass:
+// https://leetcode.com/problems/candy/solutions/4338923/single-for-loop-time-o-n-space-o-1-solution
+// https://leetcode.com/problems/candy/solutions/4203255/one-for-loop-solution-time-o-n-space-o-1
+// https://leetcode.com/problems/candy/solutions/4060765/t-o-n-90-beat-s-o-1-98-beat/?envType=study-plan-v2&envId=top-interview-150
+// My first try NOT WORK!
 // var candy = function (ratings) {
 // let candies = ratings.length // Give everyone at least 1 candy
 // let tmp = 0 // Hold difference from neighbors
@@ -774,12 +901,12 @@ var candy = function (ratings) {
 // return candies
 // }
 // testFunction = candy
+// input([1, 6, 10, 8, 7, 3, 2]).output(18) //?
+// input([1, 2, 87, 87, 87, 86, 85, 84, 2, 1]).output(28) //?
 // input([1, 0, 2]).output(5) //?
 // input([1, 2, 2]).output(4) //?
-// input([1, 2, 87, 87, 87, 2, 1]).output(13) //?
-// input([1, 2, 87, 87, 87, 86, 85, 84, 2, 1]).output(28) //?
 // input([1, 3, 2, 2, 1]).output(7) //?
-// input([1, 6, 10, 8, 7, 3, 2]).output(18) //?
+// input([1, 2, 87, 87, 87, 2, 1]).output(13) //?
 // input([1, 3, 4, 5, 2]).output(11) //?
 // input([1, 2, 3, 1, 0]).output(9) //?
 // input([0, 1, 2, 5, 3, 2, 7]).output(15) //?
