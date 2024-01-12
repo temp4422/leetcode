@@ -2722,6 +2722,43 @@ var reverseBetween = function (head, left, right) {
 // # 108. Convert Sorted Array to Binary Search Tree, Easy
 // Array, Divide and Conquer, Tree, 2+
 /*****************************************************************************/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function (nums) {
+  function TreeNode(val, left, right) {
+    this.val = val === undefined ? 0 : val
+    this.left = left === undefined ? null : left
+    this.right = right === undefined ? null : right
+  }
+
+  function useBST(arr) {
+    if (!arr.length) return null
+    let mid = Math.floor(arr.length / 2)
+    let root = new TreeNode(arr[mid])
+
+    // Each subtree is separate BST
+    root.left = useBST(arr.slice(0, mid))
+    root.right = useBST(arr.slice(mid+1))
+
+    return root
+  }
+
+  const result = useBST(nums)
+  return result
+}
+// console.log(sortedArrayToBST([1, 3]))
+// console.log(sortedArrayToBST([-10, -3, 0, 5, 9]))
+// console.log(sortedArrayToBST([0, 1, 2, 3, 4, 5])) // Expect [3,1,5,0,2,4]
 
 // # 148. Sort List, Medium
 // Linked List, Two Pointers, Divide and Conquer, 2+
@@ -2807,7 +2844,7 @@ var reverseBetween = function (head, left, right) {
  * @param {string} b
  * @return {string}
  */
-var addBinary = function(a, b) {
+var addBinary = function (a, b) {
   const bigA = `0b${a}`
   const bigB = `0b${b}`
   const sum = BigInt(bigA) + BigInt(bigB)
