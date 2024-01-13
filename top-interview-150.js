@@ -65,14 +65,6 @@ const input = (inputValue, ...args) => {
 
 */
 function arrayToLinkedList(arr) {
-  let list = null
-  for (let i = arr.length - 1; i >= 0; i--) {
-    list = {
-      val: arr[i],
-      next: list, // Insert current list inside list
-    }
-  }
-  return list
   /**
    * LeetCode Definition for singly-linked list.
    * function ListNode(val, next) {
@@ -80,6 +72,14 @@ function arrayToLinkedList(arr) {
    *     this.next = (next===undefined ? null : next)
    * }
    */
+  let list = null
+  for (let i = arr.length - 1; i > -1; i--) {
+    list = {
+      val: arr[i],
+      next: list, // Insert current list inside list
+    }
+  }
+  return list
 }
 /*
 
@@ -2317,15 +2317,6 @@ var hasCycle = function (head) {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-// const l1 = arrayToLinkedList([2, 4, 3])
-// const l2 = arrayToLinkedList([5, 6, 4])
-// Expected [7,0,8]
-// const l1 = arrayToLinkedList([0, 9])
-// const l2 = arrayToLinkedList([0, 1])
-// Expected [0,0,1]
-// const l1 = arrayToLinkedList([9, 9, 9, 9, 9, 9, 9])
-// const l2 = arrayToLinkedList([9, 9, 9, 9])
-// Expected [8,9,9,9,0,0,0,1]
 var addTwoNumbers = function (l1, l2) {
   // Define linked list, by LeetCode
   function ListNode(val, next) {
@@ -2375,6 +2366,15 @@ var addTwoNumbers = function (l1, l2) {
 
   return headNode.next
 }
+// const l1 = arrayToLinkedList([2, 4, 3])
+// const l2 = arrayToLinkedList([5, 6, 4])
+// Expected [7,0,8]
+// const l1 = arrayToLinkedList([0, 9])
+// const l2 = arrayToLinkedList([0, 1])
+// Expected [0,0,1]
+// const l1 = arrayToLinkedList([9, 9, 9, 9, 9, 9, 9])
+// const l2 = arrayToLinkedList([9, 9, 9, 9])
+// Expected [8,9,9,9,0,0,0,1]
 // console.log(addTwoNumbers(l1, l2))
 
 // # 21. Merge Two Sorted Lists, Easy
@@ -2422,7 +2422,6 @@ var mergeTwoLists = function (l1, l2) {
 // const l1 = arrayToLinkedList([1, 2, 4])
 // const l2 = arrayToLinkedList([1, 3, 4])
 // const expectedOutput = arrayToLinkedList([1, 1, 2, 3, 4, 4])
-
 // testFunction = mergeTwoLists
 // input(l1, l2).output(expectedOutput) //?
 
@@ -2443,21 +2442,21 @@ var mergeTwoLists = function (l1, l2) {
  */
 // ! NOT SOLVED BY MYSELF, only with help of https://leetcode.com/problems/copy-list-with-random-pointer/solutions/4003262/97-92-hash-table-linked-list
 var copyRandomList = function (head) {
-  // if (!head) return null
-  // let hash = new Map()
-  // let curr = head
-  // while (curr) {
-  //   hash.set(curr, new Node(curr.val))
-  //   curr = curr.next
-  // }
-  // curr = head
-  // while (curr) {
-  //   hash.get(curr).next = hash.get(curr.next) || null
-  //   hash.get(curr).random = hash.get(curr.random) || null
-  //   curr = curr.next
-  // }
-  // const newListHead = hash.get(head)
-  // return newListHead
+  if (!head) return null
+  let hash = new Map()
+  let curr = head
+  while (curr) {
+    hash.set(curr, new Node(curr.val))
+    curr = curr.next
+  }
+  curr = head
+  while (curr) {
+    hash.get(curr).next = hash.get(curr.next) || null
+    hash.get(curr).random = hash.get(curr.random) || null
+    curr = curr.next
+  }
+  const newListHead = hash.get(head)
+  return newListHead
 }
 
 // # 92. Reverse Linked List II, Medium
@@ -2518,6 +2517,64 @@ var reverseBetween = function (head, left, right) {
 // # 19. Remove Nth Node From End of List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+console.log('OK')
+// With help of https://leetcode.com/problems/remove-nth-node-from-end-of-list/solutions/3512706/c-java-python-javascript-with-explanation-linked-list/?envType=study-plan-v2&envId=top-interview-150
+var removeNthFromEnd = function (head, n) {
+  if (!head) return head
+
+  // Get size of linked list
+  let dummy = head // pointer to head
+  let size = 0
+  while (dummy) {
+    dummy = dummy.next
+    size++
+  }
+
+  // If the size is equal to n, return the next node as the new head.
+  if (size === n) {
+    return head.next
+  }
+
+  // Get node before 'n' -> last node
+  let lastNode = head // Pointer to head
+  let countToLast = size - n - 1
+  while (countToLast) {
+    lastNode = lastNode.next
+    countToLast--
+  }
+
+  // Merge node.next node with node after 'n' node i.e. node.next.next
+  lastNode.next = lastNode.next.next
+
+  // return modified list head
+  // console.log(head)
+  return head
+}
+// testFunction = removeNthFromEnd
+// //prettier-ignore
+// const head1 = arrayToLinkedList([1, 2, 3, 4, 5]), n1 = 2
+// const res1 = arrayToLinkedList([1, 2, 3, 5])
+// input(head1, n1).output(res1) //?
+// //prettier-ignore
+// const head2 = arrayToLinkedList([1, 2]), n2 = 2
+// const res2 = arrayToLinkedList([])
+// input(head2, n2).output(res2) //?
+// //prettier-ignore
+// const head3 = arrayToLinkedList([1, 2]), n3 = 1
+// const res3 = arrayToLinkedList([])
+// input(head3, n3).output(res3) //?
 
 // # 82. Remove Duplicates from Sorted List II, Medium
 // Linked List, Two Pointers
@@ -2748,12 +2805,12 @@ var sortedArrayToBST = function (nums) {
 
     // Each subtree is separate BST
     root.left = useBST(arr.slice(0, mid))
-    root.right = useBST(arr.slice(mid+1))
+    root.right = useBST(arr.slice(mid + 1))
 
     return root
   }
-
   const result = useBST(nums)
+
   return result
 }
 // console.log(sortedArrayToBST([1, 3]))
