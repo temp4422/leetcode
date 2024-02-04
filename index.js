@@ -1,5 +1,8 @@
 'use strict'
 
+// My helper functions, speed up debugging
+import { arrayToLinkedList } from './helper.js'
+
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
 /*****************************************************************************/
@@ -620,12 +623,8 @@ var reverseList = function (head) {
   // 3) Pointer 1 become new head, that points to reversed list
   return p1
 }
-// Helper function convert arr to list
-//prettier-ignore
-// function arrayToLinkedList(arr) {let list = null;for (let i = arr.length - 1; i >= 0;i--) {list = {val: arr[i],next: list,}};return list}
 // const head = arrayToLinkedList([1, 2, 3, 4, 5]) //?
 // const expected = arrayToLinkedList([5, 4, 3, 2, 1]) //?
-// Run function with linked list as input
 // console.log(reverseList(head))
 
 // 2726. Calculator with Method Chaining, Easy
@@ -670,7 +669,7 @@ class Calculator {
   divide(value) {
     if (value === 0) {
       // throw new Error("Division by zero is not allowed");
-      throw new Error('Division by zero is not allowed');
+      throw new Error('Division by zero is not allowed')
     } else {
       this.num = this.num / value
       return this
@@ -1098,24 +1097,7 @@ var deleteDuplicates = function (head) {
 
   return head
 }
-function arrayToLinkedList(arr) {
-  /**
-   * LeetCode Definition for singly-linked list.
-   * function ListNode(val, next) {
-   *     this.val = (val===undefined ? 0 : val)
-   *     this.next = (next===undefined ? null : next)
-   * }
-   */
-  let list = null
-  for (let i = arr.length - 1; i > -1; i--) {
-    list = {
-      val: arr[i],
-      next: list, // Insert current list inside list
-    }
-  }
-  return list
-}
-// const head = arrayToLinkedList([1, 1, 2])
+const head = arrayToLinkedList([1, 1, 2])
 // const head2 = arrayToLinkedList([1,1,2,3,3])
-// console.log(deleteDuplicates(head)) // Output [1,2]
+console.log(deleteDuplicates(head)) // Output [1,2]
 // console.log(deleteDuplicates(head2)) // Output [1,2,3]
