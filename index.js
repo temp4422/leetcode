@@ -1070,3 +1070,52 @@ var singleNumber = function (nums) {
   return result
 }
 // console.log(singleNumber([1, 2, 1, 3, 2, 5]))
+
+// 83. Remove Duplicates from Sorted List, Easy
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+  if (!head || head.next === null) return head
+
+  let dummy = head
+
+  while (dummy.next) {
+    if (dummy.val === dummy.next.val) {
+      dummy.next = dummy.next.next
+    } else {
+      dummy = dummy.next
+    }
+  }
+
+  return head
+}
+function arrayToLinkedList(arr) {
+  /**
+   * LeetCode Definition for singly-linked list.
+   * function ListNode(val, next) {
+   *     this.val = (val===undefined ? 0 : val)
+   *     this.next = (next===undefined ? null : next)
+   * }
+   */
+  let list = null
+  for (let i = arr.length - 1; i > -1; i--) {
+    list = {
+      val: arr[i],
+      next: list, // Insert current list inside list
+    }
+  }
+  return list
+}
+// const head = arrayToLinkedList([1, 1, 2])
+// const head2 = arrayToLinkedList([1,1,2,3,3])
+// console.log(deleteDuplicates(head)) // Output [1,2]
+// console.log(deleteDuplicates(head2)) // Output [1,2,3]
