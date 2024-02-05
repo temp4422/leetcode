@@ -1097,7 +1097,36 @@ var deleteDuplicates = function (head) {
 
   return head
 }
-const head = arrayToLinkedList([1, 1, 2])
+// const head = arrayToLinkedList([1, 1, 2])
 // const head2 = arrayToLinkedList([1,1,2,3,3])
-console.log(deleteDuplicates(head)) // Output [1,2]
+// console.log(deleteDuplicates(head)) // Output [1,2]
 // console.log(deleteDuplicates(head2)) // Output [1,2,3]
+
+// 171. Excel Sheet Column Number, Easy
+/**
+ * @param {string} columnTitle
+ * @return {number}
+ */
+var titleToNumber = function (columnTitle) {
+  // Get UTF-16 code (ASCII table) value, by subtracting all characters before UPPERCASE UTF-16 index
+  // I.e. 31 characters are reserved, so we start from ' ' (space) what correspond to 32
+  // ' ' -> 32, '0' -> 48, 'A' -> 65, 'a' -> 97
+  // So 'A' at 65 index minus 64 = 1, we got starting value to count from
+  // Now simply count as it's base 26 integers that we should calculate
+
+  let result = 0
+  // Reverse string to start count from end
+  columnTitle = columnTitle.split('').reverse().join('')
+
+  for (let i = 0; i < columnTitle.length; i++) {
+    // result += (columnTitle.charCodeAt(i) - 64) * Math.pow(26, i)
+    let char = columnTitle.charCodeAt(i) - 64
+    let pow = Math.pow(26, i)
+    result += char * pow
+  }
+  return result
+}
+// console.log(titleToNumber('A')) // Output: 1
+// console.log(titleToNumber('AB')) // Output: 28
+// console.log(titleToNumber('ZY')) // Output: 701
+// console.log(titleToNumber('AAE')) // Output: 707
