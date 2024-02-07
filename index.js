@@ -1130,3 +1130,27 @@ var titleToNumber = function (columnTitle) {
 // console.log(titleToNumber('AB')) // Output: 28
 // console.log(titleToNumber('ZY')) // Output: 701
 // console.log(titleToNumber('AAE')) // Output: 707
+
+// 168. Excel Sheet Column Title, Easy
+/**
+ * @param {number} columnNumber
+ * @return {string}
+ */
+var convertToTitle = function (columnNumber) {
+  let result = ''
+  while (columnNumber > 0) {
+    // Adjust columnNumber to 0-based index ? WHY ? So below reminder calculations is possible with 0, thus we start from 65 -> 'A'
+    columnNumber--
+    // Get the character corresponding to the remainder after dividing by 26
+    let char = String.fromCharCode((columnNumber % 26) + 65)
+    // Append character in front of result string
+    result = char + result
+    // Divide columnNumber by 26 to move forward
+    columnNumber = Math.floor(columnNumber / 26)
+  }
+  return result
+}
+// console.log(convertToTitle(1)) // Output: "A"
+// console.log(convertToTitle(28)) // Output: "AB"
+// console.log(convertToTitle(701)) // Output: "ZY"
+// console.log(convertToTitle(707)) // Output: "AAE"
