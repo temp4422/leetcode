@@ -1154,3 +1154,18 @@ var convertToTitle = function (columnNumber) {
 // console.log(convertToTitle(28)) // Output: "AB"
 // console.log(convertToTitle(701)) // Output: "ZY"
 // console.log(convertToTitle(707)) // Output: "AAE"
+
+// 344. Reverse String, Easy
+/**
+ * @param {character[]} s
+ * @return {void} Do not return anything, modify s in-place instead.
+ */
+var reverseString = function (s) {
+  // s.reverse()
+  const length = s.length
+  for (let i = 1; i < length + 1; i++) s.push(s.at(length - i))
+  s.splice(0, length)
+  return s
+}
+// reverseString(['h', 'e', 'l', 'l', 'o']) // Output: ["o","l","l","e","h"]
+// reverseString(['H', 'a', 'n', 'n', 'a', 'h']) // Output: ["h","a","n","n","a","H"]
