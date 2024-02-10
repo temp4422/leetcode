@@ -1169,3 +1169,31 @@ var reverseString = function (s) {
 }
 // reverseString(['h', 'e', 'l', 'l', 'o']) // Output: ["o","l","l","e","h"]
 // reverseString(['H', 'a', 'n', 'n', 'a', 'h']) // Output: ["h","a","n","n","a","H"]
+
+// 387. First Unique Character in a String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function (s) {
+  let tmp = []
+
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      if (s[i] === s[j]) {
+        tmp.push(s[i])
+        break
+      }
+    }
+    // After inner loop ends, check for unique character
+    if (tmp.includes(s[i])) continue
+    else return i
+  }
+
+  return -1
+}
+// console.log(firstUniqChar('leetcode')) // Output: 0
+// console.log(firstUniqChar('loveleetcode')) // Output: 2
+// console.log(firstUniqChar('aabb')) // Output: -1
+// console.log(firstUniqChar('z')) // Output: 0
+// console.log(firstUniqChar('dddccdbba')) // Output: 8
