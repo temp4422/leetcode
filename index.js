@@ -1197,3 +1197,28 @@ var firstUniqChar = function (s) {
 // console.log(firstUniqChar('aabb')) // Output: -1
 // console.log(firstUniqChar('z')) // Output: 0
 // console.log(firstUniqChar('dddccdbba')) // Output: 8
+
+// 412. Fizz Buzz, Easy
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n) {
+  const answer = []
+
+  for (let i = 1; i < n + 1; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      answer.push('FizzBuzz')
+    } else if (i % 3 === 0) {
+      answer.push('Fizz')
+    } else if (i % 5 === 0) {
+      answer.push('Buzz')
+    } else {
+      answer.push(i.toString())
+    }
+  }
+  return answer
+}
+// console.log(fizzBuzz(3)) // Output: ["1","2","Fizz"]
+// console.log(fizzBuzz(5)) // Output: ["1","2","Fizz","4","Buzz"]
+// console.log(fizzBuzz(15)) // Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
