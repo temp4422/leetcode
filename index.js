@@ -1222,3 +1222,23 @@ var fizzBuzz = function (n) {
 // console.log(fizzBuzz(3)) // Output: ["1","2","Fizz"]
 // console.log(fizzBuzz(5)) // Output: ["1","2","Fizz","4","Buzz"]
 // console.log(fizzBuzz(15)) // Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+
+// 521. Longest Uncommon Subsequence I, Easy
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {number}
+ */
+var findLUSlength = function (a, b) {
+  // Set longest string
+  let long = a.length >= b.length ? a : b
+  // Return longest string length if no common subsequence (if uncommon is true)
+  for (let i = 0; i < long.length; i++) {
+    if (a[i] != b[i]) return long.length
+  }
+  return -1
+}
+// console.log(findLUSlength('aba', 'cdc')) // 3
+// console.log(findLUSlength('aaa', 'bbb')) // 3
+// console.log(findLUSlength('aaa', 'aaa')) // -1
+// console.log(findLUSlength('aefawfawfawfaw', 'aefawfeawfwafwaef')) // 17
