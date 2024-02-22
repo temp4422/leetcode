@@ -1242,3 +1242,64 @@ var findLUSlength = function (a, b) {
 // console.log(findLUSlength('aaa', 'bbb')) // 3
 // console.log(findLUSlength('aaa', 'aaa')) // -1
 // console.log(findLUSlength('aefawfawfawfaw', 'aefawfeawfwafwaef')) // 17
+
+// 415. Add Strings, Easy
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+var addStrings = function (num1, num2) {
+  // return (BigInt(num1) + BigInt(num2)).toString() // Alternative
+
+  // Test PPP (Pseudocode Programming Process)
+
+  // Decalare vars
+  let ans = ''
+  let len1 = num1.length - 1
+  let len2 = num2.length - 1
+  let carry = 0
+
+  // Get longer string
+  let longer = len1 >= len2 ? len1 : len2
+  // Go through each character in longer string from end to start
+  for (let i = longer; i > -1; i--) {
+    // Get integer at index, but also check if index overflow below 0
+    let int1 = len1 >= 0 ? parseInt(num1.at(len1)) : 0
+    let int2 = len2 >= 0 ? parseInt(num2.at(len2)) : 0
+
+    // Initialize sum and add integers
+    let sum = 0
+
+    // If carry
+    if (carry) {
+      sum = int1 + int2 + 1
+      carry = 0 // reset carry
+    } else {
+      sum = int1 + int2
+    }
+
+    // If sum > 9 add 1 to carry and subtract 10
+    if (sum > 9) {
+      carry++
+      sum = sum - 10
+    }
+
+    // Add sum to answer
+    ans = sum + ans
+
+    // Decrease len1 & len2
+    len1--
+    len2--
+  }
+
+  // Check if carry still exists
+  if (carry) ans = carry + ans
+
+  return ans
+}
+// console.log(addStrings('11', '123')) // Output: "134"
+// console.log(addStrings('456', '77')) // Output: "533"
+// console.log(addStrings('0', '0')) // Output: "0"
+// console.log(addStrings('9333852702227987', '85731737104263')) // Output: "9419584439332250"
+// console.log(addStrings('1', '9')) // Output: "10"
