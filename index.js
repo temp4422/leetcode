@@ -452,20 +452,6 @@ ArrayWrapper.prototype.toString = function () {
 //   }
 // }
 
-// 2667. Create Hello World Function, Easy
-// args = [] // Output: "Hello World"
-// args = [{}, null, 42] // Output: "Hello World"
-/**
- * @return {Function}
- */
-var createHelloWorld = function () {
-  return function (...args) {
-    return 'Hello World'
-  }
-}
-// const f = createHelloWorld()
-// console.log(f())
-
 // 2704. To Be Or Not To Be, Easy
 // func = () => expect(5).toBe(5) // Output: {"value": true}
 // func = () => expect(5).toBe(null) // Output: {"error": "Not Equal"}
