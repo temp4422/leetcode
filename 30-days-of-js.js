@@ -282,12 +282,13 @@ async function sleep(timeout) {
     }, timeout)
   })
 }
-// // // v1
-// async function sleep(millis) {
-//   await new Promise((resolve) => setTimeout(resolve, millis))
+// // v1
+// async function sleep(timeout) {
+//   await new Promise((resolve) => setTimeout(resolve, timeout))
 // }
+//
 // // v2 Oneline
-// const sleep = async (millis) => new Promise((resolve) => setTimeout(() => resolve(millis), millis))
+// const sleep = async (timeout) => new Promise((resolve) => setTimeout(() => resolve(timeout), timeout))
 // // v3 Oneline shortenting setTimeout()
 // const sleep = async (timeout) => new Promise((resolve) => setTimeout(resolve, timeout))
 //
@@ -499,7 +500,44 @@ var debounce = function (fn, t) {
 // setTimeout(() => dlog(1), 50)
 // setTimeout(() => dlog(2), 75)
 
-// # 2721. Execute Asynchronous Functions in Parallel, Medium
+// 2721. Execute Asynchronous Functions in Parallel, Medium
+/**
+ * @param {Array<Function>} functions
+ * @return {Promise<any>}
+ */
+var promiseAll = function (functions) {
+  // The aim is to replicate the functionality of JavaScript's built-in Promise.all()
+  return new Promise((resolve, reject) => {
+    const results = new Array(functions.length) // Create empty array that will hold results
+    let count = 0 // Count fulfilled promises
+
+    // All functions inside forEach must be `async`
+    functions.forEach(async (fn, i) => {
+      try {
+        results[i] = await fn() // Save result of async function inside our array
+        count++
+        if (count === functions.length) resolve(results) // If all promises are fulfilled, return resolve() with all results
+      } catch (error) {
+        reject(error) // If we meet rejected promise, catch will be called, so we return this
+      }
+    })
+  })
+
+  // Alternative
+  // Execute all functions with map() method: `functions.map((f) => f())` inside Promise.all method
+  // return Promise.all(functions.map((f) => f()))
+}
+// const functions = [() => new Promise((resolve) => setTimeout(() => resolve(5), 200))] //Output: {"t": 200, "resolved": [5]}
+// const functions = [
+//   () => new Promise((resolve) => setTimeout(() => resolve(4), 50)),
+//   () => new Promise((resolve) => setTimeout(() => resolve(10), 150)),
+//   () => new Promise((resolve) => setTimeout(() => resolve(16), 100)),
+// ]
+// const functions = [
+//   () => new Promise((resolve) => setTimeout(() => resolve(1), 200)),
+//   () => new Promise((resolve, reject) => setTimeout(() => reject('Error'), 100)),
+// ]
+// console.log(await promiseAll(functions))
 
 // JSON
 /*****************************************************************************/
