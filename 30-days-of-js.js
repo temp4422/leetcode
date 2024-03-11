@@ -648,7 +648,83 @@ var sortBy = function (arr, fn) {
 // arr = [{"x": 1}, {"x": 0}, {"x": -1}], fn = (d) => d.x // Output: [{"x": -1}, {"x": 0}, {"x": 1}]
 // arr = [[3, 4], [5, 2], [10, 1]], fn = (x) => x[1] // Output: [[10, 1], [5, 2], [3, 4]]
 
-// # 2722. Join Two Arrays by ID, Medium
+// 2722. Join Two Arrays by ID, Medium
+/**
+ * @param {Array} arr1
+ * @param {Array} arr2
+ * @return {Array}
+ */
+var join = function (arr1, arr2) {
+  /*
+  If a given id exists in one array but not the other, the single object with that id should be included in the result array without modification.
+  If two objects share an id, their properties should be merged into a single object:
+  If a key only exists in one object, that single key-value pair should be included in the object.
+  If a key is included in both objects, the value in the object from arr2 should override the value from arr1.
+  */
+  const joinedArray = []
+  let i = 0
+  let j = 0
+
+  // 1) Sort both arrays
+  arr1.sort((a, b) => a.id - b.id)
+  arr2.sort((a, b) => a.id - b.id)
+
+  // 2) Add objects with same id or objects that don't exists in either array
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i]['id'] === arr2[j]['id']) {
+      // Merge objects by rewriting object properties with another object properties
+      // https://stackoverflow.com/questions/21447305/overwrite-object-property-javascript
+      const newObj = { ...arr1[i], ...arr2[j] }
+      joinedArray.push(newObj)
+      i++
+      j++
+    } else if (arr1[i]['id'] < arr2[j]['id']) {
+      joinedArray.push(arr1[i])
+      i++
+    } else if (arr1[i]['id'] > arr2[j]['id']) {
+      joinedArray.push(arr2[j])
+      j++
+    }
+  }
+
+  // 3) Add objects from arr1
+  while (i < arr1.length) {
+    joinedArray.push(arr1[i])
+    i++
+  }
+
+  // 4) Add objects from arr2
+  while (j < arr2.length) {
+    joinedArray.push(arr2[j])
+    j++
+  }
+
+  return joinedArray
+}
+//prettier-ignore
+// const arr1 = [{ id: 1, x: 1 },{ id: 2, x: 9 }]
+// const arr2 = [{ id: 3, x: 5 }]
+// Output:[{"id": 1, "x": 1},{"id": 2, "x": 9},{"id": 3, "x": 5}]
+//prettier-ignore
+// const arr1 = [{ id: 1, x: 2, y: 3 },{ id: 2, x: 3, y: 6 }]
+// prettier-ignore
+// const arr2 = [{ id: 2, x: 10, y: 20 },{ id: 3, x: 0, y: 0 }]
+// Output: [{"id": 1, "x": 2, "y": 3},{"id": 2, "x": 10, "y": 20},{"id": 3, "x": 0, "y": 0}]
+// const arr1 = [{ id: 1, b: { b: 94 }, v: [4, 3], y: 48 }]
+// const arr2 = [{ id: 1, b: { c: 84 }, v: [1, 3] }]
+// Output: [{"id": 1, "b": {"c": 84}, "v": [1, 3], "y": 48}]
+//prettier-ignore
+// const arr1 = [{ id: 1, x: 1 },{ id: 2, x: 9 }]
+// prettier-ignore
+// const arr2 = [{ id: 3, x: 5 },{ id: 1, x: 1 }]
+// Output: [{"id":1,"x":1},{"id":2,"x":9},{"id":3,"x":5}]
+// const arr1 = [{"id": 1,"x": 1},{"id": 3,"x": 5}]
+//prettier-ignore
+// const arr2 = [{"id": 3,"x": 5}, {"id": 1,"x": 1}]
+//prettier-ignore
+// const arr1 = [{ id: 1, r: 67, h: 83, d: 2 },{ id: 2, f: 84, o: 46, l: 7 }]
+// const arr2 = [{ id: 1, c: 70, w: 1 }]
+// console.log(join(arr1, arr2))
 
 // 2625. Flatten Deeply Nested Array, Medium
 /**
