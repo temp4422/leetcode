@@ -521,3 +521,21 @@ var addStrings = function (num1, num2) {
 // console.log(addStrings('0', '0')) // Output: "0"
 // console.log(addStrings('9333852702227987', '85731737104263')) // Output: "9419584439332250"
 // console.log(addStrings('1', '9')) // Output: "10"
+
+// 2769. Find the Maximum Achievable Number, Easy
+// Math
+/**
+ * @param {number} num
+ * @param {number} t
+ * @return {number}
+ */
+var theMaximumAchievableX = function (num, t) {
+  for (let i = 0; i < t; i++) {
+    num += 1
+  }
+  return num + t
+}
+//prettier-ignore
+// let num = 4, t = 1 // Output: 6
+// let num = 3, t = 2 // Output: 7
+// console.log(theMaximumAchievableX(num, t))
