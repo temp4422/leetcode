@@ -539,3 +539,15 @@ var theMaximumAchievableX = function (num, t) {
 // let num = 4, t = 1 // Output: 6
 // let num = 3, t = 2 // Output: 7
 // console.log(theMaximumAchievableX(num, t))
+
+// 2469. Convert the Temperature, Easy, Math
+/**
+ * @param {number} celsius
+ * @return {number[]}
+ */
+var convertTemperature = function (celsius) {
+  const kelvin = celsius + 273.15
+  const fahrenheit = celsius * 1.80 + 32.00
+  return [kelvin, fahrenheit]
+}
+// console.log(convertTemperature(36.5)) // Output: [309.65000,97.70000]
