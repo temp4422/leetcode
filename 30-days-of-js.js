@@ -758,6 +758,44 @@ var flat = function (arr, n) {
 // console.log(flat(arr, n)) // Output [1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]
 
 // # 2705. Compact Object, Medium
+/**
+ * @param {Object|Array} obj
+ * @return {Object|Array}
+ */
+var compactObject = function (obj) {
+  function dfs(obj) {
+    // BASE CASE. If current item is truthy (not falsy) && is primitive (not object) return this item (step out from dfs recusion)
+    if (obj && typeof obj !== 'object') return obj
+
+    // If array
+    if (Array.isArray(obj)) {
+      const newArr = []
+      // Check further if we meet base case or traverse deeper in dfs until we meet one and only after this return from recursion
+      for (const item of obj) {
+        // If base case is met, push primitive value on array
+        if (item) newArr.push(dfs(item))
+      }
+      return newArr
+    }
+
+    // If object
+    if (typeof obj === 'object') {
+      const newObj = {}
+      // Check further if we meet base case or traverse deeper in dfs until we meet one and only after this return from recursion
+      for (const [key, value] of Object.entries(obj)) {
+        // If base case is met, set new key:value property with primitive value
+        if (value) newObj[key] = dfs(value)
+      }
+      return newObj
+    }
+  }
+
+  const result = dfs(obj)
+  return result
+}
+// const obj = [null, 0, false, 1] // Output: [1]
+// const obj = { a: null, b: [false, 1] } // Output: {"b": [1]}
+// console.log(compactObject(obj))
 
 // Classes
 /*****************************************************************************/
