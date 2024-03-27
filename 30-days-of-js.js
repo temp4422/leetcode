@@ -1,3 +1,4 @@
+'use strict'
 /*****************************************************************************/
 /******************** 30 Days of JavaScript **********************************/
 /*****************************************************************************/
@@ -800,6 +801,117 @@ var compactObject = function (obj) {
 // Classes
 /*****************************************************************************/
 // # 2694. Event Emitter, Medium
+// v1 with Map()
+class EventEmitter {
+  constructor() {
+    this.map = new Map()
+  }
+  /**
+   * @param {string} eventName
+   * @param {Function} callback
+   * @return {Object}
+   */
+  subscribe(eventName, callback) {
+    if (this.map.has(eventName)) {
+      this.map.get(eventName).push(callback)
+    } else {
+      this.map.set(eventName, [callback])
+    }
+
+    return {
+      unsubscribe: () => {
+        // this.map.get(eventName).shift() // NOT WORK, must be exact callback function position
+        const arrayOfCallback = this.map.get(eventName)
+        const index = arrayOfCallback.indexOf(callback)
+        if (index !== -1) arrayOfCallback.splice(index, 1)
+      },
+    }
+  }
+
+  /**
+   * @param {string} eventName
+   * @param {Array} args
+   * @return {Array}
+   */
+  emit(eventName, args = []) {
+    const results = []
+
+    if (this.map.has(eventName)) {
+      const events = this.map.get(eventName)
+
+      if (events.length) {
+        for (const event of events) {
+          let callbackResult = event(...args)
+          results.push(callbackResult)
+        }
+      }
+    }
+
+    return results
+  }
+}
+// // v2 with object {}
+// class EventEmitter {
+//   constructor() {
+//     this.hash = {}
+//   }
+
+//   subscribe(eventName, callback) {
+//     if (this.hash[eventName]) this.hash[eventName].push(callback)
+//     else this.hash[eventName] = [callback]
+
+//     return {
+//       unsubscribe: () => {
+//         if (this.hash[eventName] && this.hash[eventName].length > 1) this.hash[eventName].shift()
+//         else delete this.hash[eventName]
+//       },
+//     }
+//   }
+
+//   emit(eventName, args = []) {
+//     let result = []
+//     if (this.hash[eventName]) {
+//       result = this.hash[eventName].map((callback) => callback(...args))
+//     }
+//     return result
+//   }
+// }
+//
+// const emitter = new EventEmitter()
+//
+// // Subscribe to the onClick event with onClickCallback
+// //prettier-ignore
+// function onClickCallback() {return 99}
+// //
+// const sub = emitter.subscribe('onClick', onClickCallback)
+// console.log(emitter.emit('onClick')) // [99]
+// console.log(sub.unsubscribe()) // undefined
+// console.log(emitter.emit('onClick')) // []
+//
+// emitter.emit('firstEvent') // [], no callback are subscribed yet
+// //prettier-ignore
+// emitter.subscribe("firstEvent", function cb1() { return 5; });
+// //prettier-ignore
+// emitter.subscribe("firstEvent", function cb2() { return 6; });
+// console.log(emitter.emit('firstEvent')) // [5, 6], returns the output of cb1 and cb2
+//
+// //prettier-ignore
+// emitter.subscribe("firstEvent", function cb1(...args) { return args.join(',') })
+// emitter.emit('firstEvent', [1, 2, 3]) // ["1,2,3"]
+// emitter.emit('firstEvent', [3, 4, 6]) // ["3,4,6"]
+//
+// const sub1 = emitter.subscribe('firstEvent', (x) => x + 1)
+// const sub2 = emitter.subscribe('firstEvent', (x) => x + 2)
+// sub1.unsubscribe() // undefined
+// emitter.emit('firstEvent', [5]) // [7]
+//
+// //prettier-ignore
+// const sub1 =  emitter.subscribe('eventOne', function cb1(...args) {  return args.join(',')})
+// //prettier-ignore
+// emitter.subscribe('eventOne', function cb1(...args) {  return args.join(',')})
+// console.log(emitter.emit('eventOne', [1, 2, 3]))
+// sub1.unsubscribe()
+// console.log(emitter.emit('eventOne', [7, 8, 9]))
 
 // 2695. Array Wrapper, Easy
 // v1 es6 Class Syntax
