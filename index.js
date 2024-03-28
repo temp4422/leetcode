@@ -551,3 +551,20 @@ var convertTemperature = function (celsius) {
   return [kelvin, fahrenheit]
 }
 // console.log(convertTemperature(36.5)) // Output: [309.65000,97.70000]
+
+// 2942. Find Words Containing Character, Easy
+/**
+ * @param {string[]} words
+ * @param {character} x
+ * @return {number[]}
+ */
+var findWordsContaining = function (words, x) {
+  const result = []
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].includes(x)) {
+      result.push(i)
+    }
+  }
+  return result
+}
+// console.log(findWordsContaining(['leet', 'code'], 'e'))
