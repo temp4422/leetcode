@@ -568,3 +568,21 @@ var findWordsContaining = function (words, x) {
   return result
 }
 // console.log(findWordsContaining(['leet', 'code'], 'e'))
+
+// 1108. Defanging an IP Address, Easy
+/**
+ * @param {string} address
+ * @return {string}
+ */
+var defangIPaddr = function (address) {
+  // return address.replace(/\./g, "[.]")
+  let newAddress = ''
+  for (let i = 0; i < address.length; i++) {
+    if (address[i] === '.') {
+      newAddress += '[.]'
+      continue
+    }
+    newAddress += address[i]
+  }
+  return newAddress
+}
