@@ -301,24 +301,53 @@ var singleNumber = function (nums) {
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
-  if (!head || head.next === null) return head
+  if (!head || !head.next) return head // Check base condition
 
-  let dummy = head
+  // Create new dummy node that points to head, need to  return later
+  const dummy = new ListNode(0, head)
 
-  while (dummy.next) {
-    if (dummy.val === dummy.next.val) {
-      dummy.next = dummy.next.next
-    } else {
-      dummy = dummy.next
+  // Loop through nodes until reach `null`
+  while (head) {
+    // Drop `if` because of redundant code, but functions same way as without
+    // if (head.next && head.val === head.next.val) {while ...}
+
+    while (head.next && head.val === head.next.val) {
+      // If face duplicate, skip next node, i.e. link this node pointer to node after the next node (next.next)
+      head.next = head.next.next
     }
+
+    // Cycle through all nodes
+    head = head.next
   }
 
-  return head
+  // Return head
+  return dummy.next
 }
+// Alternative with single loop
+// var deleteDuplicates = function (head) {
+//   if (!head || head.next === null) return head
+
+//   let dummy = head
+
+//   while (dummy.next) {
+//     if (dummy.val === dummy.next.val) {
+//       dummy.next = dummy.next.next
+//     } else {
+//       dummy = dummy.next
+//     }
+//   }
+
+//   return head
+// }
 // const head = arrayToLinkedList([1, 1, 2])
 // const head2 = arrayToLinkedList([1,1,2,3,3])
 // console.log(deleteDuplicates(head)) // Output [1,2]
 // console.log(deleteDuplicates(head2)) // Output [1,2,3]
+//
+// testFunction = deleteDuplicatesEasy
+// const inputX = arrayToLinkedList([1, 2, 3, 3, 3, 4, 4, 5])
+// const outputX = arrayToLinkedList([1, 2, 3, 4, 5])
+// input(inputX).output(outputX) //?
 
 // 171. Excel Sheet Column Number, Easy
 /**
