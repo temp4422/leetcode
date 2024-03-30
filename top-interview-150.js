@@ -2485,29 +2485,24 @@ var removeNthFromEnd = function (head, n) {
  * @return {ListNode}
  */
 var deleteDuplicates = function (head) {
-  if (!head || !head.next) return head
+  if (!head || !head.next) return head // Base case if not null
 
-  let dummy = new ListNode(0, head) // dummy node for later return
-  let prev = dummy // Store last value before current head
+  const dummy = new ListNode(0, head) // dummy node, keep pointer to nodes for later use
+  let curr = dummy // Current pointer, on which we perform operations, starts from dummy node
 
-  while (head) {
-    // If we meet condition, then loop through and move head to next node
-
-    // while (head.next && head.val === head.next.val) {
-    //   head = head.next
-    // }
-    // if (prev.next === head) {
-    //   // Move pointer forward
-    //   prev = head
-    // } else {
-    //   // Here we skip current, or few currents, that were skipped in loop above
-    //   prev.next = head.next
-    // }
-
-    head = head.next
+  while (curr.next) {
+    if (curr.next.next && curr.next.val === curr.next.next.val) {
+      // If we encounter duplicates, perform operation to skip duplicate nodes
+      while (curr.next.next && curr.next.val === curr.next.next.val) {
+        curr.next = curr.next.next // Keep skiping nodes if they are duplicates
+      }
+      curr.next = curr.next.next // Replace curr.next pointer 1 more time, because it's left after above operation. Why? Don't understand!
+    } else {
+      curr = curr.next // If no duplicates, simply go to next node
+    }
   }
 
-  return dummy.next
+  return dummy.next // Return dummy node, as it points where 'head' do, where 'curr' do as well.
 }
 // const input1 = arrayToLinkedList([1, 2, 3, 3, 4, 4, 5])
 // const output1 = arrayToLinkedList([1, 2, 5])
