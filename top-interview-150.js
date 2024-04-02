@@ -2511,6 +2511,55 @@ var deleteDuplicates = function (head) {
 // # 61. Rotate List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var rotateRight = function (head, k) {
+  // 0. Set precondition
+  if (!head || !head.next) return head
+
+  // 1. Init variables
+  let tail = head
+  let count = 1 // Initial 1, because we count from `tal.next` not `tail`
+
+  // 2. Count length of list
+  while (tail.next) {
+    count++
+    tail = tail.next
+  }
+
+  // 3. Set calculated actual `newCount`
+  let modulo = k % count // Use modulo to get rotation count related to lenght of list. If `k` < `count` it will stay the same, so its safe
+  let newCount = count - modulo // Actual number of nodes we must count from head to get to point where we will connect our head
+
+  // 4. Connect head to `.next` of our counted node
+  tail.next = head // This make our list circular to infinity
+
+  // 5. Circle through list until we reach our `newCout` node
+  while (newCount) {
+    head = head.next
+    tail = tail.next
+    newCount--
+  }
+
+  // 6. Brake the circle
+  tail.next = null
+
+  // 7. Return new head
+  return head
+}
+//prettier-ignore
+// const head = arrayToLinkedList([1,2,3,4,5]), k = 2, output = arrayToLinkedList([4,5,1,2,3]) // Output: [4,5,1,2,3]
+// testFunction(rotateRight).input(head, k).output(output) //?
 
 // # 86. Partition List, Medium
 // Linked List, Two Pointers
