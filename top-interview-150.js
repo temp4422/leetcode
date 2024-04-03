@@ -2568,6 +2568,70 @@ var rotateRight = function (head, k) {
 // # 146. LRU Cache, Medium
 // Hash Table, Linked List, Design, 1+
 /*****************************************************************************/
+class LRUCache  {
+  /**
+   * @param {number} capacity
+   */
+  constructor(capacity){
+    this.capacity = capacity
+    this.map = new Map()
+  }
+  /**
+   * @param {number} key
+   * @return {number}
+   */
+  get(key) {
+    if (this.map.has(key)) {
+      let currentValue = this.map.get(key)
+      this.map.delete(key)
+      this.map.set(key, currentValue)
+      return currentValue
+    } else {
+      return -1
+    }
+  }
+  /**
+   * @param {number} key
+   * @param {number} value
+   * @return {void}
+   */
+  put(key, value) {
+    this.map.delete(key)
+    this.map.set(key, value)
+    if (this.map.size > this.capacity) {
+      let leastValue = this.map.keys().next().value
+      this.map.delete(leastValue)
+    }
+  }
+}
+// const lRUCache = new LRUCache(2)
+// lRUCache.put(1, 1) // cache is {1=1}
+// lRUCache.put(2, 2) // cache is {1=1, 2=2}
+// lRUCache.get(1) // return 1
+// lRUCache.put(3, 3) // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+// lRUCache.get(2) // returns -1 (not found)
+// lRUCache.put(4, 4) // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+// lRUCache.get(1) // return -1 (not found)
+// lRUCache.get(3) // return 3
+// lRUCache.get(4) // return 4
+// console.log(lRUCache)
+//
+// const lRUCache = new LRUCache(3)
+// lRUCache.put(1, 1) // null
+// lRUCache.put(2, 2) // null
+// lRUCache.put(3, 3) // null
+// lRUCache.put(4, 4) // null
+// lRUCache.get(4) // 4
+// lRUCache.get(3) // 3
+// lRUCache.get(2) // 2
+// lRUCache.get(1) // -1
+// lRUCache.put(5, 5) // null
+// lRUCache.get(1) // -1
+// lRUCache.get(2) // 2
+// lRUCache.get(3) // 3
+// lRUCache.get(4) // -1
+// lRUCache.get(5) // 5
+// console.log(lRUCache)
 
 /********************** Binary Tree General **********************************/
 /*****************************************************************************/
