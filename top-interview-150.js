@@ -2564,15 +2564,52 @@ var rotateRight = function (head, k) {
 // # 86. Partition List, Medium
 // Linked List, Two Pointers
 /*****************************************************************************/
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} x
+ * @return {ListNode}
+ */
+var partition = function (head, x) {
+  const before = new ListNode(0)
+  const after = new ListNode(0)
+  let before_curr = before
+  let after_curr = after
+
+  while (head) {
+    if (head.val < x) {
+      before_curr.next = head
+      before_curr = before_curr.next
+    } else {
+      after_curr.next = head
+      after_curr = after_curr.next
+    }
+    head = head.next
+  }
+
+  after_curr.next = null
+  before_curr.next = after.next
+
+  return before.next
+}
+//prettier-ignore
+// const head1 = arrayToLinkedList([1, 4, 3, 2, 5, 2]), x1 = 3, output1 = arrayToLinkedList([1,2,2,4,3,5])
+// testFunction(partition).input(head1, x1).output(output1) // ?
 
 // # 146. LRU Cache, Medium
 // Hash Table, Linked List, Design, 1+
 /*****************************************************************************/
-class LRUCache  {
+class LRUCache {
   /**
    * @param {number} capacity
    */
-  constructor(capacity){
+  constructor(capacity) {
     this.capacity = capacity
     this.map = new Map()
   }
