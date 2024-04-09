@@ -1,7 +1,7 @@
 'use strict'
 
 // My helper functions, speed up debugging
-import { arrayToLinkedList } from './helper.js'
+import { testFunction, arrayToLinkedList } from './helper.js'
 
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
@@ -614,4 +614,48 @@ var defangIPaddr = function (address) {
     newAddress += address[i]
   }
   return newAddress
+}
+
+// 118. Pascal's Triangle, Easy
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  // Basic conditions
+  if (numRows < 1) return []
+  if (numRows === 1) return [[1]]
+
+  // Fill result with first 2 rows of Pascal's Triangle
+  const result = [[1], [1, 1]]
+
+  // Count from second row, because of `filled result` above
+  for (let row = 2; row < numRows; row++) {
+    let lastRow = result.at(-1) // Select lastRow from result, start from `[1, 1]`
+    let newNums = [] // Init temporal empty array to hold new calculated numbers
+
+    // Create inner piece of new row (newNums) by adding numbers, one by one, from last row
+    for (let num = 1; num < lastRow.length; num++) {
+      newNums.push(lastRow[num - 1] + lastRow[num]) // Add numbers, one by one, in a row
+      // Alternative: start fron num = 0 and check for out of array value `if (!lastRow[num + 1]) break`
+    }
+
+    // Add `1, ..., 1` on each new row, because of pascal triangle properties
+    let newRow = [1, ...newNums, 1] // Use spread `...` syntax to incorporate nums into newRow
+    result.push(newRow)
+  }
+
+  // console.log(result)
+  return result
+}
+//prettier-ignore
+// testFunction(generate).input(5).output([[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]) //?
+
+// 1512. Number of Good Pairs, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var numIdenticalPairs = function (nums) {
+  return
 }

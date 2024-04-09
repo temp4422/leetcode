@@ -2689,12 +2689,16 @@ class LRUCache {
  * @return {number}
  */
 var maxDepth = function (root) {
-  if (!root) return 0
+  function recurseDepth(rootNode) {
+    if (!rootNode) return 0
 
-  let leftSide = maxDepth(root.left)
-  let rightSide = maxDepth(root.right)
+    let leftSide = recurseDepth(rootNode.left)
+    let rightSide = recurseDepth(rootNode.right)
 
-  return Math.max(leftSide, rightSide) + 1 // +1 is root node itself
+    return Math.max(leftSide, rightSide) + 1 // +1 is root node itself
+  }
+
+  return recurseDepth(root)
 }
 // const tree1 = arrayToBinaryTree([3, 9, 20, null, null, 15, 7])
 // testFunction(maxDepth).input(tree1).output(3) //?
