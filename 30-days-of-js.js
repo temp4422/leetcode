@@ -4,7 +4,7 @@
 /*****************************************************************************/
 // https://leetcode.com/studyplan/30-days-of-javascript/
 
-// Closures
+//#region Closures
 /*****************************************************************************/
 // 2667. Create Hello World Function, Easy
 /**
@@ -83,8 +83,9 @@ var createCounter = function (init) {
 // console.log(counter.increment()) // 6
 // console.log(counter.reset()) // 5
 // console.log(counter.decrement()) // 4
+//#endregion
 
-// Basic Array Transformations
+//#region Basic Array Transformations
 /*****************************************************************************/
 // 2635. Apply Transform Over Each Element in Array, Easy
 /**
@@ -157,8 +158,9 @@ var reduce = function (nums, fn, init) {
 //prettier-ignore
 // nums = [], fn = function sum(accum, curr) { return 0; }, init = 25 //Output: 25
 // console.log(reduce(nums, fn, init))
+//#endregion
 
-// Function Transformations
+//#region Function Transformations
 /*****************************************************************************/
 // 2629. Function Composition, Easy
 /**
@@ -250,8 +252,9 @@ function memoize(fn) {
 // console.log(memoizedFn(2, 4))
 // console.log(memoizedFn(2, 3))
 // console.log(callCount)
+//#endregion
 
-// Promises and Time
+//#region Promises and Time
 /*****************************************************************************/
 // 2723. Add Two Promises, Easy
 /**
@@ -539,8 +542,9 @@ var promiseAll = function (functions) {
 //   () => new Promise((resolve, reject) => setTimeout(() => reject('Error'), 100)),
 // ]
 // console.log(await promiseAll(functions))
+//#endregion
 
-// JSON
+//#region JSON
 /*****************************************************************************/
 // 2727. Is Object Empty, Easy
 /**
@@ -797,8 +801,9 @@ var compactObject = function (obj) {
 // const obj = [null, 0, false, 1] // Output: [1]
 // const obj = { a: null, b: [false, 1] } // Output: {"b": [1]}
 // console.log(compactObject(obj))
+//#endregion
 
-// Classes
+//#region Classes
 /*****************************************************************************/
 // # 2694. Event Emitter, Medium
 // v1 with Map()
@@ -1053,6 +1058,8 @@ class Calculator {
 }
 // Input: actions = ["Calculator", "add", "subtract", "getResult"], values = [10, 5, 7] // Output: 8
 // const result = new Calculator(10).add(5).subtract(7).getResult() // 10 + 5 - 7 = 8
+//#endregion
 
-// Summarize Your 30-day Journey with Bonus Challenges!
+//#region Summarize Your 30-day Journey with Bonus Challenges!
 /*****************************************************************************/
+//#endregion
