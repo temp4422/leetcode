@@ -657,5 +657,16 @@ var generate = function (numRows) {
  * @return {number}
  */
 var numIdenticalPairs = function (nums) {
-  return
+  let goodPairs = 0
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i+1; j < nums.length; j++) {
+      if (nums[i] === nums[j]) {
+        goodPairs++
+      }
+    }
+  }
+
+  return goodPairs
 }
+// testFunction(numIdenticalPairs).input([1, 2, 3, 1, 1, 3]).output(4) //?
