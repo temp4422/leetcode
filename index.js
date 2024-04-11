@@ -670,3 +670,13 @@ var numIdenticalPairs = function (nums) {
   return goodPairs
 }
 // testFunction(numIdenticalPairs).input([1, 2, 3, 1, 1, 3]).output(4) //?
+
+// 1929. Concatenation of Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var getConcatenation = function (nums) {
+  return nums.concat(nums)
+}
+// testFunction(getConcatenation).input([1, 2, 1]).output([1, 2, 1, 1, 2, 1]) //?
