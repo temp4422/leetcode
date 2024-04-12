@@ -680,3 +680,30 @@ var getConcatenation = function (nums) {
   return nums.concat(nums)
 }
 // testFunction(getConcatenation).input([1, 2, 1]).output([1, 2, 1, 1, 2, 1]) //?
+
+// 119. Pascal's Triangle II, Easy
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function (rowIndex) {
+  if (rowIndex === 0) return [1]
+  if (rowIndex === 1) return [1, 1]
+
+  const pascalTriangle = [[1], [1, 1]]
+
+  for (let row = 2; row < rowIndex + 1; row++) {
+    let lastRow = pascalTriangle.at(-1)
+    let newNums = []
+
+    for (let num = 1; num < lastRow.length; num++) {
+      newNums.push(lastRow[num - 1] + lastRow[num])
+    }
+
+    let newRow = [1, ...newNums, 1]
+    pascalTriangle.push(newRow)
+  }
+
+  return pascalTriangle.pop()
+}
+// testFunction(getRow).input(3).output([1, 3, 3, 1]) //?
