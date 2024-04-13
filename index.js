@@ -707,3 +707,17 @@ var getRow = function (rowIndex) {
   return pascalTriangle.pop()
 }
 // testFunction(getRow).input(3).output([1, 3, 3, 1]) //?
+
+// 217. Contains Duplicate, Easy
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums) {
+  const set = new Set(nums)
+  const newArr = Array.from(set)
+  // If there are less elements in new array it's mean, original array has duplicates
+  return newArr.length < nums.length ? true : false
+  // Alternative return set.size !== nums.length
+}
+// testFunction(containsDuplicate).input([1, 2, 3, 1]).output(true) //?
