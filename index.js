@@ -721,3 +721,27 @@ var containsDuplicate = function (nums) {
   // Alternative return set.size !== nums.length
 }
 // testFunction(containsDuplicate).input([1, 2, 3, 1]).output(true) //?
+
+// 231. Power of Two, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function (n) {
+  if (n === 0) return false
+
+  let result = 0
+  let multiplier = 0
+
+  while (result < n) {
+    result = Math.pow(2, multiplier)
+    multiplier++
+  }
+
+  // If we count before or past our input 'number', this mean it's not a power of two.
+  return result === n ? true : false
+}
+// testFunction(isPowerOfTwo).input(0).output(false) //?
+// testFunction(isPowerOfTwo).input(1).output(true) //?
+// testFunction(isPowerOfTwo).input(3).output(false) //?
+// testFunction(isPowerOfTwo).input(6).output(false) //?
