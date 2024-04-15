@@ -745,3 +745,26 @@ var isPowerOfTwo = function (n) {
 // testFunction(isPowerOfTwo).input(1).output(true) //?
 // testFunction(isPowerOfTwo).input(3).output(false) //?
 // testFunction(isPowerOfTwo).input(6).output(false) //?
+
+// 283. Move Zeroes, Easy
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function (nums) {
+  const zeroes = []
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      nums.splice(i, 1)
+      zeroes.push(0)
+      i--
+    }
+  }
+
+  nums.push(...zeroes)
+
+  return nums
+}
+// testFunction(moveZeroes).input([0, 1, 0, 3, 12]).output([1, 3, 12, 0, 0]) //?
+// testFunction(moveZeroes).input([0, 0, 1]).output([1, 0, 0]) //?
