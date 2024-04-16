@@ -768,3 +768,29 @@ var moveZeroes = function (nums) {
 }
 // testFunction(moveZeroes).input([0, 1, 0, 3, 12]).output([1, 3, 12, 0, 0]) //?
 // testFunction(moveZeroes).input([0, 0, 1]).output([1, 0, 0]) //?
+
+// 292. Nim Game, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var canWinNim = function (n) {
+  /*
+    The winning strategy for the two-player version of this game is to always say a multiple of 4
+    -> https://en.wikipedia.org/wiki/Nim#The_21_game
+    Calculate modulo of 4
+    If number can be divided by 4 without reminder, this mean we will always lose if we do first move.
+    Explanation: doesn't metter what step we take, opponent, will always take last nim in this case.
+    So we generalize all possible cases, to where we will face upon last 4 nims, and if it's our move - than we lose.
+    If the number is divided by 4 without reminder, we will face situation where we will meet this criteria bad for us.
+    Optimal step is to leave your oponent with number that will be divided by 4 wihout reminder ( n % 4 === 0), so if your oponent face last 4 nims - than you win.
+    If two players always make optimal moves, the one who make first move - always win.
+  */
+  return n % 4 === 0 ? false : true
+}
+// testFunction(canWinNim).input(0).output(false) //?
+// testFunction(canWinNim).input(1).output(true) //?
+// testFunction(canWinNim).input(2).output(true) //?
+// testFunction(canWinNim).input(3).output(true) //?
+// testFunction(canWinNim).input(4).output(false) //?
+// testFunction(canWinNim).input(5).output(true) //?
