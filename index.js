@@ -794,3 +794,23 @@ var canWinNim = function (n) {
 // testFunction(canWinNim).input(3).output(true) //?
 // testFunction(canWinNim).input(4).output(false) //?
 // testFunction(canWinNim).input(5).output(true) //?
+
+// 258. Add Digits, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function (num) {
+  let newNum = num.toString()
+
+  while (newNum.length > 1) {
+    let addend1 = newNum.slice(0, 1)
+    let addend2 = parseInt(newNum.slice(1))
+    newNum = eval(`${addend1} + ${addend2}`).toString()
+  }
+
+  return parseInt(newNum)
+  // Alternative  return (num == 0) ? 0 :(num % 9 == 0) ? 9 : num % 9 ;
+}
+// testFunction(addDigits).input(38).output(2) //?
+// testFunction(addDigits).input(635915053).output(1) //?
