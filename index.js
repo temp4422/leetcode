@@ -814,3 +814,39 @@ var addDigits = function (num) {
 }
 // testFunction(addDigits).input(38).output(2) //?
 // testFunction(addDigits).input(635915053).output(1) //?
+
+// 263. Ugly Number, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isUgly = function (n) {
+  // Time Limit Exceeded!
+  // if (n <= 0) return false
+  // const primeFactors = []
+  // let divisor = 2
+  // while (n >= 2) {
+  //   if (n % divisor === 0) {
+  //     n /= divisor
+  //     primeFactors.push(divisor)
+  //   } else {
+  //     divisor++
+  //   }
+  // }
+  // const filteredPrimeFactors = primeFactors.filter((i) => i === 2 || i === 3 || i === 5)
+  // return primeFactors.length === filteredPrimeFactors.length
+
+  // https://leetcode.com/problems/ugly-number/solutions/541479/easy-js-solution
+  if (n <= 0) return false
+  while (n > 1) {
+    if (n % 2 == 0) n /= 2
+    else if (n % 3 == 0) n /= 3
+    else if (n % 5 == 0) n /= 5
+    else return false
+  }
+  return n === 1 ? true : false
+}
+// testFunction(isUgly).input(6).output(true) //?
+// testFunction(isUgly).input(1010).output(false) //?
+// testFunction(isUgly).input(-2147483648).output(false) //?
+// testFunction(isUgly).input(1369479539).output(false) //?
