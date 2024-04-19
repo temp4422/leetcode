@@ -850,3 +850,30 @@ var isUgly = function (n) {
 // testFunction(isUgly).input(1010).output(false) //?
 // testFunction(isUgly).input(-2147483648).output(false) //?
 // testFunction(isUgly).input(1369479539).output(false) //?
+
+// 268. Missing Number, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function (nums) {
+  let n = nums.length
+  nums.sort((a, b) => a - b)
+
+  if (nums[0] !== 0) return 0
+
+  for (let i = 1; i < n; i++) {
+    let previous = nums[i - 1]
+    let current = nums[i]
+    if (previous + 1 != current) return current - 1
+  }
+
+  // Alternative
+  // for (let i = 1; i < nums.length; i++){
+  // if (nums[i] !== i) return i}
+
+  return n // If no number in the middle
+}
+// testFunction(missingNumber).input([3, 0, 1]).output(2) //?
+// testFunction(missingNumber).input([0, 1]).output(2) //?
+// testFunction(missingNumber).input([1]).output(0) //?
