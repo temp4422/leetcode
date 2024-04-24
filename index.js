@@ -877,3 +877,49 @@ var missingNumber = function (nums) {
 // testFunction(missingNumber).input([3, 0, 1]).output(2) //?
 // testFunction(missingNumber).input([0, 1]).output(2) //?
 // testFunction(missingNumber).input([1]).output(0) //?
+
+// 278. First Bad Version, Easy
+/**
+ * Definition for isBadVersion()
+ *
+ * @param {integer} version number
+ * @return {boolean} whether the version is bad
+ * isBadVersion = function(version) {
+ *     ...
+ * };
+ */
+/**
+ * @param {function} isBadVersion()
+ * @return {function}
+ */
+var solution = function (isBadVersion) {
+  /**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  return function (n) {
+    // Binary search algorithm
+    let start = 1
+    let end = n
+
+    while (start < end) {
+      let mid = Math.floor((start + end) / 2)
+      // If we found bad version we keep search from mid to right (end)
+      if (isBadVersion(mid)) {
+        end = mid
+        // If we found good version we keep search from mid to left (start)
+      } else {
+        // Add 1 to mid, because mid is 100% 'good version', so we skip it and go to next after it, otherwise we may be traped in infinity loop
+        start = mid + 1
+      }
+    }
+
+    // After full search, we face 'mid === start === end', so we break while loop
+    return start
+  }
+}
+// const isBadVersion = function (version) {
+//   return version === 4 ? true : false
+// }
+// const testBadVersion = solution(isBadVersion)
+// testBadVersion(5)
