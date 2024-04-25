@@ -961,3 +961,22 @@ class NumArray {
 // numArray.sumRange(0, 2) // return (-2) + 0 + 3 = 1
 // numArray.sumRange(2, 5) // return 3 + (-5) + 2 + (-1) = -1
 // numArray.sumRange(0, 5) // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
+
+// 338. Counting Bits, Easy
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function (n) {
+  const ans = []
+  for (let i = 0; i < n + 1; i++) {
+    let decimalToBinary = i.toString(2)
+    //prettier-ignore
+    // Convert to array -> map string to number -> count 1's
+    let countOnes = decimalToBinary.split('').map(i => Number(i)).reduce((a,b)=> a+b)
+    ans.push(countOnes)
+  }
+  return ans
+}
+// testFunction(countBits).input(2).output([0, 1, 1]) //?
+// testFunction(countBits).input(5).output([0, 1, 1, 2, 1, 2]) //?
