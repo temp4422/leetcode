@@ -980,3 +980,30 @@ var countBits = function (n) {
 }
 // testFunction(countBits).input(2).output([0, 1, 1]) //?
 // testFunction(countBits).input(5).output([0, 1, 1, 2, 1, 2]) //?
+
+// 345. Reverse Vowels of a String, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseVowels = function (s) {
+  const newString = s.split('')
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+  const foundVowels = []
+
+  // Save all vowels as foundVowels array
+  for (let i = 0; i < newString.length; i++) {
+    if (vowels.includes(s[i])) {
+      foundVowels.push(s[i])
+    }
+  }
+  // Replace each vowel in string with vowels from foundVowels array by poping them from back of array
+  for (let i = 0; i < newString.length; i++) {
+    if (vowels.includes(s[i])) {
+      newString.splice(i, 1, foundVowels.pop())
+    }
+  }
+
+  return newString.join('')
+}
+// testFunction(reverseVowels).input('hello').output('holle') //?
