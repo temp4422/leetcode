@@ -1007,3 +1007,30 @@ var reverseVowels = function (s) {
   return newString.join('')
 }
 // testFunction(reverseVowels).input('hello').output('holle') //?
+
+// 349. Intersection of Two Arrays, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersection = function (nums1, nums2) {
+  const set = new Set()
+  const longArr = nums1.length >= nums2.length ? nums1 : nums2
+  const shortArr = nums1.length < nums2.length ? nums1 : nums2
+
+  for (let i = 0; i < shortArr.length; i++) {
+    if (longArr.includes(shortArr[i])) {
+      set.add(shortArr[i])
+    }
+  }
+
+  return Array.from(set)
+
+  // Alternative
+  // let set1 = new Set(nums1);
+  // let set2 = new Set(nums2);
+  // return Array.from(new Set([...set1].filter(x => set2.has(x))))
+}
+// testFunction(intersection).input([1, 2, 2, 1], [2, 2]).output([2]) //?
+// testFunction(intersection).input([1, 2], [1, 1]).output([1]) //?
