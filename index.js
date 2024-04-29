@@ -1034,3 +1034,28 @@ var intersection = function (nums1, nums2) {
 }
 // testFunction(intersection).input([1, 2, 2, 1], [2, 2]).output([2]) //?
 // testFunction(intersection).input([1, 2], [1, 1]).output([1]) //?
+
+// 350. Intersection of Two Arrays II, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function (nums1, nums2) {
+  const intersectArr = []
+
+  const longArr = nums1.length >= nums2.length ? nums1 : nums2
+  const shortArr = nums1.length < nums2.length ? nums1 : nums2
+
+  for (let i = 0; i < shortArr.length; i++) {
+    if (longArr.includes(shortArr[i])) {
+      intersectArr.push(shortArr[i])
+      longArr.splice(longArr.indexOf(shortArr[i]), 1)
+    }
+  }
+
+  return intersectArr
+}
+// testFunction(intersect).input([1, 2, 2, 1], [2, 2]).output([2, 2]) //?
+// testFunction(intersect).input([1, 2], [1, 1]).output([1]) //?
+// testFunction(intersect).input([2, 1], [1, 1]).output([1]) //?
