@@ -1059,3 +1059,43 @@ var intersect = function (nums1, nums2) {
 // testFunction(intersect).input([1, 2, 2, 1], [2, 2]).output([2, 2]) //?
 // testFunction(intersect).input([1, 2], [1, 1]).output([1]) //?
 // testFunction(intersect).input([2, 1], [1, 1]).output([1]) //?
+
+// 225. Implement Stack using Queues, Easy
+class MyStack {
+  constructor() {
+    this.stack = []
+  }
+  /**
+   * @param {number} x
+   * @return {void}
+   */
+  push = function (x) {
+    this.stack.push(x)
+  }
+
+  /**
+   * @return {number}
+   */
+  pop = function () {
+    return this.stack.pop()
+  }
+
+  /**
+   * @return {number}
+   */
+  top = function () {
+    return this.stack.at(-1)
+  }
+
+  /**
+   * @return {boolean}
+   */
+  empty = function () {
+    return this.stack.length === 0 ? true : false
+  }
+}
+// var obj = new MyStack()
+// obj.push('x')
+// var param_2 = obj.pop()
+// var param_3 = obj.top()
+// var param_4 = obj.empty()
