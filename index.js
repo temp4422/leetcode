@@ -1099,3 +1099,44 @@ class MyStack {
 // var param_2 = obj.pop()
 // var param_3 = obj.top()
 // var param_4 = obj.empty()
+
+// 232. Implement Queue using Stacks, Easy
+class MyQueue {
+  constructor() {
+    this.queue = []
+  }
+
+  /**
+   * @param {number} x
+   * @return {void}
+   */
+  push = function (x) {
+    this.queue.push(x)
+  }
+
+  /**
+   * @return {number}
+   */
+  pop = function () {
+    return this.queue.shift()
+  }
+
+  /**
+   * @return {number}
+   */
+  peek = function () {
+    return this.queue.at(0)
+  }
+
+  /**
+   * @return {boolean}
+   */
+  empty = function () {
+    return this.queue.length === 0 ? true : false
+  }
+}
+// var obj = new MyQueue()
+// obj.push('x')
+// var param_2 = obj.pop()
+// var param_3 = obj.peek()
+// var param_4 = obj.empty()
