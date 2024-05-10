@@ -1140,3 +1140,33 @@ class MyQueue {
 // var param_2 = obj.pop()
 // var param_3 = obj.peek()
 // var param_4 = obj.empty()
+
+// 326. Power of Three, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfThree = function (n) {
+  if (n === 0) return false
+  let powerOfThree = 0
+  let i = 0
+  while (powerOfThree <= n) {
+    if (powerOfThree === n) return true
+    powerOfThree = Math.pow(3, i)
+    i++
+  }
+  return false
+  // Alternative 1 (division)
+  // while (n > 1) {
+  //   n /= 3
+  // }
+  // return n === 1
+  // https://leetcode.com/problems/power-of-three/solutions/2468437/javascript-solution-faster-and-less-than-85
+  // Alternative 2
+  // return n > 0 && 1162261467 % n === 0
+  // Since 3 is a prime number, any power of 3 will only be divisible by any power of 3 that is equal or smaller. We can use this to our advantage by taking the largest possible power of 3 within our constraints (3^19 = 1162261467) and performing a modulo n operation on it. If the result is a 0, then n is a power of 3.
+  // https://leetcode.com/problems/power-of-three/solutions/1178718/js-python-java-c-easy-logarithm-modulo-solutions-w-explanation
+}
+// testFunction(isPowerOfThree).input(27).output(true) //?
+// testFunction(isPowerOfThree).input(0).output(false) //?
+// testFunction(isPowerOfThree).input(1).output(true) //?
