@@ -1170,3 +1170,17 @@ var isPowerOfThree = function (n) {
 // testFunction(isPowerOfThree).input(27).output(true) //?
 // testFunction(isPowerOfThree).input(0).output(false) //?
 // testFunction(isPowerOfThree).input(1).output(true) //?
+
+// 342. Power of Four, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfFour = function (n) {
+  while (n >= 1) {
+    if (n === 1) return true
+    n /= 4
+  }
+  return false
+}
+// testFunction(isPowerOfFour).input(16).output(true) //?
