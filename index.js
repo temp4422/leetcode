@@ -1184,3 +1184,46 @@ var isPowerOfFour = function (n) {
   return false
 }
 // testFunction(isPowerOfFour).input(16).output(true) //?
+
+// 374. Guess Number Higher or Lower, Easy
+/**
+ * Forward declaration of guess API.
+ * @param {number} num   your guess
+ * @return 	     -1 if num is higher than the picked number
+ *			      1 if num is lower than the picked number
+ *               otherwise return 0
+ * var guess = function(num) {}
+ */
+// Example
+// let pick = 6
+// function guess(num) {
+//   if (num > pick) return -1
+//   if (num < pick) return 1
+//   if (num === pick) return 0
+// }
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var guessNumber = function (n) {
+  let low = 0
+  let high = n
+
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2)
+    let checkGuess = guess(mid)
+    if (checkGuess === 0) {
+      return mid
+    } else if (checkGuess === 1) {
+      // Add or Subtract 1, because we already checked 'mid' above 'guess(mid)' and that doesn't satisfy
+      low = mid + 1
+    } else if (checkGuess === -1) {
+      // Add or Subtract 1, because we already checked 'mid' above 'guess(mid)' and that doesn't satisfy
+      high = mid - 1
+    }
+  }
+  // If 'guess(mid) === 0', we return last possible value
+  return low
+}
+// testFunction(guessNumber).input(10).output(6) //?
+// testFunction(guessNumber).input(2).output(1) //?
