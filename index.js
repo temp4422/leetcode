@@ -1227,3 +1227,20 @@ var guessNumber = function (n) {
 }
 // testFunction(guessNumber).input(10).output(6) //?
 // testFunction(guessNumber).input(2).output(1) //?
+
+// 389. Find the Difference, Easy
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function (s, t) {
+  s = s.split('').sort()
+  t = t.split('').sort()
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] != s[i]) {
+      return t[i]
+    }
+  }
+}
+// testFunction(findTheDifference).input('abcd', 'abcde').output('e') //?
