@@ -1244,3 +1244,23 @@ var findTheDifference = function (s, t) {
   }
 }
 // testFunction(findTheDifference).input('abcd', 'abcde').output('e') //?
+
+// 405. Convert a Number to Hexadecimal, Easy
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var toHex = function (num) {
+  // Transform to positive representation of negative number
+  // https://en.wikipedia.org/wiki/Two%27s_complement#Procedure
+  if (num < 0) {
+    num = 0xffffffff + num + 1
+  }
+  return num.toString(16)
+  // Alternative
+  // return num >= 0 ? num.toString(16) : (4294967296 + num).toString(16);
+  // return ((num)>>>0).toString(16)
+  // https://leetcode.com/problems/convert-a-number-to-hexadecimal/solutions/4210508/convert-a-number-to-hexadecimal-javascript-solution-by-bharadwaj
+}
+// testFunction(toHex).input(26).output('1a') //?
+// testFunction(toHex).input(-1).output('ffffffff') //?
