@@ -1264,3 +1264,36 @@ var toHex = function (num) {
 }
 // testFunction(toHex).input(26).output('1a') //?
 // testFunction(toHex).input(-1).output('ffffffff') //?
+
+// 448. Find All Numbers Disappeared in an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function (nums) {
+  // https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solutions/2468452/javascript-solution-faster-than-90
+  const set = new Set(nums)
+  const result = []
+
+  for (let i = 0; i < nums.length; i++) {
+    if (!set.has(i + 1)) {
+      result.push(i + 1)
+    }
+  }
+  return result
+
+  // Time Limit Exceeded. Testcases passed, but took too long.
+  // const givenArr = Array.from(new Set(nums))
+  // const fullArr = Array.from({ length: nums.length }, (v, k) => k + 1)
+  // const result = []
+
+  // for (let i = 0; i < fullArr.length; i++) {
+  //   if (!givenArr.includes(fullArr[i])) {
+  //     result.push(fullArr[i])
+  //   }
+  // }
+
+  // return result
+}
+// testFunction(findDisappearedNumbers).input([4, 3, 2, 7, 8, 2, 3, 1]).output([5, 6]) //?
+// testFunction(findDisappearedNumbers).input([1, 1]).output([2]) //?
