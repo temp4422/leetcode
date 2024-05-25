@@ -1297,3 +1297,45 @@ var findDisappearedNumbers = function (nums) {
 }
 // testFunction(findDisappearedNumbers).input([4, 3, 2, 7, 8, 2, 3, 1]).output([5, 6]) //?
 // testFunction(findDisappearedNumbers).input([1, 1]).output([2]) //?
+
+// 455. Assign Cookies, Easy
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var findContentChildren = function (g, s) {
+  g = g.sort((a, b) => a - b)
+  s = s.sort((a, b) => a - b)
+  // let result = 0
+  // let j = 0
+  // // 'j' = child index and 'i' = cookie index
+  // for (let i = 0; i < s.length; i++) {
+  //   let cookieSize = s[i]
+  //   let greedFactor = g[j]
+  //   if (cookieSize >= greedFactor) {
+  //     result++
+  //     j++
+  //   }
+  // }
+  // return result
+
+  // Alternative "Clean Code" practice
+  let contentChildren = 0
+  let childIndex = 0
+  let cookieIndex = 0
+  while (cookieIndex < s.length && childIndex < g.length) {
+    let cookieSize = s[cookieIndex]
+    let greedFactor = g[childIndex]
+    if (cookieSize >= greedFactor) {
+      contentChildren++
+      childIndex++
+    }
+    cookieIndex++
+  }
+  return contentChildren
+}
+// testFunction(findContentChildren).input([1, 2, 3], [1, 1]).output(1) //?
+// testFunction(findContentChildren).input([1, 2], [1, 2, 3]).output(2) //?
+// testFunction(findContentChildren).input([1, 2, 3], [3]).output(1) //?
+// testFunction(findContentChildren).input([10, 9, 8, 7], [5, 6, 7, 8]).output(2) //?
