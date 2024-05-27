@@ -1339,3 +1339,38 @@ var findContentChildren = function (g, s) {
 // testFunction(findContentChildren).input([1, 2], [1, 2, 3]).output(2) //?
 // testFunction(findContentChildren).input([1, 2, 3], [3]).output(1) //?
 // testFunction(findContentChildren).input([10, 9, 8, 7], [5, 6, 7, 8]).output(2) //?
+
+// 459. Repeated Substring Pattern, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var repeatedSubstringPattern = function (s) {
+  let sliceIndex = 1
+
+  while (sliceIndex < s.length) {
+    let slice = s.slice(0, sliceIndex)
+    let substring = slice
+    while (substring.length < s.length) {
+      substring += slice
+    }
+    if (substring === s) return true
+    sliceIndex++
+  }
+  return false
+
+  // // Time Limit Exceeded
+  // let sliceIndex = -1
+  // while (sliceIndex * -1 < s.length) {
+  //   let slice = s.slice(0, sliceIndex) //?
+  //   let regex = new RegExp(`${slice}`, 'g')
+  //   let result = s.match(regex)
+  //   if (result.join('') === s) {
+  //     return true
+  //   }
+  //   sliceIndex--
+  // }
+  // return false
+}
+// testFunction(repeatedSubstringPattern).input('abab').output(true) //?
+// testFunction(repeatedSubstringPattern).input('aba').output(false) //?
