@@ -1374,3 +1374,23 @@ var repeatedSubstringPattern = function (s) {
 }
 // testFunction(repeatedSubstringPattern).input('abab').output(true) //?
 // testFunction(repeatedSubstringPattern).input('aba').output(false) //?
+
+// 434. Number of Segments in a String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSegments = function (s) {
+  const splitStringArray = s.split(' ')
+  let segments = 0
+  for (let i = 0; i < splitStringArray.length; i++) {
+    if (splitStringArray[i] != '') {
+      segments++
+    }
+  }
+  return segments
+  // Alternative
+  // return s.split(' ').filter((x) => x !== '').length
+}
+// testFunction(countSegments).input('Hello, my name is John').output(5) //?
+// testFunction(countSegments).input('').output(0) //?
