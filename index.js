@@ -1394,3 +1394,35 @@ var countSegments = function (s) {
 }
 // testFunction(countSegments).input('Hello, my name is John').output(5) //?
 // testFunction(countSegments).input('').output(0) //?
+
+// 441. Arranging Coins, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var arrangeCoins = function (n) {
+  let totalCoins = n
+  let stairsCount = 0
+  let usedCoins = 1
+  while (totalCoins >= usedCoins) {
+    totalCoins -= usedCoins
+    usedCoins++
+    stairsCount++
+  }
+  return stairsCount
+  // // Time Limit Exceeded
+  // const coins = Array(n).fill(1)
+  // const staircase = []
+  // for (let i = 1; i < n + 1; i++) {
+  //   let row = []
+  //   while (row.length < i) {
+  //     if (coins.length === 0) return staircase.length // Out of coins
+  //     row.push(coins.pop())
+  //   }
+  //   staircase.push(row)
+  // }
+  // return staircase.length
+}
+// testFunction(arrangeCoins).input(5).output(2) //?
+// testFunction(arrangeCoins).input(1).output(1) //?
+// testFunction(arrangeCoins).input(1804289383).output(60070) //?
