@@ -1426,3 +1426,31 @@ var arrangeCoins = function (n) {
 // testFunction(arrangeCoins).input(5).output(2) //?
 // testFunction(arrangeCoins).input(1).output(1) //?
 // testFunction(arrangeCoins).input(1804289383).output(60070) //?
+
+// 414. Third Maximum Number, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function (nums) {
+  const sortedSet = Array.from(new Set(nums)).sort((a, b) => b - a)
+  let thirdMaximumNumber = sortedSet[0]
+  let lstMaximumNumber = thirdMaximumNumber
+  let countToThree = 1
+
+  for (let i = 1; i < sortedSet.length; i++) {
+    if (thirdMaximumNumber > sortedSet[i] && countToThree <= 3) {
+      lstMaximumNumber = thirdMaximumNumber
+      thirdMaximumNumber = sortedSet[i]
+      countToThree++
+    }
+    if (countToThree === 3) return thirdMaximumNumber
+  }
+
+  return lstMaximumNumber
+}
+// testFunction(thirdMax).input([3, 2, 1]).output(1) //?
+// testFunction(thirdMax).input([1, 2]).output(2) //?
+// testFunction(thirdMax).input([2, 2, 3, 1]).output(1) //?
+// testFunction(thirdMax).input([1, 1, 1]).output(1) //?
+// testFunction(thirdMax).input([1, 2, 2, 5, 3, 5]).output(2) //?
