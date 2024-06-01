@@ -1454,3 +1454,27 @@ var thirdMax = function (nums) {
 // testFunction(thirdMax).input([2, 2, 3, 1]).output(1) //?
 // testFunction(thirdMax).input([1, 1, 1]).output(1) //?
 // testFunction(thirdMax).input([1, 2, 2, 5, 3, 5]).output(2) //?
+
+// 461. Hamming Distance, Easy
+/**
+ * @param {number} x
+ * @param {number} y
+ * @return {number}
+ */
+var hammingDistance = function (x, y) {
+  let bigBinary = (x >= y ? x : y).toString(2)
+  let smallBinary = (x < y ? x : y).toString(2)
+  while (smallBinary.length < bigBinary.length) {
+    smallBinary = '0' + smallBinary
+  }
+
+  let hammingDistance = 0
+  for (let i = bigBinary.length; i >= 0; i--) {
+    if (bigBinary[i] != smallBinary[i]) {
+      hammingDistance++
+    }
+  }
+  return hammingDistance
+}
+// testFunction(hammingDistance).input(1, 4).output(2) //?
+// testFunction(hammingDistance).input(3, 1).output(1) //?
