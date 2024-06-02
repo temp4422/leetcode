@@ -1478,3 +1478,31 @@ var hammingDistance = function (x, y) {
 }
 // testFunction(hammingDistance).input(1, 4).output(2) //?
 // testFunction(hammingDistance).input(3, 1).output(1) //?
+
+// 482. License Key Formatting, Easy
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var licenseKeyFormatting = function (s, k) {
+  let dashFreeLicenseKey = s.replace(/-/g, '').toUpperCase()
+  let charactersGroup = k
+  let reformattedLicenseKey = ''
+
+  for (let i = dashFreeLicenseKey.length - 1; i >= 0; i--) {
+    reformattedLicenseKey = dashFreeLicenseKey[i] + reformattedLicenseKey
+    charactersGroup--
+    if (charactersGroup === 0 && i > 0) {
+      reformattedLicenseKey = '-' + reformattedLicenseKey
+      charactersGroup = k
+    }
+  }
+  return reformattedLicenseKey
+}
+// testFunction(licenseKeyFormatting).input('5F3Z-2e-9-w', 4).output('5F3Z-2E9W') //?
+// testFunction(licenseKeyFormatting).input('2-5g-3-J', 2).output('2-5G-3J') //?
