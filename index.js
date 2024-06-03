@@ -1506,3 +1506,23 @@ var licenseKeyFormatting = function (s, k) {
 }
 // testFunction(licenseKeyFormatting).input('5F3Z-2e-9-w', 4).output('5F3Z-2E9W') //?
 // testFunction(licenseKeyFormatting).input('2-5g-3-J', 2).output('2-5G-3J') //?
+
+// 485. Max Consecutive Ones, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function (nums) {
+  let maxConsecutiveOnes = 0
+  let countConsecutiveOnes = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      countConsecutiveOnes++
+    } else {
+      countConsecutiveOnes = 0
+    }
+    if (countConsecutiveOnes > maxConsecutiveOnes) maxConsecutiveOnes = countConsecutiveOnes
+  }
+  return maxConsecutiveOnes
+}
+// testFunction(findMaxConsecutiveOnes).input([1, 1, 0, 1, 1, 1]).output(3) //?
