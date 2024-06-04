@@ -1526,3 +1526,27 @@ var findMaxConsecutiveOnes = function (nums) {
   return maxConsecutiveOnes
 }
 // testFunction(findMaxConsecutiveOnes).input([1, 1, 0, 1, 1, 1]).output(3) //?
+
+// 495. Teemo Attacking, Easy
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var findPoisonedDuration = function (timeSeries, duration) {
+  let poisonedDuration = duration
+  for (let i = 1; i < timeSeries.length; i++) {
+    let lastAttackTime = timeSeries[i - 1]
+    let attackTime = timeSeries[i]
+    let difference = attackTime - lastAttackTime
+    if (difference >= duration) {
+      poisonedDuration += duration
+    } else {
+      poisonedDuration += difference
+    }
+  }
+
+  return poisonedDuration
+}
+// testFunction(findPoisonedDuration).input([1, 4], 2).output(4) //?
+// testFunction(findPoisonedDuration).input([1, 2], 3).output(4) //?
