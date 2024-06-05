@@ -1550,3 +1550,37 @@ var findPoisonedDuration = function (timeSeries, duration) {
 }
 // testFunction(findPoisonedDuration).input([1, 4], 2).output(4) //?
 // testFunction(findPoisonedDuration).input([1, 2], 3).output(4) //?
+
+// 496. Next Greater Element I, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function (nums1, nums2) {
+  const greaterElements = []
+
+  for (let i = 0; i < nums1.length; i++) {
+    let searchIndex = nums2.indexOf(nums1[i])
+    let element = nums2[searchIndex]
+
+    while (searchIndex < nums2.length) {
+      let nextElement = nums2[searchIndex + 1]
+
+      if (element < nextElement) {
+        greaterElements.push(nextElement)
+        break
+      }
+      if (searchIndex === nums2.length - 1) {
+        greaterElements.push(-1)
+        break
+      }
+
+      searchIndex++
+    }
+  }
+  return greaterElements
+}
+// testFunction(nextGreaterElement).input([4, 1, 2], [1, 3, 4, 2]).output([-1, 3, -1]) //?
+// testFunction(nextGreaterElement).input([2, 4], [1, 2, 3, 4]).output([3, -1]) //?
+// testFunction(nextGreaterElement).input([1, 3, 5, 2, 4], [6, 5, 4, 3, 2, 1, 7]).output([7, 7, 7, 7, 7]) //?
