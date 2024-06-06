@@ -1584,3 +1584,51 @@ var nextGreaterElement = function (nums1, nums2) {
 // testFunction(nextGreaterElement).input([4, 1, 2], [1, 3, 4, 2]).output([-1, 3, -1]) //?
 // testFunction(nextGreaterElement).input([2, 4], [1, 2, 3, 4]).output([3, -1]) //?
 // testFunction(nextGreaterElement).input([1, 3, 5, 2, 4], [6, 5, 4, 3, 2, 1, 7]).output([7, 7, 7, 7, 7]) //?
+
+// 500. Keyboard Row, Easy
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findWords = function (words) {
+  return words.filter(
+    (word) =>
+      /\b[qwertyuiop]+\b/i.test(word) ||
+      /\b[asdfghjkl]+\b/i.test(word) ||
+      /\b[zxcvbnm]+\b/i.test(word)
+  )
+  // https://leetcode.com/problems/keyboard-row/solutions/97867/intuitive-javascript-solution/comments/102271
+
+  // My Alternative
+  // const oneRowWords = []
+  // const firstRow = 'qwertyuiopQWERTYUIOP'
+  // const secondRow = 'asdfghjklASDFGHJKL'
+  // const thirdRow = 'zxcvbnmZXCVBNM'
+  // for (const word of words) {
+  //   for (let i = 0; i < word.length; i++) {
+  //     let character = word[i]
+  //     if (!firstRow.includes(character)) {
+  //       break
+  //     }
+  //     if (i === word.length - 1) oneRowWords.push(word)
+  //   }
+  //   for (let i = 0; i < word.length; i++) {
+  //     let character = word[i]
+  //     if (!secondRow.includes(character)) {
+  //       break
+  //     }
+  //     if (i === word.length - 1) oneRowWords.push(word)
+  //   }
+  //   for (let i = 0; i < word.length; i++) {
+  //     let character = word[i]
+  //     if (!thirdRow.includes(character)) {
+  //       break
+  //     }
+  //     if (i === word.length - 1) oneRowWords.push(word)
+  //   }
+  // }
+  // return oneRowWords
+}
+// testFunction(findWords).input(['Hello', 'Alaska', 'Dad', 'Peace']).output(['Alaska', 'Dad']) //?
+// testFunction(findWords).input(['adsdf', 'sfd']).output(['adsdf', 'sfd']) //?
+// testFunction(findWords).input(['omk']).output([]) //?
