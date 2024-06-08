@@ -1632,3 +1632,13 @@ var findWords = function (words) {
 // testFunction(findWords).input(['Hello', 'Alaska', 'Dad', 'Peace']).output(['Alaska', 'Dad']) //?
 // testFunction(findWords).input(['adsdf', 'sfd']).output(['adsdf', 'sfd']) //?
 // testFunction(findWords).input(['omk']).output([]) //?
+
+// 504. Base 7, Easy
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var convertToBase7 = function (num) {
+  return num.toString(7)
+}
+// testFunction(convertToBase7).input(100).output('202') //?
