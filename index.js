@@ -1642,3 +1642,33 @@ var convertToBase7 = function (num) {
   return num.toString(7)
 }
 // testFunction(convertToBase7).input(100).output('202') //?
+
+// 506. Relative Ranks, Easy
+/**
+ * @param {number[]} score
+ * @return {string[]}
+ */
+var findRelativeRanks = function (score) {
+  // Sort without mutating original array
+  const sortedScore = [...score].sort((a, b) => b - a)
+  // Save sorted score order
+  const indexOfSortedScore = new Map()
+  sortedScore.forEach((el, i) => indexOfSortedScore.set(sortedScore[i], i))
+
+  const athleteRank = []
+  for (let i = 0; i < score.length; i++) {
+    let rank = (indexOfSortedScore.get(score[i]) + 1).toString()
+
+    // Check medals
+    if (rank === '1') rank = 'Gold Medal'
+    if (rank === '2') rank = 'Silver Medal'
+    if (rank === '3') rank = 'Bronze Medal'
+
+    athleteRank.push(rank)
+  }
+  return athleteRank
+}
+//prettier-ignore
+// testFunction(findRelativeRanks).input([5, 4, 3, 2, 1]).output(['Gold Medal', 'Silver Medal', 'Bronze Medal', '4', '5']) //?
+//prettier-ignore
+// testFunction(findRelativeRanks).input([10, 3, 8, 9, 4]).output(['Gold Medal', '5', 'Bronze Medal', 'Silver Medal', '4']) //?
