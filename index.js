@@ -1672,3 +1672,16 @@ var findRelativeRanks = function (score) {
 // testFunction(findRelativeRanks).input([5, 4, 3, 2, 1]).output(['Gold Medal', 'Silver Medal', 'Bronze Medal', '4', '5']) //?
 //prettier-ignore
 // testFunction(findRelativeRanks).input([10, 3, 8, 9, 4]).output(['Gold Medal', '5', 'Bronze Medal', 'Silver Medal', '4']) //?
+
+// 520. Detect Capital, Easy
+/**
+ * @param {string} word
+ * @return {boolean}
+ */
+var detectCapitalUse = function (word) {
+  return /^[A-Z]*$|^[a-z]*$|^[A-Z][a-z]*$/.test(word)
+}
+// testFunction(detectCapitalUse).input('FlaG').output(false) //?
+// testFunction(detectCapitalUse).input('USA').output(true) //?
+// testFunction(detectCapitalUse).input('Google').output(true) //?
+// testFunction(detectCapitalUse).input('leetcode').output(true) //?
