@@ -1685,3 +1685,24 @@ var detectCapitalUse = function (word) {
 // testFunction(detectCapitalUse).input('USA').output(true) //?
 // testFunction(detectCapitalUse).input('Google').output(true) //?
 // testFunction(detectCapitalUse).input('leetcode').output(true) //?
+
+// 541. Reverse String II, Easy
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function (s, k) {
+  const splitString = []
+
+  for (let i = 0; i < s.length; i += k) {
+    let moduloChange = i % (2 * k) === 0 // Change on each 2k
+    let innerString = s.substring(i, i + k)
+    if (moduloChange) innerString = innerString.split('').reverse().join('')
+    splitString.push(innerString)
+  }
+
+  return splitString.join('')
+}
+// testFunction(reverseStr).input('abcdefg', 2).output('bacdfeg') //?
+// testFunction(reverseStr).input('abcd', 2).output('bacd') //?
