@@ -1706,3 +1706,35 @@ var reverseStr = function (s, k) {
 }
 // testFunction(reverseStr).input('abcdefg', 2).output('bacdfeg') //?
 // testFunction(reverseStr).input('abcd', 2).output('bacd') //?
+
+// 557. Reverse Words in a String III, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function (s) {
+  const words = s.split(' ')
+  const reverseString = []
+  for (const word of words) {
+    let reverseWord = ''
+    for (let i = word.length - 1; i > -1; i--) {
+      reverseWord += word[i]
+    }
+    reverseString.push(reverseWord)
+  }
+  return reverseString.join(' ')
+
+  // Alternative 1
+  // return s.split(' ').map(word => word.split('').reverse().join('')).join(' ');
+  // https://leetcode.com/problems/reverse-words-in-a-string-iii/solutions/4111436/94-58-split-join-two-pointers
+
+  // Alternative 2
+  // const words = s.split(' ')
+  // for (let i = 0; i < words.length; i++) {
+  //   words[i] = words[i].split('').reverse().join('')
+  // }
+  // return words.join(' ')
+  // https://leetcode.com/problems/reverse-words-in-a-string-iii/solutions/4111458/91-55-easy-solution-reverse-join
+}
+//prettier-ignore
+// testFunction(reverseWords).input("Let's take LeetCode contest").output("s'teL ekat edoCteeL tsetnoc") //?
