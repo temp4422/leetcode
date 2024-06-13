@@ -1736,5 +1736,33 @@ var reverseWords = function (s) {
   // return words.join(' ')
   // https://leetcode.com/problems/reverse-words-in-a-string-iii/solutions/4111458/91-55-easy-solution-reverse-join
 }
-//prettier-ignore
 // testFunction(reverseWords).input("Let's take LeetCode contest").output("s'teL ekat edoCteeL tsetnoc") //?
+
+// 551. Student Attendance Record I, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkRecord = function (s) {
+  let absentCount = 0
+  let lateCount = 0
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'A') {
+      absentCount++
+      if (absentCount === 2) return false
+    }
+    if (s[i] === 'L') {
+      if (s[i - 1] != 'L') lateCount = 0
+      lateCount++
+      if (lateCount === 3) return false
+    }
+  }
+  return true
+
+  // Alternative
+  // return !/(A.*A|LLL)/.test(s)
+  // return !/^.*(A.*A|L{3,}).*$/.test(s)
+}
+// testFunction(checkRecord).input('PPALLP').output(true) //?
+// testFunction(checkRecord).input('PPALLL').output(false) //?
