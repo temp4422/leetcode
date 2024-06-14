@@ -1766,3 +1766,26 @@ var checkRecord = function (s) {
 }
 // testFunction(checkRecord).input('PPALLP').output(true) //?
 // testFunction(checkRecord).input('PPALLL').output(false) //?
+
+// 575. Distribute Candies, Easy
+/**
+ * @param {number[]} candyType
+ * @return {number}
+ */
+var distributeCandies = function (candyType) {
+  const allowedCandies = candyType.length / 2
+  const allowedCandyTypes = new Set()
+
+  for (const candy of candyType) {
+    if (allowedCandyTypes.size < allowedCandies) {
+      allowedCandyTypes.add(candy)
+    }
+  }
+
+  return allowedCandyTypes.size
+
+  // Alternative
+  // return Math.min(new Set(candies).size, candies.length / 2);
+}
+// testFunction(distributeCandies).input([1, 1, 2, 2, 3, 3]).output(3) //?
+// testFunction(distributeCandies).input([1, 1, 2, 3]).output(2) //?
