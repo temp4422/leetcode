@@ -1789,3 +1789,56 @@ var distributeCandies = function (candyType) {
 }
 // testFunction(distributeCandies).input([1, 1, 2, 2, 3, 3]).output(3) //?
 // testFunction(distributeCandies).input([1, 1, 2, 3]).output(2) //?
+
+// 594. Longest Harmonious Subsequence, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLHS = function (nums) {
+  let currentSequence = []
+  let harmoniousLength = 0
+
+  for (const [index, value] of nums.entries()) {
+    currentSequence.push(value)
+
+    for (let i = index + 1; i < nums.length; i++) {
+      let nextValue = nums[i]
+      if (value === nextValue || value + 1 === nextValue) {
+        currentSequence.push(nextValue)
+      }
+    }
+
+    if (currentSequence.length > harmoniousLength) {
+      let same = currentSequence[0]
+      let checkSame = currentSequence.every((value) => value === same)
+      if (!checkSame) {
+        harmoniousLength = currentSequence.length
+      }
+    }
+    currentSequence = []
+
+    currentSequence.push(value)
+
+    for (let i = index + 1; i < nums.length; i++) {
+      let nextValue = nums[i]
+      if (value === nextValue || value - 1 === nextValue) {
+        currentSequence.push(nextValue)
+      }
+    }
+
+    if (currentSequence.length > harmoniousLength) {
+      let same = currentSequence[0]
+      let checkSame = currentSequence.every((value) => value === same)
+      if (!checkSame) {
+        harmoniousLength = currentSequence.length
+      }
+    }
+    currentSequence = []
+  }
+
+  return harmoniousLength //?
+}
+// testFunction(findLHS).input([1, 3, 2, 2, 5, 2, 3, 7]).output(5) //?
+// testFunction(findLHS).input([1, 2, 3, 4]).output(2) //?
+// testFunction(findLHS).input([1, 1, 1, 1]).output(0) //?
