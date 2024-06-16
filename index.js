@@ -1842,3 +1842,33 @@ var findLHS = function (nums) {
 // testFunction(findLHS).input([1, 3, 2, 2, 5, 2, 3, 7]).output(5) //?
 // testFunction(findLHS).input([1, 2, 3, 4]).output(2) //?
 // testFunction(findLHS).input([1, 1, 1, 1]).output(0) //?
+
+// 682. Baseball Game, Easy
+/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var calPoints = function (operations) {
+  const record = []
+
+  for (const operation of operations) {
+    switch (operation) {
+      case '+':
+        record.push(record.at(-1) + record.at(-2))
+        break
+      case 'D':
+        record.push(record.at(-1) * 2)
+        break
+      case 'C':
+        record.pop()
+        break
+      default:
+        record.push(parseInt(operation))
+        break
+    }
+  }
+
+  let totalSum = record.reduce((acc, cur) => acc + cur, 0)
+  return totalSum
+}
+// testFunction(calPoints).input(['5', '2', 'C', 'D', '+']).output(30) //?
