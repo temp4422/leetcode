@@ -1872,3 +1872,19 @@ var calPoints = function (operations) {
   return totalSum
 }
 // testFunction(calPoints).input(['5', '2', 'C', 'D', '+']).output(30) //?
+
+// 709. To Lower Case, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var toLowerCase = function (s) {
+  return s.toLowerCase()
+  // Alternative
+  // let lowerCaseString = ''
+  // for (let i = 0; i < s.length; i++) {
+  //   lowerCaseString += s[i].toLowerCase()
+  // }
+  // return lowerCaseString
+}
+// testFunction(toLowerCase).input('Hello').output('hello') //?
