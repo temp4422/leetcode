@@ -1888,3 +1888,20 @@ var toLowerCase = function (s) {
   // return lowerCaseString
 }
 // testFunction(toLowerCase).input('Hello').output('hello') //?
+
+// 744. Find Smallest Letter Greater Than Target, Easy
+/**
+ * @param {character[]} letters
+ * @param {character} target
+ * @return {character}
+ */
+var nextGreatestLetter = function (letters, target) {
+  let greater = target.charCodeAt(0) + 1
+  for (const letter of letters) {
+    if (letter.charCodeAt(0) >= greater) return letter
+  }
+  return letters[0]
+  // Alternative
+  // return letters.find(character => character > target) || letters[0];
+}
+// testFunction(nextGreatestLetter).input(['c', 'f', 'j'], 'a').output('c') //?
