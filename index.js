@@ -1905,3 +1905,28 @@ var nextGreatestLetter = function (letters, target) {
   // return letters.find(character => character > target) || letters[0];
 }
 // testFunction(nextGreatestLetter).input(['c', 'f', 'j'], 'a').output('c') //?
+
+// 748. Shortest Completing Word, Easy
+/**
+ * @param {string} licensePlate
+ * @param {string[]} words
+ * @return {string}
+ */
+var shortestCompletingWord = function (licensePlate, words) {
+  // https://leetcode.com/problems/shortest-completing-word/solutions/4264212/the-shortest-and-most-understandable-solution
+  let filteredWord = licensePlate.toLowerCase().replace(/\d|\s/g, '')
+  const sortedWords = words.sort((a, b) => a.length - b.length) // Shortest word at start
+
+  for (const word of sortedWords) {
+    let checkPattern = filteredWord // reset for each word
+
+    for (let i = 0; i < word.length; i++) {
+      checkPattern = checkPattern.replace(word[i], '')
+      if (!checkPattern) return word
+    }
+  }
+}
+//prettier-ignore
+// testFunction(shortestCompletingWord).input('1s3 PSt', ["step","steps","stripe","stepple"]).output("steps") //?
+//prettier-ignore
+// testFunction(shortestCompletingWord).input("1s3 456", ["looks","pest","stew","show"]).output("pest") //?
