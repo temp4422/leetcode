@@ -1926,7 +1926,25 @@ var shortestCompletingWord = function (licensePlate, words) {
     }
   }
 }
-//prettier-ignore
 // testFunction(shortestCompletingWord).input('1s3 PSt', ["step","steps","stripe","stepple"]).output("steps") //?
-//prettier-ignore
 // testFunction(shortestCompletingWord).input("1s3 456", ["looks","pest","stew","show"]).output("pest") //?
+
+// 771. Jewels and Stones, Easy
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+var numJewelsInStones = function (jewels, stones) {
+  const stonesArray = stones.split('')
+  let matchingStones = 0
+  for (const stone of stonesArray) {
+    if (jewels.match(stone)) {
+      matchingStones++
+    }
+  }
+  return matchingStones
+  // Alternative
+  // return stones.split('').filter((stone) => jewels.includes(stone)).length
+}
+// testFunction(numJewelsInStones).input('aA', 'aAAbbbb').output(3) //?
