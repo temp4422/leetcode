@@ -1948,3 +1948,24 @@ var numJewelsInStones = function (jewels, stones) {
   // return stones.split('').filter((stone) => jewels.includes(stone)).length
 }
 // testFunction(numJewelsInStones).input('aA', 'aAAbbbb').output(3) //?
+
+// 796. Rotate String, Easy
+/**
+ * @param {string} s
+ * @param {string} goal
+ * @return {boolean}
+ */
+var rotateString = function (s, goal) {
+  for (let i = 0; i < s.length; i++) {
+    let tmp = s.split('')
+    tmp.push(tmp.at(0))
+    tmp.shift()
+    s = tmp.join('')
+    if (s == goal) return true
+  }
+  return false
+  // Alternative
+  // return s.concat(s).includes(goal) // Have all possible shifts
+}
+// testFunction(rotateString).input('abcde', 'cdeab').output(true) //?
+// testFunction(rotateString).input('abcde', 'abced').output(false) //?
