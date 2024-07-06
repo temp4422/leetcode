@@ -1969,3 +1969,54 @@ var rotateString = function (s, goal) {
 }
 // testFunction(rotateString).input('abcde', 'cdeab').output(true) //?
 // testFunction(rotateString).input('abcde', 'abced').output(false) //?
+
+// 705. Design HashSet, Easy
+class MyHashSet {
+  constructor() {
+    this.set = []
+  }
+  /**
+   * @param {number} key
+   * @return {void}
+   */
+  add(key) {
+    if (!this.set.includes(key)) {
+      this.set.push(key)
+    }
+  }
+  /**
+   * @param {number} key
+   * @return {void}
+   */
+  remove(key) {
+    if (this.set.includes(key)) {
+      this.set.splice(this.set.indexOf(key), 1)
+    }
+  }
+  /**
+   * @param {number} key
+   * @return {boolean}
+   */
+  contains(key) {
+    return this.set.includes(key)
+  }
+}
+// // Alternative
+// class MyHashSet {
+//   constructor() {
+//     this.hashSet = {}
+//   }
+//   add(key) {
+//     this.hashSet[key] = null
+//   }
+//   remove(key) {
+//     delete this.hashSet[key]
+//   }
+//   contains(key) {
+//     return this.hashSet.hasOwnProperty(key)
+//   }
+// }
+// const testSet = new MyHashSet()
+// testSet.add(5)
+// testSet.remove(5)
+// testSet.contains(5)
