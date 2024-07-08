@@ -2020,3 +2020,36 @@ class MyHashSet {
 // testSet.add(5)
 // testSet.remove(5)
 // testSet.contains(5)
+
+// 706. Design HashMap, Easy
+class MyHashMap {
+  constructor() {
+    this.hashMap = {}
+  }
+  /**
+   * @param {number} key
+   * @param {number} value
+   * @return {void}
+   */
+  put(key, value) {
+    this.hashMap[key] = value
+  }
+  /**
+   * @param {number} key
+   * @return {number}
+   */
+  get(key) {
+    return (this.hashMap[key] ??= -1)
+  }
+  /**
+   * @param {number} key
+   * @return {void}
+   */
+  remove(key) {
+    delete this.hashMap[key]
+  }
+}
+// var obj = new MyHashMap()
+// obj.put('test', 111)
+// obj.get('test')
+// obj.remove('test')
