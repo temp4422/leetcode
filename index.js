@@ -2076,3 +2076,38 @@ var uniqueMorseRepresentations = function (words) {
   return new Set(transformationArray).size
 }
 // testFunction(uniqueMorseRepresentations).input(['gin', 'zen', 'gig', 'msg']).output(2) //?
+
+// 806. Number of Lines To Write String, Easy
+/**
+ * @param {number[]} widths
+ * @param {string} s
+ * @return {number[]}
+ */
+var numberOfLines = function (widths, s) {
+  const maxLineLength = 100
+  let currentLineLength = 0
+  let totalLineNumber = 1
+
+  const alphlabet = 'abcdefghijklmnopqrstuvwxyz'
+  const newLetterWidth = {}
+  alphlabet.split('').forEach((letter, index) => {
+    newLetterWidth[letter] = widths[index]
+  })
+
+  for (let i = 0; i < s.length; i++) {
+    let currentLetterWidth = newLetterWidth[s[i]]
+
+    if (currentLineLength + currentLetterWidth <= maxLineLength) {
+      currentLineLength += currentLetterWidth
+    } else {
+      totalLineNumber++
+      currentLineLength = 0
+      currentLineLength += currentLetterWidth
+    }
+  }
+  return [totalLineNumber, currentLineLength]
+}
+//prettier-ignore
+// testFunction(numberOfLines).input([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "abcdefghijklmnopqrstuvwxyz").output([3,60]) //?
+//prettier-ignore
+// testFunction(numberOfLines).input([4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "bbbcccdddaaa").output([2,4]) //?
