@@ -2111,3 +2111,35 @@ var numberOfLines = function (widths, s) {
 // testFunction(numberOfLines).input([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "abcdefghijklmnopqrstuvwxyz").output([3,60]) //?
 //prettier-ignore
 // testFunction(numberOfLines).input([4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "bbbcccdddaaa").output([2,4]) //?
+
+// 819. Most Common Word, Easy
+/**
+ * @param {string} paragraph
+ * @param {string[]} banned
+ * @return {string}
+ */
+var mostCommonWord = function(paragraph, banned) {
+  const cleanParagraph = paragraph.replace(/[^\w]/g, ' ').trim().toLowerCase()
+  const tokens = cleanParagraph.split(/\s+/g)
+  const map = new Map()
+
+  for (const token of tokens) {
+    if (map.get(token)) {
+      map.set(token, map.get(token) + 1)
+    } else {
+      map.set(token, 1)
+    }
+    // Alternative
+    // map.set(token, map.has(token) ? map.get(token) + 1 : 1)
+  }
+
+  const sortedEntries = [...map.entries()].sort((a, b) => b[1] - a[1])
+
+  for (const entry of sortedEntries) {
+    if (!banned.includes(entry[0])) return entry[0]
+  }
+}
+//prettier-ignore
+// testFunction(mostCommonWord).input("Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]).output("ball") //?
+// testFunction(mostCommonWord).input("a, a, a, a, b,b,b,c, c", ["a"]).output("b") //?
+// testFunction(mostCommonWord).input("..Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]).output("ball") //?
