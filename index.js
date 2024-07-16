@@ -2139,7 +2139,42 @@ var mostCommonWord = function(paragraph, banned) {
     if (!banned.includes(entry[0])) return entry[0]
   }
 }
-//prettier-ignore
 // testFunction(mostCommonWord).input("Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]).output("ball") //?
 // testFunction(mostCommonWord).input("a, a, a, a, b,b,b,c, c", ["a"]).output("b") //?
 // testFunction(mostCommonWord).input("..Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]).output("ball") //?
+
+// 821. Shortest Distance to a Character, Easy
+/**
+ * @param {string} s
+ * @param {character} c
+ * @return {number[]}
+ */
+var shortestToChar = function (s, c) {
+  const distanceIndicies = []
+
+  let maxValue = Infinity
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === c) {
+      distanceIndicies[i] = 0
+      maxValue = i
+    } else {
+      let minValue = Math.abs(maxValue - i)
+      distanceIndicies[i] = minValue
+    }
+  }
+
+  maxValue = Infinity
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] === c) {
+      distanceIndicies[i] = 0
+      maxValue = i
+    } else {
+      let minValue = Math.min(distanceIndicies[i], Math.abs(maxValue - i))
+      distanceIndicies[i] = minValue
+    }
+  }
+
+  return distanceIndicies
+}
+// testFunction(shortestToChar).input('loveleetcode', 'e').output([3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]) //?
+// testFunction(shortestToChar).input('aaba', 'b').output([2, 1, 0, 1]) //?
