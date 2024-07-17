@@ -2178,3 +2178,31 @@ var shortestToChar = function (s, c) {
 }
 // testFunction(shortestToChar).input('loveleetcode', 'e').output([3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]) //?
 // testFunction(shortestToChar).input('aaba', 'b').output([2, 1, 0, 1]) //?
+
+// 824. Goat Latin, Easy
+/**
+ * @param {string} sentence
+ * @return {string}
+ */
+var toGoatLatin = function (sentence) {
+  const vowels = ['a', 'e', 'i', 'o', 'u']
+  const arraySentence = sentence.split(' ')
+  const goatLatin = []
+  let ending = 'a'
+
+  for (let i = 0; i < arraySentence.length; i++) {
+    let word
+    if (vowels.includes(arraySentence[i].charAt(0).toLowerCase())) {
+      word = arraySentence[i] + 'ma'
+    } else {
+      word = arraySentence[i].slice(1) + arraySentence[i].charAt(0) + 'ma'
+    }
+    word += ending
+    ending += 'a'
+
+    goatLatin.push(word)
+  }
+
+  return goatLatin.join(' ')
+}
+// testFunction(toGoatLatin).input('I speak Goat Latin').output('Imaa peaksmaaa oatGmaaaa atinLmaaaaa') //?
