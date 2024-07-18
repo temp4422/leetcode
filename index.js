@@ -2206,3 +2206,33 @@ var toGoatLatin = function (sentence) {
   return goatLatin.join(' ')
 }
 // testFunction(toGoatLatin).input('I speak Goat Latin').output('Imaa peaksmaaa oatGmaaaa atinLmaaaaa') //?
+
+// 844. Backspace String Compare, Easy
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var backspaceCompare = function (s, t) {
+  let firstString = ''
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '#') {
+      firstString = firstString.substring(0, firstString.length - 1)
+    } else {
+      firstString += s[i]
+    }
+  }
+
+  let secondString = ''
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] === '#') {
+      secondString = secondString.substring(0, secondString.length - 1)
+    } else {
+      secondString += t[i]
+    }
+  }
+
+  return firstString === secondString
+}
+// testFunction(backspaceCompare).input('ab#c', 'ad#c').output(true) //?
+// testFunction(backspaceCompare).input('ab##', 'c#d#').output(true) //?
