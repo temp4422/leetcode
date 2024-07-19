@@ -2236,3 +2236,53 @@ var backspaceCompare = function (s, t) {
 }
 // testFunction(backspaceCompare).input('ab#c', 'ad#c').output(true) //?
 // testFunction(backspaceCompare).input('ab##', 'c#d#').output(true) //?
+
+// 859. Buddy Strings, Easy
+/**
+ * @param {string} s
+ * @param {string} goal
+ * @return {boolean}
+ */
+var buddyStrings = function (s, goal) {
+  // 0. Edge cases
+  if (s.length != goal.length || s.length < 2) return false
+
+  // 1. Handle separately 2 letters
+  if (s.length === 2) return s.at(-1) + s.at(0) === goal
+
+  // 2. Check for more than 2 differences
+  const diffIndex = []
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] != goal[i]) diffIndex.push(i)
+    if (diffIndex.length > 2) return false
+  }
+
+  // 3. Check for twins. Two identical letters can be swapped.
+  if (diffIndex.length === 0) {
+    const set = new Set()
+    for (let i = 0; i < s.length; i++) {
+      if (set.has(s[i]) && s === goal) return true
+      set.add(s[i])
+    }
+    return false
+  }
+  // Alternative
+  // if(!diffIndex.length) return s.length != [...new Set(s)].length;
+
+  // 4. Check swapped letters
+  const [i, j] = diffIndex
+  return s[i] == goal[j] && goal[i] == s[j]
+
+  // Answer
+  // https://leetcode.com/problems/buddy-strings/solutions/786309/javascript-clean-and-intuitive-solution
+}
+// testFunction(buddyStrings).input('ab', 'ba').output(true) //?
+// testFunction(buddyStrings).input('ab', 'ab').output(false) //?
+// testFunction(buddyStrings).input('aa', 'aa').output(true) //?
+// testFunction(buddyStrings).input('abcd', 'abcd').output(false) //?
+// testFunction(buddyStrings).input('abab', 'abab').output(true) //?
+// testFunction(buddyStrings).input('abcaa', 'abcbb').output(false) //?
+// testFunction(buddyStrings).input('abac', 'abad').output(false) //?
+// testFunction(buddyStrings).input('aaaaaaabc', 'aaaaaaacb').output(true) //?
+// testFunction(buddyStrings).input('abab', 'baba').output(false) //?
+// testFunction(buddyStrings).input('abcd', 'bacd').output(true) //?
