@@ -2286,3 +2286,32 @@ var buddyStrings = function (s, goal) {
 // testFunction(buddyStrings).input('aaaaaaabc', 'aaaaaaacb').output(true) //?
 // testFunction(buddyStrings).input('abab', 'baba').output(false) //?
 // testFunction(buddyStrings).input('abcd', 'bacd').output(true) //?
+
+// 933. Number of Recent Calls, Easy
+class RecentCounter {
+  constructor() {
+    this.requests = []
+  }
+  /**
+   * @param {number} t
+   * @return {number}
+   */
+  ping(t) {
+    this.requests.push(t)
+    let requestsNumber = 0
+
+    for (let i = this.requests.length - 1; i >= 0; i--) {
+      if (t - 3000 > this.requests[i]) {
+        return requestsNumber
+      } else {
+        requestsNumber++
+      }
+    }
+    return requestsNumber
+  }
+}
+// const recentCounter = new RecentCounter()
+// recentCounter.ping(1) //?
+// recentCounter.ping(100) //?
+// recentCounter.ping(3001) //?
+// recentCounter.ping(3002) //?
