@@ -2315,3 +2315,26 @@ class RecentCounter {
 // recentCounter.ping(100) //?
 // recentCounter.ping(3001) //?
 // recentCounter.ping(3002) //?
+
+// 884. Uncommon Words from Two Sentences, Easy
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {string[]}
+ */
+var uncommonFromSentences = function (s1, s2) {
+  const countWords = new Map()
+  const concatenatedWords = [...s1.split(' '), ...s2.split(' ')]
+  for (const word of concatenatedWords) {
+    countWords.has(word) ? countWords.set(word, countWords.get(word) + 1) : countWords.set(word, 1)
+  }
+
+  const uncommonWords = []
+  for (const [word, count] of countWords) {
+    if (count === 1) {
+      uncommonWords.push(word)
+    }
+  }
+  return uncommonWords
+}
+// testFunction(uncommonFromSentences).input("this apple is sweet","this apple is sour").output(["sweet","sour"]) //?
