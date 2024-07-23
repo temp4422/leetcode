@@ -2338,3 +2338,22 @@ var uncommonFromSentences = function (s1, s2) {
   return uncommonWords
 }
 // testFunction(uncommonFromSentences).input("this apple is sweet","this apple is sour").output(["sweet","sour"]) //?
+
+// 888. Fair Candy Swap, Easy
+/**
+ * @param {number[]} aliceSizes
+ * @param {number[]} bobSizes
+ * @return {number[]}
+ */
+var fairCandySwap = function (aliceSizes, bobSizes) {
+  const aliceCandies = aliceSizes.reduce((acc, curr) => acc + curr)
+  const bobCandies = bobSizes.reduce((acc, curr) => acc + curr)
+  const difference = (aliceCandies - bobCandies) / 2
+  for (const bobCandy of bobSizes) {
+    if (aliceSizes.includes(bobCandy + difference)) {
+      return [bobCandy + difference, bobCandy]
+    }
+  }
+}
+// testFunction(fairCandySwap).input([1, 1], [2, 2]).output([1, 2]) //?
+// testFunction(fairCandySwap).input([1, 2], [2, 3]).output([1, 2]) //?
