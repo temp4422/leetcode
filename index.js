@@ -2357,3 +2357,32 @@ var fairCandySwap = function (aliceSizes, bobSizes) {
 }
 // testFunction(fairCandySwap).input([1, 1], [2, 2]).output([1, 2]) //?
 // testFunction(fairCandySwap).input([1, 2], [2, 3]).output([1, 2]) //?
+
+// 917. Reverse Only Letters, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseOnlyLetters = function (s) {
+  let temporalArray = []
+  let reverseStringArray = []
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i].match(/[a-zA-Z]/)) {
+      temporalArray.push(s[i])
+    }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i].match(/[a-zA-Z]/)) {
+      reverseStringArray.push(temporalArray.pop())
+    } else {
+      reverseStringArray.push(s[i])
+    }
+  }
+
+  return reverseStringArray.join('')
+}
+// testFunction(reverseOnlyLetters).input('ab-cd').output('dc-ba') //?
+// testFunction(reverseOnlyLetters).input('a-bC-dEf-ghIj').output('j-Ih-gfE-dCba') //?
+// testFunction(reverseOnlyLetters).input('Test1ng-Leet=code-Q!').output('Qedo1ct-eeLg=ntse-T!') //?
