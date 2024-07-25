@@ -2386,3 +2386,25 @@ var reverseOnlyLetters = function (s) {
 // testFunction(reverseOnlyLetters).input('ab-cd').output('dc-ba') //?
 // testFunction(reverseOnlyLetters).input('a-bC-dEf-ghIj').output('j-Ih-gfE-dCba') //?
 // testFunction(reverseOnlyLetters).input('Test1ng-Leet=code-Q!').output('Qedo1ct-eeLg=ntse-T!') //?
+
+// 929. Unique Email Addresses, Easy
+/**
+ * @param {string[]} emails
+ * @return {number}
+ */
+var numUniqueEmails = function (emails) {
+  const formattedEmails = []
+  for (const email of emails) {
+    let firstEmailHalf = email.substring(0, email.indexOf('@')).replaceAll('.', '')
+    if (firstEmailHalf.includes('+')) {
+      firstEmailHalf = firstEmailHalf.substring(0, firstEmailHalf.indexOf('+'))
+    }
+    let seconEmaildHalf = email.substring(email.indexOf('@'))
+    let newEmail = firstEmailHalf + seconEmaildHalf
+    formattedEmails.push(newEmail)
+  }
+  return new Set(formattedEmails).size
+}
+//prettier-ignore
+// testFunction(numUniqueEmails).input(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]).output(2) //?
+// testFunction(numUniqueEmails).input(["a@leetcode.com","b@leetcode.com","c@leetcode.com"]).output(3) //?
