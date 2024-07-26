@@ -2405,6 +2405,28 @@ var numUniqueEmails = function (emails) {
   }
   return new Set(formattedEmails).size
 }
-//prettier-ignore
 // testFunction(numUniqueEmails).input(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]).output(2) //?
 // testFunction(numUniqueEmails).input(["a@leetcode.com","b@leetcode.com","c@leetcode.com"]).output(3) //?
+
+// 942. DI String Match, Easy
+/**
+ * @param {string} s
+ * @return {number[]}
+ */
+var diStringMatch = function (s) {
+  const permutationArray = []
+  let increment = 0
+  let decrement = s.length
+
+  for (let i = 0; i < s.length + 1; i++) {
+    if (s[i] === 'I') {
+      permutationArray.push(increment++)
+    } else {
+      permutationArray.push(decrement--)
+    }
+    // Alternative
+    // permutationArray[i] = s[i] === 'I' ? increment++ : decrement--
+  }
+  return permutationArray
+}
+// testFunction(diStringMatch).input('IDID').output([0, 4, 1, 3, 2]) //?
