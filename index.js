@@ -2430,3 +2430,29 @@ var diStringMatch = function (s) {
   return permutationArray
 }
 // testFunction(diStringMatch).input('IDID').output([0, 4, 1, 3, 2]) //?
+
+// 944. Delete Columns to Make Sorted, Easy
+/**
+ * @param {string[]} strs
+ * @return {number}
+ */
+var minDeletionSize = function (strs) {
+  const stringColumns = []
+  for (let i = 0; i < strs[0].length; i++) {
+    let column = ''
+    for (const string of strs) {
+      column += string[i]
+    }
+    stringColumns.push(column)
+  }
+
+  let notSortedColumnsCount = 0
+  for (const column of stringColumns) {
+    if (column != column.split('').sort().join('')) {
+      notSortedColumnsCount++
+    }
+  }
+
+  return notSortedColumnsCount
+}
+// testFunction(minDeletionSize).input(['cba', 'daf', 'ghi']).output(1) //?
