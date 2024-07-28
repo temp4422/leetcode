@@ -2456,3 +2456,47 @@ var minDeletionSize = function (strs) {
   return notSortedColumnsCount
 }
 // testFunction(minDeletionSize).input(['cba', 'daf', 'ghi']).output(1) //?
+
+// 953. Verifying an Alien Dictionary, Easy
+/**
+ * @param {string[]} words
+ * @param {string} order
+ * @return {boolean}
+ */
+var isAlienSorted = function (words, order) {
+  // 1. Map order of alphabet for faster lookup later
+  const orderMap = {}
+  order.split('').forEach((character, index) => (orderMap[character] = index))
+
+  // 2. Create customSort function that sort based on order values
+  // Complicated to comprehend: but custom function work together with sort function, that implicitly
+  function customSort(wordA, wordB) {
+    // Compare each character of comparing words, sort() function will implicitly do it for each word.
+    const shorterWord = Math.min(wordA.length, wordB.length)
+    for (let character = 0; character < shorterWord; character++) {
+      if (wordA[character] !== wordB[character]) {
+        return orderMap[wordA[character]] - orderMap[wordB[character]]
+        // Alternative withour orderMap
+        // return order.indexOf(wordA[character]) - order.indexOf(wordB[character])
+      }
+    }
+    // If no result returned above, it's mean two words have same characters, so lets see if they differ in length
+    return wordA.length - wordB.length
+    // Above manipulations will either return: below 0 or 0 or above 0; Thus sort() function will execute properly with this values, same as "-1, 0, 1"
+    // Details: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#parameters
+  }
+
+  // 3. Sort with customSort creating new array for later comparison
+  let sortedWords = words.toSorted(customSort)
+
+  // 4. Comapre sortedWords with original words
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] != sortedWords[i]) return false
+  }
+  return true
+}
+// testFunction(isAlienSorted).input(['hello', 'leetcode'], 'hlabcdefgijkmnopqrstuvwxyz').output(true) //?
+// // prettier-ignore
+// testFunction(isAlienSorted).input(["word","world","row"], "worldabcefghijkmnpqstuvxyz").output(false) //?
+// testFunction(isAlienSorted).input(['apple', 'app'], 'abcdefghijklmnopqrstuvwxyz').output(false) //?
+// testFunction(isAlienSorted).input(['ubg', 'kwh'], 'qcipyamwvdjtesbghlorufnkzx').output(true) //?
