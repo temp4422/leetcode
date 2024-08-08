@@ -2500,3 +2500,32 @@ var isAlienSorted = function (words, order) {
 // testFunction(isAlienSorted).input(["word","world","row"], "worldabcefghijkmnpqstuvxyz").output(false) //?
 // testFunction(isAlienSorted).input(['apple', 'app'], 'abcdefghijklmnopqrstuvwxyz').output(false) //?
 // testFunction(isAlienSorted).input(['ubg', 'kwh'], 'qcipyamwvdjtesbghlorufnkzx').output(true) //?
+
+// 1002. Find Common Characters, Easy
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var commonChars = function (words) {
+  if (words.length <= 1) return words[0].split('')
+
+  const showUpCharacters = []
+  let included
+
+  for (const character of words[0]) {
+    for (let i = 1; i < words.length; i++) {
+      if (!words[i].includes(character)) {
+        included = false
+        break
+      }
+      words[i] = words[i].replace(character, '')
+      included = true
+    }
+
+    if (included) showUpCharacters.push(character)
+  }
+
+  return showUpCharacters
+}
+// testFunction(commonChars).input(['bella', 'label', 'roller']).output(['e', 'l', 'l']) //?
+// testFunction(commonChars).input(['cool', 'lock', 'cook']).output(['c', 'o']) //?
