@@ -2529,3 +2529,30 @@ var commonChars = function (words) {
 }
 // testFunction(commonChars).input(['bella', 'label', 'roller']).output(['e', 'l', 'l']) //?
 // testFunction(commonChars).input(['cool', 'lock', 'cook']).output(['c', 'o']) //?
+
+// 1021. Remove Outermost Parentheses, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var removeOuterParentheses = function (s) {
+  const decompositionWithoutOuterParentheses = []
+  let count = 0
+  let lastIndex = 0
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(') {
+      count++
+    } else {
+      count--
+    }
+
+    if (count === 0) {
+      decompositionWithoutOuterParentheses.push(s.slice(lastIndex + 1, i)) // Also remove outer parentheses
+      lastIndex = i + 1
+    }
+  }
+
+  return decompositionWithoutOuterParentheses.join('')
+}
+testFunction(removeOuterParentheses).input('(()())(())').output('()()()') //?
