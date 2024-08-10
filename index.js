@@ -2588,3 +2588,36 @@ var countCharacters = function (words, chars) {
 }
 // testFunction(countCharacters).input(['cat', 'bt', 'hat', 'tree'], 'atach').output(6) //?
 // testFunction(countCharacters).input(['hello', 'world', 'leetcode'], 'welldonehoneyr').output(10) //?
+
+// 1047. Remove All Adjacent Duplicates In String, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var removeDuplicates = function (s) {
+  const stack = []
+  for (const char of s) {
+    if (char === stack[stack.length - 1]) {
+      stack.pop()
+    } else {
+      stack.push(char)
+    }
+  }
+  return stack.join('')
+
+  // Alternative 1: Time Limit Exceeded
+  // for (const char of s) {
+  //   s = s.replaceAll(char + char, '')
+  // }
+  // return s
+
+  // Alternative 2: Runtime Error
+  // https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/solutions/389304/javascript-easy-to-understand-3-solutions
+  // const s2 = s.replace(/(.)\1/g, '');
+  // return s2.length === s.length ? s : removeDuplicates(s2);
+}
+// testFunction(removeDuplicates).input('abbaca').output('ca') //?
+// testFunction(removeDuplicates).input('azxxzy').output('ay') //?
+// testFunction(removeDuplicates).input('aaaaaaaa').output('') //?
+// testFunction(removeDuplicates).input('aaaaaaaaa').output('a') //?
+// testFunction(removeDuplicates).input('abbbabaaa').output('ababa') //?
