@@ -2556,3 +2556,35 @@ var removeOuterParentheses = function (s) {
   return decompositionWithoutOuterParentheses.join('')
 }
 testFunction(removeOuterParentheses).input('(()())(())').output('()()()') //?
+
+// 1160. Find Words That Can Be Formed by Characters, Easy
+/**
+ * @param {string[]} words
+ * @param {string} chars
+ * @return {number}
+ */
+var countCharacters = function (words, chars) {
+  function isGoodString(word) {
+    let tempString = chars
+    for (const character of word) {
+      if (tempString.includes(character)) {
+        // Ensure each character can only be used once, thus replace used symbol with empty one
+        tempString = tempString.replace(character, '')
+      } else {
+        // Word can't be constructed from characters of chars
+        return false
+      }
+    }
+    return true
+  }
+
+  const goodStrings = []
+  for (const word of words) {
+    if (isGoodString(word)) {
+      goodStrings.push(word)
+    }
+  }
+  return goodStrings.reduce((accumulator, currentValue) => accumulator + currentValue.length, 0)
+}
+// testFunction(countCharacters).input(['cat', 'bt', 'hat', 'tree'], 'atach').output(6) //?
+// testFunction(countCharacters).input(['hello', 'world', 'leetcode'], 'welldonehoneyr').output(10) //?
