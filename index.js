@@ -2621,3 +2621,27 @@ var removeDuplicates = function (s) {
 // testFunction(removeDuplicates).input('aaaaaaaa').output('') //?
 // testFunction(removeDuplicates).input('aaaaaaaaa').output('a') //?
 // testFunction(removeDuplicates).input('abbbabaaa').output('ababa') //?
+
+// 1078. Occurrences After Bigram, Easy
+/**
+ * @param {string} text
+ * @param {string} first
+ * @param {string} second
+ * @return {string[]}
+ */
+var findOcurrences = function (text, first, second) {
+  const thirdWords = []
+  const splitedText = text.split(' ')
+
+  for (let i = 0; i < splitedText.length; i++) {
+    if (splitedText[i] === first && splitedText[i + 1] === second) {
+      if (splitedText[i + 2]) {
+        thirdWords.push(splitedText[i + 2])
+      }
+    }
+  }
+
+  return thirdWords
+}
+// testFunction(findOcurrences).input("alice is a good girl she is a good student", "a", "good").output(["girl","student"]) //?
+// testFunction(findOcurrences).input("we will we will rock you", "we", "will").output(["we","rock"]) //?
