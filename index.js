@@ -2645,3 +2645,17 @@ var findOcurrences = function (text, first, second) {
 }
 // testFunction(findOcurrences).input("alice is a good girl she is a good student", "a", "good").output(["girl","student"]) //?
 // testFunction(findOcurrences).input("we will we will rock you", "we", "will").output(["we","rock"]) //?
+
+// 1935. Maximum Number of Words You Can Type, Easy
+/**
+ * @param {string} text
+ * @param {string} brokenLetters
+ * @return {number}
+ */
+var canBeTypedWords = function (text, brokenLetters) {
+  const words = text.split(' ')
+  const regex = new RegExp(`[${brokenLetters}]`)
+  const filteredWords = words.filter((word) => !regex.test(word))
+  return filteredWords.length
+}
+// testFunction(canBeTypedWords).input('hello world', 'ad').output(1) //?
