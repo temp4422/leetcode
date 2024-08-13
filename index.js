@@ -2659,3 +2659,20 @@ var canBeTypedWords = function (text, brokenLetters) {
   return filteredWords.length
 }
 // testFunction(canBeTypedWords).input('hello world', 'ad').output(1) //?
+
+// 1507. Reformat Date, Easy
+/**
+ * @param {string} date
+ * @return {string}
+ */
+var reformatDate = function (date) {
+  //prettier-ignore
+  const months = {"Jan":'01', "Feb":'02', "Mar":'03', "Apr":'04', "May":'05', "Jun":'06', "Jul":'07', "Aug":'08', "Sep":'09', "Oct":'10', "Nov":'11', "Dec":'12'}
+  const dateArray = date.split(' ')
+  let day = dateArray[0].replace(/[^0-9]+/, '')
+  day = day.length === 1 ? 0 + day : day
+  const convertedDate = [dateArray[2], months[dateArray[1]], day]
+  return convertedDate.join('-')
+}
+// testFunction(reformatDate).input('20th Oct 2052').output('2052-10-20') //?
+// testFunction(reformatDate).input('6th Jun 1933').output('1933-06-06') //?
