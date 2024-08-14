@@ -2676,3 +2676,17 @@ var reformatDate = function (date) {
 }
 // testFunction(reformatDate).input('20th Oct 2052').output('2052-10-20') //?
 // testFunction(reformatDate).input('6th Jun 1933').output('1933-06-06') //?
+
+// 1185. Day of the Week, Easy
+/**
+ * @param {number} day
+ * @param {number} month
+ * @param {number} year
+ * @return {string}
+ */
+var dayOfTheWeek = function (day, month, year) {
+  const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const day = new Date(`${year}-${month}-${day}`).getDay()
+  return dayOfWeek[day]
+}
+// testFunction(dayOfTheWeek).input(31, 8, 2019).output('Saturday') //?
