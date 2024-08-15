@@ -2555,7 +2555,7 @@ var removeOuterParentheses = function (s) {
 
   return decompositionWithoutOuterParentheses.join('')
 }
-testFunction(removeOuterParentheses).input('(()())(())').output('()()()') //?
+// testFunction(removeOuterParentheses).input('(()())(())').output('()()()') //?
 
 // 1160. Find Words That Can Be Formed by Characters, Easy
 /**
@@ -2686,7 +2686,26 @@ var reformatDate = function (date) {
  */
 var dayOfTheWeek = function (day, month, year) {
   const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  const day = new Date(`${year}-${month}-${day}`).getDay()
-  return dayOfWeek[day]
+  const thisDay = new Date(`${year}-${month}-${day}`).getDay()
+  return dayOfWeek[thisDay]
 }
 // testFunction(dayOfTheWeek).input(31, 8, 2019).output('Saturday') //?
+
+// 1957. Delete Characters to Make Fancy String, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var makeFancyString = function (s) {
+  const splitS = s.split('')
+  for (let i = 0; i < splitS.length; i++) {
+    if (splitS[i] === splitS[i + 1] && splitS[i + 1] === splitS[i + 2]) {
+      splitS[i] = ''
+    }
+  }
+  return splitS.join('')
+  // Alternative https://leetcode.com/problems/delete-characters-to-make-fancy-string/solutions/1873910/javascript-simple-regex-solution
+  // return s.replace(/(.)\1\1+/g, '$1$1')
+}
+// testFunction(makeFancyString).input('leeetcode').output('leetcode') //?
+// testFunction(makeFancyString).input('aaabaaaa').output('aabaa') //?
