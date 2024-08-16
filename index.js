@@ -2709,3 +2709,27 @@ var makeFancyString = function (s) {
 }
 // testFunction(makeFancyString).input('leeetcode').output('leetcode') //?
 // testFunction(makeFancyString).input('aaabaaaa').output('aabaa') //?
+
+// 1221. Split a String in Balanced Strings, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var balancedStringSplit = function (s) {
+  let isBalanced = 0 // if === 0, then true
+  let balancedStrings = 0
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'R') {
+      isBalanced++
+    } else {
+      isBalanced--
+    }
+    if (isBalanced === 0) {
+      balancedStrings++
+    }
+  }
+  return balancedStrings
+}
+// testFunction(balancedStringSplit).input('RLRRLLRLRL').output(4) //?
+// testFunction(balancedStringSplit).input('RLRRRLLRLL').output(2) //?
