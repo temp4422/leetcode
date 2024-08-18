@@ -2733,3 +2733,40 @@ var balancedStringSplit = function (s) {
 }
 // testFunction(balancedStringSplit).input('RLRRLLRLRL').output(4) //?
 // testFunction(balancedStringSplit).input('RLRRRLLRLL').output(2) //?
+
+// 2309. Greatest English Letter in Upper and Lower Case, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var greatestLetter = function (s) {
+  const mapOfUpperCase = new Map()
+  const mapOfLowerCase = new Map()
+  for (let i = 0; i < s.length; i++) {
+    if (s.charCodeAt(i) > 64 && s.charCodeAt(i) < 91) {
+      mapOfUpperCase.set(s[i])
+    } else if (s.charCodeAt(i) > 96 && s.charCodeAt(i) < 123) {
+      mapOfLowerCase.set(s[i])
+    }
+  }
+
+  const arrayOfUpperCase = [...mapOfUpperCase.entries()]
+  const sortedArrayOfUpperCase = arrayOfUpperCase.sort().reverse()
+  for (let i = 0; i < sortedArrayOfUpperCase.length; i++) {
+    if (mapOfLowerCase.has(sortedArrayOfUpperCase[i][0].toLowerCase())) {
+      return sortedArrayOfUpperCase[i][0]
+    }
+  }
+  return ''
+
+  // Alternative
+  // https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/solutions/2253232/javascript-simple-easy-solution
+  // s = s.split('').sort().reverse()
+  // for (let i = 0; i < s.length; i++) {
+  //   if (s[i] === s[i].toUpperCase() || s.length === 1) return ''
+  //   if (s.includes(s[i].toUpperCase())) return s[i].toUpperCase()
+  // }
+}
+// testFunction(greatestLetter).input('lEeTcOdE').output('E') //?
+// testFunction(greatestLetter).input('arRAzFif').output('R') //?
+// testFunction(greatestLetter).input('AbCdEfGhIjK').output('') //?
