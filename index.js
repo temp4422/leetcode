@@ -2770,3 +2770,30 @@ var greatestLetter = function (s) {
 // testFunction(greatestLetter).input('lEeTcOdE').output('E') //?
 // testFunction(greatestLetter).input('arRAzFif').output('R') //?
 // testFunction(greatestLetter).input('AbCdEfGhIjK').output('') //?
+
+// 1287. Element Appearing More Than 25% In Sorted Array, Easy
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var findSpecialInteger = function (arr) {
+  if (arr.length <= 1) return arr[0]
+
+  const map = new Map()
+  const quarter = arr.length / 4
+
+  for (let i = 0; i < arr.length; i++) {
+    if (map.has(arr[i])) {
+      map.set(arr[i], map.get(arr[i]) + 1)
+      if (map.get(arr[i]) > quarter) {
+        return arr[i]
+      }
+    } else {
+      map.set(arr[i], 1)
+    }
+  }
+}
+// testFunction(findSpecialInteger).input([1, 2, 2, 6, 6, 6, 6, 7, 10]).output(6) //?
+// testFunction(findSpecialInteger).input([1]).output(1) //?
+// testFunction(findSpecialInteger).input([1, 1, 2, 2, 3, 3, 3, 3]).output(3) //?
+// testFunction(findSpecialInteger).input([1,2,3,4,5,6,7,8,9,10,11,12,12,12,12]).output(12) //?
