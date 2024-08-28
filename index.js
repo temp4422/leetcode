@@ -2797,3 +2797,19 @@ var findSpecialInteger = function (arr) {
 // testFunction(findSpecialInteger).input([1]).output(1) //?
 // testFunction(findSpecialInteger).input([1, 1, 2, 2, 3, 3, 3, 3]).output(3) //?
 // testFunction(findSpecialInteger).input([1,2,3,4,5,6,7,8,9,10,11,12,12,12,12]).output(12) //?
+
+// 2273. Find Resultant Array After Removing Anagrams, Easy
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var removeAnagrams = function (words) {
+  for (let i = 1; i < words.length; i++) {
+    if (words[i - 1].split('').sort().join('') === words[i].split('').sort().join('')) {
+      words.splice(i, 1)
+      i--
+    }
+  }
+  return words
+}
+// testFunction(removeAnagrams).input(['abba', 'baba', 'bbaa', 'cd', 'cd']).output(['abba', 'cd']) //?
