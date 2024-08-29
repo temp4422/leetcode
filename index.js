@@ -2813,3 +2813,42 @@ var removeAnagrams = function (words) {
   return words
 }
 // testFunction(removeAnagrams).input(['abba', 'baba', 'bbaa', 'cd', 'cd']).output(['abba', 'cd']) //?
+
+// 2215. Find the Difference of Two Arrays, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[][]}
+ */
+var findDifference = function (nums1, nums2) {
+  const nums1DistinctIntegers = new Set()
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      continue
+    } else {
+      nums1DistinctIntegers.add(nums1[i])
+    }
+  }
+
+  const nums2DistinctIntegers = new Set()
+  for (let i = 0; i < nums2.length; i++) {
+    if (nums1.includes(nums2[i])) {
+      continue
+    } else {
+      nums2DistinctIntegers.add(nums2[i])
+    }
+  }
+
+  return [Array.from(nums1DistinctIntegers), Array.from(nums2DistinctIntegers)]
+
+  // Alternative https://leetcode.com/problems/find-the-difference-of-two-arrays/solutions/3833477/video-find-the-difference-of-two-arrays
+  // let set1 = new Set(nums1)
+  // let set2 = new Set(nums2)
+
+  // let diff1 = [...set1].filter((x) => !set2.has(x))
+  // let diff2 = [...set2].filter((x) => !set1.has(x))
+
+  // return [diff1, diff2]
+}
+// testFunction(findDifference).input([1,2,3], [2,4,6]).output( [[1,3],[4,6]]) //?
+// testFunction(findDifference).input([1,2,3,3], [1,1,2,2] ).output( [[3],[]]) //?
