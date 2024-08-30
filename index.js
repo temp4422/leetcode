@@ -2852,3 +2852,34 @@ var findDifference = function (nums1, nums2) {
 }
 // testFunction(findDifference).input([1,2,3], [2,4,6]).output( [[1,3],[4,6]]) //?
 // testFunction(findDifference).input([1,2,3,3], [1,1,2,2] ).output( [[3],[]]) //?
+
+// 1309. Decrypt String from Alphabet to Integer Mapping, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var freqAlphabets = function (s) {
+  const stringTokens = []
+  for (let i = s.length - 1; i > -1; i--) {
+    if (s[i] === '#') {
+      stringTokens.push(s[i - 2] + s[i - 1] + s[i])
+      i -= 2
+    } else {
+      stringTokens.push(s[i])
+    }
+  }
+
+  //prettier-ignore
+  const customAlphabet = {'1':'a','2':'b','3':'c','4':'d','5':'e','6':'f','7':'g','8':'h','9':'i','10#':'j','11#':'k','12#':'l','13#':'m','14#':'n','15#':'o','16#':'p','17#':'q','18#':'r','19#':'s','20#':'t','21#':'u','22#':'v','23#':'w','24#':'x','25#':'y','26#':'z'}
+  let decryptedString = ''
+  for (let i = stringTokens.length - 1; i > -1; i--) {
+    decryptedString += customAlphabet[stringTokens[i]]
+  }
+
+  return decryptedString
+
+  // Alternative https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/solutions/595256/javascript-solution-99-100-using-regex
+  // return s.match(/\d{2}(?=#)|\d/g).map((num) => String.fromCharCode(96 + +num)).join('')
+}
+// testFunction(freqAlphabets).input('10#11#12').output('jkab') //?
+// testFunction(freqAlphabets).input('1326#').output('acz') //?
