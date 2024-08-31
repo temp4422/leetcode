@@ -2883,3 +2883,14 @@ var freqAlphabets = function (s) {
 }
 // testFunction(freqAlphabets).input('10#11#12').output('jkab') //?
 // testFunction(freqAlphabets).input('1326#').output('acz') //?
+
+// 1332. Remove Palindromic Subsequences, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var removePalindromeSub = function (s) {
+  return s === s.split('').reverse().join('') ? 1 : 2
+}
+// testFunction(removePalindromeSub).input('ababa').output(1) //?
+// testFunction(removePalindromeSub).input('abb').output(2) //?
