@@ -2894,3 +2894,71 @@ var removePalindromeSub = function (s) {
 }
 // testFunction(removePalindromeSub).input('ababa').output(1) //?
 // testFunction(removePalindromeSub).input('abb').output(2) //?
+
+// 1370. Increasing Decreasing String, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var sortString = function (s) {
+  // Alternative https://leetcode.com/problems/increasing-decreasing-string/solutions/4570077/javascript-short-and-efficient-solution
+  const charactersFrequency = {}
+  const uniqueCharacters = [...new Set(s)].sort()
+
+  for (const char of s) {
+    charactersFrequency[char] = (charactersFrequency[char] || 0) + 1
+  }
+
+  let resultString = ''
+  while (resultString.length < s.length) {
+    for (const char of uniqueCharacters) {
+      if (charactersFrequency[char]) {
+        resultString += char
+        charactersFrequency[char]--
+      }
+    }
+    uniqueCharacters.reverse()
+  }
+
+  return resultString
+
+  // Time Limit Exceeded
+  // 1. Find all larger characters in sorted string
+  const sortedString = s.split('').sort().join('')
+  const increasingArray = [sortedString[0]]
+  let smalletsCharacter = sortedString[0]
+  for (let i = 1; i < s.length; i++) {
+    if (sortedString.charCodeAt(i) > smalletsCharacter.charCodeAt()) {
+      increasingArray.push(sortedString[i])
+      smalletsCharacter = sortedString[i]
+    }
+  }
+
+  // 2. Generate new string
+  const arrayS = sortedString.split('')
+  let incDecString = ''
+  let j = 0
+  while (arrayS.length) {
+    for (let i = 0; i < arrayS.length; i++) {
+      if (arrayS[i] === increasingArray[j]) {
+        incDecString += arrayS[i]
+        arrayS.splice(i, 1)
+        j++
+      }
+    }
+    j--
+
+    for (let i = arrayS.length - 1; i > -1; i--) {
+      if (arrayS[i] === increasingArray[j]) {
+        incDecString += arrayS[i]
+        arrayS.splice(i, 1)
+        j--
+      }
+    }
+    j++
+  }
+
+  return incDecString
+}
+// testFunction(sortString).input('aaaabbbbcccc').output('abccbaabccba') //?
+// testFunction(sortString).input('rat').output('art') //?
