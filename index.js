@@ -2962,3 +2962,18 @@ var sortString = function (s) {
 }
 // testFunction(sortString).input('aaaabbbbcccc').output('abccbaabccba') //?
 // testFunction(sortString).input('rat').output('art') //?
+
+// 1374. Generate a String With Characters That Have Odd Counts, Easy
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var generateTheString = function (n) {
+  const charArray = Array(n).fill('a')
+  if (n % 2 === 0) charArray[n - 1] = 'b'
+  return charArray.join('')
+
+  // Alternative https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/solutions/543710/javascript-o-n-96-100
+  // return n % 2 === 0 ? 'a'.repeat(n - 1) + 'b' : 'a'.repeat(n)
+}
+// testFunction(generateTheString).input(4).output('pppz') //?
