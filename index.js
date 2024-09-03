@@ -2977,3 +2977,26 @@ var generateTheString = function (n) {
   // return n % 2 === 0 ? 'a'.repeat(n - 1) + 'b' : 'a'.repeat(n)
 }
 // testFunction(generateTheString).input(4).output('pppz') //?
+
+// 1408. String Matching in an Array, Easy
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var stringMatching = function (words) {
+  const uniqueMatchingSubstrings = new Set()
+  for (let i = 0; i < words.length; i++) {
+    for (const word of words) {
+      if (words[i].match(word) && words[i] != word) {
+        uniqueMatchingSubstrings.add(word)
+      }
+    }
+  }
+  return Array.from(uniqueMatchingSubstrings)
+
+  // Alternative https://leetcode.com/problems/string-matching-in-an-array/solutions/642653/1408-1-line-javascript-solution
+  return words.filter((n) => words.some((h) => h !== n && h.includes(n)))
+}
+// testFunction(stringMatching).input(['mass', 'as', 'hero', 'superhero']).output(['as', 'hero']) //?
+//prettier-ignore
+// testFunction(stringMatching).input(["leetcoder","leetcode","od","hamlet","am"]).output(["leetcode","od","am"]) //?
