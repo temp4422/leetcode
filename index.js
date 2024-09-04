@@ -2998,5 +2998,31 @@ var stringMatching = function (words) {
   return words.filter((n) => words.some((h) => h !== n && h.includes(n)))
 }
 // testFunction(stringMatching).input(['mass', 'as', 'hero', 'superhero']).output(['as', 'hero']) //?
-//prettier-ignore
+// //prettier-ignore
 // testFunction(stringMatching).input(["leetcoder","leetcode","od","hamlet","am"]).output(["leetcode","od","am"]) //?
+
+// 1431. Kids With the Greatest Number of Candies, Easy
+/**
+ * @param {number[]} candies
+ * @param {number} extraCandies
+ * @return {boolean[]}
+ */
+var kidsWithCandies = function (candies, extraCandies) {
+  const maxCandies = Math.max(...candies)
+  const result = []
+  for (let i = 0; i < candies.length; i++) {
+    result.push(candies[i] + extraCandies >= maxCandies ? true : false)
+    // Alternative
+    // if (candies[i] + extraCandies >= maxCandies) {
+    //   result.push(true)
+    // } else {
+    //   result.push(false)
+    // }
+  }
+  return result
+
+  // Alternative https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/solutions/4149854/short-method-2-lines-of-code-0ms-c
+  // const mostCandies = Math.max(...candies);
+  // return candies.map((candyAmount) => candyAmount + extraCandies >= mostCandies)
+}
+// testFunction(kidsWithCandies).input([2, 3, 5, 1, 3], 3).output([true, true, true, false, true]) //?
