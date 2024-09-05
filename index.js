@@ -3026,3 +3026,32 @@ var kidsWithCandies = function (candies, extraCandies) {
   // return candies.map((candyAmount) => candyAmount + extraCandies >= mostCandies)
 }
 // testFunction(kidsWithCandies).input([2, 3, 5, 1, 3], 3).output([true, true, true, false, true]) //?
+
+// 1417. Reformat The String, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reformat = function (s) {
+  // Check if difference between digits and letters greater than 1, thus it's impossible to make proper permutation
+  const letters = s.replace(/[0-9]/g, '')
+  const digits = s.replace(/[a-z]/g, '')
+  if (Math.abs(letters.length - digits.length) > 1) return ''
+
+  // Reformat letters and digits to string
+  let reformattedString = ''
+  if (letters.length >= digits.length) {
+    for (let i = 0; i < letters.length; i++) {
+      reformattedString += letters[i] + (digits[i] ?? '')
+    }
+  }
+  if (digits.length > letters.length) {
+    for (let i = 0; i < digits.length; i++) {
+      reformattedString += digits[i] + (letters[i] ?? '')
+    }
+  }
+  return reformattedString
+}
+// testFunction(reformat).input('a0b1c2').output('a0b1c2') //?
+// testFunction(reformat).input('leetcode').output('') //?
+// testFunction(reformat).input('1229857369').output('') //?
