@@ -3055,3 +3055,26 @@ var reformat = function (s) {
 // testFunction(reformat).input('a0b1c2').output('a0b1c2') //?
 // testFunction(reformat).input('leetcode').output('') //?
 // testFunction(reformat).input('1229857369').output('') //?
+
+// 1422. Maximum Score After Splitting a String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxScore = function (s) {
+  if (!s.match(/1/g) || !s.match(/0/g)) return s.length - 1
+
+  let maximumScore = 0
+  for (let i = 1; i < s.length; i++) {
+    let left = s.substring(0, i).replace(/1/g, '')
+    let right = s.substring(i, s.length).replace(/0/g, '')
+
+    maximumScore = Math.max(maximumScore, left.length + right.length)
+  }
+
+  return maximumScore
+}
+// testFunction(maxScore).input('011101').output(5) //?
+// testFunction(maxScore).input('1111').output(3) //?
+// testFunction(maxScore).input('0100').output(2) //?
+// testFunction(maxScore).input('11100').output(2) //?
