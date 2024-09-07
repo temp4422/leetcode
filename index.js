@@ -3078,3 +3078,27 @@ var maxScore = function (s) {
 // testFunction(maxScore).input('1111').output(3) //?
 // testFunction(maxScore).input('0100').output(2) //?
 // testFunction(maxScore).input('11100').output(2) //?
+
+// 1446. Consecutive Characters, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxPower = function (s) {
+  let stringPower = 1
+  let count = 1
+
+  for (let i = 1; i < s.length; i++) {
+    if (s[i] === s[i - 1]) {
+      count++
+    } else {
+      count = 1
+    }
+    if (count > stringPower) {
+      stringPower = count
+    }
+  }
+  return stringPower
+}
+// testFunction(maxPower).input('leetcode').output(2) //?
+// testFunction(maxPower).input('abbcccddddeeeeedcba').output(5) //?
