@@ -3102,3 +3102,14 @@ var maxPower = function (s) {
 }
 // testFunction(maxPower).input('leetcode').output(2) //?
 // testFunction(maxPower).input('abbcccddddeeeeedcba').output(5) //?
+
+// 1460. Make Two Arrays Equal by Reversing Subarrays, Easy
+/**
+ * @param {number[]} target
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var canBeEqual = function (target, arr) {
+  return target.sort().toString() === arr.sort().toString()
+}
+// testFunction(canBeEqual).input([1, 2, 3, 4], [2, 4, 1, 3]).output(true) //?
