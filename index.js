@@ -3113,3 +3113,26 @@ var canBeEqual = function (target, arr) {
   return target.sort().toString() === arr.sort().toString()
 }
 // testFunction(canBeEqual).input([1, 2, 3, 4], [2, 4, 1, 3]).output(true) //?
+
+// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence, Easy
+/**
+ * @param {string} sentence
+ * @param {string} searchWord
+ * @return {number}
+ */
+var isPrefixOfWord = function (sentence, searchWord) {
+  const array = sentence.split(' ')
+  const regex = new RegExp(`^${searchWord}`, 'g')
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].match(regex)) {
+      return i + 1
+    }
+  }
+  return -1
+  // Alternative https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/solutions/2408073/typescript-javascript-quite-a-short-one-liner
+  // return sentence.split(' ').findIndex(e => e.startsWith(searchWord)) + 1 || -1;
+}
+// testFunction(isPrefixOfWord).input('i love eating burger', 'burg').output(4) //?
+// testFunction(isPrefixOfWord).input('this problem is an easy problem', 'pro').output(2) //?
+// testFunction(isPrefixOfWord).input('i am tired', 'you').output(-1) //?
+// testFunction(isPrefixOfWord).input('hellohello hellohellohello', 'ell').output(-1) //?
