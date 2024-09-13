@@ -3136,3 +3136,18 @@ var isPrefixOfWord = function (sentence, searchWord) {
 // testFunction(isPrefixOfWord).input('this problem is an easy problem', 'pro').output(2) //?
 // testFunction(isPrefixOfWord).input('i am tired', 'you').output(-1) //?
 // testFunction(isPrefixOfWord).input('hellohello hellohellohello', 'ell').output(-1) //?
+
+// 1470. Shuffle the Array, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} n
+ * @return {number[]}
+ */
+var shuffle = function (nums, n) {
+  const shuffledArray = []
+  for (let i = 0; i < n; i++) {
+    shuffledArray.push(nums[i], nums[i + n])
+  }
+  return shuffledArray
+}
+// testFunction(shuffle).input([2, 5, 1, 3, 4, 7], 3).output([2, 3, 5, 4, 1, 7]) //?
