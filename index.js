@@ -3151,3 +3151,18 @@ var shuffle = function (nums, n) {
   return shuffledArray
 }
 // testFunction(shuffle).input([2, 5, 1, 3, 4, 7], 3).output([2, 3, 5, 4, 1, 7]) //?
+
+// 1528. Shuffle String, Easy
+/**
+ * @param {string} s
+ * @param {number[]} indices
+ * @return {string}
+ */
+var restoreString = function (s, indices) {
+  const shuffledString = []
+  for (let i = 0; i < s.length; i++) {
+    shuffledString[indices[i]] = s[i]
+  }
+  return shuffledString.join('')
+}
+// testFunction(restoreString).input('codeleet', [4, 5, 6, 7, 0, 2, 1, 3]).output('leetcode') //?
