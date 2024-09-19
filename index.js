@@ -3166,3 +3166,41 @@ var restoreString = function (s, indices) {
   return shuffledString.join('')
 }
 // testFunction(restoreString).input('codeleet', [4, 5, 6, 7, 0, 2, 1, 3]).output('leetcode') //?
+
+// 1544. Make The String Great, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var makeGood = function (s) {
+  const arrayS = s.split('')
+
+  for (let i = 1; i < arrayS.length; i++) {
+    if (badChars(arrayS[i - 1], arrayS[i])) {
+      arrayS.splice(i - 1, 2)
+      i = 0
+    }
+  }
+
+  function badChars(first, second) {
+    if (
+      first === first.toLowerCase() &&
+      second === second.toUpperCase() &&
+      first.toLowerCase() === second.toLowerCase()
+    ) {
+      return true
+    }
+    if (
+      first === first.toUpperCase() &&
+      second === second.toLowerCase() &&
+      first.toLowerCase() === second.toLowerCase()
+    ) {
+      return true
+    }
+  }
+
+  return arrayS.join('')
+}
+// testFunction(makeGood).input('leEeetcode').output('leetcode') //?
+// testFunction(makeGood).input('abBAcC').output('') //?
+// testFunction(makeGood).input('s').output('s') //?
