@@ -3204,3 +3204,24 @@ var makeGood = function (s) {
 // testFunction(makeGood).input('leEeetcode').output('leetcode') //?
 // testFunction(makeGood).input('abBAcC').output('') //?
 // testFunction(makeGood).input('s').output('s') //?
+
+// 1576. Replace All ?'s to Avoid Consecutive Repeating Characters, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var modifyString = function (s) {
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '?') {
+      if (s[i - 1] != 'a' && s[i + 1] != 'a') {
+        s = s.replace('?', 'a')
+      } else if (s[i - 1] != 'b' && s[i + 1] != 'b') {
+        s = s.replace('?', 'b')
+      } else if (s[i - 1] != 'c' && s[i + 1] != 'c') {
+        s = s.replace('?', 'c')
+      }
+    }
+  }
+  return s
+}
+// testFunction(modifyString).input('?zs').output('azs') //?
