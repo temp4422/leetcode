@@ -3225,3 +3225,31 @@ var modifyString = function (s) {
   return s
 }
 // testFunction(modifyString).input('?zs').output('azs') //?
+
+// 1523. Count Odd Numbers in an Interval Range, Easy
+/**
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+var countOdds = function (low, high) {
+  // Math problem. There is every next odd number between low and high, we only need to check if low and high itself is odd.
+  // https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/solutions/775870/javascript-o-1-solution-64-ms-36-2-mb-beats-98-88
+  let oddNums = Math.round((high - low) / 2)
+  if (low % 2 === 1 && high % 2 === 1) oddNums = oddNums + 1
+  return oddNums
+
+  // Runtime Error, out of memroy
+  // const oddNums = []
+  // for (let i = low; i < high + 1; i++) {
+  //   if (i % 2 == 1) {
+  //     oddNums.push(i)
+  //   }
+  // }
+  // return oddNums.length
+}
+// testFunction(countOdds).input(3, 7).output(3) //?
+// testFunction(countOdds).input(8, 10).output(1) //?
+// testFunction(countOdds).input(2, 2).output(0) //?
+// testFunction(countOdds).input(11, 11).output(1) //?
+// testFunction(countOdds).input(21, 22).output(1) //?
