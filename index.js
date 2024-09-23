@@ -3253,3 +3253,28 @@ var countOdds = function (low, high) {
 // testFunction(countOdds).input(2, 2).output(0) //?
 // testFunction(countOdds).input(11, 11).output(1) //?
 // testFunction(countOdds).input(21, 22).output(1) //?
+
+// 1207. Unique Number of Occurrences, Easy
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var uniqueOccurrences = function (arr) {
+  const map = new Map()
+  for (const num of arr) {
+    map.set(num, (map.get(num) ?? 0) + 1)
+  }
+  return map.size === new Set(map.values()).size
+  // Alternative
+  // for (let i = 0; i < arr.length; i++) {
+  //   if (map.has(arr[i])) {
+  //     map.set(arr[i], map.get(arr[i]) + 1)
+  //   } else {
+  //     map.set(arr[i], 1)
+  //   }
+  // }
+  // const isUnique = [...map.values()].length === Array.from(new Set([...map.values()])).length
+  // return isUnique
+}
+// testFunction(uniqueOccurrences).input([1, 2, 2, 1, 1, 3]).output(true) //?
+// testFunction(uniqueOccurrences).input([1, 2]).output(false) //?
