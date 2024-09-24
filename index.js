@@ -3278,3 +3278,26 @@ var uniqueOccurrences = function (arr) {
 }
 // testFunction(uniqueOccurrences).input([1, 2, 2, 1, 1, 3]).output(true) //?
 // testFunction(uniqueOccurrences).input([1, 2]).output(false) //?
+
+// 1323. Maximum 69 Number, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var maximum69Number = function (num) {
+  let numArr = num.toString().split('')
+  for (let i = 0; i < numArr.length; i++) {
+    if (numArr[i] === '6') {
+      numArr[i] = '9'
+      return Number(numArr.join(''))
+    }
+  }
+  return num
+  // Alternative https://leetcode.com/problems/maximum-69-number/solutions/484939/javascript-easy-to-understand-3-solutions
+  return Number(num.toString().replace('6', '9'))
+  // Alternative
+  //prettier-ignore
+  const map = {6: 9,9: 9,66: 96,69: 99,96: 99,99: 99,666: 966,669: 969,696: 996,699: 999,966: 996,969: 999,996: 999,999: 999,6666: 9666,6669: 9669,6696: 9696,6699: 9699,6966: 9966,6969: 9969,6996: 9996,6999: 9999,9666: 9966,9669: 9969,9696: 9996,9699: 9999,9966: 9996,9969: 9999,9996: 9999,9999: 9999}
+  return map[num]
+}
+// testFunction(maximum69Number).input(9669).output(9969) //?
