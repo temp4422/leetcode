@@ -3301,3 +3301,22 @@ var maximum69Number = function (num) {
   return map[num]
 }
 // testFunction(maximum69Number).input(9669).output(9969) //?
+
+// 509. Fibonacci Number, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function (n) {
+  // https://leetcode.com/problems/fibonacci-number/solutions/1159381/js-python-java-c-simple-o-1-o-1-solution-w-explanation
+  if (n < 2) return n
+  let base = 0
+  let fibonacci = 1
+  for (let i = 1; i < n; i++) {
+    ;[base, fibonacci] = [fibonacci, base + fibonacci]
+  }
+  return fibonacci
+}
+// testFunction(fib).input(2).output(1) //?
+// testFunction(fib).input(3).output(2) //?
+// testFunction(fib).input(4).output(3) //?
