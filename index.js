@@ -3320,3 +3320,48 @@ var fib = function (n) {
 // testFunction(fib).input(2).output(1) //?
 // testFunction(fib).input(3).output(2) //?
 // testFunction(fib).input(4).output(3) //?
+
+// 1071. Greatest Common Divisor of Strings, Easy
+/**
+ * @param {string} str1
+ * @param {string} str2
+ * @return {string}
+ */
+var gcdOfStrings = function (str1, str2) {
+  // Solution by https://leetcode.com/problems/greatest-common-divisor-of-strings/solutions/4920455/95-better-no-slice-no-recursion-basic-math-commented-solution
+   // handle the base case
+   if (str1 + str2 !== str2 + str1) return '';
+   let a = str1.length
+   let b = str2.length
+
+   // loop (divide) until you find the
+   // highest common factor (length of string)
+   // like we did in maths
+   while (b) {
+    [a, b] = [ a, a%b]
+       let temp = b
+       b = a % b
+       a = temp
+   }
+   return str1.substring(0, a)
+
+  // Alternative NOT PASSING ALL TESTS
+  // if (str1 + str2 !== str2 + str1) return '' // Check if we possibly can divide them
+  // const [smallerString, longerString] = [str1, str2].sort((a, b) => a.length - b.length)
+  // let divisor = smallerString
+
+  // for (let i = 0; i < smallerString.length; i++) {
+  //   let regex = new RegExp(`${divisor}`, 'g')
+  //   let gcd = longerString.replaceAll(regex, '')
+  //   if (!gcd) {
+  //     return divisor
+  //   }
+  //   divisor = divisor.slice(0, -1)
+  // }
+  // return ''
+}
+// testFunction(gcdOfStrings).input('ABCABC', 'ABC').output('ABC') //?
+// testFunction(gcdOfStrings).input('ABABAB', 'ABAB').output('AB') //?
+// testFunction(gcdOfStrings).input('LEET', 'CODE').output('') //?
+//prettier-ignore
+// testFunction(gcdOfStrings).input('TAUXXTAUXXTAUXXTAUXXTAUXX',  'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX').output('TAUXX') //? TAUXXTAUXXTAUXX
