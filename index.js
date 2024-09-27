@@ -3329,21 +3329,21 @@ var fib = function (n) {
  */
 var gcdOfStrings = function (str1, str2) {
   // Solution by https://leetcode.com/problems/greatest-common-divisor-of-strings/solutions/4920455/95-better-no-slice-no-recursion-basic-math-commented-solution
-   // handle the base case
-   if (str1 + str2 !== str2 + str1) return '';
-   let a = str1.length
-   let b = str2.length
+  // handle the base case
+  if (str1 + str2 !== str2 + str1) return ''
+  let a = str1.length
+  let b = str2.length
 
-   // loop (divide) until you find the
-   // highest common factor (length of string)
-   // like we did in maths
-   while (b) {
-    [a, b] = [ a, a%b]
-       let temp = b
-       b = a % b
-       a = temp
-   }
-   return str1.substring(0, a)
+  // loop (divide) until you find the
+  // highest common factor (length of string)
+  // like we did in maths
+  while (b) {
+    ;[a, b] = [a, a % b]
+    let temp = b
+    b = a % b
+    a = temp
+  }
+  return str1.substring(0, a)
 
   // Alternative NOT PASSING ALL TESTS
   // if (str1 + str2 !== str2 + str1) return '' // Check if we possibly can divide them
@@ -3363,5 +3363,34 @@ var gcdOfStrings = function (str1, str2) {
 // testFunction(gcdOfStrings).input('ABCABC', 'ABC').output('ABC') //?
 // testFunction(gcdOfStrings).input('ABABAB', 'ABAB').output('AB') //?
 // testFunction(gcdOfStrings).input('LEET', 'CODE').output('') //?
-//prettier-ignore
+// //prettier-ignore
 // testFunction(gcdOfStrings).input('TAUXXTAUXXTAUXXTAUXXTAUXX',  'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX').output('TAUXX') //? TAUXXTAUXXTAUXX
+
+// 1103. Distribute Candies to People, Easy
+/**
+ * @param {number} candies
+ * @param {number} num_people
+ * @return {number[]}
+ */
+var distributeCandies = function (candies, num_people) {
+  const distributedCandies = new Array(num_people).fill(0)
+  let giveCandy = 1
+  let person = 0
+
+  while (candies > 0) {
+    // Give candy and subtract given candy from candies
+    distributedCandies[person] = distributedCandies[person] += giveCandy
+    candies -= giveCandy
+    giveCandy++
+    if (giveCandy > candies) giveCandy = candies
+
+    // Reset counter if reach last person in num_people array
+    person++
+    if (person + 1 > num_people) person = 0
+  }
+  return distributedCandies
+}
+// testFunction(distributeCandies).input(7, 4).output([1, 2, 3, 1]) //?
+// testFunction(distributeCandies).input(10, 3).output([5, 2, 3]) //?
+// //prettier-ignore
+// testFunction(distributeCandies).input(600, 40).output([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,5,0,0,0,0,0]) //?
