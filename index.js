@@ -3394,3 +3394,33 @@ var distributeCandies = function (candies, num_people) {
 // testFunction(distributeCandies).input(10, 3).output([5, 2, 3]) //?
 // //prettier-ignore
 // testFunction(distributeCandies).input(600, 40).output([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,5,0,0,0,0,0]) //?
+
+// 1122. Relative Sort Array, Easy
+/**
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @return {number[]}
+ */
+var relativeSortArray = function (arr1, arr2) {
+  // Split arr1 into two arrays
+  const mainArr = []
+  const secondaryArr = []
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr2.includes(arr1[i])) {
+      mainArr.push(arr1[i])
+    } else {
+      secondaryArr.push(arr1[i])
+    }
+  }
+
+  // Sort main array according to arr2 order
+  mainArr.sort((a, b) => arr2.indexOf(a) - arr2.indexOf(b))
+
+  // Sort secondary array in ascending order
+  secondaryArr.sort((a, b) => a - b)
+
+  // Concatenate and return final array
+  return mainArr.concat(secondaryArr)
+}
+// // prettier-ignore
+// testFunction(relativeSortArray).input([2,3,1,3,2,4,6,7,9,2,19],[2,1,4,3,9,6]).output([2,2,2,1,4,3,3,9,6,7,19]) //?
