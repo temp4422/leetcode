@@ -3424,3 +3424,16 @@ var relativeSortArray = function (arr1, arr2) {
 }
 // // prettier-ignore
 // testFunction(relativeSortArray).input([2,3,1,3,2,4,6,7,9,2,19],[2,1,4,3,9,6]).output([2,2,2,1,4,3,3,9,6,7,19]) //?
+
+// 1154. Day of the Year, Easy
+/**
+ * @param {string} date
+ * @return {number}
+ */
+var dayOfYear = function (date) {
+  // Solution by https://leetcode.com/problems/day-of-the-year/solutions/501726/1-line-javascript-solution-48ms
+  return (new Date(date) - new Date(date.slice(0, 4)) + 86400000) / 86400000 // one day timestamp = 86400000 = 1000 * 60 * 60 * 24
+}
+// testFunction(dayOfYear).input('2019-01-09').output(9) //?
+// testFunction(dayOfYear).input('2019-02-10').output(41) //?
+// testFunction(dayOfYear).input('2004-03-01').output(61) //?
