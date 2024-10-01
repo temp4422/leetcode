@@ -3437,3 +3437,18 @@ var dayOfYear = function (date) {
 // testFunction(dayOfYear).input('2019-01-09').output(9) //?
 // testFunction(dayOfYear).input('2019-02-10').output(41) //?
 // testFunction(dayOfYear).input('2004-03-01').output(61) //?
+
+// 1342. Number of Steps to Reduce a Number to Zero, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var numberOfSteps = function (num) {
+  let countSteps = 0
+  while (num != 0) {
+    num % 2 === 0 ? (num /= 2) : (num -= 1)
+    countSteps++
+  }
+  return countSteps
+}
+// testFunction(numberOfSteps).input(14).output(6) //?
