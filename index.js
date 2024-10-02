@@ -3452,3 +3452,29 @@ var numberOfSteps = function (num) {
   return countSteps
 }
 // testFunction(numberOfSteps).input(14).output(6) //?
+
+// 1394. Find Lucky Integer in an Array, Easy
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var findLucky = function (arr) {
+  const map = new Map()
+  for (const num of arr) {
+    map.set(num, (map.get(num) ?? 0) + 1)
+  }
+
+  let luckyInteger = -1
+  for (const [num, value] of map) {
+    if (num === value) {
+      luckyInteger = Math.max(luckyInteger, num)
+      //Alternative luckyInteger = num > luckyInteger ? num : luckyInteger
+    }
+  }
+  return luckyInteger
+}
+// testFunction(findLucky).input([2, 2, 3, 4]).output(2) //?
+// testFunction(findLucky).input([1, 2, 2, 3, 3, 3]).output(3) //?
+// testFunction(findLucky).input([2, 2, 2, 3, 3]).output(-1) //?
+// // prettier-ignore
+// testFunction(findLucky).input([19,12,11,14,18,8,6,6,13,9,8,3,10,10,1,10,5,12,13,13,9]).output(1) //?
