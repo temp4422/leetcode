@@ -3478,3 +3478,25 @@ var findLucky = function (arr) {
 // testFunction(findLucky).input([2, 2, 2, 3, 3]).output(-1) //?
 // // prettier-ignore
 // testFunction(findLucky).input([19,12,11,14,18,8,6,6,13,9,8,3,10,10,1,10,5,12,13,13,9]).output(1) //?
+
+// 1403. Minimum Subsequence in Non-Increasing Order, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var minSubsequence = function (nums) {
+  const arrSum = nums.reduce((a, i) => a + i, 0)
+  const minSum = arrSum / 2
+  const sortedArr = nums.sort((a, b) => b - a)
+  const minSubsequence = []
+  let currentSum = 0
+
+  for (const num of sortedArr) {
+    minSubsequence.push(num)
+    currentSum += num
+    if (currentSum > minSum) {
+      return minSubsequence
+    }
+  }
+}
+// testFunction(minSubsequence).input([4, 3, 10, 9, 8]).output([10, 9]) //?
