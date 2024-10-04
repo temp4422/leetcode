@@ -3518,3 +3518,28 @@ var busyStudent = function (startTime, endTime, queryTime) {
   return numberOfStudentsDoingHomework
 }
 // testFunction(busyStudent).input([1, 2, 3], [3, 2, 7], 4).output(1) //?
+
+// 1475. Final Prices With a Special Discount in a Shop, Easy
+/**
+ * @param {number[]} prices
+ * @return {number[]}
+ */
+var finalPrices = function (prices) {
+  // https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/solutions/2698007/js-two-easy-solution
+  const finalPrices = []
+  for (let i = 0; i < prices.length; i++) {
+    let newPrice = prices[i]
+
+    for (let j = i + 1; j < prices.length; j++) {
+      if (prices[i] >= prices[j]) {
+        newPrice = prices[i] - prices[j]
+        break
+      }
+    }
+
+    finalPrices.push(newPrice)
+  }
+  return finalPrices
+}
+// testFunction(finalPrices).input([8, 4, 6, 2, 3]).output([4, 2, 4, 2, 3]) //?
+// testFunction(finalPrices).input([10, 2, 5, 2, 8]).output([8, 0, 3, 2, 8]) //?
