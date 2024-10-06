@@ -3543,3 +3543,24 @@ var finalPrices = function (prices) {
 }
 // testFunction(finalPrices).input([8, 4, 6, 2, 3]).output([4, 2, 4, 2, 3]) //?
 // testFunction(finalPrices).input([10, 2, 5, 2, 8]).output([8, 0, 3, 2, 8]) //?
+
+// 1518. Water Bottles, Easy
+/**
+ * @param {number} numBottles
+ * @param {number} numExchange
+ * @return {number}
+ */
+var numWaterBottles = function (numBottles, numExchange) {
+  let maximumWaterBottles = numBottles
+  let remainEmptyBottles = 0
+  while (numBottles >= numExchange) {
+    remainEmptyBottles = numBottles % numExchange
+    numBottles = Math.floor(numBottles / numExchange)
+    maximumWaterBottles = maximumWaterBottles + numBottles
+    numBottles = numBottles + remainEmptyBottles
+  }
+  return maximumWaterBottles
+}
+// testFunction(numWaterBottles).input(9, 3).output(13) //?
+// testFunction(numWaterBottles).input(15, 4).output(19) //?
+// testFunction(numWaterBottles).input(12, 4).output(15) //?
