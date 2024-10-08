@@ -3564,3 +3564,31 @@ var numWaterBottles = function (numBottles, numExchange) {
 // testFunction(numWaterBottles).input(9, 3).output(13) //?
 // testFunction(numWaterBottles).input(15, 4).output(19) //?
 // testFunction(numWaterBottles).input(12, 4).output(15) //?
+
+// 1534. Count Good Triplets, Easy
+/**
+ * @param {number[]} arr
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @return {number}
+ */
+var countGoodTriplets = function (arr, a, b, c) {
+  const goodTriplets = []
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        if (
+          Math.abs(arr[i] - arr[j]) <= a &&
+          Math.abs(arr[j] - arr[k]) <= b &&
+          Math.abs(arr[i] - arr[k]) <= c
+        ) {
+          goodTriplets.push([arr[i], arr[j], arr[k]])
+        }
+      }
+    }
+  }
+  return goodTriplets.length
+}
+// testFunction(countGoodTriplets).input([3, 0, 1, 1, 9, 7], 7, 2, 3).output(4) //?
+// testFunction(countGoodTriplets).input([1, 1, 2, 2, 3], 0, 0, 1).output(0) //?
