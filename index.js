@@ -3592,3 +3592,27 @@ var countGoodTriplets = function (arr, a, b, c) {
 }
 // testFunction(countGoodTriplets).input([3, 0, 1, 1, 9, 7], 7, 2, 3).output(4) //?
 // testFunction(countGoodTriplets).input([1, 1, 2, 2, 3], 0, 0, 1).output(0) //?
+
+// 1556. Thousand Separator, Easy
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var thousandSeparator = function (n) {
+  const numArr = n.toString().split('').reverse()
+  let count = 0
+  for (let i = 0; i < numArr.length; i++) {
+    count++
+    if (count === 4) {
+      numArr.splice(i, 0, '.')
+      count = 0
+    }
+  }
+  return numArr.reverse().join('') //?
+
+  // Alternative
+  // return n.toLocaleString('de-DE')
+  // https://leetcode.com/problems/thousand-separator/solutions/867448/javascript
+}
+// testFunction(thousandSeparator).input(1234).output('1.234') //?
+// testFunction(thousandSeparator).input(123456789).output('123.456.789') //?
