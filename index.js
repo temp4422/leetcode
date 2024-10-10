@@ -3616,3 +3616,26 @@ var thousandSeparator = function (n) {
 }
 // testFunction(thousandSeparator).input(1234).output('1.234') //?
 // testFunction(thousandSeparator).input(123456789).output('123.456.789') //?
+
+// 1592. Rearrange Spaces Between Words, Easy
+/**
+ * @param {string} text
+ * @return {string}
+ */
+var reorderSpaces = function (text) {
+  const countSpaces = text.replace(/\w+/g, '').length
+  const countWords = text.trim().split(/\s+/).length
+  if (countWords === 1) {
+    return text.trim().concat(' '.repeat(countSpaces))
+  }
+
+  const insertSpaces = Math.floor(countSpaces / (countWords - 1))
+  const insertSpacesRemain = countSpaces % (countWords - 1)
+
+  let newText = text.trim().replace(/\s+/g, ' '.repeat(insertSpaces))
+  newText = newText.concat(' '.repeat(insertSpacesRemain))
+
+  return newText
+}
+// testFunction(reorderSpaces).input('  this   is  a sentence ').output('this   is   a   sentence') //?
+// testFunction(reorderSpaces).input('  hello').output('hello  ') //?
