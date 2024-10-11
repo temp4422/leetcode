@@ -3639,3 +3639,28 @@ var reorderSpaces = function (text) {
 }
 // testFunction(reorderSpaces).input('  this   is  a sentence ').output('this   is   a   sentence') //?
 // testFunction(reorderSpaces).input('  hello').output('hello  ') //?
+
+// 1598. Crawler Log Folder, Easy
+/**
+ * @param {string[]} logs
+ * @return {number}
+ */
+var minOperations = function (logs) {
+  let logsStack = 0
+  for (let i = 0; i < logs.length; i++) {
+    switch (logs[i]) {
+      case '../':
+        logsStack--
+        if (logsStack < 0) logsStack = 0
+        break
+      case './':
+        break
+      default:
+        logsStack++
+        break
+    }
+  }
+  return logsStack
+}
+// testFunction(minOperations).input(['d1/', 'd2/', '../', 'd21/', './']).output(2) //?
+// testFunction(minOperations).input(["./","wz4/","../","mj2/","../","../","ik0/","il7/"]).output(2) //?
