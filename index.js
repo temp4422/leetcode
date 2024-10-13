@@ -3664,3 +3664,41 @@ var minOperations = function (logs) {
 }
 // testFunction(minOperations).input(['d1/', 'd2/', '../', 'd21/', './']).output(2) //?
 // testFunction(minOperations).input(["./","wz4/","../","mj2/","../","../","ik0/","il7/"]).output(2) //?
+
+// 1636. Sort Array by Increasing Frequency, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var frequencySort = function (nums) {
+  // 1. Count frequency
+  const map = new Map()
+  for (const num of nums) {
+    map.set(num, map.get(num) + 1 || 1)
+    // Alternative map expressions
+    // map.set(num, (map.get(num) || 0) + 1)
+    // map.set(num, (map.get(num) ?? 0) + 1)
+    // map.set(num, map.has(num) ? map.get(num) + 1 : 1)
+    // if (map.get(num)) {
+    //   map.set(num, map.get(num) + 1)
+    // } else {
+    //   map.set(num, 1)
+    // }
+  }
+  // 2. Sort descending by number value
+  const sortedEntriesByNum = [...map.entries()].sort((a, b) => b[0] - a[0])
+  // 3. Sort ascending by number frequency
+  const sortedEntriesByFrequency = sortedEntriesByNum.sort((a, b) => a[1] - b[1])
+  // 4. Generate new array from sorted values and their frequencies
+  const sortedArr = []
+  for (const pair of sortedEntriesByFrequency) {
+    for (let i = 0; i < pair[1]; i++) {
+      sortedArr.push(pair[0])
+    }
+  }
+
+  return sortedArr
+}
+// testFunction(frequencySort).input([1, 1, 2, 2, 2, 3]).output([3, 1, 1, 2, 2, 2]) //?
+// testFunction(frequencySort).input([2, 3, 1, 3, 2]).output([1, 3, 3, 2, 2]) //?
+// testFunction(frequencySort).input([-1,1,-6,4,5,-6,1,4,1]).output([5,-1,4,4,-6,-6,1,1,1]) //?
