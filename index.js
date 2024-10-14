@@ -3702,3 +3702,24 @@ var frequencySort = function (nums) {
 // testFunction(frequencySort).input([1, 1, 2, 2, 2, 3]).output([3, 1, 1, 2, 2, 2]) //?
 // testFunction(frequencySort).input([2, 3, 1, 3, 2]).output([1, 3, 3, 2, 2]) //?
 // testFunction(frequencySort).input([-1,1,-6,4,5,-6,1,4,1]).output([5,-1,4,4,-6,-6,1,1,1]) //?
+
+// 1624. Largest Substring Between Two Equal Characters, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxLengthBetweenEqualCharacters = function (s) {
+  let longestSubstring = -1
+  for (let left = 0; left < s.length; left++) {
+    for (let right = s.length - 1; right > left; right--) {
+      if (s[left] === s[right]) {
+        longestSubstring = Math.max(longestSubstring, right - left - 1)
+      }
+    }
+  }
+  return longestSubstring
+}
+// testFunction(maxLengthBetweenEqualCharacters).input('aa').output(0) //?
+// testFunction(maxLengthBetweenEqualCharacters).input('abca').output(2) //?
+// testFunction(maxLengthBetweenEqualCharacters).input('cbzxy').output(-1) //?
+// testFunction(maxLengthBetweenEqualCharacters).input('mgntdygtxrvxjnwksqhxuxtrv').output(18) //?
