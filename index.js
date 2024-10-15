@@ -3723,3 +3723,35 @@ var maxLengthBetweenEqualCharacters = function (s) {
 // testFunction(maxLengthBetweenEqualCharacters).input('abca').output(2) //?
 // testFunction(maxLengthBetweenEqualCharacters).input('cbzxy').output(-1) //?
 // testFunction(maxLengthBetweenEqualCharacters).input('mgntdygtxrvxjnwksqhxuxtrv').output(18) //?
+
+// 1629. Slowest Key, Easy
+/**
+ * @param {number[]} releaseTimes
+ * @param {string} keysPressed
+ * @return {character}
+ */
+var slowestKey = function (releaseTimes, keysPressed) {
+  const keyDuration = []
+  keyDuration.push([keysPressed[0], releaseTimes[0]])
+  for (let i = 1; i < keysPressed.length; i++) {
+    keyDuration.push([keysPressed[i], releaseTimes[i] - releaseTimes[i - 1]])
+  }
+  // prettier-ignore
+  const sortedLexicographically = keyDuration.sort((a, b) => a[0] < b[0] ? 1 : a[0] > b[0] ? -1 : 0)
+  // Alternative
+  // const sortedLexicographically = keyDuration.sort((a, b) => {
+  //   if (a[0] < b[0]) {
+  //     return 1
+  //   }
+  //   if (a[0] > b[0]) {
+  //     return -1
+  //   }
+  //   return 0
+  // })
+
+  const sortedByDuration = sortedLexicographically.sort((a, b) => b[1] - a[1])
+
+  return sortedByDuration[0][0]
+}
+// testFunction(slowestKey).input([9, 29, 49, 50], 'cbcd').output('c') //?
+// testFunction(slowestKey).input([12, 23, 36, 46, 62], 'spuda').output('a') //?
