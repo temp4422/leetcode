@@ -3755,3 +3755,57 @@ var slowestKey = function (releaseTimes, keysPressed) {
 }
 // testFunction(slowestKey).input([9, 29, 49, 50], 'cbcd').output('c') //?
 // testFunction(slowestKey).input([12, 23, 36, 46, 62], 'spuda').output('a') //?
+
+// 1652. Defuse the Bomb, Easy
+/**
+ * @param {number[]} code
+ * @param {number} k
+ * @return {number[]}
+ */
+var decrypt = function (code, k) {
+  const decryptedCode = []
+
+  if (k > 0) {
+    for (let i = 0; i < code.length; i++) {
+      let cipher = 0
+      let steps = k
+      let pointer = i + 1
+      while (steps) {
+        if (pointer > code.length - 1) pointer = 0
+        cipher += code[pointer]
+        pointer++
+        steps--
+      }
+      decryptedCode.push(cipher)
+    }
+  }
+
+  if (k < 0) {
+    for (let i = 0; i < code.length; i++) {
+      let cipher = 0
+      let steps = Math.abs(k)
+      let pointer = i - 1
+      while (steps) {
+        if (pointer > code.length - 1) pointer = 0
+        if (pointer < 0) pointer = code.length - 1
+        cipher += code[pointer]
+        pointer--
+        steps--
+      }
+      decryptedCode.push(cipher)
+    }
+  }
+
+  if (k === 0) {
+    for (let i = 0; i < code.length; i++) {
+      decryptedCode.push(0)
+    }
+    // Alternative
+    // return Array(code.length).fill(0)
+  }
+
+  return decryptedCode
+}
+// testFunction(decrypt).input([5, 7, 1, 4], 3).output([12, 10, 16, 13]) //?
+// testFunction(decrypt).input([2, 4, 9, 3], -2).output([12, 5, 6, 13]) //?
+// testFunction(decrypt).input([1, 2, 3, 4], 0).output([0, 0, 0, 0]) //?
