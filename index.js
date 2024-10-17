@@ -3809,3 +3809,24 @@ var decrypt = function (code, k) {
 // testFunction(decrypt).input([5, 7, 1, 4], 3).output([12, 10, 16, 13]) //?
 // testFunction(decrypt).input([2, 4, 9, 3], -2).output([12, 5, 6, 13]) //?
 // testFunction(decrypt).input([1, 2, 3, 4], 0).output([0, 0, 0, 0]) //?
+
+// 1668. Maximum Repeating Substring, Easy
+/**
+ * @param {string} sequence
+ * @param {string} word
+ * @return {number}
+ */
+var maxRepeating = function (sequence, word) {
+  let repeat = 0
+  let checkString = word
+  while (sequence.includes(checkString)) {
+    repeat++
+    checkString += word
+  }
+  return repeat
+}
+// testFunction(maxRepeating).input('ababc', 'ab').output(2) //?
+// testFunction(maxRepeating).input('ababc', 'ba').output(1) //?
+// testFunction(maxRepeating).input('ababc', 'ac').output(0) //?
+// testFunction(maxRepeating).input('aaabaaaabaaabaaaabaaaabaaaabaaaaba', 'aaaba').output(5) //?
+// testFunction(maxRepeating).input('bababbbaabbaaabbbabbaaaaabaabbaaabaab', 'a').output(5) //?
