@@ -3830,3 +3830,40 @@ var maxRepeating = function (sequence, word) {
 // testFunction(maxRepeating).input('ababc', 'ac').output(0) //?
 // testFunction(maxRepeating).input('aaabaaaabaaabaaaabaaaabaaaabaaaaba', 'aaaba').output(5) //?
 // testFunction(maxRepeating).input('bababbbaabbaaabbbabbaaaaabaabbaaabaab', 'a').output(5) //?
+
+// 1656. Design an Ordered Stream, Easy
+class OrderedStream {
+  /**
+   * @param {number} n
+   */
+  constructor(streamLength) {
+    this.stream = Array(streamLength + 1).fill([])
+    this.count = 1
+    this.lastReturnedId = 1
+  }
+
+  /**
+   * @param {number} idKey
+   * @param {string} value
+   * @return {string[]}
+   */
+  insert(idKey, value) {
+    this.stream[idKey] = [value]
+    this.count++
+
+    let chunk = []
+    for (let i = this.lastReturnedId; i < this.count; i++) {
+      if (!this.stream[i][0]) break
+      chunk.push(this.stream[i][0])
+      this.lastReturnedId++
+    }
+
+    return chunk
+  }
+}
+// const orderedStream1 = new OrderedStream(5)
+// const param_1 = orderedStream1.insert(3, 'ccccc') //? []
+// const param_2 = orderedStream1.insert(1, 'aaaaa') //? ["aaaaa"]
+// const param_3 = orderedStream1.insert(2, 'bbbbb') //? ["bbbbb", "ccccc"]
+// const param_4 = orderedStream1.insert(5, 'eeeee') //? []
+// const param_5 = orderedStream1.insert(4, 'ddddd') //? ["ddddd", "eeeee"]
