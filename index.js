@@ -3867,3 +3867,14 @@ class OrderedStream {
 // const param_3 = orderedStream1.insert(2, 'bbbbb') //? ["bbbbb", "ccccc"]
 // const param_4 = orderedStream1.insert(5, 'eeeee') //? []
 // const param_5 = orderedStream1.insert(4, 'ddddd') //? ["ddddd", "eeeee"]
+
+// 1662. Check If Two String Arrays are Equivalent, Easy
+/**
+ * @param {string[]} word1
+ * @param {string[]} word2
+ * @return {boolean}
+ */
+var arrayStringsAreEqual = function (word1, word2) {
+  return word1.join('') === word2.join('')
+}
+// testFunction(arrayStringsAreEqual).input(['ab', 'c'], ['a', 'bc']).output(true) //?
