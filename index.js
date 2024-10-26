@@ -3878,3 +3878,25 @@ var arrayStringsAreEqual = function (word1, word2) {
   return word1.join('') === word2.join('')
 }
 // testFunction(arrayStringsAreEqual).input(['ab', 'c'], ['a', 'bc']).output(true) //?
+
+// 1646. Get Maximum in Generated Array, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var getMaximumGenerated = function (n) {
+  if (n === 0) return 0
+
+  const nums = [0, 1]
+  for (let i = 2; i < n + 1; i++) {
+    if (i % 2 === 0) {
+      nums.push(nums[i / 2])
+    } else {
+      nums.push(nums[(i - 1) / 2] + nums[(i - 1) / 2 + 1])
+    }
+  }
+  return Math.max(...nums)
+}
+// testFunction(getMaximumGenerated).input(7).output(3) //?
+// testFunction(getMaximumGenerated).input(2).output(1) //?
+// testFunction(getMaximumGenerated).input(3).output(2) //?
