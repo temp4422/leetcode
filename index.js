@@ -3900,3 +3900,32 @@ var getMaximumGenerated = function (n) {
 // testFunction(getMaximumGenerated).input(7).output(3) //?
 // testFunction(getMaximumGenerated).input(2).output(1) //?
 // testFunction(getMaximumGenerated).input(3).output(2) //?
+
+// 1684. Count the Number of Consistent Strings, Easy
+/**
+ * @param {string} allowed
+ * @param {string[]} words
+ * @return {number}
+ */
+var countConsistentStrings = function (allowed, words) {
+  const regex = new RegExp(`^[${allowed}]+$`)
+  return words.filter((word) => word.match(regex)).length
+
+  // Alternative 1
+  // const regex = new RegExp(`^[${allowed}]+$`)
+  // let count = 0
+  // words.forEach((word) => {
+  //   if (word.match(regex)) count++
+  // })
+  // return count
+
+  // Alternative 2
+  // const regex = new RegExp(`[${allowed}]`, 'g')
+  // let count = 0
+  // for (let word of words) {
+  //   word = word.replace(regex, '')
+  //   if (word === '') count++
+  // }
+  // return count
+}
+// testFunction(countConsistentStrings).input('ab', ['ad', 'bd', 'aaab', 'baa', 'badab']).output(2) //?
