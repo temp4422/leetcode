@@ -3929,3 +3929,24 @@ var countConsistentStrings = function (allowed, words) {
   // return count
 }
 // testFunction(countConsistentStrings).input('ab', ['ad', 'bd', 'aaab', 'baa', 'badab']).output(2) //?
+
+// 1672. Richest Customer Wealth, Easy
+/**
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+var maximumWealth = function (accounts) {
+  return Math.max(...accounts.map((account) => account.reduce((acc, curr) => acc + curr)))
+
+  // Alternative
+  // let maxWealth = 0
+  // for (const account of accounts) {
+  //   maxWealth = Math.max(
+  //     maxWealth,
+  //     account.reduce((a, b) => a + b)
+  //   )
+  // }
+  // return maxWealth
+}
+// prettier-ignore
+// testFunction(maximumWealth).input([[1,2,3],[3,2,1]]).output(6) //?
