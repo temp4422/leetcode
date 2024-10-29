@@ -3948,5 +3948,14 @@ var maximumWealth = function (accounts) {
   // }
   // return maxWealth
 }
-// prettier-ignore
 // testFunction(maximumWealth).input([[1,2,3],[3,2,1]]).output(6) //?
+
+// 1678. Goal Parser Interpretation, Easy
+/**
+ * @param {string} command
+ * @return {string}
+ */
+var interpret = function (command) {
+  return command.replaceAll('()', 'o').replaceAll('(al)', 'al')
+}
+// testFunction(interpret).input('G()(al)').output('Goal') //?
