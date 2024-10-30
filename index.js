@@ -3959,3 +3959,27 @@ var interpret = function (command) {
   return command.replaceAll('()', 'o').replaceAll('(al)', 'al')
 }
 // testFunction(interpret).input('G()(al)').output('Goal') //?
+
+// 1700. Number of Students Unable to Eat Lunch, Easy
+/**
+ * @param {number[]} students
+ * @param {number[]} sandwiches
+ * @return {number}
+ */
+var countStudents = function (students, sandwiches) {
+  let countQueue = 0
+  while (sandwiches.length) {
+    if (sandwiches[0] === students[0]) {
+      sandwiches.shift()
+      students.shift()
+      countQueue = 0
+    } else {
+      students.push(students.shift())
+      countQueue++
+      if (countQueue > students.length) break
+    }
+  }
+  return students.length
+}
+// testFunction(countStudents).input([1, 1, 0, 0], [0, 1, 0, 1]).output(0) //?
+// testFunction(countStudents).input([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1]).output(3) //?
