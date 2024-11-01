@@ -3983,3 +3983,27 @@ var countStudents = function (students, sandwiches) {
 }
 // testFunction(countStudents).input([1, 1, 0, 0], [0, 1, 0, 1]).output(0) //?
 // testFunction(countStudents).input([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1]).output(3) //?
+
+// 1688. Count of Matches in Tournament, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var numberOfMatches = function (n) {
+  return n - 1
+
+  // Alternative
+  // let matches = 0
+  // while (n > 1) {
+  //   if (n % 2 === 0) {
+  //     n = n / 2
+  //     matches += n
+  //   } else {
+  //     n = (n - 1) / 2
+  //     matches += n
+  //     n++
+  //   }
+  // }
+  // return matches
+}
+// testFunction(numberOfMatches).input(7).output(6) //?
