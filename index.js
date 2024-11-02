@@ -4007,3 +4007,33 @@ var numberOfMatches = function (n) {
   // return matches
 }
 // testFunction(numberOfMatches).input(7).output(6) //?
+
+// 1694. Reformat Phone Number, Easy
+/**
+ * @param {string} number
+ * @return {string}
+ */
+var reformatNumber = function (number) {
+  const rawNumber = number.replace(/-|\s/g, '')
+  let result = ''
+
+  if (rawNumber.length % 3 === 1) {
+    let firstPart = rawNumber.slice(0, -4)
+    firstPart = firstPart.replace(/(...)/g, '$1' + '-')
+
+    let secondPart = rawNumber.slice(-4)
+    secondPart = secondPart.replace(/(..)/g, '$1' + '-')
+
+    result = firstPart + secondPart
+  } else {
+    result = rawNumber.replace(/(...)/g, '$1' + '-')
+  }
+
+  if (result.at(-1) === '-') result = result.slice(0, -1)
+
+  return result
+}
+// testFunction(reformatNumber).input('1-23-45 6').output('123-456') //?
+// testFunction(reformatNumber).input('123 4-567').output('123-45-67') //?
+// testFunction(reformatNumber).input('123 4-5678').output('123-456-78') //?
+// testFunction(reformatNumber).input('--17-5 229 35-39475 ').output('175-229-353-94-75') //?
