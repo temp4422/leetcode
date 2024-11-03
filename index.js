@@ -4037,3 +4037,26 @@ var reformatNumber = function (number) {
 // testFunction(reformatNumber).input('123 4-567').output('123-45-67') //?
 // testFunction(reformatNumber).input('123 4-5678').output('123-456-78') //?
 // testFunction(reformatNumber).input('--17-5 229 35-39475 ').output('175-229-353-94-75') //?
+
+// 1716. Calculate Money in Leetcode Bank, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var totalMoney = function (n) {
+  let totalMoney = 0
+  let weekDayMoney = 1
+  let weekFirstDayValue = 1
+
+  for (let i = 0; i < n; i++) {
+    totalMoney += weekDayMoney
+    weekDayMoney++
+    if (weekDayMoney === weekFirstDayValue + 7) {
+      weekFirstDayValue++
+      weekDayMoney = weekFirstDayValue
+    }
+  }
+  return totalMoney
+}
+// testFunction(totalMoney).input(4).output(10) //?
+// testFunction(totalMoney).input(10).output(37) //?
