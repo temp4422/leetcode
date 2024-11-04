@@ -4060,3 +4060,22 @@ var totalMoney = function (n) {
 }
 // testFunction(totalMoney).input(4).output(10) //?
 // testFunction(totalMoney).input(10).output(37) //?
+
+// 1704. Determine if String Halves Are Alike, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var halvesAreAlike = function (s) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+  let countLeft = 0
+  let countRight = 0
+
+  for (let left = 0, right = s.length - 1; left < s.length / 2; left++, right--) {
+    if (vowels.includes(s[left])) countLeft++
+    if (vowels.includes(s[right])) countRight++
+  }
+
+  return countLeft === countRight
+}
+// testFunction(halvesAreAlike).input('book').output(true) //?
