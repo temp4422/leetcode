@@ -4079,3 +4079,40 @@ var halvesAreAlike = function (s) {
   return countLeft === countRight
 }
 // testFunction(halvesAreAlike).input('book').output(true) //?
+
+// 1710. Maximum Units on a Truck, Easy
+/**
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
+ * @return {number}
+ */
+var maximumUnits = function (boxTypes, truckSize) {
+  const sortedBoxes = boxTypes.sort((a, b) => b[1] - a[1])
+  
+  let totalUnitsInTruck = 0
+  let i = 0
+
+  while (truckSize && i < boxTypes.length) {
+    totalUnitsInTruck += boxTypes[i][0] * boxTypes[i][1]
+    truckSize -= boxTypes[i][0]
+
+    // Remove boxes if put too much (reverse below zero)
+    if (truckSize < 0) {
+      while (truckSize < 0) {
+        totalUnitsInTruck -= boxTypes[i][1]
+        truckSize++
+      }
+      break
+    }
+
+    i++
+  }
+
+  return totalUnitsInTruck
+}
+// // prettier-ignore
+// testFunction(maximumUnits).input([[1,3],[2,2],[3,1]], 4).output(8) //?
+// // prettier-ignore
+// testFunction(maximumUnits).input([[5,10],[2,5],[4,7],[3,9]], 10).output(91) //?
+// // prettier-ignore
+// testFunction(maximumUnits).input([[1,3],[5,5],[2,5],[4,2],[4,1],[3,1],[2,2],[1,3],[2,5],[3,2]], 35).output(76) //?
