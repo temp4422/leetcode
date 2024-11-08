@@ -4088,7 +4088,7 @@ var halvesAreAlike = function (s) {
  */
 var maximumUnits = function (boxTypes, truckSize) {
   const sortedBoxes = boxTypes.sort((a, b) => b[1] - a[1])
-  
+
   let totalUnitsInTruck = 0
   let i = 0
 
@@ -4116,3 +4116,20 @@ var maximumUnits = function (boxTypes, truckSize) {
 // testFunction(maximumUnits).input([[5,10],[2,5],[4,7],[3,9]], 10).output(91) //?
 // // prettier-ignore
 // testFunction(maximumUnits).input([[1,3],[5,5],[2,5],[4,2],[4,1],[3,1],[2,2],[1,3],[2,5],[3,2]], 35).output(76) //?
+
+// 1732. Find the Highest Altitude, Easy
+/**
+ * @param {number[]} gain
+ * @return {number}
+ */
+var largestAltitude = function (gain) {
+  let highestAltitude = 0
+  let netGain = 0
+  for (let i = 0; i < gain.length; i++) {
+    netGain += gain[i]
+    highestAltitude = Math.max(netGain, highestAltitude)
+  }
+  return highestAltitude
+}
+// testFunction(largestAltitude).input([-5, 1, 5, 0, -7]).output(1) //?
+// testFunction(largestAltitude).input([-4, -3, -2, -1, 4, 3, 2]).output(0) //?
