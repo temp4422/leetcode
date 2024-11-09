@@ -4133,3 +4133,20 @@ var largestAltitude = function (gain) {
 }
 // testFunction(largestAltitude).input([-5, 1, 5, 0, -7]).output(1) //?
 // testFunction(largestAltitude).input([-4, -3, -2, -1, 4, 3, 2]).output(0) //?
+
+// 1742. Maximum Number of Balls in a Box, Easy
+/**
+ * @param {number} lowLimit
+ * @param {number} highLimit
+ * @return {number}
+ */
+var countBalls = function (lowLimit, highLimit) {
+  const boxMap = new Map()
+  for (let i = lowLimit; i < highLimit + 1; i++) {
+    // prettier-ignore
+    let boxNumber = Number(i.toString().split('').reduce((a, b) => +a + +b))
+    boxMap.set(boxNumber, boxMap.get(boxNumber) + 1 || 1)
+  }
+  return Math.max(...boxMap.values())
+}
+// testFunction(countBalls).input(1, 10).output(2) //?
