@@ -4150,3 +4150,39 @@ var countBalls = function (lowLimit, highLimit) {
   return Math.max(...boxMap.values())
 }
 // testFunction(countBalls).input(1, 10).output(2) //?
+
+// 1748. Sum of Unique Elements, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var sumOfUnique = function (nums) {
+  const map = {}
+  for (const num of nums) {
+    map[num] = map[num] + 1 || 1
+  }
+
+  let sumOfUnique = 0
+  for (const num in map) {
+    if (map[num] === 1) {
+      sumOfUnique += Number(num)
+    }
+  }
+  return sumOfUnique
+
+  // Alternative with hashmap
+  // const map = new Map()
+  // for (const num of nums) {
+  //   map.set(num, map.get(num) + 1 || 1)
+  // }
+  // let sumOfUnique = 0
+  // for (const num of map) {
+  //   if (num[1] === 1) {
+  //     sumOfUnique += num[0]
+  //   }
+  // }
+  // return sumOfUnique
+}
+// testFunction(sumOfUnique).input([1, 2, 3, 2]).output(4) //?
+// testFunction(sumOfUnique).input([1, 1, 1, 1, 1]).output(0) //?
+// testFunction(sumOfUnique).input([1, 2, 3, 4, 5]).output(15) //?
