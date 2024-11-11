@@ -4186,3 +4186,33 @@ var sumOfUnique = function (nums) {
 // testFunction(sumOfUnique).input([1, 2, 3, 2]).output(4) //?
 // testFunction(sumOfUnique).input([1, 1, 1, 1, 1]).output(0) //?
 // testFunction(sumOfUnique).input([1, 2, 3, 4, 5]).output(15) //?
+
+// 1763. Longest Nice Substring, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestNiceSubstring = function (s) {
+  function isNiceString(string) {
+    const set = new Set(string)
+    for (const character of set) {
+      if (!set.has(character.toLowerCase()) || !set.has(character.toUpperCase())) {
+        return false
+      }
+    }
+    return true
+  }
+
+  let longestSubstring = ''
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      let currentSubstring = s.slice(i, j + 1)
+      if (isNiceString(currentSubstring) && currentSubstring.length > longestSubstring.length) {
+        longestSubstring = currentSubstring
+      }
+    }
+  }
+
+  return longestSubstring
+}
+// testFunction(longestNiceSubstring).input('YazaAay').output('aAa') //?
