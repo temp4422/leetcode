@@ -4216,3 +4216,29 @@ var longestNiceSubstring = function (s) {
   return longestSubstring
 }
 // testFunction(longestNiceSubstring).input('YazaAay').output('aAa') //?
+
+// 1752. Check if Array Is Sorted and Rotated, Easy
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var check = function (nums) {
+  // 1. Rotate arr to start from minimal number
+  const startIndex = nums.indexOf(Math.min(...nums))
+  for (let i = 0; i < startIndex; i++) {
+    nums.push(nums.shift())
+  }
+
+  // 2. Create sorted copy of original arr
+  const sortedNums = nums.toSorted((a, b) => a - b)
+
+  // 3. Remove duplicates
+  const numsSet = [...new Set(nums)]
+  const sortedNumsSet = [...new Set(sortedNums)]
+
+  // 4. Compare if sorted arr equal to original
+  return JSON.stringify(numsSet) === JSON.stringify(sortedNumsSet)
+}
+// testFunction(check).input([3, 4, 5, 1, 2]).output(true) //?
+// testFunction(check).input([2, 1, 3, 4]).output(false) //?
+// testFunction(check).input([6, 10, 6]).output(true) //?
