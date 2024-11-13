@@ -4242,3 +4242,75 @@ var check = function (nums) {
 // testFunction(check).input([3, 4, 5, 1, 2]).output(true) //?
 // testFunction(check).input([2, 1, 3, 4]).output(false) //?
 // testFunction(check).input([6, 10, 6]).output(true) //?
+
+// 1758. Minimum Changes To Make Alternating Binary String, Easy
+/**
+ * @param {string} split
+ * @return {number}
+ */
+var minOperations = function (s) {
+  /*
+  10010100 - Original string
+
+  10101010 - If count as is: 5 alterations
+    ^^^^^
+  01010101 - If count with first bit flipped: 3 alterations
+  ^^     ^
+  */
+  // Alternative https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/solutions/4449189/daily-leetcode-problem-optimized-easy-explanation-c-java-python-javascript
+  let count1 = 0
+  let count2 = 0
+  for (let i = 0; i < s.length; ++i) {
+    if (i % 2 === 0) {
+      count1 += s[i] !== '0' ? 1 : 0
+      count2 += s[i] !== '1' ? 1 : 0
+    } else {
+      count1 += s[i] !== '1' ? 1 : 0
+      count2 += s[i] !== '0' ? 1 : 0
+    }
+  }
+  return Math.min(count1, count2)
+
+  // Alternative: Two loops, single logic (2 iterations, 1 selections)
+  // Slower by 1-1.5 times but eaasy to understand
+  // const splitS = s.split('')
+  // let countS = 0
+  // for (let i = 1; i < splitS.length; i++) {
+  //   if (splitS[i] === splitS[i - 1]) {
+  //     countS++
+  //     splitS[i] = splitS[i] === '1' ? '0' : '1'
+  //   }
+  // }
+  // const splitSMod = s.split('')
+  // splitSMod[0] = splitSMod[0] === '1' ? '0' : '1'
+  // let countSMod = 1
+  // for (let i = 1; i < splitSMod.length; i++) {
+  //   if (splitSMod[i] === splitSMod[i - 1]) {
+  //     countSMod++
+  //     splitSMod[i] = splitSMod[i] === '1' ? '0' : '1'
+  //   }
+  // }
+  // return Math.min(countS, countSMod)
+
+  // Alternative: with single loop but double logic (1 iterations, 2 selections)
+  // const splitS = s.split('')
+  // let countS = 0
+  // const splitSMod = s.split('')
+  // splitSMod[0] = splitSMod[0] === '1' ? '0' : '1'
+  // let countSMod = 1
+  // for (let i = 1; i < splitS.length; i++) {
+  //   if (splitS[i] === splitS[i - 1]) {
+  //     countS++
+  //     splitS[i] = splitS[i] === '1' ? '0' : '1'
+  //   }
+  //   if (splitSMod[i] === splitSMod[i - 1]) {
+  //     countSMod++
+  //     splitSMod[i] = splitSMod[i] === '1' ? '0' : '1'
+  //   }
+  // }
+  // return Math.min(countS, countSMod)
+}
+// testFunction(minOperations).input('0100').output(1) //?
+// testFunction(minOperations).input('1111').output(2) //?
+// testFunction(minOperations).input('110010').output(2) //?
+// testFunction(minOperations).input('10010100').output(3) //?
