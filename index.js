@@ -4314,3 +4314,30 @@ var minOperations = function (s) {
 // testFunction(minOperations).input('1111').output(2) //?
 // testFunction(minOperations).input('110010').output(2) //?
 // testFunction(minOperations).input('10010100').output(3) //?
+
+// 1768. Merge Strings Alternately, Easy
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {string}
+ */
+var mergeAlternately = function (word1, word2) {
+  const long = Math.max(word1.length, word2.length)
+  let mergedWords = ''
+  for (let i = 0; i < long; i++) {
+    if (word1[i]) mergedWords += word1[i]
+    if (word2[i]) mergedWords += word2[i]
+  }
+  return mergedWords //?
+
+  // Alternative https://leetcode.com/problems/merge-strings-alternately/solutions/1081404/javascript-elegant-and-clean-solution-using-nullish-coalescing-operator-o-n
+  // const maxLength = Math.max(a.length, b.length)
+  // let result = ''
+  // for (let i = 0; i < maxLength; i++) {
+  //   result += (a[i] ?? '') + (b[i] ?? '')
+  // }
+  // return result
+}
+// testFunction(mergeAlternately).input('abc', 'pqr').output('apbqcr') //?
+// testFunction(mergeAlternately).input('ab', 'pqrs').output('apbqrs') //?
+// testFunction(mergeAlternately).input('abcd', 'pq').output('apbqcd') //?
