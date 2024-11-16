@@ -4341,3 +4341,25 @@ var mergeAlternately = function (word1, word2) {
 // testFunction(mergeAlternately).input('abc', 'pqr').output('apbqcr') //?
 // testFunction(mergeAlternately).input('ab', 'pqrs').output('apbqrs') //?
 // testFunction(mergeAlternately).input('abcd', 'pq').output('apbqcd') //?
+
+// 1773. Count Items Matching a Rule, Easy
+/**
+ * @param {string[][]} items
+ * @param {string} ruleKey
+ * @param {string} ruleValue
+ * @return {number}
+ */
+var countMatches = function (items, ruleKey, ruleValue) {
+  if (ruleKey === 'type') {
+    return items.filter((item) => item[0] === ruleValue).length
+  }
+  if (ruleKey === 'color') {
+    return items.filter((item) => item[1] === ruleValue).length
+  }
+  if (ruleKey === 'name') {
+    return items.filter((item) => item[2] === ruleValue).length
+  }
+  return
+}
+// prettier-ignore
+// testFunction(countMatches).input([["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], "color", "silver").output(1) //?
