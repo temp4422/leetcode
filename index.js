@@ -4361,5 +4361,19 @@ var countMatches = function (items, ruleKey, ruleValue) {
   }
   return
 }
-// prettier-ignore
 // testFunction(countMatches).input([["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], "color", "silver").output(1) //?
+
+// 1796. Second Largest Digit in a String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var secondHighest = function (s) {
+  const digits = s.replace(/\D/g, '')
+  const digitsSet = new Set(digits)
+  const sortedDigitsSet = [...digitsSet].sort((a, b) => b - a)
+  return sortedDigitsSet.length > 1 ? parseInt(sortedDigitsSet[1]) : -1
+}
+// testFunction(secondHighest).input('dfa12321afd').output(2) //?
+// testFunction(secondHighest).input('abc1111').output(-1) //?
+// testFunction(secondHighest).input('ck077').output(0) //?
