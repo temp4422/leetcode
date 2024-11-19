@@ -4377,3 +4377,34 @@ var secondHighest = function (s) {
 // testFunction(secondHighest).input('dfa12321afd').output(2) //?
 // testFunction(secondHighest).input('abc1111').output(-1) //?
 // testFunction(secondHighest).input('ck077').output(0) //?
+
+// 1790. Check if One String Swap Can Make Strings Equal, Easy
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+var areAlmostEqual = function (s1, s2) {
+  if (s1 === s2) return true
+
+  const s1Arr = s1.split('')
+  const s2Arr = s2.split('')
+
+  let swapValue
+  let swapIndex
+  for (let i = 0; i < s1Arr.length; i++) {
+    if (s1Arr[i] != s2Arr[i]) {
+      if (swapValue) {
+        s2Arr[swapIndex] = s2Arr[i]
+        s2Arr[i] = swapValue
+        break // No more swaps allowed
+      } else {
+        swapValue = s2Arr[i]
+        swapIndex = i
+      }
+    }
+  }
+
+  return s1Arr.join('') === s2Arr.join('')
+}
+// testFunction(areAlmostEqual).input('bank', 'kanb').output(true) //?
