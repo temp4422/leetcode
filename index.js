@@ -4408,3 +4408,23 @@ var areAlmostEqual = function (s1, s2) {
   return s1Arr.join('') === s2Arr.join('')
 }
 // testFunction(areAlmostEqual).input('bank', 'kanb').output(true) //?
+
+// 1812. Determine Color of a Chessboard Square, Easy
+/**
+ * @param {string} coordinates
+ * @return {boolean}
+ */
+var squareIsWhite = function (coordinates) {
+  // https://leetcode.com/problems/determine-color-of-a-chessboard-square/solutions/3180117/1812-is-one-line-solution
+  return (coordinates.codePointAt(0) + coordinates.codePointAt(1)) % 2 === 1
+
+  // Alternative
+  // const blackOdd = ['a', 'c', 'e', 'g', '1', '3', '5', '7']
+  // const blackEven = ['b', 'd', 'f', 'h', '2', '4', '6', '8']
+  // if (blackOdd.includes(coordinates[0]) && blackOdd.includes(coordinates[1])) return false
+  // if (blackEven.includes(coordinates[0]) && blackEven.includes(coordinates[1])) return false
+  // return true
+}
+// testFunction(squareIsWhite).input('a1').output(false) //?
+// testFunction(squareIsWhite).input('h3').output(true) //?
+// testFunction(squareIsWhite).input('b2').output(false) //?
