@@ -4428,3 +4428,14 @@ var squareIsWhite = function (coordinates) {
 // testFunction(squareIsWhite).input('a1').output(false) //?
 // testFunction(squareIsWhite).input('h3').output(true) //?
 // testFunction(squareIsWhite).input('b2').output(false) //?
+
+// 1816. Truncate Sentence, Easy
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var truncateSentence = function (s, k) {
+  return s.split(' ', k).join(' ')
+}
+// testFunction(truncateSentence).input("Hello how are you Contestant", 4).output("Hello how are you") //?
