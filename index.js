@@ -4439,3 +4439,19 @@ var truncateSentence = function (s, k) {
   return s.split(' ', k).join(' ')
 }
 // testFunction(truncateSentence).input("Hello how are you Contestant", 4).output("Hello how are you") //?
+
+// 1844. Replace All Digits with Characters, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var replaceDigits = function (s) {
+  const sArr = s.split('')
+  for (let i = 0; i < sArr.length; i++) {
+    if (i % 2 != 0) {
+      sArr[i] = String.fromCharCode(sArr[i - 1].charCodeAt(0) + Number(sArr[i]))
+    }
+  }
+  return sArr.join('')
+}
+// testFunction(replaceDigits).input('a1c1e1').output('abcdef') //?
