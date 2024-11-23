@@ -4455,3 +4455,13 @@ var replaceDigits = function (s) {
   return sArr.join('')
 }
 // testFunction(replaceDigits).input('a1c1e1').output('abcdef') //?
+
+// 1832. Check if the Sentence Is Pangram, Easy
+/**
+ * @param {string} sentence
+ * @return {boolean}
+ */
+var checkIfPangram = function (sentence) {
+  return new Set(sentence).size === 26
+}
+// testFunction(checkIfPangram).input('thequickbrownfoxjumpsoverthelazydog').output(true) //?
