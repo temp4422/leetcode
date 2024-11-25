@@ -4465,3 +4465,18 @@ var checkIfPangram = function (sentence) {
   return new Set(sentence).size === 26
 }
 // testFunction(checkIfPangram).input('thequickbrownfoxjumpsoverthelazydog').output(true) //?
+
+// 1859. Sorting the Sentence, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var sortSentence = function (s) {
+  const sArr = s.split(' ')
+  sArr.sort((a, b) => Number(a.at(-1)) - Number(b.at(-1)))
+  for (let i = 0; i < sArr.length; i++) {
+    sArr[i] = sArr[i].slice(0, -1)
+  }
+  return sArr.join(' ')
+}
+// testFunction(sortSentence).input('is2 sentence4 This1 a3').output('This is a sentence') //?
