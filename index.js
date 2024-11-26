@@ -4480,3 +4480,40 @@ var sortSentence = function (s) {
   return sArr.join(' ')
 }
 // testFunction(sortSentence).input('is2 sentence4 This1 a3').output('This is a sentence') //?
+
+// 1854. Maximum Population Year, Easy
+/**
+ * @param {number[][]} logs
+ * @return {number}
+ */
+var maximumPopulation = function (logs) {
+  const frequencyMap = new Map()
+  const checkedYears = []
+  for (const [birthYear, deathYear] of logs) {
+    if (checkedYears.includes(birthYear)) continue // Skip year duplicates
+    for (let i = 0; i < logs.length; i++) {
+      if (birthYear >= logs[i][0] && birthYear < logs[i][1]) {
+        frequencyMap.set(birthYear, frequencyMap.get(birthYear) + 1 || 1)
+      }
+    }
+    checkedYears.push(birthYear)
+  }
+
+  const frequencyMapArr = [...frequencyMap.entries()].sort((a, b) => a[0] - b[0])
+
+  let maxPopulationYear = 0
+  let maxPopulationCount = 0
+  for (let i = 0; i < frequencyMapArr.length; i++) {
+    if (frequencyMapArr[i][1] > maxPopulationCount) {
+      maxPopulationCount = frequencyMapArr[i][1]
+      maxPopulationYear = frequencyMapArr[i][0]
+    }
+  }
+
+  return maxPopulationYear
+}
+// testFunction(maximumPopulation).input([[1993,1999],[2000,2010]]).output(1993) //?
+// testFunction(maximumPopulation).input([[1950,1961],[1960,1971],[1970,1981]]).output(1960) //?
+// testFunction(maximumPopulation).input([[2033,2034],[2039,2047],[1998,2042],[2047,2048],[2025,2029],[2005,2044],[1990,1992],[1952,1956],[1984,2014]]).output(2005) //?
+// testFunction(maximumPopulation).input([[1987,2047],[1952,2006],[2021,2042],[2047,2049],[2036,2040],[1994,2009]]).output(1994) //?
+// testFunction(maximumPopulation).input([[1966,1968],[1954,2030],[1966,1994],[2030,2044],[1988,2036],[1977,2050],[2036,2046],[1989,2048],[2049,2050],[2008,2019],[2022,2031],[1970,2024],[1957,1996],[1991,2034],[1956,1996],[1959,1969],[2021,2050]]).output(1991) //?
