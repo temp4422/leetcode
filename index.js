@@ -4517,3 +4517,19 @@ var maximumPopulation = function (logs) {
 // testFunction(maximumPopulation).input([[2033,2034],[2039,2047],[1998,2042],[2047,2048],[2025,2029],[2005,2044],[1990,1992],[1952,1956],[1984,2014]]).output(2005) //?
 // testFunction(maximumPopulation).input([[1987,2047],[1952,2006],[2021,2042],[2047,2049],[2036,2040],[1994,2009]]).output(1994) //?
 // testFunction(maximumPopulation).input([[1966,1968],[1954,2030],[1966,1994],[2030,2044],[1988,2036],[1977,2050],[2036,2046],[1989,2048],[2049,2050],[2008,2019],[2022,2031],[1970,2024],[1957,1996],[1991,2034],[1956,1996],[1959,1969],[2021,2050]]).output(1991) //?
+
+// 1876. Substrings of Size Three with Distinct Characters, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countGoodSubstrings = function (s) {
+  let goodSubstringsCount = 0
+  for (let i = 0; i < s.length - 2; i++) {
+    if (s.slice(i, i + 3).length === new Set(s.slice(i, i + 3)).size) {
+      goodSubstringsCount++
+    }
+  }
+  return goodSubstringsCount
+}
+// testFunction(countGoodSubstrings).input('xyzzaz').output(1) //?
