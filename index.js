@@ -4533,3 +4533,23 @@ var countGoodSubstrings = function (s) {
   return goodSubstringsCount
 }
 // testFunction(countGoodSubstrings).input('xyzzaz').output(1) //?
+
+// 1351. Count Negative Numbers in a Sorted Matrix, Easy
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var countNegatives = function (grid) {
+  let countNegatives = 0
+  for (const arr of grid) {
+    for (let i = arr.length - 1; i > -1; i--) {
+      if (arr[i] > -1) break
+      countNegatives++
+    }
+  }
+  return countNegatives
+
+  // Alternative
+  // return grid.flat().filter((ele) => ele < 0).length
+}
+// testFunction(countNegatives).input([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]).output(8) //?
