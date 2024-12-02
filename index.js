@@ -4553,3 +4553,29 @@ var countNegatives = function (grid) {
   // return grid.flat().filter((ele) => ele < 0).length
 }
 // testFunction(countNegatives).input([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]).output(8) //?
+
+// 1897. Redistribute Characters to Make All Strings Equal, Easy
+/**
+ * @param {string[]} words
+ * @return {boolean}
+ */
+var makeEqual = function (words) {
+  const lettersFrequency = new Map()
+  for (const word of words) {
+    for (const letter of word) {
+      lettersFrequency.set(letter, lettersFrequency.get(letter) + 1 || 1)
+    }
+  }
+
+  for (const frequency of lettersFrequency.values()) {
+    if (frequency % words.length != 0) {
+      return false
+    }
+  }
+  return true
+}
+// testFunction(makeEqual).input(['abc', 'aabc', 'bc']).output(true) //?
+// testFunction(makeEqual).input(['abc', 'cba']).output(true) //?
+// testFunction(makeEqual).input(['bc', 'de']).output(false) //?
+// testFunction(makeEqual).input(['aabbccdde', 'e']).output(true) //?
+// testFunction(makeEqual).input(["caaaaa","aaaaaaaaa","a","bbb","bbbbbbbbb","bbb","cc","cccccccccccc","ccccccc","ccccccc","cc","cccc","c","cccccccc","c"]).output(true) //?
