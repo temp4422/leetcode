@@ -4579,3 +4579,18 @@ var makeEqual = function (words) {
 // testFunction(makeEqual).input(['bc', 'de']).output(false) //?
 // testFunction(makeEqual).input(['aabbccdde', 'e']).output(true) //?
 // testFunction(makeEqual).input(["caaaaa","aaaaaaaaa","a","bbb","bbbbbbbbb","bbb","cc","cccccccccccc","ccccccc","ccccccc","cc","cccc","c","cccccccc","c"]).output(true) //?
+
+// 1941. Check if All Characters Have Equal Number of Occurrences, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var areOccurrencesEqual = function (s) {
+  const map = new Map()
+  for (const char of s) {
+    map.set(char, map.get(char) + 1 || 1)
+  }
+  const set = new Set([...map.values()])
+  return set.size === 1
+}
+// testFunction(areOccurrencesEqual).input('abacbc').output(true) //?
