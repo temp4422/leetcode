@@ -4594,3 +4594,21 @@ var areOccurrencesEqual = function (s) {
   return set.size === 1
 }
 // testFunction(areOccurrencesEqual).input('abacbc').output(true) //?
+
+// 1903. Largest Odd Number in String, Easy
+/**
+ * @param {string} num
+ * @return {string}
+ */
+var largestOddNumber = function (num) {
+  while (num.length) {
+    if (Number(num.at(-1)) % 2 === 0) {
+      num = num.slice(0, -1)
+    } else {
+      return num
+    }
+  }
+  return ''
+}
+// testFunction(largestOddNumber).input('52').output('5') //?
+// testFunction(largestOddNumber).input('239537672423884969653287101').output('239537672423884969653287101') //?
