@@ -4612,3 +4612,20 @@ var largestOddNumber = function (num) {
 }
 // testFunction(largestOddNumber).input('52').output('5') //?
 // testFunction(largestOddNumber).input('239537672423884969653287101').output('239537672423884969653287101') //?
+
+// 1920. Build Array from Permutation, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var buildArray = function (nums) {
+  return nums.map((num) => nums[num])
+
+  // Alternative
+  // const permutationArr = []
+  // for (const num of nums) {
+  //   permutationArr[num] = nums[nums[num]]
+  // }
+  // return permutationArr
+}
+// testFunction(buildArray).input([0, 2, 1, 5, 3, 4]).output([0, 1, 2, 4, 5, 3]) //?
