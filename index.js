@@ -4629,3 +4629,24 @@ var buildArray = function (nums) {
   // return permutationArr
 }
 // testFunction(buildArray).input([0, 2, 1, 5, 3, 4]).output([0, 1, 2, 4, 5, 3]) //?
+
+// 1880. Check if Word Equals Summation of Two Words, Easy
+/**
+ * @param {string} firstWord
+ * @param {string} secondWord
+ * @param {string} targetWord
+ * @return {boolean}
+ */
+var isSumEqual = function (firstWord, secondWord, targetWord) {
+  // prettier-ignore
+  const letterValues = {a:0,b:1,c:2,d:3,e:4,f:5,g:6,h:7,i:8,j:9}
+  // prettier-ignore
+  let firstNum = '', secondNum = '', targetNum = ''
+
+  for (const letter of firstWord) firstNum += letterValues[letter]
+  for (const letter of secondWord) secondNum += letterValues[letter]
+  for (const letter of targetWord) targetNum += letterValues[letter]
+
+  return Number(firstNum) + Number(secondNum) === Number(targetNum)
+}
+// testFunction(isSumEqual).input('acb', 'cba', 'cdb').output(true) //?
