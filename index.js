@@ -4650,3 +4650,43 @@ var isSumEqual = function (firstWord, secondWord, targetWord) {
   return Number(firstNum) + Number(secondNum) === Number(targetNum)
 }
 // testFunction(isSumEqual).input('acb', 'cba', 'cdb').output(true) //?
+
+// 1909. Remove One Element to Make the Array Strictly Increasing, Easy
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canBeIncreasing = function (nums) {
+  let issueNumIndex
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] <= nums[i - 1]) {
+      issueNumIndex = i
+      break
+    }
+  }
+
+  let flagHigh = 0
+  let checkHigh = nums.toSpliced(issueNumIndex - 1, 1)
+  for (let i = 1; i < checkHigh.length; i++) {
+    if (checkHigh[i] <= checkHigh[i - 1]) {
+      flagHigh = 1
+      break
+    }
+  }
+
+  let flagLow = 0
+  let checkLow = nums.toSpliced(issueNumIndex, 1)
+  for (let i = 1; i < checkLow.length; i++) {
+    if (checkLow[i] <= checkLow[i - 1]) {
+      flagLow = 1
+      break
+    }
+  }
+
+  if (flagHigh === 0 || flagLow === 0) return true
+  else return false
+}
+// testFunction(canBeIncreasing).input([1, 2, 10, 5, 7]).output(true) //?
+// testFunction(canBeIncreasing).input([2, 3, 1, 2]).output(false) //?
+// testFunction(canBeIncreasing).input([1, 1, 1]).output(false) //?
+// testFunction(canBeIncreasing).input([105, 924, 32, 968]).output(true) //?
