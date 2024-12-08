@@ -4690,3 +4690,52 @@ var canBeIncreasing = function (nums) {
 // testFunction(canBeIncreasing).input([2, 3, 1, 2]).output(false) //?
 // testFunction(canBeIncreasing).input([1, 1, 1]).output(false) //?
 // testFunction(canBeIncreasing).input([105, 924, 32, 968]).output(true) //?
+
+// 1913. Maximum Product Difference Between Two Pairs, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProductDifference = function (nums) {
+  let maxNum = Math.max(...nums)
+  let minNum = Math.min(...nums)
+
+  if (nums.length > 2) {
+    nums.splice(nums.indexOf(maxNum), 1)
+    nums.splice(nums.indexOf(minNum), 1)
+  }
+
+  let nearMaxNum = Math.max(...nums)
+  let nearMinNum = Math.min(...nums)
+
+  return maxNum * nearMaxNum - minNum * nearMinNum
+
+  // Alternative
+  // https://leetcode.com/problems/maximum-product-difference-between-two-pairs/solutions/2084079/c-c-java-c-javascript-typescript-o-n-solutions-easy-to-understand
+  // // prettier-ignore
+  // let min1 = 1e4, min2 = min1, max1 = 0, max2 = 0;
+  // for (const num of nums) {
+  //   if (num > max1 || num > max2) {
+  //     max2 = Math.max(max1, max2)
+  //     max1 = num
+  //   }
+  //   if (num < min1 || num < min2) {
+  //     min2 = Math.min(min1, min2)
+  //     min1 = num
+  //   }
+  // }
+  // return max1 * max2 - min1 * min2
+
+  // Alternative
+  // https://leetcode.com/problems/maximum-product-difference-between-two-pairs/solutions/4418141/c-java-python-javascript-2-approaches-explained
+  // nums.sort((a, b) => a - b)
+  // const n = nums.length
+  // return nums[n - 2] * nums[n - 1] - nums[0] * nums[1]
+}
+// testFunction(maxProductDifference).input([5, 6, 2, 7, 4]).output(34) //?
+// testFunction(maxProductDifference).input([4, 2, 5, 9, 7, 4, 8]).output(64) //?
+// testFunction(maxProductDifference).input([5, 9, 4, 6]).output(34) //?
+// testFunction(maxProductDifference).input([1, 6, 7, 5, 2, 4, 10, 6, 4]).output(68) //?
+// testFunction(maxProductDifference).input([8, 3, 5, 7]).output(41) //?
+// testFunction(maxProductDifference).input([10, 10, 10, 10]).output(0) //?
+// testFunction(maxProductDifference).input([2, 9, 5, 9, 1]).output(79) //?
