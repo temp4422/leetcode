@@ -4739,3 +4739,33 @@ var maxProductDifference = function (nums) {
 // testFunction(maxProductDifference).input([8, 3, 5, 7]).output(41) //?
 // testFunction(maxProductDifference).input([10, 10, 10, 10]).output(0) //?
 // testFunction(maxProductDifference).input([2, 9, 5, 9, 1]).output(79) //?
+
+// 1945. Sum of Digits of String After Convert, Easy
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
+var getLucky = function (s, k) {
+  // prettier-ignore
+  const alphabet = {a:1, b:2, c:3, d:4, e:5, f:6, g:7, h:8, i:9, j:10 ,k:11, l:12, m:13, n:14, o:15, p:16, q:17, r:18, s:19, t:20, u:21, v:22, w:23, x:24, y:25, z:26}
+
+  let digitsString = ''
+  for (const char of s) {
+    digitsString += alphabet[char]
+  }
+
+  let digitsSum
+  while (k > 0) {
+    digitsSum = 0
+    for (const digit of digitsString) {
+      digitsSum += Number(digit)
+    }
+    digitsString = String(digitsSum)
+    k--
+  }
+
+  return digitsSum
+}
+// testFunction(getLucky).input('iiii', 1).output(36) //?
+// testFunction(getLucky).input('leetcode', 2).output(6) //?
