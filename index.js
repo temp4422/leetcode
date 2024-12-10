@@ -4769,3 +4769,39 @@ var getLucky = function (s, k) {
 }
 // testFunction(getLucky).input('iiii', 1).output(36) //?
 // testFunction(getLucky).input('leetcode', 2).output(6) //?
+
+// 1974. Minimum Time to Type Word Using Special Typewriter, easy
+/**
+ * @param {string} word
+ * @return {number}
+ */
+var minTimeToType = function (word) {
+  // prettier-ignore
+  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  let pointer = 'a'
+  let seconds = 0
+
+  for (const char of word) {
+    if (pointer === char) {
+      seconds++
+      continue
+    } else {
+      let difference = Math.abs(alphabet.indexOf(pointer) - alphabet.indexOf(char))
+
+      if (difference <= Math.floor(alphabet.length / 2)) {
+        seconds += difference
+      } else {
+        difference = alphabet.length - difference
+        seconds += difference
+      }
+
+      pointer = char
+      seconds++
+    }
+  }
+
+  return seconds
+}
+// testFunction(minTimeToType).input('abc').output(5) //?
+// testFunction(minTimeToType).input('bza').output(7) //?
+// testFunction(minTimeToType).input('zjpc').output(34) //?
