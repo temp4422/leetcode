@@ -4805,3 +4805,19 @@ var minTimeToType = function (word) {
 // testFunction(minTimeToType).input('abc').output(5) //?
 // testFunction(minTimeToType).input('bza').output(7) //?
 // testFunction(minTimeToType).input('zjpc').output(34) //?
+
+// 1961. Check If String Is a Prefix of Array, Easy
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {boolean}
+ */
+var isPrefixString = function (s, words) {
+  let prefix = ''
+  for (const word of words) {
+    prefix += word
+    if (prefix === s) return true
+  }
+  return false
+}
+// testFunction(isPrefixString).input("iloveleetcode", ["i","love","leetcode","apples"]).output(true) //?
