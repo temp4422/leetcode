@@ -4821,3 +4821,23 @@ var isPrefixString = function (s, words) {
   return false
 }
 // testFunction(isPrefixString).input("iloveleetcode", ["i","love","leetcode","apples"]).output(true) //?
+
+// 1967. Number of Strings That Appear as Substrings in Word, Easy
+/**
+ * @param {string[]} patterns
+ * @param {string} word
+ * @return {number}
+ */
+var numOfStrings = function (patterns, word) {
+  let countSubstrings = 0
+  for (const pattern of patterns) {
+    // if (word.match(new RegExp(`${pattern}`, 'g'))) countSubstrings++
+    if (word.includes(pattern)) countSubstrings++
+  }
+  return countSubstrings
+
+  // Alternative
+  // https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/solutions/1404563/c-javascript-typescript-1-liner-easysimple
+  // return [...patterns].filter((x) => word.includes(x)).length
+}
+// testFunction(numOfStrings).input(['a', 'abc', 'bc', 'd'], 'abc').output(3) //?
