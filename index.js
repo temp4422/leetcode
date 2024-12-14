@@ -4841,3 +4841,26 @@ var numOfStrings = function (patterns, word) {
   // return [...patterns].filter((x) => word.includes(x)).length
 }
 // testFunction(numOfStrings).input(['a', 'abc', 'bc', 'd'], 'abc').output(3) //?
+
+// 1991. Find the Middle Index in Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMiddleIndex = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    const before = nums.slice(0, i).reduce((a, b) => a + b, 0) || 0
+    const after = nums.slice(i + 1).reduce((a, b) => a + b, 0) || 0
+    if (before === after) return i
+  }
+  return -1
+}
+// testFunction(findMiddleIndex).input([2, 3, -1, 8, 4]).output(3) //?
+// testFunction(findMiddleIndex).input([1, -1, 4]).output(2) //?
+// testFunction(findMiddleIndex).input([2, 5]).output(-1) //?
+// testFunction(findMiddleIndex).input([1]).output(0) //?
+// testFunction(findMiddleIndex).input([4, 0]).output(0) //?
+// testFunction(findMiddleIndex).input([1, 1]).output(-1) //?
+// testFunction(findMiddleIndex).input([1, 3, 5, 9]).output(-1) //?
+// testFunction(findMiddleIndex).input([-5]).output(0) //?
+// testFunction(findMiddleIndex).input([3, -4, 1, -4]).output(3) //?
