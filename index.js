@@ -4864,3 +4864,36 @@ var findMiddleIndex = function (nums) {
 // testFunction(findMiddleIndex).input([1, 3, 5, 9]).output(-1) //?
 // testFunction(findMiddleIndex).input([-5]).output(0) //?
 // testFunction(findMiddleIndex).input([3, -4, 1, -4]).output(3) //?
+
+// 1979. Find Greatest Common Divisor of Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findGCD = function (nums) {
+  let largetsNum = Math.max(...nums) //?
+  let smallestNum = Math.min(...nums) //?
+
+  const largeDivisors = []
+  const smallDivisors = []
+
+  for (let i = 1; i < largetsNum; i++) {
+    if (!(largetsNum % i)) {
+      largeDivisors.push(largetsNum / i)
+    }
+    if (!(smallestNum % i)) {
+      smallDivisors.push(smallestNum / i)
+    }
+  }
+
+  for (let i = 0; i < smallDivisors.length; i++) {
+    if (largeDivisors.includes(smallDivisors[i])) {
+      return smallDivisors[i]
+    }
+  }
+
+  return 1
+}
+// testFunction(findGCD).input([2, 5, 6, 9, 10]).output(2) //?
+// testFunction(findGCD).input([7, 5, 6, 8, 3]).output(1) //?
+// testFunction(findGCD).input([3, 3]).output(3) //?
