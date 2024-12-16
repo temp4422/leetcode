@@ -4897,3 +4897,26 @@ var findGCD = function (nums) {
 // testFunction(findGCD).input([2, 5, 6, 9, 10]).output(2) //?
 // testFunction(findGCD).input([7, 5, 6, 8, 3]).output(1) //?
 // testFunction(findGCD).input([3, 3]).output(3) //?
+
+// 1995. Count Special Quadruplets, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countQuadruplets = function (nums) {
+  let count = 0
+  for (let a = 0; a < nums.length; a++) {
+    for (let b = a + 1; b < nums.length; b++) {
+      for (let c = b + 1; c < nums.length; c++) {
+        for (let d = c + 1; d < nums.length; d++) {
+          if (nums[a] + nums[b] + nums[c] === nums[d]) count++
+        }
+      }
+    }
+  }
+  return count
+}
+// testFunction(countQuadruplets).input([1, 2, 3, 6]).output(1) //?
+// testFunction(countQuadruplets).input([3, 3, 6, 4, 5]).output(0) //?
+// testFunction(countQuadruplets).input([1, 1, 1, 3, 5]).output(4) //?
+// testFunction(countQuadruplets).input([2, 16, 9, 27, 3, 39]).output(2) //?
