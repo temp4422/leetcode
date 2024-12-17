@@ -4920,3 +4920,15 @@ var countQuadruplets = function (nums) {
 // testFunction(countQuadruplets).input([3, 3, 6, 4, 5]).output(0) //?
 // testFunction(countQuadruplets).input([1, 1, 1, 3, 5]).output(4) //?
 // testFunction(countQuadruplets).input([2, 16, 9, 27, 3, 39]).output(2) //?
+
+// 2000. Reverse Prefix of Word, Easy
+/**
+ * @param {string} word
+ * @param {character} ch
+ * @return {string}
+ */
+var reversePrefix = function (word, ch) {
+  // prettier-ignore
+  return word.slice(0, word.indexOf(ch) + 1).split('').reverse().join('') + word.slice(word.indexOf(ch) + 1)
+}
+// testFunction(reversePrefix).input('abcdefd', 'd').output('dcbaefd') //?
