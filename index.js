@@ -4932,3 +4932,34 @@ var reversePrefix = function (word, ch) {
   return word.slice(0, word.indexOf(ch) + 1).split('').reverse().join('') + word.slice(word.indexOf(ch) + 1)
 }
 // testFunction(reversePrefix).input('abcdefd', 'd').output('dcbaefd') //?
+
+// 2022. Convert 1D Array Into 2D Array, Easy
+/**
+ * @param {number[]} original
+ * @param {number} m
+ * @param {number} n
+ * @return {number[][]}
+ */
+var construct2DArray = function (original, m, n) {
+  if (original.length != n * m) return []
+
+  const newArr = []
+  let index = 0
+  for (let i = 0; i < m; i++) {
+    let row = []
+    for (let j = 0; j < n; j++) {
+      row.push(original[index])
+      index++
+    }
+    newArr.push(row)
+  }
+  return newArr
+}
+// prettier-ignore
+// testFunction(construct2DArray).input([1,2,3,4], 2, 2).output([[1,2],[3,4]]) //?
+// testFunction(construct2DArray).input([1,2,3], 1, 3).output([[1,2,3]]) //?
+// testFunction(construct2DArray).input([1,2], 1, 1).output([]) //?
+// testFunction(construct2DArray).input([3], 1, 2).output([]) //?
+// testFunction(construct2DArray).input([5], 3, 1).output([]) //?
+// testFunction(construct2DArray).input([6,2,6,8], 4, 2).output([]) //?
+// testFunction(construct2DArray).input([1,3,3,5], 3, 1).output([]) //?
