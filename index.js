@@ -4955,7 +4955,6 @@ var construct2DArray = function (original, m, n) {
   }
   return newArr
 }
-// prettier-ignore
 // testFunction(construct2DArray).input([1,2,3,4], 2, 2).output([[1,2],[3,4]]) //?
 // testFunction(construct2DArray).input([1,2,3], 1, 3).output([[1,2,3]]) //?
 // testFunction(construct2DArray).input([1,2], 1, 1).output([]) //?
@@ -4963,3 +4962,25 @@ var construct2DArray = function (original, m, n) {
 // testFunction(construct2DArray).input([5], 3, 1).output([]) //?
 // testFunction(construct2DArray).input([6,2,6,8], 4, 2).output([]) //?
 // testFunction(construct2DArray).input([1,3,3,5], 3, 1).output([]) //?
+
+// 2011. Final Value of Variable After Performing Operations, Easy
+/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var finalValueAfterOperations = function (operations) {
+  let value = 0
+  for (const operation of operations) {
+    if (operation === 'X++' || operation === '++X') {
+      value++
+    }
+    if (operation === 'X--' || operation === '--X') {
+      value--
+    }
+  }
+  return value
+
+  // Alternative https://leetcode.com/problems/final-value-of-variable-after-performing-operations/solutions/3440605/one-line-solution
+  // return operations.reduce((acc,i) => i.includes('+') ? acc += 1 : acc -= 1, 0)
+}
+// testFunction(finalValueAfterOperations).input(['--X', 'X++', 'X++']).output(1) //?
