@@ -4984,3 +4984,23 @@ var finalValueAfterOperations = function (operations) {
   // return operations.reduce((acc,i) => i.includes('+') ? acc += 1 : acc -= 1, 0)
 }
 // testFunction(finalValueAfterOperations).input(['--X', 'X++', 'X++']).output(1) //?
+
+// 2037. Minimum Number of Moves to Seat Everyone, Easy
+/**
+ * @param {number[]} seats
+ * @param {number[]} students
+ * @return {number}
+ */
+var minMovesToSeat = function (seats, students) {
+  seats.sort((a, b) => a - b)
+  students.sort((a, b) => a - b)
+
+  let moves = 0
+  for (let i = 0; i < seats.length; i++) {
+    moves += Math.abs(seats[i] - students[i])
+  }
+  return moves
+}
+// testFunction(minMovesToSeat).input([3, 1, 5], [2, 7, 4]).output(4) //?
+// testFunction(minMovesToSeat).input([4, 1, 5, 9], [1, 3, 2, 6]).output(7) //?
+// testFunction(minMovesToSeat).input([2, 2, 6, 6], [1, 3, 2, 6]).output(4) //?
