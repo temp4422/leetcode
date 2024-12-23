@@ -5004,3 +5004,25 @@ var minMovesToSeat = function (seats, students) {
 // testFunction(minMovesToSeat).input([3, 1, 5], [2, 7, 4]).output(4) //?
 // testFunction(minMovesToSeat).input([4, 1, 5, 9], [1, 3, 2, 6]).output(7) //?
 // testFunction(minMovesToSeat).input([2, 2, 6, 6], [1, 3, 2, 6]).output(4) //?
+
+// 2027. Minimum Moves to Convert String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minimumMoves = function (s) {
+  let moves = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'X') {
+      moves++
+      i += 2
+    }
+  }
+
+  return moves
+}
+// testFunction(minimumMoves).input('XXX').output(1) //?
+// testFunction(minimumMoves).input('XXOX').output(2) //?
+// testFunction(minimumMoves).input('OOOO').output(0) //?
+// testFunction(minimumMoves).input('OXOX').output(1) //?
+// testFunction(minimumMoves).input('OXOOX').output(2) //?
