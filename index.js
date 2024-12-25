@@ -5026,3 +5026,31 @@ var minimumMoves = function (s) {
 // testFunction(minimumMoves).input('OOOO').output(0) //?
 // testFunction(minimumMoves).input('OXOX').output(1) //?
 // testFunction(minimumMoves).input('OXOOX').output(2) //?
+
+// 2032. Two Out of Three, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @param {number[]} nums3
+ * @return {number[]}
+ */
+var twoOutOfThree = function (nums1, nums2, nums3) {
+  const nums1Set = new Set(nums1)
+  const nums2Set = new Set(nums2)
+  const nums3Set = new Set(nums3)
+  const values = []
+  for (const num of [...nums1Set, ...nums2Set, ...nums3Set]) {
+    if (nums1Set.has(num) && nums2Set.has(num)) {
+      values.push(num)
+    }
+    if (nums1Set.has(num) && nums3Set.has(num)) {
+      values.push(num)
+    }
+    if (nums2Set.has(num) && nums3Set.has(num)) {
+      values.push(num)
+    }
+  }
+  return [...new Set(values)]
+}
+// testFunction(twoOutOfThree).input([1, 1, 3, 2], [2, 3], [3]).output([3, 2]) //?
+// testFunction(twoOutOfThree).input([1, 2, 2], [4, 3, 3], [5]).output([]) //?
