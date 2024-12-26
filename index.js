@@ -5054,3 +5054,22 @@ var twoOutOfThree = function (nums1, nums2, nums3) {
 }
 // testFunction(twoOutOfThree).input([1, 1, 3, 2], [2, 3], [3]).output([3, 2]) //?
 // testFunction(twoOutOfThree).input([1, 2, 2], [4, 3, 3], [5]).output([]) //?
+
+// 2053. Kth Distinct String in an Array, Easy
+/**
+ * @param {string[]} arr
+ * @param {number} k
+ * @return {string}
+ */
+var kthDistinct = function (arr, k) {
+  const map = new Map()
+  for (const string of arr) {
+    map.set(string, map.get(string) + 1 || 1)
+  }
+
+  const distinctStrings = [...map.entries()].filter((entry) => entry[1] === 1)
+
+  return distinctStrings[k - 1] ? distinctStrings[k - 1][0] : ''
+}
+// testFunction(kthDistinct).input(['d', 'b', 'c', 'b', 'c', 'a'], 2).output('a') //?
+// testFunction(kthDistinct).input(['a', 'b', 'a'], 3).output('') //?
