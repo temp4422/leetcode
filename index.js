@@ -5073,3 +5073,18 @@ var kthDistinct = function (arr, k) {
 }
 // testFunction(kthDistinct).input(['d', 'b', 'c', 'b', 'c', 'a'], 2).output('a') //?
 // testFunction(kthDistinct).input(['a', 'b', 'a'], 3).output('') //?
+
+// 2042. Check if Numbers Are Ascending in a Sentence, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var areNumbersAscending = function (s) {
+  // prettier-ignore
+  let numbers = s.replace(/[a-z]/g, '').split(' ').filter(num=> num != '')
+  for (let i = 1; i < numbers.length; i++) {
+    if (+numbers[i] <= +numbers[i - 1]) return false
+  }
+  return true
+}
+// testFunction(areNumbersAscending).input("1 box has 3 blue 4 red 6 green and 12 yellow marbles").output(true) //?
