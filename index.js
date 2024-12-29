@@ -5088,3 +5088,20 @@ var areNumbersAscending = function (s) {
   return true
 }
 // testFunction(areNumbersAscending).input("1 box has 3 blue 4 red 6 green and 12 yellow marbles").output(true) //?
+
+// 2047. Number of Valid Words in a Sentence, Easy
+/**
+ * @param {string} sentence
+ * @return {number}
+ */
+var countValidWords = function (sentence) {
+  const tokens = sentence.trim('').split(/\s+/)
+  const regex = /\d|^-|-$|.*-.*-.*|-[!,\.]|!(?=.)|,(?=.)|\.(?=.)/g
+  const filteredTokens = tokens.filter((token) => !token.match(regex))
+  return filteredTokens.length
+}
+// testFunction(countValidWords).input('cat and  dog').output(3) //?
+// testFunction(countValidWords).input('!this  1-s b8d!').output(0) //?
+// testFunction(countValidWords).input('alice and  bob are playing stone-game10').output(5) //?
+// testFunction(countValidWords).input("a-b-c").output(0) //?
+// testFunction(countValidWords).input("!g 3 !sy ").output(0) //?
