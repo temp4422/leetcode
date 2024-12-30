@@ -5105,3 +5105,56 @@ var countValidWords = function (sentence) {
 // testFunction(countValidWords).input('alice and  bob are playing stone-game10').output(5) //?
 // testFunction(countValidWords).input("a-b-c").output(0) //?
 // testFunction(countValidWords).input("!g 3 !sy ").output(0) //?
+
+// 2068. Check Whether Two Strings are Almost Equivalent, Easy
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {boolean}
+ */
+var checkAlmostEquivalent = function (word1, word2) {
+  const map = new Map()
+
+  for (let i = 0; i < word1.length; i++) {
+    map.set(word1[i], (map.get(word1[i]) ?? 0) + 1)
+    map.set(word2[i], (map.get(word2[i]) ?? 0) - 1)
+  }
+
+  for (const [letter, frequency] of map) {
+    if (Math.abs(frequency) > 3) return false
+  }
+  return true
+
+  // // Alternative
+  // // Set characters frequency
+  // const map1 = new Map()
+  // const map2 = new Map()
+
+  // // word1.length === word2.length
+  // for (let i = 0; i < word1.length; i++) {
+  //   map1.set(word1[i], map1.get(word1[i]) + 1 || 1)
+  //   map2.set(word2[i], map2.get(word2[i]) + 1 || 1)
+  // }
+
+  // // Get all available charcters
+  // const set = [...new Set(word1.concat(word2))]
+
+  // // Count difference for each character
+  // const diffMap = new Map()
+  // for (const char of set) {
+  //   let difference = Math.abs((map1.get(char) || 0) - (map2.get(char) || 0))
+  //   diffMap.set(char, difference)
+  // }
+
+  // // Find difference more than 3
+  // for (const [key, value] of diffMap) {
+  //   if (value > 3) return false
+  // }
+
+  // return true
+}
+// testFunction(checkAlmostEquivalent).input('aaaa', 'bccb').output(false) //?
+// testFunction(checkAlmostEquivalent).input('abcdeef', 'abaaacc').output(true) //?
+// testFunction(checkAlmostEquivalent).input('cccddabba', 'babababab').output(true) //?
+// testFunction(checkAlmostEquivalent).input('aaaa', 'aaaa').output(true) //?
+// testFunction(checkAlmostEquivalent).input('zzzyyy', 'iiiiii').output(false) //?
