@@ -5158,3 +5158,19 @@ var checkAlmostEquivalent = function (word1, word2) {
 // testFunction(checkAlmostEquivalent).input('cccddabba', 'babababab').output(true) //?
 // testFunction(checkAlmostEquivalent).input('aaaa', 'aaaa').output(true) //?
 // testFunction(checkAlmostEquivalent).input('zzzyyy', 'iiiiii').output(false) //?
+
+// 2057. Smallest Index With Equal Value, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var smallestEqual = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 10 === nums[i]) return i
+  }
+  return -1
+
+  // Alternative
+  // return nums.findIndex((num, index) => index % 10 === num)
+}
+// testFunction(smallestEqual).input([0, 1, 2]).output(0) //?
