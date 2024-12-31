@@ -5174,3 +5174,63 @@ var smallestEqual = function (nums) {
   // return nums.findIndex((num, index) => index % 10 === num)
 }
 // testFunction(smallestEqual).input([0, 1, 2]).output(0) //?
+
+// 2062. Count Vowel Substrings of a String, Easy
+/**
+ * @param {string} word
+ * @return {number}
+ */
+var countVowelSubstrings = function (word) {
+  // https://leetcode.com/problems/count-vowel-substrings-of-a-string/solutions/2177576/javascript-set-solution
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u'])
+  const set = new Set()
+  let countVowelsSubstring = 0
+
+  for (let i = 0; i < word.length; i++) {
+    set.clear()
+
+    for (let j = 0; j + i < word.length; j++) {
+      let character = word[j + i]
+      if (!vowels.has(character)) break
+      set.add(character)
+      if (set.size === vowels.size) countVowelsSubstring++
+    }
+  }
+
+  return countVowelsSubstring
+
+  // Alternative
+  // let start = 0
+  // let end = start + 5
+  // let countVowelsSubstring = 0
+  // const regexNon = /[^aeiou]+/
+  // const regex = /(?=.*a)(?=.*e)(?=.*i)(?=.*o)(?=.*u)/
+  // while (start < word.length - 4) {
+  //   let substring = word.slice(start, end)
+  //   if (substring.match(regexNon)) {
+  //     if (end < word.length && end - start === 5) {
+  //       start++
+  //       end++
+  //     } else {
+  //       start++
+  //       end = start + 5
+  //     }
+  //     continue
+  //   }
+  //   if (substring.match(regex)) {
+  //     countVowelsSubstring++
+  //   }
+  //   if (end < word.length) {
+  //     end++
+  //   } else {
+  //     start++
+  //     end = start + 5
+  //   }
+  // }
+  // return countVowelsSubstring
+}
+// testFunction(countVowelSubstrings).input('aeiouu').output(2) //?
+// testFunction(countVowelSubstrings).input('cuaieuouac').output(7) //?
+// testFunction(countVowelSubstrings).input('unicornarihan').output(0) //?
+// testFunction(countVowelSubstrings).input('poazaeuioauoiioaouuouaui').output(31) //?
+// testFunction(countVowelSubstrings).input('duuebuaeeeeeeuaoeiueaoui').output(81) //?
