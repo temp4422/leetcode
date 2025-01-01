@@ -5234,3 +5234,36 @@ var countVowelSubstrings = function (word) {
 // testFunction(countVowelSubstrings).input('unicornarihan').output(0) //?
 // testFunction(countVowelSubstrings).input('poazaeuioauoiioaouuouaui').output(31) //?
 // testFunction(countVowelSubstrings).input('duuebuaeeeeeeuaoeiueaoui').output(81) //?
+
+// 2085. Count Common Words With One Occurrence, Easy
+/**
+ * @param {string[]} words1
+ * @param {string[]} words2
+ * @return {number}
+ */
+var countWords = function (words1, words2) {
+  const longerStringLength = words1.length > words2.length ? words1.length : words2.length
+  const map1 = new Map()
+  const map2 = new Map()
+
+  for (let i = 0; i < longerStringLength; i++) {
+    if (words1[i]) map1.set(words1[i], (map1.get(words1[i]) ?? 0) + 1)
+    if (words2[i]) map2.set(words2[i], (map2.get(words2[i]) ?? 0) + 1)
+  }
+
+  let countCommon = 0
+  for (const word of words1) {
+    if (map1.get(word) === 1 && map2.get(word) === 1) countCommon++
+  }
+
+  // Alternative with map iterator
+  // let countCommon = 0
+  // const iterator1 = map1.keys()
+  // for (let i = 0; i < map1.size; i++) {
+  //   let map1Key = iterator1.next().value
+  //   if (map1.get(map1Key) === 1 && map2.get(map1Key) === 1) countCommon++
+  // }
+
+  return countCommon
+}
+// testFunction(countWords).input(["leetcode","is","amazing","as","is"], ["amazing","leetcode","is"]).output(2) //?
