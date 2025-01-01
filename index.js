@@ -5267,3 +5267,38 @@ var countWords = function (words1, words2) {
   return countCommon
 }
 // testFunction(countWords).input(["leetcode","is","amazing","as","is"], ["amazing","leetcode","is"]).output(2) //?
+
+// 2073. Time Needed to Buy Tickets, Easy
+/**
+ * @param {number[]} tickets
+ * @param {number} k
+ * @return {number}
+ */
+var timeRequiredToBuy = function (tickets, k) {
+  let seconds = 0
+  let index = 0
+
+  while (tickets[k] > 0) {
+    if (index === tickets.length) index = 0
+    // Alternative to reset index
+    // index = index % tickets.length
+
+    if (tickets[index] === 0) {
+      index++
+      continue
+    }
+    tickets[index]--
+    index++
+    seconds++
+
+    // Alternative
+    // if (tickets[index]) {
+    //   tickets[index]--
+    //   seconds++
+    // }
+    // index++
+  }
+  return seconds
+}
+// testFunction(timeRequiredToBuy).input([2, 3, 2], 2).output(6) //?
+// testFunction(timeRequiredToBuy).input([5, 1, 1, 1], 0).output(8) //?
