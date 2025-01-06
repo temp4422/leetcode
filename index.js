@@ -5302,3 +5302,30 @@ var timeRequiredToBuy = function (tickets, k) {
 }
 // testFunction(timeRequiredToBuy).input([2, 3, 2], 2).output(6) //?
 // testFunction(timeRequiredToBuy).input([5, 1, 1, 1], 0).output(8) //?
+
+// 2078. Two Furthest Houses With Different Colors, Easy
+/**
+ * @param {number[]} colors
+ * @return {number}
+ */
+var maxDistance = function (colors) {
+  const diffs = []
+
+  for (let i = 0; i < colors.length; i++) {
+    let leftColor = colors[i]
+
+    for (let j = colors.length - 1; j > 0; j--) {
+      let rightColor = colors[j]
+
+      if (leftColor != rightColor) {
+        diffs.push(Math.abs(i - j))
+      }
+    }
+  }
+
+  return Math.max(...diffs)
+}
+// testFunction(maxDistance).input([1, 1, 1, 6, 1, 1, 1]).output(3) //?
+// testFunction(maxDistance).input([1, 8, 3, 8, 3]).output(4) //?
+// testFunction(maxDistance).input([0, 1]).output(1) //?
+// testFunction(maxDistance).input([4, 4, 4, 11, 4, 4, 11, 4, 4, 4, 4, 4]).output(8) //?
