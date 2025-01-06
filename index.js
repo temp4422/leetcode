@@ -5329,3 +5329,21 @@ var maxDistance = function (colors) {
 // testFunction(maxDistance).input([1, 8, 3, 8, 3]).output(4) //?
 // testFunction(maxDistance).input([0, 1]).output(1) //?
 // testFunction(maxDistance).input([4, 4, 4, 11, 4, 4, 11, 4, 4, 4, 4, 4]).output(8) //?
+
+// 2089. Find Target Indices After Sorting Array, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var targetIndices = function (nums, target) {
+  const sortedNums = nums.sort((a, b) => a - b)
+  const targetNumsIndexes = []
+  for (let i = 0; i < sortedNums.length; i++) {
+    if (sortedNums[i] === target) {
+      targetNumsIndexes.push(i)
+    }
+  }
+  return targetNumsIndexes
+}
+// testFunction(targetIndices).input([1, 2, 5, 2, 3], 2).output([1, 2]) //?
