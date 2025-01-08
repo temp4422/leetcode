@@ -5347,3 +5347,21 @@ var targetIndices = function (nums, target) {
   return targetNumsIndexes
 }
 // testFunction(targetIndices).input([1, 2, 5, 2, 3], 2).output([1, 2]) //?
+
+// 2114. Maximum Number of Words Found in Sentences, Easy
+/**
+ * @param {string[]} sentences
+ * @return {number}
+ */
+var mostWordsFound = function (sentences) {
+  let maxNumberOfWords = 0
+  for (const sentence of sentences) {
+    const words = sentence.split(' ')
+    if (words.length >= maxNumberOfWords) maxNumberOfWords = words.length
+  }
+  return maxNumberOfWords
+
+  // Alternative https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/solutions/1896320/1-line
+  // return Math.max(...sentences.map((item) => item.split(' ').length))
+}
+// testFunction(mostWordsFound).input(["alice and bob love leetcode", "i think so too", "this is great thanks very much"]).output(6) //?
