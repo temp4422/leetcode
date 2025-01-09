@@ -5365,3 +5365,30 @@ var mostWordsFound = function (sentences) {
   // return Math.max(...sentences.map((item) => item.split(' ').length))
 }
 // testFunction(mostWordsFound).input(["alice and bob love leetcode", "i think so too", "this is great thanks very much"]).output(6) //?
+
+// 2103. Rings and Rods, Easy
+/**
+ * @param {string} rings
+ * @return {number}
+ */
+var countPoints = function (rings) {
+  const map = new Map()
+  for (let i = 0; i < rings.length; i += 2) {
+    let ring = rings[i + 1]
+    let colors = [...(map.get(rings[i + 1]) ?? []), rings[i]]
+    // Alternative
+    // let colors = map.get(rings[i + 1]) ?? []
+    // colors.push(rings[i])
+    map.set(ring, colors)
+  }
+
+  let rodsWithRings = 0
+  for (const [index, value] of map) {
+    if (value.includes('R') && value.includes('G') && value.includes('B')) {
+      rodsWithRings++
+    }
+  }
+
+  return rodsWithRings
+}
+// testFunction(countPoints).input('B0B6G0R6R0R6G9').output(1) //?
