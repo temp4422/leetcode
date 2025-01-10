@@ -5374,12 +5374,18 @@ var mostWordsFound = function (sentences) {
 var countPoints = function (rings) {
   const map = new Map()
   for (let i = 0; i < rings.length; i += 2) {
-    let ring = rings[i + 1]
-    let colors = [...(map.get(rings[i + 1]) ?? []), rings[i]]
-    // Alternative
+    map.set(rings[i + 1], (map.get(rings[i + 1]) ?? []).concat(rings[i]))
+
+    // Alternative 1
+    // let ring = rings[i + 1]
     // let colors = map.get(rings[i + 1]) ?? []
     // colors.push(rings[i])
-    map.set(ring, colors)
+    // map.set(ring, colors)
+
+    // Alternative 2
+    // let ring = rings[i + 1]
+    // let colors = [...(map.get(rings[i + 1]) ?? []), rings[i]]
+    // map.set(ring, colors)
   }
 
   let rodsWithRings = 0
@@ -5392,3 +5398,18 @@ var countPoints = function (rings) {
   return rodsWithRings
 }
 // testFunction(countPoints).input('B0B6G0R6R0R6G9').output(1) //?
+
+// 2108. Find First Palindromic String in the Array, Easy
+/**
+ * @param {string[]} words
+ * @return {string}
+ */
+var firstPalindrome = function (words) {
+  for (const word of words) {
+    if (word === word.split('').reverse().join('')) {
+      return word
+    }
+  }
+  return ''
+}
+// testFunction(firstPalindrome).input(['abc', 'car', 'ada', 'racecar', 'cool']).output('ada') //?
