@@ -5413,3 +5413,20 @@ var firstPalindrome = function (words) {
   return ''
 }
 // testFunction(firstPalindrome).input(['abc', 'car', 'ada', 'racecar', 'cool']).output('ada') //?
+
+// 2129. Capitalize the Title, Easy
+/**
+ * @param {string} title
+ * @return {string}
+ */
+var capitalizeTitle = function (title) {
+  const newTitle = []
+  for (const word of title.split(' ')) {
+    let newWord = word.toLocaleLowerCase()
+    if (word.length > 2) newWord = newWord.replace(/^./, newWord[0].toUpperCase())
+    newTitle.push(newWord)
+  }
+  return newTitle.join(' ')
+}
+// testFunction(capitalizeTitle).input('capiTalIze tHe titLe').output('Capitalize The Title') //?
+// testFunction(capitalizeTitle).input('First leTTeR of EACH Word').output('First Letter of Each Word') //?
