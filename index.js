@@ -5430,3 +5430,17 @@ var capitalizeTitle = function (title) {
 }
 // testFunction(capitalizeTitle).input('capiTalIze tHe titLe').output('Capitalize The Title') //?
 // testFunction(capitalizeTitle).input('First leTTeR of EACH Word').output('First Letter of Each Word') //?
+
+// 2119. A Number After a Double Reversal, Easy
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var isSameAfterReversals = function (num) {
+  if (num === 0) return true
+  let reversedNum1 = num.toString().split('').reverse().join('').replace(/^0+/, '')
+  let reversedNum2 = reversedNum1.split('').reverse().join('')
+  return reversedNum2 === num.toString()
+}
+// testFunction(isSameAfterReversals).input(526).output(true) //?
+// testFunction(isSameAfterReversals).input(0).output(true) //?
