@@ -5444,3 +5444,29 @@ var isSameAfterReversals = function (num) {
 }
 // testFunction(isSameAfterReversals).input(526).output(true) //?
 // testFunction(isSameAfterReversals).input(0).output(true) //?
+
+// 2124. Check if All A's Appears Before All B's, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkString = function (s) {
+  return s.indexOf('ba') === -1
+
+  // Alternative https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/solutions/1661296/javascript-2124-check-if-all-a-s-appears-before-all-b-s
+  // return (
+  //   s.indexOf('b') === -1 || // is b is not there ?
+  //   s.lastIndexOf('a') < s.indexOf('b') // is  last a  before  1st b ?
+  // )
+
+  // Alternative
+  // if (s.indexOf('b') === -1) return true
+  // return s.lastIndexOf('a') < s.indexOf('b')
+
+  // Alternative
+  // return s.lastIndexOf('a') < (s.indexOf('b') === -1 ? 101 : s.indexOf('b'))
+}
+// testFunction(checkString).input('aaabbb').output(true) //?
+// testFunction(checkString).input('abab').output(false) //?
+// testFunction(checkString).input('bbb').output(true) //?
+// testFunction(checkString).input('a').output(true) //?
