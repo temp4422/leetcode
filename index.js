@@ -5470,3 +5470,27 @@ var checkString = function (s) {
 // testFunction(checkString).input('abab').output(false) //?
 // testFunction(checkString).input('bbb').output(true) //?
 // testFunction(checkString).input('a').output(true) //?
+
+// 2144. Minimum Cost of Buying Candies With Discount, Easy
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minimumCost = function (cost) {
+  const sortedCost = cost.sort((a, b) => b - a)
+
+  let minimumCost = 0
+  for (let i = 0; i < sortedCost.length; i++) {
+    if ((i + 1) % 3 === 0) {
+      //do nothing
+    } else {
+      minimumCost += sortedCost[i]
+    }
+  }
+  console.log(minimumCost)
+
+  return minimumCost
+}
+// testFunction(minimumCost).input([1, 2, 3]).output(5) //?
+// testFunction(minimumCost).input([6, 5, 7, 9, 2, 2]).output(23) //?
+// testFunction(minimumCost).input([5, 5]).output(10) //?
