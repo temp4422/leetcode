@@ -5494,3 +5494,36 @@ var minimumCost = function (cost) {
 // testFunction(minimumCost).input([1, 2, 3]).output(5) //?
 // testFunction(minimumCost).input([6, 5, 7, 9, 2, 2]).output(23) //?
 // testFunction(minimumCost).input([5, 5]).output(10) //?
+
+// 2133. Check if Every Row and Column Contains All Numbers, Easy
+/**
+ * @param {number[][]} matrix
+ * @return {boolean}
+ */
+var checkValid = function (matrix) {
+  // Alternative
+  // const columnMatrix = []
+  // for (let i = 0; i < matrix.length; i++) {
+  //   let column = []
+  //   for (let j = 0; j < matrix.length; j++) {
+  //     column.push(matrix[j][i])
+  //   }
+  //   columnMatrix.push(column)
+  // }
+
+  const columnMatrix = matrix[0].map((_, i) => matrix.map((row) => row[i]))
+
+  for (const row of matrix) {
+    const rowSet = new Set(row)
+    if (rowSet.size !== matrix.length) return false
+  }
+
+  for (const column of columnMatrix) {
+    const rowSet = new Set(column)
+    if (rowSet.size !== columnMatrix.length) return false
+  }
+
+  return true
+}
+// testFunction(checkValid).input([[1,2,3],[3,1,2],[2,3,1]]).output(true) //?
+// testFunction(checkValid).input([[2,2,2],[2,2,2],[2,2,2]]).output(false) //?
