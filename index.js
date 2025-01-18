@@ -5527,3 +5527,37 @@ var checkValid = function (matrix) {
 }
 // testFunction(checkValid).input([[1,2,3],[3,1,2],[2,3,1]]).output(true) //?
 // testFunction(checkValid).input([[2,2,2],[2,2,2],[2,2,2]]).output(false) //?
+
+// 2138. Divide a String Into Groups of Size k, Easy
+/**
+ * @param {string} s
+ * @param {number} k
+ * @param {character} fill
+ * @return {string[]}
+ */
+var divideString = function (s, k, fill) {
+  const groupComposition = []
+  for (let i = 0; i < s.length; i++) {
+    let group = ''
+    for (let j = 0; j < k; j++) {
+      if (i >= s.length) {
+        group += fill
+      } else {
+        group += s[i]
+        i++
+      }
+    }
+    groupComposition.push(group)
+    i--
+  }
+  return groupComposition
+
+  // Alternative https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/solutions/5277891/typescript-slice-with-padend
+  // const chunks = []
+  // for (let i = 0; i < s.length; i += k) {
+  //   chunks.push(s.slice(i, i + k).padEnd(k, fill))
+  // }
+  // return chunks
+}
+// testFunction(divideString).input('abcdefghi', 3, 'x').output(['abc', 'def', 'ghi']) //?
+// testFunction(divideString).input('abcdefghij', 3, 'x').output(['abc', 'def', 'ghi', 'jxx']) //?
