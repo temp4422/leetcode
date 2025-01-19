@@ -5561,3 +5561,23 @@ var divideString = function (s, k, fill) {
 }
 // testFunction(divideString).input('abcdefghi', 3, 'x').output(['abc', 'def', 'ghi']) //?
 // testFunction(divideString).input('abcdefghij', 3, 'x').output(['abc', 'def', 'ghi', 'jxx']) //?
+
+// 2160. Minimum Sum of Four Digit Number After Splitting Digits, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var minimumSum = function (num) {
+  let numString = num.toString().split('')
+  let numArr = numString.map((num) => parseInt(num))
+  let numSorted = numArr.toSorted((a, b) => a - b)
+  let newNum1 = parseInt(`${numSorted[0]}${numSorted[2]}`)
+  let newNum2 = parseInt(`${numSorted[1]}${numSorted[3]}`)
+  return newNum1 + newNum2
+
+  // Alternative https://leetcode.com/problems/minimum-sum-of-four-digit-number-after-splitting-digits/solutions/3440231/my-minimumsum
+  // let str = num.toString().split('').sort()
+  // return parseInt(str[0] + str[2]) + parseInt(str[1] + str[3])
+}
+// testFunction(minimumSum).input(2932).output(52) //?
+// testFunction(minimumSum).input(4009).output(13) //?
