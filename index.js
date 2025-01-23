@@ -5581,3 +5581,19 @@ var minimumSum = function (num) {
 }
 // testFunction(minimumSum).input(2932).output(52) //?
 // testFunction(minimumSum).input(4009).output(13) //?
+
+// 2169. Count Operations to Obtain Zero, Easy
+/**
+ * @param {number} num1
+ * @param {number} num2
+ * @return {number}
+ */
+var countOperations = function (num1, num2) {
+  let count = 0
+  while (num1 && num2) {
+    num1 >= num2 ? (num1 -= num2) : (num2 -= num1)
+    count++
+  }
+  return count
+}
+// testFunction(countOperations).input(2, 3).output(3) //?
