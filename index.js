@@ -5597,3 +5597,24 @@ var countOperations = function (num1, num2) {
   return count
 }
 // testFunction(countOperations).input(2, 3).output(3) //?
+
+// 2185. Counting Words With a Given Prefix, Easy
+/**
+ * @param {string[]} words
+ * @param {string} pref
+ * @return {number}
+ */
+var prefixCount = function (words, pref) {
+  const regex = new RegExp(`^${pref}`)
+  let prefixCount = 0
+  for (const word of words) {
+    if (word.match(regex)) prefixCount++
+    // Alternative
+    // if (word.startsWith(pref)) prefixCount++
+  }
+  return prefixCount
+
+  // Alternative https://leetcode.com/problems/counting-words-with-a-given-prefix/solutions/1814309/javascript-easy-to-understand-1-line
+  // return words.filter((word) => word.startsWith(pref)).length
+}
+// testFunction(prefixCount).input(['pay', 'attention', 'practice', 'attend'], 'at').output(2) //?
