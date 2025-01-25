@@ -5618,3 +5618,41 @@ var prefixCount = function (words, pref) {
   // return words.filter((word) => word.startsWith(pref)).length
 }
 // testFunction(prefixCount).input(['pay', 'attention', 'practice', 'attend'], 'at').output(2) //?
+
+// 2206. Divide Array Into Equal Pairs, Easy
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var divideArray = function (nums) {
+  // Alternative https://leetcode.com/problems/divide-array-into-equal-pairs/solutions/1894695/javascript-clean-and-easy-to-understand
+  const map = new Map()
+  for (const num of nums) {
+    map.has(num) ? map.delete(num) : map.set(num, true)
+  }
+  return map.size === 0
+
+  // // Alternative https://leetcode.com/problems/divide-array-into-equal-pairs/solutions/2205079/easy-javascript-solution
+  // nums = nums.sort((a, b) => a - b)
+  // for (let i = 0; i < nums.length - 1; i += 2) {
+  //   if (nums[i] !== nums[i + 1]) return false
+  // }
+  // return true
+
+  // // Alternative
+  // let numsLength = nums.length
+  // const pairs = []
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = i + 1; j < nums.length; j++) {
+  //     if (nums[i] === nums[j]) {
+  //       pairs.push([nums[i], nums[j]])
+  //       nums.splice(i, 1)
+  //       nums.splice(j - 1, 1)
+  //       i--
+  //       break
+  //     }
+  //   }
+  // }
+  // return numsLength === pairs.length * 2
+}
+// testFunction(divideArray).input([3, 2, 3, 2, 2, 2]).output(true) //?
