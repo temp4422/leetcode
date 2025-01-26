@@ -5656,3 +5656,25 @@ var divideArray = function (nums) {
   // return numsLength === pairs.length * 2
 }
 // testFunction(divideArray).input([3, 2, 3, 2, 2, 2]).output(true) //?
+
+// 2255. Count Prefixes of a Given String, Easy
+/**
+ * @param {string[]} words
+ * @param {string} s
+ * @return {number}
+ */
+var countPrefixes = function (words, s) {
+  // Alternative https://leetcode.com/problems/count-prefixes-of-a-given-string/solutions/2461131/3-different-fastest-approaches-with-javascript-including-one-liner
+  // return words.filter((word) => s.indexOf(word) == 0).length
+
+  let count = 0
+  for (const word of words) {
+    if (s.startsWith(word)) count++
+
+    // Alternative
+    // let regex = new RegExp(`^${word}`)
+    // if (s.match(regex)) count++
+  }
+  return count
+}
+// testFunction(countPrefixes).input(['a', 'b', 'c', 'ab', 'bc', 'abc'], 'abc').output(3) //?
