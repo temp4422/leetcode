@@ -5678,3 +5678,66 @@ var countPrefixes = function (words, s) {
   return count
 }
 // testFunction(countPrefixes).input(['a', 'b', 'c', 'ab', 'bc', 'abc'], 'abc').output(3) //?
+
+// 2224. Minimum Number of Operations to Convert Time, Easy
+/**
+ * @param {string} current
+ * @param {string} correct
+ * @return {number}
+ */
+var convertTime = function (current, correct) {
+  // Calculate difference
+  let currentMinutes = parseInt(current.slice(0, 2)) * 60 + parseInt(current.slice(3))
+  let correctMinutes = parseInt(correct.slice(0, 2)) * 60 + parseInt(correct.slice(3))
+  let differenceMinutes = correctMinutes - currentMinutes
+
+  // Subtract number from difference until zero
+  let numberMinutes = [60, 15, 5, 1]
+  let operationsCount = 0
+
+  for (let number of numberMinutes) {
+    while (differenceMinutes >= number) {
+      differenceMinutes -= number
+      operationsCount++
+    }
+  }
+
+  return operationsCount
+
+  // Alternative loop
+  // while (differenceMinutes) {
+  //   for (let number of numberMinutes) {
+  //     if (differenceMinutes - number >= 0) {
+  //       differenceMinutes -= number
+  //       operationsCount++
+  //       break
+  //     }
+  //   }
+  // }
+
+  // // Alternative
+  // // Time Limit Exceeded
+  // // Using JS Date object
+  // let operationsCount = 0
+  // while (current != correct) {
+  //   let currentDate = new Date(`1970-01-01T${current}:00.000Z`).getTime()
+  //   // Add time in epoch miliseconds
+  //   let plus60 = new Date(currentDate + 3_600_000).toISOString().slice(11, 16)
+  //   let plus15 = new Date(currentDate + 900_000).toISOString().slice(11, 16)
+  //   let plus5 = new Date(currentDate + 300_000).toISOString().slice(11, 16)
+  //   let plus1 = new Date(currentDate + 60_000).toISOString().slice(11, 16)
+  //   if (plus60 <= correct) {
+  //     current = plus60
+  //   } else if (plus15 <= correct) {
+  //     current = plus15
+  //   } else if (plus5 <= correct) {
+  //     current = plus5
+  //   } else if (plus1 <= correct) {
+  //     current = plus1
+  //   }
+  //   operationsCount++
+  // }
+  // return operationsCount
+}
+// testFunction(convertTime).input('02:30', '04:35').output(3) //?
+// testFunction(convertTime).input('11:00', '11:01').output(1) //?
