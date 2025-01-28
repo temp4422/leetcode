@@ -5741,3 +5741,28 @@ var convertTime = function (current, correct) {
 }
 // testFunction(convertTime).input('02:30', '04:35').output(3) //?
 // testFunction(convertTime).input('11:00', '11:01').output(1) //?
+
+// 2264. Largest 3-Same-Digit Number in String, Easy
+/**
+ * @param {string} num
+ * @return {string}
+ */
+var largestGoodInteger = function (num) {
+  const regex = new RegExp(/(.)\1\1/g)
+  let matchArray = num.match(regex)
+  if (!matchArray) return ''
+  matchArray.sort((a, b) => parseInt(b) - parseInt(a))
+  return matchArray[0]
+
+  // Alternative https://leetcode.com/problems/largest-3-same-digit-number-in-string/solutions/4361963/beats-100-easy-to-understand
+  // for (let i = 9; i >= 0; i--) {
+  //   if (num.includes(`${i}${i}${i}`)) {
+  //     return `${i}${i}${i}`
+  //   }
+  // }
+  // return ''
+}
+// testFunction(largestGoodInteger).input('6777133339').output('777') //?
+// testFunction(largestGoodInteger).input('2300019').output('000') //?
+// testFunction(largestGoodInteger).input('42352338').output('') //?
+// testFunction(largestGoodInteger).input('000400059').output('000') //?
