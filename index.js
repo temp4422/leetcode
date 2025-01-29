@@ -5766,3 +5766,37 @@ var largestGoodInteger = function (num) {
 // testFunction(largestGoodInteger).input('2300019').output('000') //?
 // testFunction(largestGoodInteger).input('42352338').output('') //?
 // testFunction(largestGoodInteger).input('000400059').output('000') //?
+
+// 2243. Calculate Digit Sum of a String, Easy
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var digitSum = function (s, k) {
+  while (s.length > k) {
+    let newString = ''
+    for (let i = 0; i < s.length; i += k) {
+      let groupSum = 0
+      for (let j = i; j < i + k; j++) {
+        if (s[j]) groupSum += parseInt(s[j]) // Prevent array NaN values
+      }
+      newString += groupSum.toString()
+
+      // Alternative
+      // let group = s.slice(i, i + k)
+      // for (let j = 0; j < group.length; j++) {
+      //   groupSum += parseInt(group[j])
+      // }
+      // newString += groupSum.toString()
+
+      // Alternative https://leetcode.com/problems/calculate-digit-sum-of-a-string/solutions/1958014/a-concise-javascript-solution
+      // newString += s.substring(i, i + k).split("").reduce((acc, val) => acc + (+val), 0);
+    }
+
+    s = newString
+  }
+  return s
+}
+// testFunction(digitSum).input('11111222223', 3).output('135') //?
+// testFunction(digitSum).input('00000000', 3).output('000') //?
