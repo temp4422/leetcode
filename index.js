@@ -5800,3 +5800,26 @@ var digitSum = function (s, k) {
 }
 // testFunction(digitSum).input('11111222223', 3).output('135') //?
 // testFunction(digitSum).input('00000000', 3).output('000') //?
+
+// 2190. Most Frequent Number Following Key In an Array, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} key
+ * @return {number}
+ */
+var mostFrequent = function (nums, key) {
+  const map = new Map()
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === key) {
+      map.set(nums[i + 1], (map.get(nums[i + 1]) ?? 0) + 1)
+    }
+  }
+
+  const sortedMapArray = [...map.entries()].sort((a, b) => b[1] - a[1])
+
+  return sortedMapArray[0][0]
+}
+// testFunction(mostFrequent).input([1, 100, 200, 1, 100], 1).output(100) //?
+// testFunction(mostFrequent).input([2, 2, 2, 2, 3], 2).output(2) //?
+// testFunction(mostFrequent).input([11, 22, 11, 33, 11, 33], 11).output(33) //?
