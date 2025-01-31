@@ -5823,3 +5823,19 @@ var mostFrequent = function (nums, key) {
 // testFunction(mostFrequent).input([1, 100, 200, 1, 100], 1).output(100) //?
 // testFunction(mostFrequent).input([2, 2, 2, 2, 3], 2).output(2) //?
 // testFunction(mostFrequent).input([11, 22, 11, 33, 11, 33], 11).output(33) //?
+
+// 2278. Percentage of Letter in String, Easy
+/**
+ * @param {string} s
+ * @param {character} letter
+ * @return {number}
+ */
+var percentageLetter = function (s, letter) {
+  let countLetter = 0
+  for (const char of s) {
+    if (char === letter) countLetter++
+  }
+  return Math.floor((countLetter / s.length) * 100)
+}
+// testFunction(percentageLetter).input('foobar', 'o').output(33) //?
+// testFunction(percentageLetter).input('sgawtb', 's').output(16) //?
