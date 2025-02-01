@@ -5839,3 +5839,34 @@ var percentageLetter = function (s, letter) {
 }
 // testFunction(percentageLetter).input('foobar', 'o').output(33) //?
 // testFunction(percentageLetter).input('sgawtb', 's').output(16) //?
+
+// 2287. Rearrange Characters to Make Target String, Easy
+/**
+ * @param {string} s
+ * @param {string} target
+ * @return {number}
+ */
+var rearrangeCharacters = function (s, target) {
+  const targetLatters = s.split('').filter((char) => target.includes(char))
+
+  let numberOfCopies = 0
+  while (targetLatters.length >= target.length) {
+    let newTarget = ''
+    for (const char of target) {
+      newTarget += targetLatters.splice(targetLatters.indexOf(char), 1)
+    }
+    if (newTarget === target) numberOfCopies++
+  }
+  return numberOfCopies
+
+  // Alternative https://leetcode.com/problems/rearrange-characters-to-make-target-string/solutions/5485763/short-and-clean-solution
+  // for (let i = 0 /* no condition */; ; i++) {
+  //   for (let char of [...target]) {
+  //     if (!s.includes(char)) return i
+  //     s = s.replace(char, '')
+  //   }
+  // }
+}
+// testFunction(rearrangeCharacters).input('ilovecodingonleetcode', 'code').output(2) //?
+// testFunction(rearrangeCharacters).input('abcba', 'abc').output(1) //?
+// testFunction(rearrangeCharacters).input('abbaccaddaeea', 'aaaaa').output(1) //?
