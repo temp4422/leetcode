@@ -5870,3 +5870,24 @@ var rearrangeCharacters = function (s, target) {
 // testFunction(rearrangeCharacters).input('ilovecodingonleetcode', 'code').output(2) //?
 // testFunction(rearrangeCharacters).input('abcba', 'abc').output(1) //?
 // testFunction(rearrangeCharacters).input('abbaccaddaeea', 'aaaaa').output(1) //?
+
+// 2283. Check if Number Has Equal Digit Count and Digit Value, Easy
+/**
+ * @param {string} num
+ * @return {boolean}
+ */
+var digitCount = function (num) {
+  for (let i = 0; i < num.length; i++) {
+    let matchArray = num.match(new RegExp(`${i}`, 'g'))
+
+    if (matchArray) {
+      if (matchArray.length != parseInt(num[i])) return false
+    } else {
+      if (0 != parseInt(num[i])) return false
+    }
+  }
+  return true
+}
+// testFunction(digitCount).input('1210').output(true) //?
+// testFunction(digitCount).input('030').output(false) //?
+// testFunction(digitCount).input('1').output(false) //?
