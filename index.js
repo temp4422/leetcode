@@ -5891,3 +5891,14 @@ var digitCount = function (num) {
 // testFunction(digitCount).input('1210').output(true) //?
 // testFunction(digitCount).input('030').output(false) //?
 // testFunction(digitCount).input('1').output(false) //?
+
+// 2235. Add Two Integers, Easy
+/**
+ * @param {number} num1
+ * @param {number} num2
+ * @return {number}
+ */
+var sum = function (num1, num2) {
+  return num1 + num2
+}
+// testFunction(sum).input(12, 5).output(17) //?
