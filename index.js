@@ -5902,3 +5902,26 @@ var sum = function (num1, num2) {
   return num1 + num2
 }
 // testFunction(sum).input(12, 5).output(17) //?
+
+// 2293. Min Max Game, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minMaxGame = function (nums) {
+  while (nums.length > 1) {
+    let newNums = []
+    for (let i = 0; i < nums.length / 2; i++) {
+      if (i % 2 === 0) {
+        newNums.push(Math.min(nums[2 * i], nums[2 * i + 1]))
+      } else {
+        newNums.push(Math.max(nums[2 * i], nums[2 * i + 1]))
+      }
+    }
+    nums = newNums
+  }
+  return nums[0]
+}
+// testFunction(minMaxGame).input([1, 3, 5, 2, 4, 8, 2, 2]).output(1) //?
+// testFunction(minMaxGame).input([3]).output(3) //?
+// testFunction(minMaxGame).input([70, 38, 21, 22]).output(22) //?
