@@ -5925,3 +5925,20 @@ var minMaxGame = function (nums) {
 // testFunction(minMaxGame).input([1, 3, 5, 2, 4, 8, 2, 2]).output(1) //?
 // testFunction(minMaxGame).input([3]).output(3) //?
 // testFunction(minMaxGame).input([70, 38, 21, 22]).output(22) //?
+
+// 2299. Strong Password Checker II, Easy
+/**
+ * @param {string} password
+ * @return {boolean}
+ */
+var strongPasswordCheckerII = function (password) {
+  if (password.length < 8) return false
+  if (!password.match(/[a-z]/)) return false
+  if (!password.match(/[A-Z]/)) return false
+  if (!password.match(/\d/)) return false
+  if (!password.match(/[-+!@#$%^&*()]/)) return false
+  if (password.match(/(.)\1/)) return false
+  return true
+}
+// testFunction(strongPasswordCheckerII).input('IloveLe3tcode!').output(true) //?
+// testFunction(strongPasswordCheckerII).input('-Aa1a1a1').output(true) //?
