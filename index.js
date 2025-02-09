@@ -5942,3 +5942,19 @@ var strongPasswordCheckerII = function (password) {
 }
 // testFunction(strongPasswordCheckerII).input('IloveLe3tcode!').output(true) //?
 // testFunction(strongPasswordCheckerII).input('-Aa1a1a1').output(true) //?
+
+// 2315. Count Asterisks, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countAsterisks = function (s) {
+  let allowCount = true
+  let count = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '*' && allowCount) count++
+    if (s[i] === '|') allowCount = !allowCount
+  }
+  return count
+}
+// testFunction(countAsterisks).input('l|*e*et|c**o|*de|').output(2) //?
