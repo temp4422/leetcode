@@ -5958,3 +5958,29 @@ var countAsterisks = function (s) {
   return count
 }
 // testFunction(countAsterisks).input('l|*e*et|c**o|*de|').output(2) //?
+
+// 2325. Decode the Message, Easy
+/**
+ * @param {string} key
+ * @param {string} message
+ * @return {string}
+ */
+var decodeMessage = function (key, message) {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  const cypherKey = [...new Set(key)].join('').replace(/\s/, '')
+  const cypherKeyAlphabet = {}
+  for (let i = 0; i < alphabet.length; i++) {
+    cypherKeyAlphabet[cypherKey[i]] = alphabet[i]
+  }
+
+  let decypherMessage = ''
+  for (let i = 0; i < message.length; i++) {
+    if (message[i] === ' ') decypherMessage += ' '
+    else decypherMessage += cypherKeyAlphabet[message[i]]
+    // Alternative
+    // decypherMessage += cypherKeyAlphabet[message[i]] ?? ' '
+  }
+  return decypherMessage
+}
+// testFunction(decodeMessage).input('the quick brown fox jumps over the lazy dog', 'vkbs bs t suepuv').output('this is a secret') //?
+// testFunction(decodeMessage).input('eljuxhpwnyrdgtqkviszcfmabo', 'zwx hnfx lqantp mnoeius ycgk vcnjrdb').output('the five boxing wizards jump quickly') //?
