@@ -5984,3 +5984,42 @@ var decodeMessage = function (key, message) {
 }
 // testFunction(decodeMessage).input('the quick brown fox jumps over the lazy dog', 'vkbs bs t suepuv').output('this is a secret') //?
 // testFunction(decodeMessage).input('eljuxhpwnyrdgtqkviszcfmabo', 'zwx hnfx lqantp mnoeius ycgk vcnjrdb').output('the five boxing wizards jump quickly') //?
+
+// 2335. Minimum Amount of Time to Fill Cups, Easy
+/**
+ * @param {number[]} amount
+ * @return {number}
+ */
+var fillCups = function (amount) {
+  let [cold, warm, hot] = amount
+  let seconds = 0
+  while (cold > 0 || warm > 0 || hot > 0) {
+    let min = Math.min(cold, warm, hot)
+
+    if (min === cold) {
+      warm -= 1
+      hot -= 1
+    } else if (min === warm) {
+      cold -= 1
+      hot -= 1
+    } else if (min === hot) {
+      cold -= 1
+      warm -= 1
+    }
+
+    amount = [cold, warm, hot]
+    seconds++
+  }
+  return seconds
+
+  // // Alternative by ChatGTP
+  // // Calculate the total number of cups needed.
+  // const total = amount.reduce((acc, curr) => acc + curr, 0)
+  // // Find the maximum cups needed for a single type.
+  // const maxAmount = Math.max(...amount)
+  // // The answer is the maximum between the maximum type count and
+  // // the ceiling of half the total cups (since we can fill 2 cups per second when possible).
+  // return Math.max(maxAmount, Math.ceil(total / 2))
+}
+// testFunction(fillCups).input([1, 4, 2]).output(4) //?
+// testFunction(fillCups).input([5, 4, 4]).output(7) //?
