@@ -1,7 +1,7 @@
 'use strict'
 
 // My helper functions, speed up debugging
-import { testFunction, arrayToLinkedList } from './helper.js'
+import { testFunction, arrayToLinkedList, arrayToBinaryTree } from './helper.js'
 
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
@@ -6023,3 +6023,54 @@ var fillCups = function (amount) {
 }
 // testFunction(fillCups).input([1, 4, 2]).output(4) //?
 // testFunction(fillCups).input([5, 4, 4]).output(7) //?
+
+// 2331. Evaluate Boolean Binary Tree, Easy
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * Evaluates a Boolean binary tree without using recursion.
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var evaluateTree = function (root) {
+  // // DFS recursive solution https://leetcode.com/problems/evaluate-boolean-binary-tree/solutions/5162933/beats-100-simple-tree-traversal-easy-and-reader-friendly-code
+  // if (root.val === 0) {
+  //   return false
+  // } else if (root.val === 1) {
+  //   return true
+  // } else if (root.val === 2) {
+  //   return evaluateTree(root.left) || evaluateTree(root.right)
+  // } else if (root.val === 3) {
+  //   return evaluateTree(root.left) && evaluateTree(root.right)
+  // }
+
+  // Alternative iterative approach https://www.youtube.com/watch?v=9a_cP54jn8Q
+  const stack = [root]
+  const values = new Map()
+  while (stack.length > 0) {
+    let node = stack.pop()
+
+    // If Leaf node
+    if (!node.left && !node.right) {
+      values.set(node, node.val === 1)
+    }
+    // If NON-Leaf node
+    else {
+      if (values.has(node.left) && values.has(node.right)) {
+        if (node.val === 2) values.set(node, values.get(node.left) || values.get(node.right))
+        if (node.val === 3) values.set(node, values.get(node.left) && values.get(node.right))
+      } else {
+        stack.push(node, node.left, node.right)
+      }
+    }
+  }
+  return values.get(root)
+}
+// prettier-ignore
+// testFunction(evaluateTree).input(arrayToBinaryTree([2, 1, 3, null, null, 0, 1])).output(true) //?
