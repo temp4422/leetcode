@@ -6072,5 +6072,20 @@ var evaluateTree = function (root) {
   }
   return values.get(root)
 }
-// prettier-ignore
 // testFunction(evaluateTree).input(arrayToBinaryTree([2, 1, 3, null, null, 0, 1])).output(true) //?
+
+// 2351. First Letter to Appear Twice, Easy
+/**
+ * @param {string} s
+ * @return {character}
+ */
+var repeatedCharacter = function (s) {
+  const map = {}
+  for (let i = 0; i < s.length; i++) {
+    if (Object.hasOwn(map, s[i])) return s[i]
+    else map[s[i]] = i
+  }
+}
+// testFunction(repeatedCharacter).input('abccbaacz').output('c') //?
+// testFunction(repeatedCharacter).input('nwcn').output('n') //?
+// testFunction(repeatedCharacter).input('fmxwkbxugk').output('x') //?
