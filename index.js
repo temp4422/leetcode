@@ -6089,3 +6089,32 @@ var repeatedCharacter = function (s) {
 // testFunction(repeatedCharacter).input('abccbaacz').output('c') //?
 // testFunction(repeatedCharacter).input('nwcn').output('n') //?
 // testFunction(repeatedCharacter).input('fmxwkbxugk').output('x') //?
+
+// 2363. Merge Similar Items, Easy
+/**
+ * @param {number[][]} items1
+ * @param {number[][]} items2
+ * @return {number[][]}
+ */
+var mergeSimilarItems = function (items1, items2) {
+  const map = new Map()
+  for (const [value, weight] of [...items1, ...items2]) {
+    map.set(value, (map.get(value) ?? 0) + weight)
+  }
+  return [...map].sort((a, b) => a[0] - b[0])
+
+  // Alternative, faster
+  // const maxArrayLength = Math.max(items1.length, items2.length)
+  // const map = new Map()
+  // for (let i = 0; i < maxArrayLength; i++) {
+  //   if (items1[i]) {
+  //     map.set(items1[i][0], (map.get(items1[i][0]) ?? 0) + items1[i][1])
+  //   }
+  //   if (items2[i]) {
+  //     map.set(items2[i][0], (map.get(items2[i][0]) ?? 0) + items2[i][1])
+  //   }
+  // }
+  // const sortedArray = [...map.entries()].sort((a, b) => a[0] - b[0])
+  // return sortedArray
+}
+// testFunction(mergeSimilarItems).input([[1,1],[4,5],[3,8]], [[3,1],[1,5]]).output([[1,6],[3,9],[4,5]]) //?
