@@ -6118,3 +6118,36 @@ var mergeSimilarItems = function (items1, items2) {
   // return sortedArray
 }
 // testFunction(mergeSimilarItems).input([[1,1],[4,5],[3,8]], [[3,1],[1,5]]).output([[1,6],[3,9],[4,5]]) //?
+
+// 2383. Minimum Hours of Training to Win a Competition, Easy
+/**
+ * @param {number} initialEnergy
+ * @param {number} initialExperience
+ * @param {number[]} energy
+ * @param {number[]} experience
+ * @return {number}
+ */
+var minNumberOfHours = function (initialEnergy, initialExperience, energy, experience) {
+  let trainingHours = 0
+  for (let i = 0; i < energy.length; i++) {
+    if (initialEnergy > energy[i] && initialExperience > experience[i]) {
+      initialEnergy -= energy[i]
+      initialExperience += experience[i]
+    } else {
+      while (initialEnergy <= energy[i]) {
+        initialEnergy += 1
+        trainingHours += 1
+      }
+      while (initialExperience <= experience[i]) {
+        initialExperience += 1
+        trainingHours += 1
+      }
+      i-- // reset opponent
+    }
+  }
+  return trainingHours
+  // Alternative https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/solutions/4422745/javascript-easy-to-understand-with-o-n-time
+}
+// testFunction(minNumberOfHours).input(5, 3, [1, 4, 3, 2], [2, 6, 3, 1]).output(8) //?
+// testFunction(minNumberOfHours).input(2, 4, [1], [3]).output(0) //?
+// testFunction(minNumberOfHours).input(5, 3, [1, 4], [2, 5]).output(2) //?
