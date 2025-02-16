@@ -6151,3 +6151,27 @@ var minNumberOfHours = function (initialEnergy, initialExperience, energy, exper
 // testFunction(minNumberOfHours).input(5, 3, [1, 4, 3, 2], [2, 6, 3, 1]).output(8) //?
 // testFunction(minNumberOfHours).input(2, 4, [1], [3]).output(0) //?
 // testFunction(minNumberOfHours).input(5, 3, [1, 4], [2, 5]).output(2) //?
+
+// 2399. Check Distances Between Same Letters, Easy
+/**
+ * @param {string} s
+ * @param {number[]} distance
+ * @return {boolean}
+ */
+var checkDistances = function (s, distance) {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  const map = new Map()
+
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) map.set(s[i], i - map.get(s[i]) - 1)
+    else map.set(s[i], i)
+  }
+
+  for (const [key, value] of map) {
+    if (distance[alphabet.indexOf(key)] != value) return false
+  }
+
+  return true
+}
+// testFunction(checkDistances).input("abaccb", [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]).output(true) //?
+// testFunction(checkDistances).input("aa", [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]).output(false) //?
