@@ -6175,3 +6175,50 @@ var checkDistances = function (s, distance) {
 }
 // testFunction(checkDistances).input("abaccb", [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]).output(true) //?
 // testFunction(checkDistances).input("aa", [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]).output(false) //?
+
+// 2404. Most Frequent Even Element, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var mostFrequentEven = function (nums) {
+  const map = new Map()
+  for (const num of nums) {
+    if (num % 2 === 0) {
+      map.set(num, (map.get(num) ?? 0) + 1)
+    }
+  }
+
+  const sortedMap = [...map].sort((a, b) => a[0] - b[0])
+
+  let mostFrequentEvenNum = -1
+  let lastNum = mostFrequentEvenNum
+
+  for (const [key, value] of sortedMap) {
+    if (value > lastNum) {
+      mostFrequentEvenNum = key
+      lastNum = value
+    }
+  }
+
+  return mostFrequentEvenNum
+
+  // Alternative https://leetcode.com/problems/most-frequent-even-element/solutions/2564407/beginner-friendly-java-javascript-python-solution
+  // let map = new Map()
+  // let max_freq = 0
+  // let element = -1
+  // for (let num of nums) {
+  //   if (num % 2 == 0) map.set(num, (map.get(num) || 0) + 1)
+  //   if (num % 2 == 0 && max_freq <= map.get(num)) {
+  //     if (max_freq == map.get(num)) {
+  //       element = Math.min(element, num)
+  //     } else {
+  //       element = num
+  //       max_freq = map.get(element)
+  //     }
+  //   }
+  // }
+  // return element
+}
+// testFunction(mostFrequentEven).input([0, 1, 2, 2, 4, 4, 1]).output(2) //?
+// testFunction(mostFrequentEven).input([0, 1, 2, 0, 0, 0, 2, 4, 4, 1]).output(0) //?
