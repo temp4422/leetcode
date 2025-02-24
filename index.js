@@ -6222,3 +6222,18 @@ var mostFrequentEven = function (nums) {
 }
 // testFunction(mostFrequentEven).input([0, 1, 2, 2, 4, 4, 1]).output(2) //?
 // testFunction(mostFrequentEven).input([0, 1, 2, 0, 0, 0, 2, 4, 4, 1]).output(0) //?
+
+// 2418. Sort the People, Easy
+/**
+ * @param {string[]} names
+ * @param {number[]} heights
+ * @return {string[]}
+ */
+var sortPeople = function (names, heights) {
+  const mergedArr = names.map((name, i) => [name, heights[i]])
+  const sortedArr = mergedArr.sort((a, b) => b[1] - a[1])
+  const sortedNames = sortedArr.map((item) => item[0])
+  return sortedNames
+}
+// testFunction(sortPeople).input(['Mary', 'John', 'Emma'], [180, 165, 170]).output(["Mary","Emma","John"]) //?
+// testFunction(sortPeople).input(['Alice', 'Bob', 'Bob'], [155, 185, 150]).output(["Bob","Alice","Bob"]) //?
