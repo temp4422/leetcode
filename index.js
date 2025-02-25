@@ -6237,3 +6237,31 @@ var sortPeople = function (names, heights) {
 }
 // testFunction(sortPeople).input(['Mary', 'John', 'Emma'], [180, 165, 170]).output(["Mary","Emma","John"]) //?
 // testFunction(sortPeople).input(['Alice', 'Bob', 'Bob'], [155, 185, 150]).output(["Bob","Alice","Bob"]) //?
+
+// 2446. Determine if Two Events Have Conflict, Easy
+/**
+ * @param {string[]} event1
+ * @param {string[]} event2
+ * @return {boolean}
+ */
+var haveConflict = function (event1, event2) {
+  let event1Start = parseInt(event1[0].slice(0, 2)) * 60 + parseInt(event1[0].slice(3))
+  let event1End = parseInt(event1[1].slice(0, 2)) * 60 + parseInt(event1[1].slice(3))
+  let event2Start = parseInt(event2[0].slice(0, 2)) * 60 + parseInt(event2[0].slice(3))
+  let event2End = parseInt(event2[1].slice(0, 2)) * 60 + parseInt(event2[1].slice(3))
+
+  if (event2Start <= event1End && event2Start >= event1Start) return true
+  if (event2Start <= event1Start && event2End >= event1Start) return true
+
+  return false
+
+  // Alternative https://leetcode.com/problems/determine-if-two-events-have-conflict/solutions/6177934/determine-if-two-events-have-conflict-very-easy-solution
+  // return event1[1] >= event2[0] && event2[1] >= event1[0]
+}
+// testFunction(haveConflict).input(['01:15', '02:00'], ['02:00', '03:00']).output(true) //?
+// testFunction(haveConflict).input(['01:00', '02:00'], ['01:20', '03:00']).output(true) //?
+// testFunction(haveConflict).input(['10:00', '11:00'], ['14:00', '15:00']).output(false) //?
+// testFunction(haveConflict).input(['14:13', '22:08'], ['02:40', '08:08']).output(false) //?
+// testFunction(haveConflict).input(['01:37', '14:20'], ['05:06', '06:17']).output(true) //?
+// testFunction(haveConflict).input(['16:53', '19:00'], ['10:33', '18:15']).output(true) //?
+// testFunction(haveConflict).input(['15:19', '17:56'], ['14:11', '20:02']).output(true) //?
