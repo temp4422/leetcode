@@ -6265,3 +6265,37 @@ var haveConflict = function (event1, event2) {
 // testFunction(haveConflict).input(['01:37', '14:20'], ['05:06', '06:17']).output(true) //?
 // testFunction(haveConflict).input(['16:53', '19:00'], ['10:33', '18:15']).output(true) //?
 // testFunction(haveConflict).input(['15:19', '17:56'], ['14:11', '20:02']).output(true) //?
+
+// 2432. The Employee That Worked on the Longest Task, Easy
+/**
+ * @param {number} n
+ * @param {number[][]} logs
+ * @return {number}
+ */
+var hardestWorker = function (n, logs) {
+  let id = logs[0][0]
+  let leaveTime = logs[0][1]
+
+  for (let i = 0; i < logs.length; i++) {
+    if (logs[i + 1]) {
+      let newLeaveTime = logs[i + 1][1] - logs[i][1]
+
+      if (newLeaveTime > leaveTime) {
+        id = logs[i + 1][0]
+        leaveTime = newLeaveTime
+      } else if (newLeaveTime === leaveTime) {
+        id = Math.min(id, logs[i + 1][0])
+      }
+    }
+  }
+
+  return id
+}
+// // prettier-ignore
+// testFunction(hardestWorker).input(10, [[0,3],[2,5],[0,9],[1,15]]).output(1) //?
+// // prettier-ignore
+// testFunction(hardestWorker).input(26, [[1,1],[3,7],[2,12],[7,17]]).output(3) //?
+// // prettier-ignore
+// testFunction(hardestWorker).input(2, [[0,10],[1,20]]).output(0) //?
+// // prettier-ignore
+// // testFunction(hardestWorker).input(70, [[36,3],[1,5],[12,8],[25,9],[53,11],[29,12],[52,14]]).output(12) //?
