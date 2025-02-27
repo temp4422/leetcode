@@ -22,3 +22,10 @@ for (const char of chars) {
   //   map.set(char, 1)
   // }
 }
+
+// Sort map by value [['a', 1], ['b', 2] ['c', 3]]
+const sortedMap = [...map.entries()].sort((a, b) => a[1] - b[1])
+
+// Get key or value at some index
+let key = [...sortedMap.keys()].at(0)
+let value = [...sortedMap.values()].at(0)

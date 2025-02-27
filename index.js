@@ -6299,3 +6299,104 @@ var hardestWorker = function (n, logs) {
 // testFunction(hardestWorker).input(2, [[0,10],[1,20]]).output(0) //?
 // // prettier-ignore
 // // testFunction(hardestWorker).input(70, [[36,3],[1,5],[12,8],[25,9],[53,11],[29,12],[52,14]]).output(12) //?
+
+// 2423. Remove Letter To Equalize Frequency, Easy
+/**
+ * @param {string} word
+ * @return {boolean}
+ */
+var equalFrequency = function (word) {
+  // Get letters frequency
+  const map = new Map()
+  for (const char of word) {
+    map.set(char, (map.get(char) ?? 0) + 1)
+  }
+
+  // Brute force, remove one letter and check
+  for (const [key, value] of map) {
+    // On each iteration create a new map and remove one letter, then check if it results in "equal frequencies"
+    const newMap = new Map(map)
+    newMap.set(key, newMap.get(key) - 1)
+    if (newMap.get(key) === 0) newMap.delete(key)
+
+    // Create a set of values to check if all values are the same, resulting in "equal frequencies"
+    if (new Set(newMap.values()).size === 1) return true
+  }
+  return false
+
+  // Alternative
+  // https://leetcode.com/problems/remove-letter-to-equalize-frequency/solutions/4037476/typescript-not-obvious-solution-runtime-beats-90
+  for (let i = 0; i < word.length; i++) {
+    const map = new Map()
+    for (let j = 0; j < word.length; j++) {
+      if (j == i) continue
+      map.set(word[j], (map.get(word[j]) || 0) + 1)
+    }
+    if (new Set(map.values()).size == 1) return true
+  }
+  return false
+
+  // Alternative by ChatGPT o1
+  /**
+   *
+   * ATTENTION!!!
+   *
+   * I'M SUBMITING THIS CODE SULUTION JUST TO CHECK IF CHATGPT COULD POSSIBLE SOLVE THE PROBLEM.
+   * I ADMIT THAT PROBLEM WAS SOLVED BY MYSELF AFTER FEW HOURS OF MULTIPLE TRIES AND ERRORS.
+   * PLEASE, DO NOT CONSIDER THIS SOLUTION AS AN ATTEMPT TO VIOLATE LEETCODE RULES.
+   * BUT, DO CONSIDER THIS SOLUTION AS WAY TO LEARN AND IMPROVE.
+   * THANK YOU.
+   */
+
+  // 1. Count each character frequency
+  const freq = {}
+  for (const char of word) {
+    freq[char] = (freq[char] || 0) + 1
+  }
+
+  // 2. Build frequency-of-frequencies
+  const freqOfFreq = {}
+  for (const count of Object.values(freq)) {
+    freqOfFreq[count] = (freqOfFreq[count] || 0) + 1
+  }
+
+  // We only care about the distinct frequencies and their counts
+  const distinctFreqs = Object.keys(freqOfFreq).map(Number)
+
+  // 3. Check cases
+  if (distinctFreqs.length === 1) {
+    const [f] = distinctFreqs
+    const countOfF = freqOfFreq[f]
+
+    // Case A: If frequency is 1, removing any one occurrence of that single-freq letter
+    //         removes it from the string, so all remain 1 as well.
+    // Case B: If there's only one letter type total, removing one instance leaves it still consistent.
+    return f === 1 || countOfF === 1
+  } else if (distinctFreqs.length === 2) {
+    distinctFreqs.sort((a, b) => a - b)
+    const [f1, f2] = distinctFreqs
+    const countF1 = freqOfFreq[f1]
+    const countF2 = freqOfFreq[f2]
+
+    // Case A: If f2 = f1 + 1 and there is exactly one letter with frequency f2,
+    //         removing one letter from that frequency yields all f1.
+    if (f2 === f1 + 1 && countF2 === 1) return true
+
+    // Case B: If one frequency is 1, and exactly one letter has that frequency,
+    //         removing that single occurrence letter unifies the rest.
+    if (f1 === 1 && countF1 === 1) return true
+
+    return false
+  }
+
+  // More than 2 distinct frequencies => not possible with one removal
+  return false
+}
+// testFunction(equalFrequency).input('abcc').output(true) //?
+// testFunction(equalFrequency).input('aazz').output(false) //?
+// testFunction(equalFrequency).input('bac').output(true) //?
+// testFunction(equalFrequency).input('aca').output(true) //?
+// testFunction(equalFrequency).input('bbac').output(true) //?
+// testFunction(equalFrequency).input('abbcc').output(true) //?
+// testFunction(equalFrequency).input('cccd').output(true) //?
+// testFunction(equalFrequency).input('cccaa').output(true) //?
