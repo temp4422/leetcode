@@ -6400,3 +6400,29 @@ var equalFrequency = function (word) {
 // testFunction(equalFrequency).input('abbcc').output(true) //?
 // testFunction(equalFrequency).input('cccd').output(true) //?
 // testFunction(equalFrequency).input('cccaa').output(true) //?
+
+// 2451. Odd String Difference, Easy
+/**
+ * @param {string[]} words
+ * @return {string}
+ */
+var oddString = function (words) {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  const diffArrays = []
+
+  for (const word of words) {
+    let differenceIntegerArray = []
+    for (let j = 0; j < word.length - 1; j++) {
+      let difference = alphabet.indexOf(word[j + 1]) - alphabet.indexOf(word[j])
+      differenceIntegerArray.push(difference)
+    }
+    diffArrays.push(JSON.stringify(differenceIntegerArray))
+  }
+
+  let oddIndex = diffArrays.indexOf(
+    diffArrays.find((item) => diffArrays.indexOf(item) === diffArrays.lastIndexOf(item))
+  )
+
+  return words[oddIndex]
+}
+// testFunction(oddString).input(['adc', 'wzy', 'abc']).output('abc') //?
