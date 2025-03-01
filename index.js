@@ -6426,3 +6426,42 @@ var oddString = function (words) {
   return words[oddIndex]
 }
 // testFunction(oddString).input(['adc', 'wzy', 'abc']).output('abc') //?
+
+// 2485. Find the Pivot Integer, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var pivotInteger = function (n) {
+  let pivotInteger = 0
+  let leftSum = 0
+  let rightSum = 0
+  for (let i = 0; i < n; i++) {
+    pivotInteger += 1
+
+    leftSum = 0
+    for (let j = 0; j <= pivotInteger; j++) {
+      leftSum += j
+    }
+
+    rightSum = 0
+    for (let j = pivotInteger; j <= n; j++) {
+      rightSum += j
+    }
+
+    if (leftSum === rightSum) return pivotInteger
+  }
+  return -1
+
+  // Alternative
+  // https://leetcode.com/problems/find-the-pivot-integer/solutions/2858182/javascript-solution-using-guassian-sums
+  for (let i = 1; i <= n; i++) {
+    let leftOfPivot = (i * (i + 1)) / 2
+    let rightOfPivot = (n * (n + 1)) / 2 - leftOfPivot + i
+    if (leftOfPivot === rightOfPivot) return i
+  }
+  return -1
+}
+// testFunction(pivotInteger).input(8).output(6) //?
+// testFunction(pivotInteger).input(1).output(1) //?
+// testFunction(pivotInteger).input(4).output(-1) //?
