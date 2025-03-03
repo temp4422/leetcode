@@ -6465,3 +6465,18 @@ var pivotInteger = function (n) {
 // testFunction(pivotInteger).input(8).output(6) //?
 // testFunction(pivotInteger).input(1).output(1) //?
 // testFunction(pivotInteger).input(4).output(-1) //?
+
+// 2490. Circular Sentence, Easy
+/**
+ * @param {string} sentence
+ * @return {boolean}
+ */
+var isCircularSentence = function (sentence) {
+  const words = sentence.split(' ')
+  if (words.at(0).at(0) != words.at(-1).at(-1)) return false
+  for (let i = 0; i < words.length - 1; i++) {
+    if (words[i].at(-1) != words[i + 1].at(0)) return false
+  }
+  return true
+}
+// testFunction(isCircularSentence).input('leetcode exercises sound delightful').output(true) //?
