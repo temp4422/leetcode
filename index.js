@@ -6480,3 +6480,26 @@ var isCircularSentence = function (sentence) {
   return true
 }
 // testFunction(isCircularSentence).input('leetcode exercises sound delightful').output(true) //?
+
+// 2500. Delete Greatest Value in Each Row, Easy
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var deleteGreatestValue = function (grid) {
+  for (const subgrid of grid) {
+    subgrid.sort((a, b) => b - a)
+  }
+
+  let greatestValuesSum = 0
+  while (grid[0].length > 0) {
+    let greatestValue = 0
+    for (const subgrid of grid) {
+      greatestValue = Math.max(subgrid.shift(), greatestValue)
+    }
+    greatestValuesSum += greatestValue
+  }
+  return greatestValuesSum
+}
+// testFunction(deleteGreatestValue).input([[1,2,4],[3,3,1]]).output(8) //?
+// testFunction(deleteGreatestValue).input([[10]]).output(10) //?
