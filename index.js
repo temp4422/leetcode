@@ -6503,3 +6503,19 @@ var deleteGreatestValue = function (grid) {
 }
 // testFunction(deleteGreatestValue).input([[1,2,4],[3,3,1]]).output(8) //?
 // testFunction(deleteGreatestValue).input([[10]]).output(10) //?
+
+// 2496. Maximum Value of a String in an Array, Easy
+/**
+ * @param {string[]} strs
+ * @return {number}
+ */
+var maximumValue = function (strs) {
+  let maxValue = 0
+  for (let i = 0; i < strs.length; i++) {
+    if (strs[i].match(/[a-z]/)) maxValue = Math.max(maxValue, strs[i].length)
+    else maxValue = Math.max(maxValue, parseInt(strs[i]))
+  }
+  return maxValue
+}
+// testFunction(maximumValue).input(['alic3', 'bob', '3', '4', '00000']).output(5) //?
+// testFunction(maximumValue).input(['1', '01', '001', '0001']).output(1) //?
