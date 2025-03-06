@@ -6519,3 +6519,22 @@ var maximumValue = function (strs) {
 }
 // testFunction(maximumValue).input(['alic3', 'bob', '3', '4', '00000']).output(5) //?
 // testFunction(maximumValue).input(['1', '01', '001', '0001']).output(1) //?
+
+// 2506. Count Pairs Of Similar Strings, Easy
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var similarPairs = function (words) {
+  const processWord = (word) => [...new Set(word)].sort().join('')
+
+  let numberOfPairs = 0
+  for (let i = 0; i < words.length; i++) {
+    for (let j = i + 1; j < words.length; j++) {
+      if (processWord(words[i]) === processWord(words[j])) numberOfPairs++
+    }
+  }
+  return numberOfPairs
+}
+// testFunction(similarPairs).input(['aba', 'aabb', 'abcd', 'bac', 'aabc']).output(2) //?
+// testFunction(similarPairs).input(['aabb', 'ab', 'ba']).output(3) //?
