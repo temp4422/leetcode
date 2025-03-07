@@ -6538,3 +6538,19 @@ var similarPairs = function (words) {
 }
 // testFunction(similarPairs).input(['aba', 'aabb', 'abcd', 'bac', 'aabc']).output(2) //?
 // testFunction(similarPairs).input(['aabb', 'ab', 'ba']).output(3) //?
+
+// 2586. Count the Number of Vowel Strings in Range, Easy
+/**
+ * @param {string[]} words
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+var vowelStrings = function (words, left, right) {
+  let numberOfVovewl = 0
+  for (let i = left; i <= right; i++) {
+    if (words[i].at(0).match(/[aeiou]/) && words[i].at(-1).match(/[aeiou]/)) numberOfVovewl++
+  }
+  return numberOfVovewl
+}
+// testFunction(vowelStrings).input(["are","amy","u"], 0, 2).output(2) //?
