@@ -6554,3 +6554,39 @@ var vowelStrings = function (words, left, right) {
   return numberOfVovewl
 }
 // testFunction(vowelStrings).input(["are","amy","u"], 0, 2).output(2) //?
+
+// 2515. Shortest Distance to Target String in a Circular Array, Easy
+/**
+ * @param {string[]} words
+ * @param {string} target
+ * @param {number} startIndex
+ * @return {number}
+ */
+var closestTarget = function (words, target, startIndex) {
+  if (!words.includes(target)) return -1
+
+  let flag = false
+  let stepsRight = 0
+  for (let i = startIndex; i < words.length; i++) {
+    if (words[i] === target) break
+
+    stepsRight++
+    if (i === words.length - 1) (i = -1), (flag = true)
+    if (flag && i === startIndex - 1) break
+  }
+
+  flag = false
+  let stepsLeft = 0
+  for (let i = startIndex; i >= 0; i--) {
+    if (words[i] === target) break
+
+    stepsLeft++
+    if (i === 0) (i = words.length), (flag = true)
+    if (flag && i === startIndex + 1) break
+  }
+
+  return Math.min(stepsLeft, stepsRight)
+}
+// testFunction(closestTarget).input(['hello', 'i', 'am', 'leetcode', 'hello'], 'hello', 1).output(1) //?
+// testFunction(closestTarget).input(['a', 'b', 'leetcode'], 'leetcode', 0).output(1) //?
+// testFunction(closestTarget).input(['i', 'eat', 'leetcode'], 'ate', 0).output(-1) //?
