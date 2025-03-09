@@ -6590,3 +6590,25 @@ var closestTarget = function (words, target, startIndex) {
 // testFunction(closestTarget).input(['hello', 'i', 'am', 'leetcode', 'hello'], 'hello', 1).output(1) //?
 // testFunction(closestTarget).input(['a', 'b', 'leetcode'], 'leetcode', 0).output(1) //?
 // testFunction(closestTarget).input(['i', 'eat', 'leetcode'], 'ate', 0).output(-1) //?
+
+// 2409. Count Days Spent Together, Easy
+/**
+ * @param {string} arriveAlice
+ * @param {string} leaveAlice
+ * @param {string} arriveBob
+ * @param {string} leaveBob
+ * @return {number}
+ */
+var countDaysTogether = function (arriveAlice, leaveAlice, arriveBob, leaveBob) {
+  const getTimestamp = (date) => new Date(`1970-${date}`).getTime() // Unix epoch timestamp, time in milliseconds
+
+  const startDate = Math.max(getTimestamp(arriveAlice), getTimestamp(arriveBob))
+  const endDate = Math.min(getTimestamp(leaveAlice), getTimestamp(leaveBob))
+
+  const diffDate = endDate - startDate
+  const dayInMilliseconds = 1000 * 60 * 60 * 24 // Milliseconds, Seconds, Minutes, Hours
+  const numberOfDaysTogether = diffDate / dayInMilliseconds + 1
+  return diffDate >= 0 ? numberOfDaysTogether : 0
+}
+// testFunction(countDaysTogether).input('08-15', '08-18', '08-16', '08-19').output(3) //?
+// testFunction(countDaysTogether).input('10-01', '10-31', '11-01', '12-31').output(0) //?
