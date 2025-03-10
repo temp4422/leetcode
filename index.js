@@ -6612,3 +6612,23 @@ var countDaysTogether = function (arriveAlice, leaveAlice, arriveBob, leaveBob) 
 }
 // testFunction(countDaysTogether).input('08-15', '08-18', '08-16', '08-19').output(3) //?
 // testFunction(countDaysTogether).input('10-01', '10-31', '11-01', '12-31').output(0) //?
+
+// 2437. Number of Valid Clock Times, Easy
+/**
+ * @param {string} time
+ * @return {number}
+ */
+var countTime = function (time) {
+  // https://leetcode.com/problems/number-of-valid-clock-times/solutions/4168639/javascript-simple-solution
+  let count = 0
+
+  if (time[0] == '?') count = time[1] > 3 ? 2 : 3
+  if (time[1] == '?') count = time[0] == 2 ? 4 : count ? 8 * count : 10
+  if (time[3] == '?') count = count ? 6 * count : 6
+  if (time[4] == '?') count = count ? 10 * count : 10
+
+  return count || 1
+}
+// testFunction(countTime).input('?5:00').output(2) //?
+// testFunction(countTime).input('0?:0?').output(100) //?
+// testFunction(countTime).input('??:??').output(1440) //?
