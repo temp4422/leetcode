@@ -6632,3 +6632,17 @@ var countTime = function (time) {
 // testFunction(countTime).input('?5:00').output(2) //?
 // testFunction(countTime).input('0?:0?').output(100) //?
 // testFunction(countTime).input('??:??').output(1440) //?
+
+// 2678. Number of Senior Citizens, Easy
+/**
+ * @param {string[]} details
+ * @return {number}
+ */
+var countSeniors = function (details) {
+  let numberOfPassengers = 0
+  for (let i = 0; i < details.length; i++) {
+    if (parseInt(details[i].slice(11, 13)) > 60) numberOfPassengers++
+  }
+  return numberOfPassengers
+}
+// testFunction(countSeniors).input(["7868190130M7522","5303914400F9211","9273338290F4010"]).output(2) //?
