@@ -6646,3 +6646,16 @@ var countSeniors = function (details) {
   return numberOfPassengers
 }
 // testFunction(countSeniors).input(["7868190130M7522","5303914400F9211","9273338290F4010"]).output(2) //?
+
+// 2535. Difference Between Element Sum and Digit Sum of an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var differenceOfSum = function (nums) {
+  const elementSum = nums.reduce((a, b) => a + b)
+  // prettier-ignore
+  const digitSum = nums.join('').split('').reduce((a, b) => +a + +b)
+  return Math.abs(elementSum - digitSum)
+}
+// testFunction(differenceOfSum).input([1, 15, 6, 3]).output(9) //?
