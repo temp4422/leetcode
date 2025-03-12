@@ -6659,3 +6659,40 @@ var differenceOfSum = function (nums) {
   return Math.abs(elementSum - digitSum)
 }
 // testFunction(differenceOfSum).input([1, 15, 6, 3]).output(9) //?
+
+// 2511. Maximum Enemy Forts That Can Be Captured, Easy
+/**
+ * @param {number[]} forts
+ * @return {number}
+ */
+var captureForts = function (forts) {
+  // My solution, enhanced with ChatGPT
+  function getMaxCapturedForts(forts) {
+    let capturedForts = []
+    let count = 0
+    let currentIndex = forts.indexOf(1)
+
+    while (currentIndex !== -1) {
+      let i = currentIndex + 1
+      while (i < forts.length && forts[i] === 0) {
+        count++
+        i++
+      }
+      if (i < forts.length && forts[i] === -1) {
+        capturedForts.push(count)
+      }
+      count = 0
+      currentIndex = forts.indexOf(1, i)
+    }
+
+    return capturedForts.length ? Math.max(...capturedForts) : 0
+  }
+
+  return Math.max(getMaxCapturedForts(forts), getMaxCapturedForts(forts.toReversed()))
+}
+// testFunction(captureForts).input([1, 0, 0, -1, 0, 0, 0, 0, 1]).output(4) //?
+// testFunction(captureForts).input([0, 0, 1, -1]).output(0) //?
+// testFunction(captureForts).input([0, -1, -1, 0, -1]).output(0) //?
+// testFunction(captureForts).input([0, 0, 1, 0, 1, 1]).output(0) //?
+// testFunction(captureForts).input([1, 0, 0, -1]).output(2) //?
+// testFunction(captureForts).input([0, 1, 0, -1, 1, -1, -1, 0, 1, 1, 0]).output(1) //?
