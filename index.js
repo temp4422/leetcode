@@ -6696,3 +6696,21 @@ var captureForts = function (forts) {
 // testFunction(captureForts).input([0, 0, 1, 0, 1, 1]).output(0) //?
 // testFunction(captureForts).input([1, 0, 0, -1]).output(2) //?
 // testFunction(captureForts).input([0, 1, 0, -1, 1, -1, -1, 0, 1, 1, 0]).output(1) //?
+
+// 2520. Count the Digits That Divide a Number, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var countDigits = function (num) {
+  // prettier-ignore
+  const divisors = num.toString().split('').map(num => parseInt(num))
+  let countDivisors = 0
+  for (const divisor of divisors) {
+    if (num % divisor === 0) countDivisors++
+  }
+  return countDivisors
+}
+// testFunction(countDigits).input(7).output(1) //?
+// testFunction(countDigits).input(121).output(2) //?
+// testFunction(countDigits).input(1248).output(4) //?
