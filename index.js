@@ -6714,3 +6714,15 @@ var countDigits = function (num) {
 // testFunction(countDigits).input(7).output(1) //?
 // testFunction(countDigits).input(121).output(2) //?
 // testFunction(countDigits).input(1248).output(4) //?
+
+// 2529. Maximum Count of Positive Integer and Negative Integer, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumCount = function (nums) {
+  const positiveIntegersCount = nums.filter((num) => num > 0).length
+  const negativeIntegersCount = nums.filter((num) => num < 0).length
+  return Math.max(positiveIntegersCount, negativeIntegersCount)
+}
+// testFunction(maximumCount).input([-2, -1, -1, 1, 2, 3]).output(3) //?
