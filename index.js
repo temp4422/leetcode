@@ -6751,3 +6751,67 @@ var leftRightDifference = function (nums) {
   return answer
 }
 // testFunction(leftRightDifference).input([10, 4, 8, 3]).output([15, 1, 11, 22]) //?
+
+// 2570. Merge Two 2D Arrays by Summing Values, Easy
+/**
+ * @param {number[][]} nums1
+ * @param {number[][]} nums2
+ * @return {number[][]}
+ */
+var mergeArrays = function (nums1, nums2) {
+  const map = new Map()
+  for (let [id, value] of [...nums1, ...nums2]) {
+    map.set(id, (map.get(id) ?? 0) + value)
+  }
+  const sortedArr = [...map.entries()].sort((a, b) => a[0] - b[0])
+  return sortedArr
+
+  // // Alternative
+  // const mergedArr = []
+  // while (nums1.length || nums2.length) {
+  //   if (nums1.length && nums2.length) {
+  //     if (nums1[0][0] === nums2[0][0]) {
+  //       mergedArr.push([nums1[0][0], nums1[0][1] + nums2[0][1]])
+  //       nums1.shift()
+  //       nums2.shift()
+  //     } else if (nums1[0][0] < nums2[0][0]) {
+  //       mergedArr.push([nums1[0][0], nums1[0][1]])
+  //       nums1.shift()
+  //     } else {
+  //       mergedArr.push([nums2[0][0], nums2[0][1]])
+  //       nums2.shift()
+  //     }
+  //   } else if (nums1.length) {
+  //     mergedArr.push([nums1[0][0], nums1[0][1]])
+  //     nums1.shift()
+  //   } else if (nums2.length) {
+  //     mergedArr.push([nums2[0][0], nums2[0][1]])
+  //     nums2.shift()
+  //   }
+  // }
+  // return mergedArr
+
+  // // Alternative https://leetcode.com/problems/merge-two-2d-arrays-by-summing-values/solutions/6483863/beats-100-merge-two-2d-arrays-by-summing-values-optimized-approach
+  // const mergedArr: []
+  // let i = 0
+  // let j = 0
+
+  // while (i < nums1.length && j < nums2.length) {
+  //   if (nums1[i][0] === nums2[j][0]) {
+  //     mergedArr.push([nums1[i][0], nums1[i][1] + nums2[j][1]])
+  //     i++
+  //     j++
+  //   } else if (nums1[i][0] < nums2[j][0]) {
+  //     mergedArr.push(nums1[i++])
+  //   } else {
+  //     mergedArr.push(nums2[j++])
+  //   }
+  // }
+
+  // while (i < nums1.length) mergedArr.push(nums1[i++])
+  // while (j < nums2.length) mergedArr.push(nums2[j++])
+
+  // return mergedArr
+}
+// testFunction(mergeArrays).input([[1,2],[2,3],[4,5]], [[1,4],[3,2],[4,1]]).output([[1,6],[2,3],[3,2],[4,6]]) //?
+// testFunction(mergeArrays).input([[2,4],[3,6],[5,5]], [[1,3],[4,3]]).output([[1,3],[2,4],[3,6],[4,3],[5,5]]) //?
