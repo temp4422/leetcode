@@ -6726,3 +6726,28 @@ var maximumCount = function (nums) {
   return Math.max(positiveIntegersCount, negativeIntegersCount)
 }
 // testFunction(maximumCount).input([-2, -1, -1, 1, 2, 3]).output(3) //?
+
+// 2574. Left and Right Sum Differences, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var leftRightDifference = function (nums) {
+  const leftSum = []
+  for (let i = 0; i <= nums.length - 1; i++) {
+    leftSum.push(nums.slice(0, i).reduce((a, b) => a + b, 0))
+  }
+
+  const rightSum = []
+  for (let i = 1; i <= nums.length; i++) {
+    rightSum.push(nums.slice(i).reduce((a, b) => a + b, 0))
+  }
+
+  const answer = []
+  for (let i = 0; i < nums.length; i++) {
+    answer.push(Math.abs(leftSum[i] - rightSum[i]))
+  }
+
+  return answer
+}
+// testFunction(leftRightDifference).input([10, 4, 8, 3]).output([15, 1, 11, 22]) //?
