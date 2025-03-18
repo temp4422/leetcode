@@ -6815,3 +6815,27 @@ var mergeArrays = function (nums1, nums2) {
 }
 // testFunction(mergeArrays).input([[1,2],[2,3],[4,5]], [[1,4],[3,2],[4,1]]).output([[1,6],[2,3],[3,2],[4,6]]) //?
 // testFunction(mergeArrays).input([[2,4],[3,6],[5,5]], [[1,3],[4,3]]).output([[1,3],[2,4],[3,6],[4,3],[5,5]]) //?
+
+// 2525. Categorize Box According to Criteria, Easy
+/**
+ * @param {number} length
+ * @param {number} width
+ * @param {number} height
+ * @param {number} mass
+ * @return {string}
+ */
+var categorizeBox = function (length, width, height, mass) {
+  let bulky = false
+  let heavy = false
+
+  // prettier-ignore
+  if (length >= 10 ** 4 || width >= 10 ** 4 || height >= 10 ** 4 || length * width * height >= 10 ** 9) bulky = true
+  if (mass >= 100) heavy = true
+
+  if (bulky && heavy) return 'Both'
+  if (!bulky && !heavy) return 'Neither'
+  if (bulky && !heavy) return 'Bulky'
+  if (!bulky && heavy) return 'Heavy'
+}
+// testFunction(categorizeBox).input(1000, 35, 700, 300).output('Heavy') //?
+// testFunction(categorizeBox).input(200, 50, 800, 50).output('Neither') //?
