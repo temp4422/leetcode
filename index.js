@@ -6839,3 +6839,22 @@ var categorizeBox = function (length, width, height, mass) {
 }
 // testFunction(categorizeBox).input(1000, 35, 700, 300).output('Heavy') //?
 // testFunction(categorizeBox).input(200, 50, 800, 50).output('Neither') //?
+
+// 2639. Find the Width of Columns of a Grid, Easy
+/**
+ * @param {number[][]} grid
+ * @return {number[]}
+ */
+var findColumnWidth = function (grid) {
+  const columnWidths = []
+  for (let i = 0; i < grid[0].length; i++) {
+    let maxColumnWidth = 1
+    for (let j = 0; j < grid.length; j++) {
+      maxColumnWidth = Math.max(maxColumnWidth, String(grid[j][i]).length)
+    }
+    columnWidths.push(maxColumnWidth)
+  }
+  return columnWidths
+}
+// testFunction(findColumnWidth).input([[1],[22],[333]]).output([3]) //?
+// testFunction(findColumnWidth).input([[-15,1,3],[15,7,12],[5,6,-2]]).output([3,1,2]) //?
