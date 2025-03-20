@@ -6868,3 +6868,32 @@ var smallestEvenMultiple = function (n) {
   return n % 2 === 0 ? n : n * 2
 }
 // testFunction(smallestEvenMultiple).input(5).output(10) //?
+
+// 2460. Apply Operations to an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var applyOperations = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === nums[i + 1]) {
+      nums[i] = nums[i] * 2
+      nums[i + 1] = 0
+    }
+  }
+
+  let countZero = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      nums.splice(i, 1)
+      countZero++
+      i--
+    }
+  }
+
+  nums = nums.concat(new Array(countZero).fill(0))
+  return nums
+}
+// testFunction(applyOperations).input([1, 2, 2, 1, 1, 0]).output([1, 4, 2, 0, 0, 0]) //?
+// prettier-ignore
+// testFunction(applyOperations).input([847,847,0,0,0,399,416,416,879,879,206,206,206,272]).output([1694,399,832,1758,412,206,272,0,0,0,0,0,0,0]) //?
