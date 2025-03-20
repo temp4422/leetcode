@@ -6858,3 +6858,13 @@ var findColumnWidth = function (grid) {
 }
 // testFunction(findColumnWidth).input([[1],[22],[333]]).output([3]) //?
 // testFunction(findColumnWidth).input([[-15,1,3],[15,7,12],[5,6,-2]]).output([3,1,2]) //?
+
+// 2413. Smallest Even Multiple, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var smallestEvenMultiple = function (n) {
+  return n % 2 === 0 ? n : n * 2
+}
+// testFunction(smallestEvenMultiple).input(5).output(10) //?
