@@ -6895,5 +6895,69 @@ var applyOperations = function (nums) {
   return nums
 }
 // testFunction(applyOperations).input([1, 2, 2, 1, 1, 0]).output([1, 4, 2, 0, 0, 0]) //?
-// prettier-ignore
 // testFunction(applyOperations).input([847,847,0,0,0,399,416,416,879,879,206,206,206,272]).output([1694,399,832,1758,412,206,272,0,0,0,0,0,0,0]) //?
+
+// 2540. Minimum Common Value, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var getCommon = function (nums1, nums2) {
+  // Two pointers solution
+  // https://leetcode.com/problems/minimum-common-value/editorial
+  let i = 0
+  let j = 0
+  while (i < nums1.length && j < nums2.length) {
+    if (nums1[i] === nums2[j]) return nums1[i]
+    else if (nums1[i] < nums2[j]) i++
+    else if (nums2[j] < nums1[i]) j++
+  }
+  return -1
+
+  // // Alternative hash set
+  // https://leetcode.com/problems/minimum-common-value/solutions/3110256/very-simple-solution-with-explanation-using-set
+  // const set = new Set(nums1)
+  // for (let num of nums2) {
+  //   if (set.has(num)) return num
+  // }
+  // return -1
+
+  // // Alternative binary search
+  // function getBinarySearch(target, nums) {
+  //   let left = 0
+  //   let right = nums.length - 1
+  //   while (left <= right) {
+  //     let mid = Math.floor((left + right) / 2)
+  //     if (nums[mid] === target) return nums[mid]
+  //     else if (nums[mid] > target) right = mid - 1
+  //     else if (nums[mid] < target) left = mid + 1
+  //   }
+  // }
+
+  // for (let i = 0; i < nums1.length; i++) {
+  //   if (getBinarySearch(nums1[i], nums2)) {
+  //     return nums1[i]
+  //   }
+  // }
+  // return -1
+
+  // // Alternative Time Limit Exceeded, reason: "||" instead "&&" in while loop
+  // Explanation: A mistake in the while loop condition, which can cause an infinite loop or a time limit exceeded (TLE) error. The issue is using while (i < nums1.length || j < nums2.length), which allows one pointer to go out of bounds, leading to unintended behavior when accessing undefined values. The correct condition should be while (i < nums1.length && j < nums2.length), ensuring both pointers stay within bounds.
+  // let i = 0
+  // let j = 0
+  // while (i < nums1.length || j < nums2.length) {
+  //   if (nums1[i] === nums2[j]) return nums1[i]
+  //   if (nums1[i] < nums2[j]) i++
+  //   if (nums2[j] < nums1[i]) j++
+  // }
+  // return -1
+
+  // // Alternative Time Limit Exceeded
+  // for (let i = 0; i < nums1.length; i++) {
+  //   if (nums2.includes(nums1[i])) return nums1[i]
+  // }
+  // return -1
+}
+// testFunction(getCommon).input([1, 2, 3], [2, 4]).output(2) //?
+// testFunction(getCommon).input([1, 2, 3, 6], [2, 3, 4, 5]).output(2) //?
