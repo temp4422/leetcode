@@ -6961,3 +6961,21 @@ var getCommon = function (nums1, nums2) {
 }
 // testFunction(getCommon).input([1, 2, 3], [2, 4]).output(2) //?
 // testFunction(getCommon).input([1, 2, 3, 6], [2, 3, 4, 5]).output(2) //?
+
+// 2553. Separate the Digits in an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var separateDigits = function (nums) {
+  const answer = []
+  for (let i = 0; i < nums.length; i++) {
+    // prettier-ignore
+    answer.push(...String(nums[i]).split('').map((num) => Number(num)))
+  }
+  return answer
+
+  // Alternative https://leetcode.com/problems/separate-the-digits-in-an-array/solutions/3143150/one-liner-javascript-solution
+  // return Array.from(nums.join(''), Number)
+}
+// testFunction(separateDigits).input([13, 25, 83, 77]).output([1, 3, 2, 5, 8, 3, 7, 7]) //?
