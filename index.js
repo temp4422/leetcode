@@ -6979,3 +6979,28 @@ var separateDigits = function (nums) {
   // return Array.from(nums.join(''), Number)
 }
 // testFunction(separateDigits).input([13, 25, 83, 77]).output([1, 3, 2, 5, 8, 3, 7, 7]) //?
+
+// 2582. Pass the Pillow, Easy
+/**
+ * @param {number} n
+ * @param {number} time
+ * @return {number}
+ */
+var passThePillow = function (n, time) {
+  let forward = true
+  let index = 1
+  while (time > 0) {
+    if (forward) {
+      if (index < n) index++
+      if (index === n) forward = !forward
+    } else {
+      if (index > 1) index--
+      if (index === 1) forward = !forward
+    }
+    time--
+  }
+  return index
+}
+// testFunction(passThePillow).input(4, 5).output(2) //?
+// testFunction(passThePillow).input(3, 2).output(3) //?
+// testFunction(passThePillow).input(18, 38).output(5) //?
