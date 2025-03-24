@@ -7004,3 +7004,20 @@ var passThePillow = function (n, time) {
 // testFunction(passThePillow).input(4, 5).output(2) //?
 // testFunction(passThePillow).input(3, 2).output(3) //?
 // testFunction(passThePillow).input(18, 38).output(5) //?
+
+// 2558. Take Gifts From the Richest Pile, Easy
+/**
+ * @param {number[]} gifts
+ * @param {number} k
+ * @return {number}
+ */
+var pickGifts = function (gifts, k) {
+  while (k) {
+    let maxPile = Math.max(...gifts)
+    let indexOfMaxPile = gifts.indexOf(maxPile)
+    gifts.splice(indexOfMaxPile, 1, Math.floor(Math.sqrt(maxPile)))
+    k--
+  }
+  return gifts.reduce((a, b) => a + b)
+}
+// testFunction(pickGifts).input([25, 64, 9, 4, 100], 4).output(29) //?
