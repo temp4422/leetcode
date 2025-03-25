@@ -7021,3 +7021,32 @@ var pickGifts = function (gifts, k) {
   return gifts.reduce((a, b) => a + b)
 }
 // testFunction(pickGifts).input([25, 64, 9, 4, 100], 4).output(29) //?
+
+// 2578. Split With Minimum Sum, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var splitNum = function (num) {
+  // prettier-ignore
+  let splitNum = num.toString().split('').sort((a,b)=> a - b)
+
+  let num1 = ''
+  let num2 = ''
+  for (let i = 0; i < splitNum.length; i++) {
+    if (i % 2 === 0) num1 += splitNum[i]
+    if (i % 2 === 1) num2 += splitNum[i]
+  }
+
+  return Number(num1) + Number(num2)
+
+  // Alternative
+  // // prettier-ignore
+  // const splitNum = num.toString().split('').sort((a,b)=> a - b)
+  // const num1 = splitNum.filter((_, i) => i % 2 === 0).join('')
+  // const num2 = splitNum.filter((_, i) => i % 2 === 1).join('')
+  // return Number(num1) + Number(num2)
+}
+// testFunction(splitNum).input(4325).output(59) //?
+// testFunction(splitNum).input(687).output(75) //?
+// testFunction(splitNum).input(11).output(2) //?
