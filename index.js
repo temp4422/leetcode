@@ -7050,3 +7050,22 @@ var splitNum = function (num) {
 // testFunction(splitNum).input(4325).output(59) //?
 // testFunction(splitNum).input(687).output(75) //?
 // testFunction(splitNum).input(11).output(2) //?
+
+// 2595. Number of Even and Odd Bits, Easy
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var evenOddBit = function (n) {
+  const binary = n.toString(2).split('').reverse()
+  let even = 0
+  let odd = 0
+  for (let i = 0; i < binary.length; i++) {
+    if (binary[i] === '1') {
+      if (i % 2 === 0) even++
+      if (i % 2 === 1) odd++
+    }
+  }
+  return [even, odd]
+}
+// testFunction(evenOddBit).input(50).output([1, 2]) //?
