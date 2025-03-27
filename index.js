@@ -7069,3 +7069,31 @@ var evenOddBit = function (n) {
   return [even, odd]
 }
 // testFunction(evenOddBit).input(50).output([1, 2]) //?
+
+// 2605. Form Smallest Number From Two Digit Arrays, Easy
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var minNumber = function (nums1, nums2) {
+  const sortedNum1 = nums1.sort((a, b) => a - b) //?
+  const sortedNum2 = nums2.sort((a, b) => a - b) //?
+
+  let minNum = Infinity
+  for (let i = 0; i < sortedNum1.length; i++) {
+    for (let j = 0; j < sortedNum2.length; j++) {
+      if (sortedNum1[i] === sortedNum2[j]) {
+        minNum = Math.min(minNum, sortedNum1[i])
+      } else {
+        let sortedMinNum = Number([sortedNum1[i], sortedNum2[j]].sort((a, b) => a - b).join(''))
+        minNum = Math.min(minNum, sortedMinNum)
+      }
+    }
+  }
+
+  return minNum
+}
+// testFunction(minNumber).input([4, 1, 3], [5, 7]).output(15) //?
+// testFunction(minNumber).input([3, 5, 2, 6], [3, 1, 7]).output(3) //?
+// testFunction(minNumber).input([7, 5, 6], [1, 4]).output(15) //?
