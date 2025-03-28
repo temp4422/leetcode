@@ -7097,3 +7097,30 @@ var minNumber = function (nums1, nums2) {
 // testFunction(minNumber).input([4, 1, 3], [5, 7]).output(15) //?
 // testFunction(minNumber).input([3, 5, 2, 6], [3, 1, 7]).output(3) //?
 // testFunction(minNumber).input([7, 5, 6], [1, 4]).output(15) //?
+
+// 2549. Count Distinct Numbers on Board, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var distinctIntegers = function (n) {
+  const boardNumbers = new Set()
+  boardNumbers.add(n)
+
+  for (let i = n; i > 0; i--) {
+    if (n % i === 1) boardNumbers.add(i)
+  }
+
+  for (const num of boardNumbers) {
+    for (let i = n; i > 0; i--) {
+      if (num % i === 1) boardNumbers.add(i)
+    }
+  }
+
+  return boardNumbers.size
+
+  // Alternative https://leetcode.com/problems/count-distinct-numbers-on-board/solutions/5176735/faster-lesser-c-python3-java-c-python-c-explained-beats
+  // return n === 1 ? 1 : n - 1
+}
+// testFunction(distinctIntegers).input(5).output(4) //?
+// testFunction(distinctIntegers).input(3).output(2) //?
