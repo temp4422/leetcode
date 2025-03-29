@@ -7124,3 +7124,24 @@ var distinctIntegers = function (n) {
 }
 // testFunction(distinctIntegers).input(5).output(4) //?
 // testFunction(distinctIntegers).input(3).output(2) //?
+
+// 2441. Largest Positive Integer That Exists With Its Negative, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxK = function (nums) {
+  const set = new Set(nums)
+  let maxPositiveInt = -1
+  for (let i = 0; i < nums.length; i++) {
+    let positiveInt = Math.abs(nums[i])
+    if (nums[i] < 0 && set.has(positiveInt)) {
+      if (maxPositiveInt < positiveInt) maxPositiveInt = positiveInt
+    }
+  }
+  return maxPositiveInt
+}
+// testFunction(findMaxK).input([-1, 2, -3, 3]).output(3) //?
+// testFunction(findMaxK).input([-1, 10, 6, 7, -7, 1]).output(7) //?
+// testFunction(findMaxK).input([-10, 8, 6, 7, -2, -3]).output(-1) //?
+// testFunction(findMaxK).input([-37, 37, -9, 2, 47, 18, 13, -11, 9, -28]).output(37) //?
