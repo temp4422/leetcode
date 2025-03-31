@@ -7145,3 +7145,22 @@ var findMaxK = function (nums) {
 // testFunction(findMaxK).input([-1, 10, 6, 7, -7, 1]).output(7) //?
 // testFunction(findMaxK).input([-10, 8, 6, 7, -2, -3]).output(-1) //?
 // testFunction(findMaxK).input([-37, 37, -9, 2, 47, 18, 13, -11, 9, -28]).output(37) //?
+
+// 2475. Number of Unequal Triplets in Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var unequalTriplets = function (nums) {
+  let triplets = 0
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        if (nums[i] != nums[j] && nums[i] != nums[k] && nums[j] != nums[k]) triplets++
+      }
+    }
+  }
+  return triplets
+}
+// testFunction(unequalTriplets).input([4, 4, 2, 4, 3]).output(3) //?
+// testFunction(unequalTriplets).input([1, 1, 1, 1, 1]).output(0) //?
