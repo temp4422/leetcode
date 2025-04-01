@@ -7164,3 +7164,47 @@ var unequalTriplets = function (nums) {
 }
 // testFunction(unequalTriplets).input([4, 4, 2, 4, 3]).output(3) //?
 // testFunction(unequalTriplets).input([1, 1, 1, 1, 1]).output(0) //?
+
+// 2609. Find the Longest Balanced Substring of a Binary String, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var findTheLongestBalancedSubstring = function (s) {
+  let maxBalancedSubstring = 0
+  let countZero = 0
+  let countOne = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '0' && countOne) {
+      countZero = 1
+      countOne = 0
+    } else if (s[i] === '0') {
+      countZero++
+    } else if (s[i] === '1' && countZero) {
+      countOne++
+    }
+
+    let currentBalancedString = 0
+    if (countZero && countOne) currentBalancedString = Math.min(countZero, countOne) * 2
+    maxBalancedSubstring = Math.max(maxBalancedSubstring, currentBalancedString)
+  }
+  return maxBalancedSubstring
+
+  // Alternative https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/solutions/4538532/js-simple-solution-for-beginner
+  // let result = 0
+  // let substr = ''
+  // for (let i = 0; i <= s.length / 2; i++) {
+  //   substr = '0' + substr + '1'
+  //   if (s.includes(substr)) {
+  //     result = substr.length
+  //   } else {
+  //     return result
+  //   }
+  // }
+}
+// testFunction(findTheLongestBalancedSubstring).input('01000111').output(6) //?
+// testFunction(findTheLongestBalancedSubstring).input('00111').output(4) //?
+// testFunction(findTheLongestBalancedSubstring).input('111').output(0) //?
+// testFunction(findTheLongestBalancedSubstring).input('10').output(0) //?
+// testFunction(findTheLongestBalancedSubstring).input('001').output(2) //?
+// testFunction(findTheLongestBalancedSubstring).input('00101').output(2) //?
