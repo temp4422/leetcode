@@ -7208,3 +7208,26 @@ var findTheLongestBalancedSubstring = function (s) {
 // testFunction(findTheLongestBalancedSubstring).input('10').output(0) //?
 // testFunction(findTheLongestBalancedSubstring).input('001').output(2) //?
 // testFunction(findTheLongestBalancedSubstring).input('00101').output(2) //?
+
+// 2697. Lexicographically Smallest Palindrome, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var makeSmallestPalindrome = function (s) {
+  let arrayS = s.split('')
+  let left = 0
+  let right = s.length - 1
+  while (left <= right) {
+    if (arrayS[left] != arrayS[right]) {
+      if (arrayS[left] < arrayS[right]) arrayS[right] = arrayS[left]
+      if (arrayS[left] > arrayS[right]) arrayS[left] = arrayS[right]
+    }
+    left++
+    right--
+  }
+  return arrayS.join('')
+}
+// testFunction(makeSmallestPalindrome).input('egcfe').output('efcfe') //?
+// testFunction(makeSmallestPalindrome).input('abcd').output('abba') //?
+// testFunction(makeSmallestPalindrome).input('seven').output('neven') //?
