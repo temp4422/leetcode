@@ -7231,3 +7231,22 @@ var makeSmallestPalindrome = function (s) {
 // testFunction(makeSmallestPalindrome).input('egcfe').output('efcfe') //?
 // testFunction(makeSmallestPalindrome).input('abcd').output('abba') //?
 // testFunction(makeSmallestPalindrome).input('seven').output('neven') //?
+
+// 2562. Find the Array Concatenation Value, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findTheArrayConcVal = function (nums) {
+  let concatenationValue = 0
+  while (nums.length) {
+    let firstAndLast = ''
+    // if (nums[0] && nums[1]) firstAndLast = ${nums.shift()}${nums.pop()}
+    if (nums.length > 1) firstAndLast = `${nums.shift()}${nums.pop()}`
+    else firstAndLast = `${nums.pop()}`
+    concatenationValue += Number(firstAndLast)
+  }
+  return concatenationValue
+}
+// testFunction(findTheArrayConcVal).input([7, 52, 2, 4]).output(596) //?
+// testFunction(findTheArrayConcVal).input([5, 14, 13, 8, 12]).output(673) //?
