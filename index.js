@@ -7250,3 +7250,25 @@ var findTheArrayConcVal = function (nums) {
 }
 // testFunction(findTheArrayConcVal).input([7, 52, 2, 4]).output(596) //?
 // testFunction(findTheArrayConcVal).input([5, 14, 13, 8, 12]).output(673) //?
+
+// 2544. Alternating Digit Sum, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var alternateDigitSum = function (n) {
+  const digits = n.toString().split('').map(Number)
+  let sum = 0
+  for (let i = 0; i < digits.length; i++) {
+    if (i % 2 === 0) sum += digits[i]
+    else sum -= digits[i]
+  }
+  return sum
+
+  // Alternative
+  // // prettier-ignore
+  // const digitArray = n.toString().split('').map((digit, index)=> parseInt(index % 2 === 0 ? digit : 0 - digit ))
+  // const digitSum = digitArray.reduce((a, b) => a + b)
+  // return digitSum
+}
+// testFunction(alternateDigitSum).input(521).output(4) //?
