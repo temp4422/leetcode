@@ -7272,3 +7272,25 @@ var alternateDigitSum = function (n) {
   // return digitSum
 }
 // testFunction(alternateDigitSum).input(521).output(4) //?
+
+// 2643. Row With Maximum Ones, Easy
+/**
+ * @param {number[][]} mat
+ * @return {number[]}
+ */
+var rowAndMaximumOnes = function (mat) {
+  let max = 0
+  let result = [0, 0]
+  for (let i = 0; i < mat.length; i++) {
+    let count = mat[i].reduce((a, b) => a + b)
+    if (count > max) {
+      max = count
+      result = [i, max]
+    }
+  }
+  return result
+}
+// prettier-ignore
+// testFunction(rowAndMaximumOnes).input([[0,1],[1,0]]).output([0,1]) //?
+// prettier-ignore
+// testFunction(rowAndMaximumOnes).input([[0,0,0],[0,1,1]]).output([1,2]) //?
