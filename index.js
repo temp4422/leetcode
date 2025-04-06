@@ -7290,7 +7290,53 @@ var rowAndMaximumOnes = function (mat) {
   }
   return result
 }
-// prettier-ignore
 // testFunction(rowAndMaximumOnes).input([[0,1],[1,0]]).output([0,1]) //?
-// prettier-ignore
 // testFunction(rowAndMaximumOnes).input([[0,0,0],[0,1,1]]).output([1,2]) //?
+
+// 2566. Maximum Difference by Remapping a Digit, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var minMaxDifference = function (num) {
+  const numString = num.toString()
+  let maxNum = numString
+  for (let i = 0; i < numString.length; i++) {
+    if (numString[i] != '9') {
+      maxNum = numString.replaceAll(numString[i], '9')
+      break
+    }
+  }
+  let minNum = numString.replaceAll(numString[0], '0')
+  return Number(maxNum) - Number(minNum)
+
+  // Alternative
+  // const numArr = num.toString().split('')
+  // let maxNumArr = numArr
+  // for (let i = 0; i < numArr.length; i++) {
+  //   if (numArr[i] === '9') {
+  //     continue
+  //   } else {
+  //     maxNumArr = numArr.map((num) => (num === numArr[i] ? (num = '9') : num))
+  //     break
+  //   }
+  // }
+  // const maxNum = Number(maxNumArr.join(''))
+  // let minNumArr = numArr
+  // for (let i = 0; i < numArr.length; i++) {
+  //   if (numArr[i] === '0') {
+  //     continue
+  //   } else {
+  //     minNumArr = numArr.map((num) => (num === numArr[i] ? (num = '0') : num))
+  //     break
+  //   }
+  // }
+  // const minNum = Number(minNumArr.join(''))
+  // return maxNum - minNum
+
+  // Alternative
+  // https://leetcode.com/problems/maximum-difference-by-remapping-a-digit/solutions/4865830/javascript-replaceall
+}
+// testFunction(minMaxDifference).input(11891).output(99009) //?
+// testFunction(minMaxDifference).input(90).output(99) //?
+// testFunction(minMaxDifference).input(99999).output(99999) //?
