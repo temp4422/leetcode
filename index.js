@@ -7340,3 +7340,15 @@ var minMaxDifference = function (num) {
 // testFunction(minMaxDifference).input(11891).output(99009) //?
 // testFunction(minMaxDifference).input(90).output(99) //?
 // testFunction(minMaxDifference).input(99999).output(99999) //?
+
+// 2651. Calculate Delayed Arrival Time, Easy
+/**
+ * @param {number} arrivalTime
+ * @param {number} delayedTime
+ * @return {number}
+ */
+var findDelayedArrivalTime = function (arrivalTime, delayedTime) {
+  return (arrivalTime + delayedTime) % 24
+}
+// testFunction(findDelayedArrivalTime).input(15, 5).output(20) //?
+// testFunction(findDelayedArrivalTime).input(13, 11).output(0) //?
