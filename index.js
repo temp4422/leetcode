@@ -7352,3 +7352,17 @@ var findDelayedArrivalTime = function (arrivalTime, delayedTime) {
 }
 // testFunction(findDelayedArrivalTime).input(15, 5).output(20) //?
 // testFunction(findDelayedArrivalTime).input(13, 11).output(0) //?
+
+// 2652. Sum Multiples, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var sumOfMultiples = function (n) {
+  let sum = 0
+  for (let i = 0; i <= n; i++) {
+    if (i % 3 === 0 || i % 5 === 0 || i % 7 === 0) sum += i
+  }
+  return sum
+}
+// testFunction(sumOfMultiples).input(7).output(21) //?
