@@ -7366,3 +7366,17 @@ var sumOfMultiples = function (n) {
   return sum
 }
 // testFunction(sumOfMultiples).input(7).output(21) //?
+
+// 2706. Buy Two Chocolates, Easy
+/**
+ * @param {number[]} prices
+ * @param {number} money
+ * @return {number}
+ */
+var buyChoco = function (prices, money) {
+  const sortedPrices = prices.sort((a, b) => a - b)
+  let sum = sortedPrices[0] + sortedPrices[1]
+  if (sum <= money) return money - sum
+  else return money
+}
+// testFunction(buyChoco).input([1, 2, 2], 3).output(0) //?
