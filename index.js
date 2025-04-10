@@ -7380,3 +7380,21 @@ var buyChoco = function (prices, money) {
   else return money
 }
 // testFunction(buyChoco).input([1, 2, 2], 3).output(0) //?
+
+// 2670. Find the Distinct Difference Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var distinctDifferenceArray = function (nums) {
+  const distinctDifference = []
+  for (let i = 0; i < nums.length; i++) {
+    let prefix = new Set(nums.slice(0, i + 1)).size
+    let suffix = new Set(nums.slice(i + 1, nums.length)).size
+    distinctDifference.push(prefix - suffix)
+  }
+  return distinctDifference
+}
+// testFunction(distinctDifferenceArray).input([1, 2, 3, 4, 5]).output([-3, -1, 1, 3, 5]) //?
+// testFunction(distinctDifferenceArray).input([3, 2, 3, 4, 2]).output([-2, -1, 0, 2, 3]) //?
+// testFunction(distinctDifferenceArray).input([37, 37, 37, 37, 33]).output([-1, -1, -1, 0, 2]) //?
