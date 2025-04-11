@@ -7398,3 +7398,21 @@ var distinctDifferenceArray = function (nums) {
 // testFunction(distinctDifferenceArray).input([1, 2, 3, 4, 5]).output([-3, -1, 1, 3, 5]) //?
 // testFunction(distinctDifferenceArray).input([3, 2, 3, 4, 2]).output([-2, -1, 0, 2, 3]) //?
 // testFunction(distinctDifferenceArray).input([37, 37, 37, 37, 33]).output([-1, -1, -1, 0, 2]) //?
+
+// 2656. Maximum Sum With Exactly K Elements, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var maximizeSum = function (nums, k) {
+  let max = Math.max(...nums)
+  let sum = max
+  for (let i = 1; i < k; i++) {
+    max += 1
+    sum += max
+  }
+  return sum
+}
+// testFunction(maximizeSum).input([1, 2, 3, 4, 5], 3).output(18) //?
+// testFunction(maximizeSum).input([5, 5, 5], 2).output(11) //?
