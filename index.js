@@ -7399,7 +7399,7 @@ var distinctDifferenceArray = function (nums) {
 // testFunction(distinctDifferenceArray).input([3, 2, 3, 4, 2]).output([-2, -1, 0, 2, 3]) //?
 // testFunction(distinctDifferenceArray).input([37, 37, 37, 37, 33]).output([-1, -1, -1, 0, 2]) //?
 
-// 2656. Maximum Sum With Exactly K Elements, Easy
+//
 /**
  * @param {number[]} nums
  * @param {number} k
@@ -7416,3 +7416,34 @@ var maximizeSum = function (nums, k) {
 }
 // testFunction(maximizeSum).input([1, 2, 3, 4, 5], 3).output(18) //?
 // testFunction(maximizeSum).input([5, 5, 5], 2).output(11) //?
+
+// 2717. Semi-Ordered Permutation, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var semiOrderedPermutation = function (nums) {
+  let operations = 0
+  while (nums.at(0) != 1 || nums.at(-1) != nums.length) {
+    let firstIndex = nums.indexOf(1)
+    if (firstIndex != 0) {
+      // ;[nums[firstIndex - 1], nums[firstIndex]] = [nums[firstIndex], nums[firstIndex - 1]]
+      let tmp = nums[firstIndex - 1]
+      nums[firstIndex - 1] = nums[firstIndex]
+      nums[firstIndex] = tmp
+      operations++
+    }
+
+    let lastIndex = nums.indexOf(nums.length)
+    if (lastIndex != nums.length - 1) {
+      let tmp = nums[lastIndex + 1]
+      nums[lastIndex + 1] = nums[lastIndex]
+      nums[lastIndex] = tmp
+      operations++
+    }
+  }
+  return operations
+}
+// testFunction(semiOrderedPermutation).input([2, 1, 4, 3]).output(2) //?
+// testFunction(semiOrderedPermutation).input([2, 4, 1, 3]).output(3) //?
+// testFunction(semiOrderedPermutation).input([1, 3, 4, 2, 5]).output(0) //?
