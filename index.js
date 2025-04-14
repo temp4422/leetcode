@@ -7447,3 +7447,27 @@ var semiOrderedPermutation = function (nums) {
 // testFunction(semiOrderedPermutation).input([2, 1, 4, 3]).output(2) //?
 // testFunction(semiOrderedPermutation).input([2, 4, 1, 3]).output(3) //?
 // testFunction(semiOrderedPermutation).input([1, 3, 4, 2, 5]).output(0) //?
+
+// 2696. Minimum String Length After Removing Substrings, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minLength = function (s) {
+  let subS1 = 'AB'
+  let subS2 = 'CD'
+  while (s.match(subS1) || s.match(subS2)) {
+    if (s.match(subS1)) s = s.replace(subS1, '')
+    if (s.match(subS2)) s = s.replace(subS2, '')
+  }
+  return s.length
+
+  // Alternative
+  // https://leetcode.com/problems/minimum-string-length-after-removing-substrings/solutions/4023019/easy-ts-js-regex-solution
+  // while (/AB|CD/.test(s)) {
+  //   s = s.replace(/AB|CD/, '')
+  // }
+  // return s.length
+}
+// testFunction(minLength).input('ABFCACDB').output(2) //?
+// testFunction(minLength).input('ACBBD').output(5) //?
