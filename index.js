@@ -7471,3 +7471,14 @@ var minLength = function (s) {
 }
 // testFunction(minLength).input('ABFCACDB').output(2) //?
 // testFunction(minLength).input('ACBBD').output(5) //?
+
+// 2710. Remove Trailing Zeros From a String, Easy
+/**
+ * @param {string} num
+ * @return {string}
+ */
+var removeTrailingZeros = function (num) {
+  return num.replace(/0*$/, '')
+}
+// testFunction(removeTrailingZeros).input('51230100').output('512301') //?
+// testFunction(removeTrailingZeros).input('123').output('123') //?
