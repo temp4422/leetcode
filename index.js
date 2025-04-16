@@ -7482,3 +7482,16 @@ var removeTrailingZeros = function (num) {
 }
 // testFunction(removeTrailingZeros).input('51230100').output('512301') //?
 // testFunction(removeTrailingZeros).input('123').output('123') //?
+
+// 2729. Check if The Number is Fascinating, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isFascinating = function (n) {
+  const baseDigits = '123456789'
+  let newN = `${n}${2 * n}${3 * n}`.split('').sort().join('')
+  return baseDigits === newN
+}
+// testFunction(isFascinating).input(192).output(true) //?
+// testFunction(isFascinating).input(100).output(false) //?
