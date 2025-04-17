@@ -7495,3 +7495,31 @@ var isFascinating = function (n) {
 }
 // testFunction(isFascinating).input(192).output(true) //?
 // testFunction(isFascinating).input(100).output(false) //?
+
+// 2716. Minimize String Length, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minimizedStringLength = function (s) {
+  const arrS = s.split('')
+  for (let i = 0; i < arrS.length; i++) {
+    let currentChar = arrS[i]
+
+    for (let j = i + 1; j < arrS.length; j++) {
+      if (currentChar === arrS[j]) {
+        arrS.splice(j, 1)
+        i--
+        break
+      }
+    }
+  }
+  return arrS.length
+
+  // Alternative
+  // https://leetcode.com/problems/minimize-string-length/solutions/3594910/use-new-set-2-lines
+  return new Set(s).size
+}
+// testFunction(minimizedStringLength).input('aaabc').output(3) //?
+// testFunction(minimizedStringLength).input('cbbd').output(3) //?
+// testFunction(minimizedStringLength).input('baadccab').output(4) //?
