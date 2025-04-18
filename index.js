@@ -7523,3 +7523,44 @@ var minimizedStringLength = function (s) {
 // testFunction(minimizedStringLength).input('aaabc').output(3) //?
 // testFunction(minimizedStringLength).input('cbbd').output(3) //?
 // testFunction(minimizedStringLength).input('baadccab').output(4) //?
+
+// 2748. Number of Beautiful Pairs, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countBeautifulPairs = function (nums) {
+  function gcd(num1, num2) {
+    const num1Divisors = new Set()
+    const num2Divisors = new Set()
+    for (let i = 1; i <= Math.min(num1, num2); i++) {
+      if (num1 % i === 0) num1Divisors.add(i)
+      if (num2 % i === 0) num2Divisors.add(i)
+    }
+    const commonDivisors = num1Divisors.intersection(num2Divisors)
+    return commonDivisors
+  }
+
+  // // Alternative with Euclidean algorithm
+  // function gcd(a, b) {
+  //   while (b !== 0) {
+  //     ;[a, b] = [b, a % b]
+  //   }
+  //   return Math.abs(a)
+  // }
+
+  let beautifulPairs = 0
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      let firstDigit = nums[i].toString().at(0)
+      let lastDigit = nums[j].toString().at(-1)
+      if (gcd(firstDigit, lastDigit).size === 1) beautifulPairs++
+      // if (gcd(firstDigit, lastDigit) === 1) beautifulPairs++
+    }
+  }
+
+  return beautifulPairs
+}
+// testFunction(countBeautifulPairs).input([2, 5, 1, 4]).output(5) //?
+// testFunction(countBeautifulPairs).input([11, 21, 12]).output(2) //?
+// testFunction(countBeautifulPairs).input([31, 25, 72, 79, 74]).output(7) //?
