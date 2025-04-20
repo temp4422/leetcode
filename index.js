@@ -7564,3 +7564,13 @@ var countBeautifulPairs = function (nums) {
 // testFunction(countBeautifulPairs).input([2, 5, 1, 4]).output(5) //?
 // testFunction(countBeautifulPairs).input([11, 21, 12]).output(2) //?
 // testFunction(countBeautifulPairs).input([31, 25, 72, 79, 74]).output(7) //?
+
+// 2733. Neither Minimum nor Maximum, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findNonMinOrMax = function (nums) {
+  return nums.length <= 2 ? -1 : nums.sort((a, b) => a - b)[1]
+}
+// testFunction(findNonMinOrMax).input([3, 2, 1, 4]).output(2) //?
