@@ -7588,3 +7588,20 @@ var sumOfSquares = function (nums) {
   return sumOfSquares
 }
 // testFunction(sumOfSquares).input([1, 2, 3, 4]).output(21) //?
+
+// 2744. Find Maximum Number of String Pairs, Easy
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var maximumNumberOfStringPairs = function (words) {
+  let pairs = 0
+  for (let i = 0; i < words.length; i++) {
+    for (let j = i + 1; j < words.length; j++) {
+      if (words[i] === words[j].split('').reverse().join('')) pairs++
+    }
+  }
+  return pairs
+}
+// testFunction(maximumNumberOfStringPairs).input(['cd', 'ac', 'dc', 'ca', 'zz']).output(2) //?
+// testFunction(maximumNumberOfStringPairs).input(['ab', 'ba', 'cc']).output(1) //?
