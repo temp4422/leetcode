@@ -7627,3 +7627,32 @@ var longestPalindrome = function (s) {
 }
 // testFunction(longestPalindrome).input('abccccdd').output(7) //?
 // testFunction(longestPalindrome).input('bananas').output(5) //?
+
+// 1399. Count Largest Group, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countLargestGroup = function (n) {
+  // https://leetcode.com/problems/count-largest-group/solutions/6679082/beat-100-count-largest-digit-sum-groups
+  const map = new Map()
+  let maxSize = 0
+
+  for (let i = 1; i <= n; i++) {
+    // prettier-ignore
+    let sum = Number(i.toString().split('').reduce((a,b)=> +a + +b))
+    map.set(sum, (map.get(sum) ?? 0) + 1)
+    maxSize = Math.max(maxSize, map.get(sum))
+  }
+
+  let numberOfLargestGroups = 0
+  for (const value of map.values()) {
+    if (maxSize === value) numberOfLargestGroups++
+  }
+
+  return numberOfLargestGroups
+}
+// testFunction(countLargestGroup).input(13).output(4) //?
+// testFunction(countLargestGroup).input(2).output(2) //?
+// testFunction(countLargestGroup).input(24).output(5) //?
+// testFunction(countLargestGroup).input(264).output(2) //?
