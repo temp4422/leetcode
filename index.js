@@ -7605,3 +7605,25 @@ var maximumNumberOfStringPairs = function (words) {
 }
 // testFunction(maximumNumberOfStringPairs).input(['cd', 'ac', 'dc', 'ca', 'zz']).output(2) //?
 // testFunction(maximumNumberOfStringPairs).input(['ab', 'ba', 'cc']).output(1) //?
+
+// 409. Longest Palindrome, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindrome = function (s) {
+  const map = new Map()
+  for (let i = 0; i < s.length; i++) {
+    map.set(s[i], (map.get(s[i]) ?? 0) + 1)
+  }
+
+  let length = 0
+  for (let count of map.values()) {
+    if (count % 2 === 0) length += count
+    else length += count - 1
+  }
+
+  return length < s.length ? length + 1 : length
+}
+// testFunction(longestPalindrome).input('abccccdd').output(7) //?
+// testFunction(longestPalindrome).input('bananas').output(5) //?
