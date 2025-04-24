@@ -7656,3 +7656,88 @@ var countLargestGroup = function (n) {
 // testFunction(countLargestGroup).input(2).output(2) //?
 // testFunction(countLargestGroup).input(24).output(5) //?
 // testFunction(countLargestGroup).input(264).output(2) //?
+
+// 2799. Count Complete Subarrays in an Array, Medium
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countCompleteSubarrays = function (nums) {
+  // Solution by https://leetcode.com/problems/count-complete-subarrays-in-an-array/solutions/6681701/clean-code-brute-force
+  const distinctElementsSetSize = new Set(nums).size
+  let completeSubarrays = 0
+
+  // Alternative conditions
+  // A subarray of length fewer than distinctElementsSetSize cannot possibly contain all distinct elements, so we don’t need to start so late that there aren’t enough remaining elements.
+  // for (let i = 0; i < nums.length - distinctElementsSetSize + 1; i++) {
+  for (let i = 0; i < nums.length; i++) {
+    let subarraySet = new Set()
+
+    for (let j = i; j < nums.length; j++) {
+      subarraySet.add(nums[j])
+
+      if (subarraySet.size === distinctElementsSetSize) {
+        // Any longer subarray that still starts at i (i.e. nums[i..j+1], nums[i..j+2], …, nums[i..N−1]) will also contain all distinct values, since extending to the right can only add elements, never remove them.
+        completeSubarrays += nums.length - j
+        // We no longer need to consider longer j values for this particular i, because we already counted all subarrays that start at i and include every distinct element.
+        break
+      }
+    }
+  }
+  return completeSubarrays //?
+
+  // // Alternative Time Limit Exceeded
+  // const distinctElementsSetSize = new Set(nums).size
+  // let completeSubarrays = 0
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = nums.length; j > i; j--) {
+  //     let subarraySetSize = new Set(nums.slice(i, j)).size
+  //     if (distinctElementsSetSize === subarraySetSize) completeSubarrays++
+  //   }
+  // }
+  // return completeSubarrays //?
+
+  // // Alternative Time Limit Exceeded
+  // const distinctElementsSet = new Set(nums)
+  // let completeSubarrays = 0
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = nums.length; j > i; j--) {
+  //     let subarraySet = new Set(nums.slice(i, j))
+  //     if (distinctElementsSet.isSubsetOf(subarraySet)) completeSubarrays++
+  //   }
+  // }
+  // return completeSubarrays //?
+
+  // // Alternative Time Limit Exceeded
+  // function checkSubarrays(inputArr, checkArr) {
+  //   for (let i = 0; i < inputArr.length; i++) {
+  //     for (let j = 0; j < checkArr.length; j++) {
+  //       if (!inputArr.includes(checkArr[j])) return false
+  //     }
+  //   }
+  //   return true
+  // }
+  // const distinctElements = [...new Set(nums)]
+  // let completeSubarrays = 0
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = nums.length; j > i; j--) {
+  //     let subarray = nums.slice(i, j)
+  //     if (checkSubarrays(subarray, distinctElements)) completeSubarrays++
+  //   }
+  // }
+  // /* check order
+  // [5,5,5,5]
+  // [5,5,5  ]
+  // [5,5    ]
+  // [5      ]
+  // [  5,5,5]
+  // [  5,5  ]
+  // [  5    ]
+  // [    5,5]
+  // [    5  ]
+  // [      5]
+  // */
+  // return completeSubarrays //?
+}
+// testFunction(countCompleteSubarrays).input([1, 3, 1, 2, 2]).output(4) //?
+// testFunction(countCompleteSubarrays).input([5, 5, 5, 5]).output(10) //?
