@@ -7741,3 +7741,27 @@ var countCompleteSubarrays = function (nums) {
 }
 // testFunction(countCompleteSubarrays).input([1, 3, 1, 2, 2]).output(4) //?
 // testFunction(countCompleteSubarrays).input([5, 5, 5, 5]).output(10) //?
+
+// 599. Minimum Index Sum of Two Lists, Easy
+/**
+ * @param {string[]} list1
+ * @param {string[]} list2
+ * @return {string[]}
+ */
+var findRestaurant = function (list1, list2) {
+  const commonStrings = []
+  let leastIndex = Infinity
+  for (let i = 0; i < list1.length; i++) {
+    if (list2.includes(list1[i])) {
+      let indexSum = list2.indexOf(list1[i]) + i
+      commonStrings.push([list1[i], indexSum])
+      leastIndex = Math.min(leastIndex, indexSum)
+    }
+  }
+
+  const fiteredCommonStrings = commonStrings.filter((element) => element[1] == leastIndex)
+  const result = fiteredCommonStrings.map((element) => element[0])
+
+  return result
+}
+// testFunction(findRestaurant).input(["Shogun","Tapioca Express","Burger King","KFC"], ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]).output(["Shogun"]) //?
