@@ -7765,3 +7765,22 @@ var findRestaurant = function (list1, list2) {
   return result
 }
 // testFunction(findRestaurant).input(["Shogun","Tapioca Express","Burger King","KFC"], ["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]).output(["Shogun"]) //?
+
+// 657. Robot Return to Origin, Easy
+/**
+ * @param {string} moves
+ * @return {boolean}
+ */
+var judgeCircle = function (moves) {
+  let verticalStack = 0
+  let horizontalStack = 0
+  for (let move of moves) {
+    if (move === 'L') verticalStack++
+    if (move === 'R') verticalStack--
+    if (move === 'U') horizontalStack++
+    if (move === 'D') horizontalStack--
+  }
+  return verticalStack === 0 && horizontalStack === 0
+}
+// testFunction(judgeCircle).input('UD').output(true) //?
+// testFunction(judgeCircle).input('LL').output(false) //?
