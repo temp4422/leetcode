@@ -7784,3 +7784,18 @@ var judgeCircle = function (moves) {
 }
 // testFunction(judgeCircle).input('UD').output(true) //?
 // testFunction(judgeCircle).input('LL').output(false) //?
+
+// 3392. Count Subarrays of Length Three With a Condition, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countSubarrays = function (nums) {
+  let count = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] + nums[i + 2] === nums[i + 1] / 2) count++
+  }
+  return count
+}
+// testFunction(countSubarrays).input([1, 2, 1, 4, 1]).output(1) //?
+// testFunction(countSubarrays).input([1, 1, 1]).output(0) //?
