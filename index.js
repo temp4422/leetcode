@@ -7799,3 +7799,65 @@ var countSubarrays = function (nums) {
 }
 // testFunction(countSubarrays).input([1, 2, 1, 4, 1]).output(1) //?
 // testFunction(countSubarrays).input([1, 1, 1]).output(0) //?
+
+// 696. Count Binary Substrings, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countBinarySubstrings = function (s) {
+  // https://leetcode.com/problems/count-binary-substrings/solutions/1176828/javascript-one-pass-o-1-space-simple-solution
+  s += '#' // Add padding
+  let prev = 0
+  let curr = 1
+  let count = 0
+  for (let i = 1; i < s.length; i++) {
+    if (s[i - 1] === s[i]) curr++
+    else {
+      count += Math.min(prev, curr)
+      prev = curr
+      curr = 1
+    }
+  }
+  return count
+
+  // // Time Limit Exceeded
+  // let countSubstr = 0
+  // let substrZero = ''
+  // let substrOne = ''
+  // let lastCount = 0
+  // for (let i = 0; i <= s.length / 2; i++) {
+  //   // Count zeros
+  //   substrZero = '0' + substrZero + '1'
+  //   lastCount = [...s.matchAll(substrZero)].length
+  //   countSubstr += lastCount
+
+  //   // Count ones
+  //   substrOne = '1' + substrOne + '0'
+  //   lastCount = [...s.matchAll(substrOne)].length
+  //   countSubstr += lastCount
+  // }
+  // return countSubstr
+
+  // // Time Limit Exceeded
+  // let countSubstr = 0
+  // let substr = ''
+  // let lastCount = 0
+  // for (let i = 0; i <= s.length / 2; i++) {
+  //   substr = '0' + substr + '1'
+  //   lastCount = [...s.matchAll(substr)].length
+  //   countSubstr += lastCount
+  // }
+
+  // substr = ''
+  // lastCount = 0
+  // for (let i = 0; i <= s.length / 2; i++) {
+  //   substr = '1' + substr + '0'
+  //   lastCount = [...s.matchAll(substr)].length
+  //   countSubstr += lastCount
+  // }
+
+  // return countSubstr
+}
+// testFunction(countBinarySubstrings).input('00110011').output(6) //?
+// testFunction(countBinarySubstrings).input('10101').output(4) //?
