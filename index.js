@@ -7861,3 +7861,21 @@ var countBinarySubstrings = function (s) {
 }
 // testFunction(countBinarySubstrings).input('00110011').output(6) //?
 // testFunction(countBinarySubstrings).input('10101').output(4) //?
+
+// 476. Number Complement, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var findComplement = function (num) {
+  let binary = num.toString(2)
+  let reverseBinary = ''
+  for (let digit of binary) {
+    if (digit === '1') reverseBinary += '0'
+    if (digit === '0') reverseBinary += '1'
+  }
+  let complement = parseInt(reverseBinary, 2)
+  return complement
+}
+// testFunction(findComplement).input(5).output(2) //?
+// testFunction(findComplement).input(1).output(0) //?
