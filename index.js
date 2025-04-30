@@ -7909,3 +7909,18 @@ var findShortestSubArray = function (nums) {
 }
 // testFunction(findShortestSubArray).input([1, 2, 2, 3, 1]).output(2) //?
 // testFunction(findShortestSubArray).input([1, 2, 2, 3, 1, 4, 2]).output(6) //?
+
+// 1295. Find Numbers with Even Number of Digits, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findNumbers = function (nums) {
+  let even = 0
+  for (let element of nums) {
+    if (element.toString().length % 2 == 0) even++
+  }
+  return even
+}
+// testFunction(findNumbers).input([12, 345, 2, 6, 7896]).output(2) //?
+// testFunction(findNumbers).input([555, 901, 482, 1771]).output(1) //?
