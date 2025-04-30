@@ -7879,3 +7879,33 @@ var findComplement = function (num) {
 }
 // testFunction(findComplement).input(5).output(2) //?
 // testFunction(findComplement).input(1).output(0) //?
+
+// 697. Degree of an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findShortestSubArray = function (nums) {
+  // Get degree and sort by frequency
+  const map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], (map.get(nums[i]) ?? 0) + 1)
+  }
+  const sortedEntries = [...map.entries()].sort((a, b) => b[1] - a[1])
+
+  // Get smallest subarray length, based on appropriate degree
+  let smallestSubarray = Infinity
+  let degree = sortedEntries[0][1]
+  let i = 0
+  while (sortedEntries[i] && sortedEntries[i][1] === degree) {
+    let element = sortedEntries[i][0]
+    let startIndex = nums.indexOf(element)
+    let endIndex = nums.lastIndexOf(element)
+    // smallestSubarray = Math.min(smallestSubarray, nums.slice(startIndex, endIndex + 1).length)
+    smallestSubarray = Math.min(smallestSubarray, endIndex - startIndex + 1)
+    i++
+  }
+  return smallestSubarray
+}
+// testFunction(findShortestSubArray).input([1, 2, 2, 3, 1]).output(2) //?
+// testFunction(findShortestSubArray).input([1, 2, 2, 3, 1, 4, 2]).output(6) //?
