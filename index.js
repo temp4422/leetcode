@@ -7924,3 +7924,25 @@ var findNumbers = function (nums) {
 }
 // testFunction(findNumbers).input([12, 345, 2, 6, 7896]).output(2) //?
 // testFunction(findNumbers).input([555, 901, 482, 1771]).output(1) //?
+
+// 1365. How Many Numbers Are Smaller Than the Current Number, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var smallerNumbersThanCurrent = function (nums) {
+  const smallerNumbers = []
+  for (let i = 0; i < nums.length; i++) {
+    let count = 0
+    for (let j = 0; j < nums.length; j++) {
+      if (i != j && nums[j] < nums[i]) count++
+    }
+    smallerNumbers.push(count)
+  }
+  return smallerNumbers
+
+  // Alternative https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/solutions/547953/faster-than-98-32-memory-usage-less-than-100-00-2-lines-of-code
+  // const sorted = [...nums].sort((a, b) => a - b)
+  // return nums.map((num) => sorted.indexOf(num))
+}
+// testFunction(smallerNumbersThanCurrent).input([8, 1, 2, 2, 3]).output([4, 0, 1, 1, 3]) //?
