@@ -7946,3 +7946,18 @@ var smallerNumbersThanCurrent = function (nums) {
   // return nums.map((num) => sorted.indexOf(num))
 }
 // testFunction(smallerNumbersThanCurrent).input([8, 1, 2, 2, 3]).output([4, 0, 1, 1, 3]) //?
+
+// 1025. Divisor Game, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var divisorGame = function (n) {
+  return n % 2 == 0
+  // Odd and even problem
+  // Alice wins if n is even, because she can always leave an odd number for Bob.
+  // If both players play optimally, to win, make a move so the other player cannot move on their turn (since only 0 < x < n is allowed)."
+}
+// testFunction(divisorGame).input(2).output(true) //?
+// testFunction(divisorGame).input(3).output(false) //?
+// testFunction(divisorGame).input(4).output(true) //?
