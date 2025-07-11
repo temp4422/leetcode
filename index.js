@@ -7961,3 +7961,50 @@ var divisorGame = function (n) {
 // testFunction(divisorGame).input(2).output(true) //?
 // testFunction(divisorGame).input(3).output(false) //?
 // testFunction(divisorGame).input(4).output(true) //?
+
+// 1013. Partition Array Into Three Parts With Equal Sum, Easy
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var canThreePartsEqualSum = function (arr) {
+  // // Time Limit Exceeded
+  // function sum(array) {
+  //   let result = 0
+  //   for (let i = 0; i < array.length; i++) {
+  //     result += array[i]
+  //   }
+  //   return result
+  // }
+  // let partOne, partTwo, partThree
+  // for (let i = 1; i < arr.length; i++) {
+  //   partOne = sum(arr.slice(0, i))
+  //   for (let j = i + 1; j < arr.length; j++) {
+  //     partTwo = sum(arr.slice(i, j))
+  //     partThree = sum(arr.slice(j, arr.length))
+  //     if (partOne == partTwo && partTwo == partThree) return true
+  //   }
+  // }
+  // return false
+
+  // Solution by https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/solutions/6894429/leetcode-problem-1013-partition-array-into-three-parts-with-equal-sum
+  let sum = arr.reduce((a, b) => a + b)
+  if (sum % 3 != 0) return false
+
+  let threeParts = 0
+  let targetSum = sum / 3
+  let init = 0
+
+  for (let i = 0; i < arr.length; i++) {
+    init += arr[i]
+    if (init == targetSum) {
+      threeParts++
+      init = 0
+    }
+    if (threeParts === 3) return true
+  }
+  return false
+}
+// testFunction(canThreePartsEqualSum).input([0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]).output(true) //?
+// testFunction(canThreePartsEqualSum).input([0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1]).output(false) //?
+// testFunction(canThreePartsEqualSum).input([3, 3, 6, 5, -2, 2, 5, 1, -9, 4]).output(true) //?
