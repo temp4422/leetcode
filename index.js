@@ -8008,3 +8008,19 @@ var canThreePartsEqualSum = function (arr) {
 // testFunction(canThreePartsEqualSum).input([0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]).output(true) //?
 // testFunction(canThreePartsEqualSum).input([0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1]).output(false) //?
 // testFunction(canThreePartsEqualSum).input([3, 3, 6, 5, -2, 2, 5, 1, -9, 4]).output(true) //?
+
+// 1046. Last Stone Weight, Easy
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeight = function (stones) {
+  while (stones.length > 1) {
+    stones.sort((a, b) => b - a)
+    stones.push(Math.abs(stones.shift() - stones.shift()))
+  }
+  return stones[0]
+}
+// testFunction(lastStoneWeight).input([2, 7, 4, 1, 8, 1]).output(1) //?
+// testFunction(lastStoneWeight).input([1]).output(1) //?
+// testFunction(lastStoneWeight).input([2, 2]).output(0) //?
