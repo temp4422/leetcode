@@ -8024,3 +8024,41 @@ var lastStoneWeight = function (stones) {
 // testFunction(lastStoneWeight).input([2, 7, 4, 1, 8, 1]).output(1) //?
 // testFunction(lastStoneWeight).input([1]).output(1) //?
 // testFunction(lastStoneWeight).input([2, 2]).output(0) //?
+
+// 704. Binary Search, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  let left = 0
+  let right = nums.length - 1
+  while (left <= right) {
+    let mid = Math.floor(left + (right - left) / 2) // Avoid overflow when (left+right) > nums.length
+    if (target == nums[mid]) return mid
+    else if (target < nums[mid]) right = mid - 1
+    else if (target > nums[mid]) left = mid + 1
+  }
+  return -1
+
+  // // Detailed version
+  // let left = 0
+  // let right = nums.length - 1
+  // let mid = Math.floor((left + right) / 2)
+  // while (left <= right) {
+  //   if (target == nums[mid]) {
+  //     return mid
+  //   } else if (target < nums[mid]) {
+  //     right = mid - 1
+  //     mid = Math.floor((left + right) / 2)
+  //   } else if (target > nums[mid]) {
+  //     left = mid + 1
+  //     mid = Math.floor((left + right) / 2)
+  //   }
+  // }
+  // return -1
+}
+// testFunction(search).input([-1, 0, 3, 5, 9, 12], 9).output(4) //?
+// testFunction(search).input([-1, 0, 3, 5, 9, 12], 2).output(-1) //?
+// testFunction(search).input([5], 5).output(0) //?
