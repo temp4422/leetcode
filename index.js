@@ -8062,3 +8062,31 @@ var search = function (nums, target) {
 // testFunction(search).input([-1, 0, 3, 5, 9, 12], 9).output(4) //?
 // testFunction(search).input([-1, 0, 3, 5, 9, 12], 2).output(-1) //?
 // testFunction(search).input([5], 5).output(0) //?
+
+// 925. Long Pressed Name, Easy
+/**
+ * @param {string} name
+ * @param {string} typed
+ * @return {boolean}
+ */
+var isLongPressedName = function (name, typed) {
+  let i = 0
+  let j = 0
+  while (i <= name.length - 1 || j <= typed.length - 1) {
+    if (name[i] === typed[j]) {
+      i++
+      j++
+    } else if (typed[j] != typed[j - 1]) {
+      return false
+    } else {
+      j++
+    }
+  }
+  return true
+}
+// testFunction(isLongPressedName).input('alex', 'aaleex').output(true) //?
+// testFunction(isLongPressedName).input('saeed', 'ssaaedd').output(false) //?,
+// testFunction(isLongPressedName).input('leelee', 'lleeelee').output(true) //?
+// testFunction(isLongPressedName).input('alex', 'aaleexa').output(false) //?
+// testFunction(isLongPressedName).input('vtkgn', 'vttkgnn').output(true) //?
+// testFunction(isLongPressedName).input('alex', 'aaleelx').output(false) //?
