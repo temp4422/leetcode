@@ -8090,3 +8090,20 @@ var isLongPressedName = function (name, typed) {
 // testFunction(isLongPressedName).input('alex', 'aaleexa').output(false) //?
 // testFunction(isLongPressedName).input('vtkgn', 'vttkgnn').output(true) //?
 // testFunction(isLongPressedName).input('alex', 'aaleelx').output(false) //?
+
+// 1051. Height Checker, Easy
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var heightChecker = function (heights) {
+  const expected = heights.toSorted((a, b) => a - b)
+  let countWrongIndices = 0
+  for (let i = 0; i < heights.length; i++) {
+    if (heights[i] != expected[i]) countWrongIndices++
+  }
+  return countWrongIndices
+}
+// testFunction(heightChecker).input([1, 1, 4, 2, 1, 3]).output(3) //?
+// testFunction(heightChecker).input([5, 1, 2, 3, 4]).output(5) //?
+// testFunction(heightChecker).input([1, 2, 3, 4, 5]).output(0) //?
