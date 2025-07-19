@@ -8107,3 +8107,71 @@ var heightChecker = function (heights) {
 // testFunction(heightChecker).input([1, 1, 4, 2, 1, 3]).output(3) //?
 // testFunction(heightChecker).input([5, 1, 2, 3, 4]).output(5) //?
 // testFunction(heightChecker).input([1, 2, 3, 4, 5]).output(0) //?
+
+// 1266. Minimum Time Visiting All Points, Easy
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var minTimeToVisitAllPoints = function (points) {
+  // Editorial solution https://leetcode.com/problems/minimum-time-visiting-all-points/editorial
+  let seconds = 0
+  for (let i = 0; i < points.length - 1; i++) {
+    let currX = points[i][0]
+    let currY = points[i][1]
+    let targetX = points[i + 1][0]
+    let targetY = points[i + 1][1]
+    // Moving diagonally reduces both x and y by 1 per second, so the minimum time to reach the next point is the maximum of the horizontal and vertical distances.
+    seconds += Math.max(Math.abs(targetX - currX), Math.abs(targetY - currY))
+  }
+  return seconds
+
+  // let seconds = 0
+  // for (let i = 0; i < points.length; i++) {
+  //   let currPoint = points[i]
+  //   let nextPoint = points[i + 1]
+  //   if (nextPoint) {
+  //     while (currPoint[0] < nextPoint[0] && currPoint[1] < nextPoint[1]) {
+  //       currPoint[0]++
+  //       currPoint[1]++
+  //       seconds++
+  //     }
+  //     while (currPoint[0] > nextPoint[0] && currPoint[1] > nextPoint[1]) {
+  //       currPoint[0]--
+  //       currPoint[1]--
+  //       seconds++
+  //     }
+  //     while (currPoint[0] < nextPoint[0] && currPoint[1] > nextPoint[1]) {
+  //       currPoint[0]++
+  //       currPoint[1]--
+  //       seconds++
+  //     }
+  //     while (currPoint[0] > nextPoint[0] && currPoint[1] < nextPoint[1]) {
+  //       currPoint[0]--
+  //       currPoint[1]++
+  //       seconds++
+  //     }
+  //     while (currPoint[0] < nextPoint[0]) {
+  //       currPoint[0]++
+  //       seconds++
+  //     }
+  //     while (currPoint[0] > nextPoint[0]) {
+  //       currPoint[0]--
+  //       seconds++
+  //     }
+  //     while (currPoint[1] < nextPoint[1]) {
+  //       currPoint[1]++
+  //       seconds++
+  //     }
+  //     while (currPoint[1] > nextPoint[1]) {
+  //       currPoint[1]--
+  //       seconds++
+  //     }
+  //   }
+  // }
+  // return seconds
+}
+// // prettier-ignore
+// testFunction(minTimeToVisitAllPoints).input([[1,1],[3,4],[-1,0]]).output(7) //?
+// // prettier-ignore
+// testFunction(minTimeToVisitAllPoints).input([[3,2],[-2,2]]).output(5) //?
