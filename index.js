@@ -8175,3 +8175,20 @@ var minTimeToVisitAllPoints = function (points) {
 // testFunction(minTimeToVisitAllPoints).input([[1,1],[3,4],[-1,0]]).output(7) //?
 // // prettier-ignore
 // testFunction(minTimeToVisitAllPoints).input([[3,2],[-2,2]]).output(5) //?
+
+// 1360. Number of Days Between Two Dates, Easy
+/**
+ * @param {string} date1
+ * @param {string} date2
+ * @return {number}
+ */
+var daysBetweenDates = function (date1, date2) {
+  // Using built-in JS objects
+  const timeDiff = Math.abs(new Date(date1).getTime() - new Date(date2).getTime())
+  const days = timeDiff / 1000 / 60 / 60 / 24 // Milliseconds, Seconds, Minutes, Hours
+  return days
+}
+// testFunction(daysBetweenDates).input('2019-06-29', '2019-06-30').output(1) //?
+// testFunction(daysBetweenDates).input('2020-01-15', '2019-12-31').output(15) //?
+// testFunction(daysBetweenDates).input('1971-06-29', '2010-09-23').output(14331) //?
+// testFunction(daysBetweenDates).input('2074-09-12', '1983-01-08').output(33485) //?
