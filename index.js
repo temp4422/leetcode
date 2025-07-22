@@ -8192,3 +8192,38 @@ var daysBetweenDates = function (date1, date2) {
 // testFunction(daysBetweenDates).input('2020-01-15', '2019-12-31').output(15) //?
 // testFunction(daysBetweenDates).input('1971-06-29', '2010-09-23').output(14331) //?
 // testFunction(daysBetweenDates).input('2074-09-12', '1983-01-08').output(33485) //?
+
+// 1380. Lucky Numbers in a Matrix, Easy
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var luckyNumbers = function (matrix) {
+  // Transpose matrix to get columns
+  const columns = []
+  for (let i = 0; i < matrix[0].length; i++) {
+    let column = []
+    for (let j = 0; j < matrix.length; j++) {
+      column.push(matrix[j][i])
+    }
+    columns.push(column)
+  }
+
+  // Compare min and max in each column and row
+  let luckyNumbers = []
+  for (let i = 0; i < matrix.length; i++) {
+    let min = Math.min(...matrix[i])
+    for (let j = 0; j < matrix[i].length; j++) {
+      let max = Math.max(...columns[j])
+      if (min === max) luckyNumbers.push(min)
+    }
+  }
+
+  return luckyNumbers
+}
+// // prettier-ignore
+// testFunction(luckyNumbers).input([[3, 7, 8],[9, 11, 13],[15, 16, 17],]).output([15]) //?
+// // prettier-ignore
+// testFunction(luckyNumbers).input([[1,10,4,2],[9,3,8,7],[15,16,17,12]]).output([12]) //?
+// // prettier-ignore
+// testFunction(luckyNumbers).input([[7,8],[1,2]]).output([7]) //?
