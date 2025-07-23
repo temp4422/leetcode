@@ -8227,3 +8227,27 @@ var luckyNumbers = function (matrix) {
 // testFunction(luckyNumbers).input([[1,10,4,2],[9,3,8,7],[15,16,17,12]]).output([12]) //?
 // // prettier-ignore
 // testFunction(luckyNumbers).input([[7,8],[1,2]]).output([7]) //?
+
+// 1385. Find the Distance Value Between Two Arrays, Easy
+/**
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @param {number} d
+ * @return {number}
+ */
+var findTheDistanceValue = function (arr1, arr2, d) {
+  let distanceValue = 0
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (Math.abs(arr1[i] - arr2[j]) <= d) {
+        distanceValue--
+        break
+      }
+    }
+    distanceValue++
+  }
+  return distanceValue
+}
+// testFunction(findTheDistanceValue).input([4, 5, 8], [10, 9, 1, 8], 2).output(2) //?
+// testFunction(findTheDistanceValue).input([1, 4, 2, 3], [-4, -3, 6, 10, 20, 30], 3).output(2) //?
+// testFunction(findTheDistanceValue).input([2, 1, 100, 3], [-5, -2, 10, -3, 7], 6).output(1) //?
