@@ -8251,3 +8251,47 @@ var findTheDistanceValue = function (arr1, arr2, d) {
 // testFunction(findTheDistanceValue).input([4, 5, 8], [10, 9, 1, 8], 2).output(2) //?
 // testFunction(findTheDistanceValue).input([1, 4, 2, 3], [-4, -3, 6, 10, 20, 30], 3).output(2) //?
 // testFunction(findTheDistanceValue).input([2, 1, 100, 3], [-5, -2, 10, -3, 7], 6).output(1) //?
+
+// 728. Self Dividing Numbers, Easy
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number[]}
+ */
+var selfDividingNumbers = function (left, right) {
+  // Approach 2
+  function divideSelf(num) {
+    let splitNum = num.toString().split('').map(Number)
+    for (let i = 0; i < splitNum.length; i++) {
+      if (num % splitNum[i] != 0 || splitNum[i] === 0) return false
+    }
+    return true
+  }
+
+  const foundNumbers = []
+  for (let number = left; number <= right; number++) {
+    if (divideSelf(number)) foundNumbers.push(number)
+  }
+  return foundNumbers
+
+  // Approach 1
+  // const foundNumbers = []
+  // let flag = false
+
+  // for (let num = left; num <= right; num++) {
+  //   let splitNum = num.toString().split('').map(Number)
+
+  //   for (let i = 0; i < splitNum.length; i++) {
+  //     if (num % splitNum[i] != 0 || splitNum[i] === 0) {
+  //       flag = true
+  //       break
+  //     }
+  //   }
+
+  //   if (!flag) foundNumbers.push(num)
+  //   flag = false
+  // }
+  // return foundNumbers
+}
+// testFunction(selfDividingNumbers).input(1, 22).output([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]) //?
+// testFunction(selfDividingNumbers).input(47, 85).output([48, 55, 66, 77]) //?
