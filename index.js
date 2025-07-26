@@ -8357,3 +8357,33 @@ var minCostClimbingStairs = function (cost) {
 // testFunction(minCostClimbingStairs).input([0, 1, 2, 3]).output(2) //?
 // testFunction(minCostClimbingStairs).input([1, 2, 2, 0]).output(2) //?
 // testFunction(minCostClimbingStairs).input([1, 100]).output(1) //?
+
+// 1189. Maximum Number of Balloons, Easy
+/**
+ * @param {string} text
+ * @return {number}
+ */
+var maxNumberOfBalloons = function (text) {
+  const targetWord = 'balloon'
+  const map = new Map()
+
+  for (let i = 0; i < targetWord.length; i++) {
+    map.set(targetWord[i], 0)
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    if (map.has(text[i])) map.set(text[i], map.get(text[i]) + 1)
+  }
+
+  let count = 0
+  while (true) {
+    for (let i = 0; i < targetWord.length; i++) {
+      if (!map.get(targetWord[i])) return count
+      map.set(targetWord[i], map.get(targetWord[i]) - 1)
+    }
+    count++
+  }
+}
+// testFunction(maxNumberOfBalloons).input('nlaebolko').output(1) //?
+// testFunction(maxNumberOfBalloons).input('balon').output(0) //?
+// testFunction(maxNumberOfBalloons).input('nllbblooon').output(0) //?
