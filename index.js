@@ -8295,3 +8295,65 @@ var selfDividingNumbers = function (left, right) {
 }
 // testFunction(selfDividingNumbers).input(1, 22).output([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]) //?
 // testFunction(selfDividingNumbers).input(47, 85).output([48, 55, 66, 77]) //?
+
+// 746. Min Cost Climbing Stairs, Easy
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairs = function (cost) {
+  // if (cost.length <= 3) return cost[1]
+
+  // let startIndex = cost[1] <= cost[0] ? 1 : 0
+  // let minCost = cost[startIndex]
+  // for (let i = startIndex + 1; i < cost.length; i++) {
+  //   let index = cost[i + 1] <= cost[i] ? i + 1 : i
+  //   if (i + 1 === cost.length - 2 && cost[i + 1] < cost[i] + cost[i + 2]) index = i + 1
+  //   minCost += cost[index]
+  //   i = index
+  //   if (index >= cost.length - 2) break
+  // }
+  // return minCost
+
+  // if (cost.length <= 2) return cost[0] < cost[1] ? cost[0] : cost[1]
+  // if (cost.length <= 3) return cost[1]
+
+  // let minCost = 0
+  // for (let i = 0; i < cost.length - 1; i++) {
+  //   if (cost[i] < cost[i + 1]) {
+  //     if (i >= cost.length - 3) {
+  //       if (cost[i + 1] < cost[i] + cost[i + 2]) {
+  //         minCost += cost[i + 1]
+  //         i++
+  //       } else {
+  //         minCost += cost[i]
+  //       }
+  //     } else if (cost[i + 1] + cost[i + 3] < cost[i] + cost[i + 2]) {
+  //       minCost += cost[i + 1]
+  //       i++
+  //     } else {
+  //       minCost += cost[i]
+  //     }
+  //   } else {
+  //     minCost += cost[i + 1]
+  //     i++
+  //   }
+  // }
+  // return minCost
+  // let minCost = 0
+
+  // https://leetcode.com/problems/min-cost-climbing-stairs/solutions/6599631/super-easy-beginners-java-c-c-python-javascript-dart
+  let dummyArr = new Array(cost.length + 1).fill(0)
+  for (let i = 2; i < cost.length + 1; i++) {
+    dummyArr[i] = Math.min(dummyArr[i - 1] + cost[i - 1], dummyArr[i - 2] + cost[i - 2])
+  }
+  return dummyArr[cost.length]
+}
+// testFunction(minCostClimbingStairs).input([10, 15, 10, 20]).output(20) //?
+// testFunction(minCostClimbingStairs).input([10, 15, 20]).output(15) //?
+// testFunction(minCostClimbingStairs).input([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]).output(6) //?
+// testFunction(minCostClimbingStairs).input([0, 1, 2, 2]).output(2) //?
+// testFunction(minCostClimbingStairs).input([0, 0, 0, 1]).output(0) //?
+// testFunction(minCostClimbingStairs).input([0, 1, 2, 3]).output(2) //?
+// testFunction(minCostClimbingStairs).input([1, 2, 2, 0]).output(2) //?
+// testFunction(minCostClimbingStairs).input([1, 100]).output(1) //?
