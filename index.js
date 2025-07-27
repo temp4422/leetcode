@@ -8387,3 +8387,36 @@ var maxNumberOfBalloons = function (text) {
 // testFunction(maxNumberOfBalloons).input('nlaebolko').output(1) //?
 // testFunction(maxNumberOfBalloons).input('balon').output(0) //?
 // testFunction(maxNumberOfBalloons).input('nllbblooon').output(0) //?
+
+// 1436. Destination City, Easy
+/**
+ * @param {string[][]} paths
+ * @return {string}
+ */
+var destCity = function (paths) {
+  // Hash Set
+  const map = new Map()
+  for (const cityArr of paths) {
+    map.set(cityArr[0], true)
+  }
+  for (const cityArr of paths) {
+    if (!map.has(cityArr[1])) return cityArr[1]
+  }
+
+  // // Array
+  // const travelCities = []
+  // for (const cityArr of paths) {
+  //   travelCities.push(cityArr[0])
+  // }
+  // for (const cityArr of paths) {
+  //   for (const city of cityArr) {
+  //     if (travelCities.indexOf(city) == -1) return city
+  //   }
+  // }
+}
+// // prettier-ignore
+// testFunction(destCity).input([["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]).output("Sao Paulo") //?
+// // prettier-ignore
+// testFunction(destCity).input([["B","C"],["D","B"],["C","A"]]).output("A") //?
+// // prettier-ignore
+// testFunction(destCity).input([["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]]).output("wxAscRuzOl") //?
