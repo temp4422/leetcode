@@ -8420,3 +8420,51 @@ var destCity = function (paths) {
 // testFunction(destCity).input([["B","C"],["D","B"],["C","A"]]).output("A") //?
 // // prettier-ignore
 // testFunction(destCity).input([["pYyNGfBYbm","wxAscRuzOl"],["kzwEQHfwce","pYyNGfBYbm"]]).output("wxAscRuzOl") //?
+
+// 1331. Rank Transform of an Array, Easy
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+var arrayRankTransform = function (arr) {
+  const indexArr = arr.map((element, index) => [element, index])
+  const sortedIndexArr = indexArr.sort((a, b) => a[0] - b[0])
+
+  let rank = 1
+  for (let i = 0; i < sortedIndexArr.length; i++) {
+    let lastValue = sortedIndexArr[i][0]
+    sortedIndexArr[i][0] = rank
+    rank++
+    if (sortedIndexArr[i + 1] && lastValue === sortedIndexArr[i + 1][0]) rank--
+  }
+
+  const unsortedIndexArr = sortedIndexArr.sort((a, b) => a[1] - b[1])
+  const rankArr = unsortedIndexArr.map((element) => element[0])
+  return rankArr
+
+  // // Alternative Time Limit Exceeded https://leetcode.com/problems/rank-transform-of-an-array/solutions/742765/javascript-es6-two-simple-2-line-solutions
+  // const sorted = Array.from(new Set(arr)).sort((a, b) => a - b)
+  // const rankArr = arr.map((element) => sorted.indexOf(element) + 1)
+  // return rankArr
+
+  // // Time Limit Exceeded
+  // if (arr.length === 0) return []
+  // if (arr.length === 1) return [1]
+
+  // const rankArr = new Array(arr.length).fill(0)
+  // let rank = 1
+  // let lastValue = 0
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   let minValue = Math.min(...arr)
+  //   if (lastValue === minValue) rank--
+  //   let index = arr.indexOf(minValue)
+  //   rankArr[index] = rank
+  //   rank++
+  //   arr[index] = Infinity
+  //   lastValue = minValue
+  // }
+  // return rankArr
+}
+// testFunction(arrayRankTransform).input([40, 10, 20, 30]).output([4, 1, 2, 3]) //?
+// testFunction(arrayRankTransform).input([100, 100, 100]).output([1, 1, 1]) //?
