@@ -8468,3 +8468,21 @@ var arrayRankTransform = function (arr) {
 }
 // testFunction(arrayRankTransform).input([40, 10, 20, 30]).output([4, 1, 2, 3]) //?
 // testFunction(arrayRankTransform).input([100, 100, 100]).output([1, 1, 1]) //?
+
+// 2788. Split Strings by Separator, Easy
+/**
+ * @param {string[]} words
+ * @param {character} separator
+ * @return {string[]}
+ */
+var splitWordsBySeparator = function (words, separator) {
+  const splitWords = []
+  for (const word of words) {
+    let part = word.split(separator).filter((element) => element != '')
+    splitWords.push(...part)
+  }
+  return splitWords
+}
+// testFunction(splitWordsBySeparator).input(['one.two.three', 'four.five', 'six'], '.').output(['one', 'two', 'three', 'four', 'five', 'six']) //?
+// testFunction(splitWordsBySeparator).input(['$easy$', '$problem$'], '$', '.').output(['easy', 'problem']) //?
+// testFunction(splitWordsBySeparator).input(['|||'], '|').output([]) //?
