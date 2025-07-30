@@ -8486,3 +8486,18 @@ var splitWordsBySeparator = function (words, separator) {
 // testFunction(splitWordsBySeparator).input(['one.two.three', 'four.five', 'six'], '.').output(['one', 'two', 'three', 'four', 'five', 'six']) //?
 // testFunction(splitWordsBySeparator).input(['$easy$', '$problem$'], '$', '.').output(['easy', 'problem']) //?
 // testFunction(splitWordsBySeparator).input(['|||'], '|').output([]) //?
+
+// 2810. Faulty Keyboard, Easy
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var finalString = function (s) {
+  let newString = []
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'i') newString.reverse()
+    else newString.push(s[i])
+  }
+  return newString.join('')
+}
+// testFunction(finalString).input('string').output('rtsng') //?
