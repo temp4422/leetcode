@@ -8501,3 +8501,18 @@ var finalString = function (s) {
   return newString.join('')
 }
 // testFunction(finalString).input('string').output('rtsng') //?
+
+// 1281. Subtract the Product and Sum of Digits of an Integer, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var subtractProductAndSum = function (n) {
+  // prettier-ignore
+  const product = n.toString().split('').map(Number).reduce((a, b)=> a * b)
+  // prettier-ignore
+  const sum = n.toString().split('').map(Number).reduce((a, b)=> a + b)
+  return product - sum
+}
+// testFunction(subtractProductAndSum).input(234).output(15) //?
+// testFunction(subtractProductAndSum).input(4421).output(21) //?
