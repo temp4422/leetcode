@@ -8516,3 +8516,30 @@ var subtractProductAndSum = function (n) {
 }
 // testFunction(subtractProductAndSum).input(234).output(15) //?
 // testFunction(subtractProductAndSum).input(4421).output(21) //?
+
+// 1299. Replace Elements with Greatest Element on Right Side, Easy
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+var replaceElements = function (arr) {
+  // Solution https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/solutions/487742/javascript-optimal-solution-w-explanation
+  const replacedArr = new Array(arr.length)
+  replacedArr[arr.length - 1] = -1
+  for (let i = arr.length - 1; i > 0; i--) {
+    replacedArr[i - 1] = Math.max(replacedArr[i], arr[i])
+  }
+  return replacedArr
+
+  // // Time Limit Exceeded
+  // const replacedArr = []
+  // for (let i = 0; i < arr.length; i++) {
+  //   let max = Math.max(...arr.slice(i + 1))
+  //   replacedArr.push(max)
+  // }
+  // replacedArr.pop()
+  // replacedArr.push(-1)
+  // return replacedArr
+}
+// testFunction(replaceElements).input([17, 18, 5, 4, 6, 1]).output([18, 6, 6, 6, 1, -1]) //?
+// testFunction(replaceElements).input([400]).output([-1]) //?
