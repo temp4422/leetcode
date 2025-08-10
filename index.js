@@ -8543,3 +8543,29 @@ var replaceElements = function (arr) {
 }
 // testFunction(replaceElements).input([17, 18, 5, 4, 6, 1]).output([18, 6, 6, 6, 1, -1]) //?
 // testFunction(replaceElements).input([400]).output([-1]) //?
+
+// 1304. Find N Unique Integers Sum up to Zero, Easy
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var sumZero = function (n) {
+  const uniqueArr = []
+  let half = Math.floor(n / 2)
+  for (let i = 0; i < n; i++) {
+    // Skips 0 for even n, because if n is even, we can’t have 0 in the middle — otherwise numbers won’t be symmetric.
+    if (half === 0 && n % 2 === 0) half--
+    uniqueArr.push(half--)
+  }
+  return uniqueArr
+
+  // // Alternative
+  // const res = []
+  // for (let i = 1; i <= Math.floor(n / 2); i++) {
+  //   res.push(i, -i) // Add symmetric pairs
+  // }
+  // if (n % 2 !== 0) res.push(0) // If n is odd, add 0
+  // return res
+}
+// testFunction(sumZero).input(5).output([2, 1, 0, -1, -2]) //?
+// testFunction(sumZero).input(4).output([2, 1, -1, -2]) //?
