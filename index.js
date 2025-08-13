@@ -8569,3 +8569,19 @@ var sumZero = function (n) {
 }
 // testFunction(sumZero).input(5).output([2, 1, 0, -1, -2]) //?
 // testFunction(sumZero).input(4).output([2, 1, -1, -2]) //?
+
+// 1313. Decompress Run-Length Encoded List, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var decompressRLElist = function (nums) {
+  const decompressedList = []
+  for (let i = 0; i < nums.length; i += 2) {
+    for (let j = 0; j < nums[i]; j++) {
+      decompressedList.push(nums[i + 1])
+    }
+  }
+  return decompressedList
+}
+// testFunction(decompressRLElist).input([1, 2, 3, 4]).output([2, 4, 4, 4]) //?
