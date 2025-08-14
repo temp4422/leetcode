@@ -8585,3 +8585,18 @@ var decompressRLElist = function (nums) {
   return decompressedList
 }
 // testFunction(decompressRLElist).input([1, 2, 3, 4]).output([2, 4, 4, 4]) //?
+
+// 977. Squares of a Sorted Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function (nums) {
+  const newNums = []
+  for (let i = 0; i < nums.length; i++) {
+    newNums.push(Math.pow(Math.abs(nums[i]), 2))
+  }
+  newNums.sort((a, b) => a - b)
+  return newNums
+}
+// testFunction(sortedSquares).input([-4, -1, 0, 3, 10]).output([0, 1, 9, 16, 100]) //?
