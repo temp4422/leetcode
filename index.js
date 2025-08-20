@@ -8600,3 +8600,56 @@ var sortedSquares = function (nums) {
   return newNums
 }
 // testFunction(sortedSquares).input([-4, -1, 0, 3, 10]).output([0, 1, 9, 16, 100]) //?
+
+// 1252. Cells with Odd Values in a Matrix, Easy
+/**
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} indices
+ * @return {number}
+ */
+var oddCells = function (m, n, indices) {
+  // 1. Generate matrix of row x col
+
+  const matrix = []
+  for (let i = 0; i < m; i++) {
+    let row = []
+    for (let j = 0; j < n; j++) {
+      row.push(0)
+    }
+    matrix.push(row)
+  }
+
+  // 2. Perform increment operations on the matrix for each indices location
+  // indices = [[row_i, col_i], [row_i, col_i], ...]
+
+  for (let index of indices) {
+    let row = index[0]
+    let col = index[1]
+
+    // increment row
+    for (let i = 0; i < matrix[0].length; i++) {
+      matrix[row][i]++
+    }
+
+    // increment col
+    for (let i = 0; i < matrix.length; i++) {
+      matrix[i][col]++
+    }
+  }
+
+  // 3. Count odd-valued cells
+
+  let oddValues = 0
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] % 2 != 0) oddValues++
+    }
+  }
+
+  return oddValues
+}
+// prettier-ignore
+// testFunction(oddCells).input(2, 3, [[0,1],[1,1]]).output(6) //?
+// prettier-ignore
+// testFunction(oddCells).input(2, 2, [[1,1],[0,0]]).output(0) //?
