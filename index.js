@@ -8653,3 +8653,21 @@ var oddCells = function (m, n, indices) {
 // testFunction(oddCells).input(2, 3, [[0,1],[1,1]]).output(6) //?
 // prettier-ignore
 // testFunction(oddCells).input(2, 2, [[1,1],[0,0]]).output(0) //?
+
+// 1089. Duplicate Zeros, Easy
+/**
+ * @param {number[]} arr
+ * @return {void} Do not return anything, modify arr in-place instead.
+ */
+var duplicateZeros = function (arr) {
+  let originalLength = arr.length
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) {
+      arr.splice(i, 0, 0)
+      arr.pop()
+      i++
+    }
+  }
+  return arr
+}
+// testFunction(duplicateZeros).input([1, 0, 2, 3, 0, 4, 5, 0]).output([1, 0, 0, 2, 3, 0, 0, 4]) //?
