@@ -8671,3 +8671,46 @@ var duplicateZeros = function (arr) {
   return arr
 }
 // testFunction(duplicateZeros).input([1, 0, 2, 3, 0, 4, 5, 0]).output([1, 0, 0, 2, 3, 0, 0, 4]) //?
+
+// 1128. Number of Equivalent Domino Pairs, Easy
+/**
+ * @param {number[][]} dominoes
+ * @return {number}
+ */
+var numEquivDominoPairs = function (dominoes) {
+  // https://leetcode.com/problems/number-of-equivalent-domino-pairs/solutions/6712534/count-equivalent-domino-pairs-efficient-pair-grouping
+  // 1. Map frequency of dominoes
+  const map = new Map()
+  for (let [a, b] of dominoes) {
+    let domino = a < b ? `${a}${b}` : `${b}${a}`
+    map.set(domino, (map.get(domino) ?? 0) + 1)
+  }
+
+  // 2. Use a map to count the frequency of each normalized pair.
+  let countPairs = 0
+  for (let frequency of map.values()) {
+    // For each frequency count f, the number of equivalent pairs is f * (f - 1) / 2 (combinatorics: choosing 2 out of f).
+    countPairs += (frequency * (frequency - 1)) / 2
+  }
+  return countPairs
+
+  // Alternative checking every pair directly, Time Limit Exceeded
+  // let count = 0
+  // for (let i = 0; i < dominoes.length; i++) {
+  //   for (let j = i + 1; j < dominoes.length; j++) {
+  //     let [a, b] = dominoes[i]
+  //     let [c, d] = dominoes[j]
+  //     // Check if dominoes are equivalent (direct match or rotated)
+  //     if ((a === c && b === d) || (a === d && b === c)) {
+  //       count++
+  //     }
+  //   }
+  // }
+  // return count
+}
+// // prettier-ignore
+// testFunction(numEquivDominoPairs).input([[1,2],[2,1],[3,4],[5,6]]).output(1) //?
+// // prettier-ignore
+// testFunction(numEquivDominoPairs).input([[1,2],[1,2],[1,1],[1,2],[2,2]]).output(3) //?
+// // prettier-ignore
+// testFunction(numEquivDominoPairs).input([[1,1],[2,2],[1,1],[1,2],[1,2],[1,1]]).output(4) //?
