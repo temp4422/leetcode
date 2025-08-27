@@ -8714,3 +8714,24 @@ var numEquivDominoPairs = function (dominoes) {
 // testFunction(numEquivDominoPairs).input([[1,2],[1,2],[1,1],[1,2],[2,2]]).output(3) //?
 // // prettier-ignore
 // testFunction(numEquivDominoPairs).input([[1,1],[2,2],[1,1],[1,2],[1,2],[1,1]]).output(4) //?
+
+// 1413. Minimum Value to Get Positive Step by Step Sum, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minStartValue = function (nums) {
+  let startValue = 1
+  let sum = startValue
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i]
+    if (sum < 1) {
+      startValue++
+      sum = startValue
+      i = -1
+    }
+  }
+  return startValue
+}
+// testFunction(minStartValue).input([-3, 2, -3, 4, 2]).output(5) //?
