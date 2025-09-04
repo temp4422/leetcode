@@ -8735,3 +8735,20 @@ var minStartValue = function (nums) {
   return startValue
 }
 // testFunction(minStartValue).input([-3, 2, -3, 4, 2]).output(5) //?
+
+// 3516. Find Closest Person, Easy
+/**
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ * @return {number}
+ */
+var findClosest = function (x, y, z) {
+  let diff = Math.abs(z - x) - Math.abs(z - y)
+  if (diff < 0) return 1
+  if (diff > 0) return 2
+  else return 0
+}
+// testFunction(findClosest).input(2, 7, 4).output(1) //?
+// testFunction(findClosest).input(2, 5, 6).output(2) //?
+// testFunction(findClosest).input(1, 5, 3).output(0) //?
