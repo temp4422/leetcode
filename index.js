@@ -8752,3 +8752,42 @@ var findClosest = function (x, y, z) {
 // testFunction(findClosest).input(2, 7, 4).output(1) //?
 // testFunction(findClosest).input(2, 5, 6).output(2) //?
 // testFunction(findClosest).input(1, 5, 3).output(0) //?
+
+// 1184. Distance Between Bus Stops, Easy
+/**
+ * @param {number[]} distance
+ * @param {number} start
+ * @param {number} destination
+ * @return {number}
+ */
+var distanceBetweenBusStops = function (distance, start, destination) {
+  // Approach 1, calculate left and right
+  // if (start < destination) {
+  //   const distanceLeft = distance.slice(start, destination).reduce((a, b) => a + b, 0)
+  //   const startToDestination = distance.slice(0, start).reduce((a, b) => a + b, 0)
+  //   const endToDestination = distance.slice(destination, distance.length).reduce((a, b) => a + b, 0)
+  //   const distanceRight = startToDestination + endToDestination
+  //   return Math.min(distanceLeft, distanceRight)
+  // } else {
+  //   const distanceLeft = distance.slice(destination, start).reduce((a, b) => a + b, 0)
+  //   const startToDestination = distance.slice(0, destination).reduce((a, b) => a + b, 0)
+  //   const endToDestination = distance.slice(start, distance.length).reduce((a, b) => a + b, 0)
+  //   const distanceRight = startToDestination + endToDestination
+  //   return Math.min(distanceLeft, distanceRight)
+  // }
+
+  // Approach 2, swap destination/start
+  if (start > destination) [start, destination] = [destination, start]
+  const distanceLeft = distance.slice(start, destination).reduce((a, b) => a + b, 0)
+  const startToDestination = distance.slice(0, start).reduce((a, b) => a + b, 0)
+  const endToDestination = distance.slice(destination, distance.length).reduce((a, b) => a + b, 0)
+  const distanceRight = startToDestination + endToDestination
+  return Math.min(distanceLeft, distanceRight)
+}
+// testFunction(distanceBetweenBusStops).input([1, 2, 3, 4], 0, 1).output(1) //?
+// testFunction(distanceBetweenBusStops).input([1, 2, 3, 4], 0, 2).output(3) //?
+// testFunction(distanceBetweenBusStops).input([1, 2, 3, 4], 0, 3).output(4) //?
+// testFunction(distanceBetweenBusStops).input([7, 6, 3, 0, 3], 0, 4).output(3) //?
+// testFunction(distanceBetweenBusStops).input([3, 6, 7, 2, 9, 10, 7, 16, 11], 6, 2).output(28) //?
+// testFunction(distanceBetweenBusStops).input([7, 10, 1, 12, 11, 14, 5, 0], 7, 2).output(17) //?
+// testFunction(distanceBetweenBusStops).input([14, 13, 4, 7, 10, 17, 8, 3, 2, 13], 2, 9).output(40) //?
