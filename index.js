@@ -8791,3 +8791,23 @@ var distanceBetweenBusStops = function (distance, start, destination) {
 // testFunction(distanceBetweenBusStops).input([3, 6, 7, 2, 9, 10, 7, 16, 11], 6, 2).output(28) //?
 // testFunction(distanceBetweenBusStops).input([7, 10, 1, 12, 11, 14, 5, 0], 7, 2).output(17) //?
 // testFunction(distanceBetweenBusStops).input([14, 13, 4, 7, 10, 17, 8, 3, 2, 13], 2, 9).output(40) //?
+
+// 1317. Convert Integer to the Sum of Two No-Zero Integers, Easy
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var getNoZeroIntegers = function (n) {
+  let int1 = 1
+  let int2 = n - 1
+  while (int1 <= int2) {
+    if (int1.toString().includes('0') || int2.toString().includes('0')) {
+      int1++
+      int2--
+    } else {
+      return [int1, int2]
+    }
+  }
+}
+// testFunction(getNoZeroIntegers).input(2).output([1, 1]) //?
+// testFunction(getNoZeroIntegers).input(11).output([2, 9]) //?
