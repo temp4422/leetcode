@@ -8811,3 +8811,18 @@ var getNoZeroIntegers = function (n) {
 }
 // testFunction(getNoZeroIntegers).input(2).output([1, 1]) //?
 // testFunction(getNoZeroIntegers).input(11).output([2, 9]) //?
+
+// 1356. Sort Integers by The Number of 1 Bits, Easy
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+var sortByBits = function (arr) {
+  function toBinary(number) {
+    // prettier-ignore
+    return number.toString(2).split('').map(Number).reduce((a,b)=> a+b)
+  }
+  const sortedArr = arr.toSorted((a, b) => toBinary(a) - toBinary(b) || a - b)
+  return sortedArr
+}
+// testFunction(sortByBits).input([0, 1, 2, 3, 4, 5, 6, 7, 8]).output([0, 1, 2, 4, 8, 3, 5, 6, 7]) //?
