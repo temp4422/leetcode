@@ -8826,3 +8826,32 @@ var sortByBits = function (arr) {
   return sortedArr
 }
 // testFunction(sortByBits).input([0, 1, 2, 3, 4, 5, 6, 7, 8]).output([0, 1, 2, 4, 8, 3, 5, 6, 7]) //?
+
+// 2785. Sort Vowels in a String, Medium
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var sortVowels = function (s) {
+  const newString = s.split('')
+  const VOWELS = ['a', 'e', 'i', 'o', 'u']
+  const indexes = []
+  const newVowels = []
+
+  // Get vowels that will be changed
+  for (let i = 0; i < newString.length; i++) {
+    if (VOWELS.includes(s[i]) || VOWELS.includes(s[i].toLowerCase())) {
+      indexes.push(i)
+      newVowels.push(s[i])
+    }
+  }
+
+  // Sort and change vowels
+  newVowels.sort()
+  for (let i = 0; i < indexes.length; i++) {
+    newString[indexes[i]] = newVowels[i]
+  }
+
+  return newString.join('')
+}
+// testFunction(sortVowels).input('lEetcOde').output('lEOtcede') //?
