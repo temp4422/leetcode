@@ -8880,3 +8880,21 @@ var doesAliceWin = function (s) {
 // testFunction(doesAliceWin).input('ifld').output(true) //?
 // testFunction(doesAliceWin).input('sloalo').output(true) //?
 // testFunction(doesAliceWin).input('optuquipov').output(true) //?
+
+// 3541. Find Most Frequent Vowel and Consonant, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxFreqSum = function (s) {
+  const mapVowels = new Map()
+  const mapConsonants = new Map()
+  for (let i = 0; i < s.length; i++) {
+    if ('aeiou'.includes(s[i])) mapVowels.set(s[i], (mapVowels.get(s[i]) ?? 0) + 1)
+    else mapConsonants.set(s[i], (mapConsonants.get(s[i]) ?? 0) + 1)
+  }
+  let frequencySum = Math.max(...mapVowels.values(), 0) + Math.max(...mapConsonants.values(), 0)
+  return frequencySum
+}
+// testFunction(maxFreqSum).input('successes').output(6) //?
+// testFunction(maxFreqSum).input('aeiaeia').output(3) //?
