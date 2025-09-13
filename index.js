@@ -8855,3 +8855,28 @@ var sortVowels = function (s) {
   return newString.join('')
 }
 // testFunction(sortVowels).input('lEetcOde').output('lEOtcede') //?
+
+// 3227. Vowels Game in a String, Medium
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var doesAliceWin = function (s) {
+  // const VOWELS = ['a', 'e', 'i', 'o', 'u']
+  // let countVowels = s.split('').filter((char) => VOWELS.includes(char)).length
+
+  // if (countVowels % 2 != 0) return true // odd
+  // if (countVowels % 2 === 0 && countVowels > 1) return true // odd
+  // return false // even
+
+  // Alternative https://leetcode.com/problems/vowels-game-in-a-string/solutions/7180539/overthinking-not-required-just-find-a-vowel
+  for (let i = 0; i < s.length; ++i) {
+    if ('aeiou'.includes(s[i])) return true
+  }
+  return false
+}
+// testFunction(doesAliceWin).input('leetcoder').output(true) //?
+// testFunction(doesAliceWin).input('bbcd').output(false) //?
+// testFunction(doesAliceWin).input('ifld').output(true) //?
+// testFunction(doesAliceWin).input('sloalo').output(true) //?
+// testFunction(doesAliceWin).input('optuquipov').output(true) //?
