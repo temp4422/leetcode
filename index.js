@@ -8898,3 +8898,33 @@ var maxFreqSum = function (s) {
 }
 // testFunction(maxFreqSum).input('successes').output(6) //?
 // testFunction(maxFreqSum).input('aeiaeia').output(3) //?
+
+// 1260. Shift 2D Grid, Easy
+/**
+ * @param {number[][]} grid
+ * @param {number} k
+ * @return {number[][]}
+ */
+var shiftGrid = function (grid, k) {
+  while (k > 0) {
+    let lastValue = grid[grid.length - 1][grid[0].length - 1]
+    for (let i = grid.length - 1; i > -1; i--) {
+      for (let j = grid[i].length - 1; j > -1; j--) {
+        if (grid[i][j - 1] != undefined) {
+          grid[i][j] = grid[i][j - 1]
+        } else {
+          if (i === 0) grid[i][j] = lastValue
+          else grid[i][j] = grid[i - 1][grid[i].length - 1]
+        }
+      }
+    }
+    k--
+  }
+  return grid
+}
+// prettier-ignore
+// testFunction(shiftGrid).input([[1,2,3],[4,5,6],[7,8,9]], 1).output([[9,1,2],[3,4,5],[6,7,8]]) //?
+// prettier-ignore
+// testFunction(shiftGrid).input([[3,8,1,9],[19,7,2,5],[4,6,11,10],[12,0,21,13]], 4).output([[12,0,21,13],[3,8,1,9],[19,7,2,5],[4,6,11,10]]) //?
+// prettier-ignore
+// testFunction(shiftGrid).input([[1],[2],[3],[4],[7],[6],[5]], 23).output([[6],[5],[1],[2],[3],[4],[7]]) //?
