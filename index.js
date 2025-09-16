@@ -8928,3 +8928,23 @@ var shiftGrid = function (grid, k) {
 // testFunction(shiftGrid).input([[3,8,1,9],[19,7,2,5],[4,6,11,10],[12,0,21,13]], 4).output([[12,0,21,13],[3,8,1,9],[19,7,2,5],[4,6,11,10]]) //?
 // prettier-ignore
 // testFunction(shiftGrid).input([[1],[2],[3],[4],[7],[6],[5]], 23).output([[6],[5],[1],[2],[3],[4],[7]]) //?
+
+// 1217. Minimum Cost to Move Chips to The Same Position, Easy
+/**
+ * @param {number[]} position
+ * @return {number}
+ */
+var minCostToMoveChips = function (position) {
+  let costEven = 0
+  let costOdd = 0
+  for (let i = 0; i < position.length; i++) {
+    if (position[i] % 2 === 0) costEven++
+    else costOdd++
+  }
+  return Math.min(costEven, costOdd)
+}
+// testFunction(minCostToMoveChips).input([1, 2, 3]).output(1) //?
+// testFunction(minCostToMoveChips).input([2, 2, 2, 3, 3]).output(2) //?
+// testFunction(minCostToMoveChips).input([1, 1000000000]).output(1) //?
+// testFunction(minCostToMoveChips).input([6, 4, 7, 8, 2, 10, 2, 7, 9, 7]).output(4) //?
+// testFunction(minCostToMoveChips).input([1, 3, 5, 3, 7, 2, 10, 1, 2, 2]).output(4) //?
