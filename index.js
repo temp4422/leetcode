@@ -8948,3 +8948,18 @@ var minCostToMoveChips = function (position) {
 // testFunction(minCostToMoveChips).input([1, 1000000000]).output(1) //?
 // testFunction(minCostToMoveChips).input([6, 4, 7, 8, 2, 10, 2, 7, 9, 7]).output(4) //?
 // testFunction(minCostToMoveChips).input([1, 3, 5, 3, 7, 2, 10, 1, 2, 2]).output(4) //?
+
+// 1389. Create Target Array in the Given Order, Easy
+/**
+ * @param {number[]} nums
+ * @param {number[]} index
+ * @return {number[]}
+ */
+var createTargetArray = function (nums, index) {
+  const targetArr = []
+  for (let i = 0; i < nums.length; i++) {
+    targetArr.splice(index[i], 0, nums[i])
+  }
+  return targetArr
+}
+// testFunction(createTargetArray).input([0, 1, 2, 3, 4], [0, 1, 2, 2, 1]).output([0, 4, 1, 3, 2]) //?
