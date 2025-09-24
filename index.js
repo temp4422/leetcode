@@ -8982,3 +8982,22 @@ var threeConsecutiveOdds = function (arr) {
 // testFunction(threeConsecutiveOdds).input([2, 6, 4, 1]).output(false) //?
 // testFunction(threeConsecutiveOdds).input([1, 2, 34, 3, 4, 5, 7, 23, 12]).output(true) //?
 // testFunction(threeConsecutiveOdds).input([1, 2, 1, 1]).output(false) //?
+
+// 1437. Check If All 1's Are at Least Length K Places Away, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var kLengthApart = function (nums, k) {
+  let distance = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) distance++
+    else distance = 0
+    if (nums[i + 1] === 1 && distance < k && i != 0) return false
+  }
+  return true
+}
+// testFunction(kLengthApart).input([1, 0, 0, 0, 1, 0, 0, 1], 2).output(true) //?
+// testFunction(kLengthApart).input([1, 0, 0, 1, 0, 1], 2).output(false) //?
+// testFunction(kLengthApart).input([0, 1, 0, 0, 1, 0, 0, 1], 2).output(true) //?
