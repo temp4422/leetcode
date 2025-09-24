@@ -8963,3 +8963,22 @@ var createTargetArray = function (nums, index) {
   return targetArr
 }
 // testFunction(createTargetArray).input([0, 1, 2, 3, 4], [0, 1, 2, 2, 1]).output([0, 4, 1, 3, 2]) //?
+
+// 1550. Three Consecutive Odds, Easy
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var threeConsecutiveOdds = function (arr) {
+  console.log(1 % 2)
+  let consecutiveNum = 0
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 != 0) consecutiveNum++
+    else consecutiveNum = 0
+    if (consecutiveNum === 3) return true
+  }
+  return false
+}
+// testFunction(threeConsecutiveOdds).input([2, 6, 4, 1]).output(false) //?
+// testFunction(threeConsecutiveOdds).input([1, 2, 34, 3, 4, 5, 7, 23, 12]).output(true) //?
+// testFunction(threeConsecutiveOdds).input([1, 2, 1, 1]).output(false) //?
