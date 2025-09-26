@@ -9001,3 +9001,20 @@ var kLengthApart = function (nums, k) {
 // testFunction(kLengthApart).input([1, 0, 0, 0, 1, 0, 0, 1], 2).output(true) //?
 // testFunction(kLengthApart).input([1, 0, 0, 1, 0, 1], 2).output(false) //?
 // testFunction(kLengthApart).input([0, 1, 0, 0, 1, 0, 0, 1], 2).output(true) //?
+
+// 1614. Maximum Nesting Depth of the Parentheses, Easy
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxDepth = function (s) {
+  let maxDepth = 0
+  let currentDepth = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(') currentDepth++
+    if (s[i] === ')') currentDepth--
+    maxDepth = Math.max(maxDepth, currentDepth)
+  }
+  return maxDepth
+}
+// testFunction(maxDepth).input('(1+(2*3)+((8)/4))+1').output(3) //?
