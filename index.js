@@ -9018,3 +9018,30 @@ var maxDepth = function (s) {
   return maxDepth
 }
 // testFunction(maxDepth).input('(1+(2*3)+((8)/4))+1').output(3) //?
+
+// 812. Largest Triangle Area, Easy
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var largestTriangleArea = function (points) {
+  // Shoelace formula
+  function getArea(p1, p2, p3) {
+    // prettier-ignore
+    return 0.5 * Math.abs( p1[0]*p2[1] + p2[0]*p3[1] + p3[0]*p1[1]
+                        - p1[1]*p2[0] - p2[1]*p3[0] - p3[1]*p1[0] )
+  }
+
+  let maxArea = 0
+  for (let i = 0; i < points.length; i++) {
+    for (let j = 0; j < points.length; j++) {
+      for (let k = 0; k < points.length; k++) {
+        let currentArea = getArea(points[i], points[j], points[k])
+        maxArea = Math.max(maxArea, currentArea)
+      }
+    }
+  }
+  return maxArea
+}
+// prettier-ignore
+// testFunction(largestTriangleArea).input([[0,0],[0,1],[1,0],[0,2],[2,0]]).output(2.00000) //?
