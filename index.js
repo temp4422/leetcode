@@ -9045,3 +9045,31 @@ var largestTriangleArea = function (points) {
 }
 // prettier-ignore
 // testFunction(largestTriangleArea).input([[0,0],[0,1],[1,0],[0,2],[2,0]]).output(2.00000) //?
+
+// 1736. Latest Time by Replacing Hidden Digits, Easy
+/**
+ * @param {string} time
+ * @return {string}
+ */
+var maximumTime = function (time) {
+  time = time.split('')
+
+  if (time[0] === '?') {
+    if (parseInt(time[1]) > 3) time[0] = '1'
+    else time[0] = '2'
+  }
+  if (time[1] === '?') {
+    if (parseInt(time[0]) > 1) time[1] = '3'
+    else time[1] = '9'
+  }
+
+  if (time[3] === '?') time[3] = '5'
+  if (time[4] === '?') time[4] = '9'
+
+  return time.join('')
+}
+// testFunction(maximumTime).input('2?:?0').output('23:50') //?
+// testFunction(maximumTime).input('0?:3?').output('09:39') //?
+// testFunction(maximumTime).input('1?:22').output('19:22') //?
+// testFunction(maximumTime).input('?4:03').output('14:03') //?
+// testFunction(maximumTime).input('??:3?').output('23:39') //?
