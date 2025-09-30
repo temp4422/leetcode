@@ -9073,3 +9073,19 @@ var maximumTime = function (time) {
 // testFunction(maximumTime).input('1?:22').output('19:22') //?
 // testFunction(maximumTime).input('?4:03').output('14:03') //?
 // testFunction(maximumTime).input('??:3?').output('23:39') //?
+
+// 2221. Find Triangular Sum of an Array, Medium
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var triangularSum = function (nums) {
+  while (nums.length > 1) {
+    for (let i = 0; i < nums.length - 1; i++) {
+      nums[i] = (nums[i] + nums[i + 1]) % 10
+    }
+    nums.pop()
+  }
+  return nums[0]
+}
+// testFunction(triangularSum).input([1, 2, 3, 4, 5]).output(8) //?
