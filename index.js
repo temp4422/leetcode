@@ -9089,3 +9089,24 @@ var triangularSum = function (nums) {
   return nums[0]
 }
 // testFunction(triangularSum).input([1, 2, 3, 4, 5]).output(8) //?
+
+// 1800. Maximum Ascending Subarray Sum, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxAscendingSum = function (nums) {
+  let maxSum = 0
+  let currentSum = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < nums[i + 1]) {
+      currentSum += nums[i]
+    } else {
+      currentSum += nums[i]
+      maxSum = Math.max(maxSum, currentSum)
+      currentSum = 0
+    }
+  }
+  return maxSum
+}
+// testFunction(maxAscendingSum).input([10, 20, 30, 5, 10, 50]).output(65) //?
