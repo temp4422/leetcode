@@ -9110,3 +9110,38 @@ var maxAscendingSum = function (nums) {
   return maxSum
 }
 // testFunction(maxAscendingSum).input([10, 20, 30, 5, 10, 50]).output(65) //?
+
+// 3100. Water Bottles II, Medium
+/**
+ * @param {number} numBottles
+ * @param {number} numExchange
+ * @return {number}
+ */
+var maxBottlesDrunk = function (numBottles, numExchange) {
+  let emptyBottles = numBottles
+  let drunkBottles = numBottles
+  while (emptyBottles >= numExchange) {
+    // Perform the exchange: decrease empty bottles by (numExchange - 1) because we spend numExchange empties but immediately gain 1 back after drinking the new bottle.
+    emptyBottles -= numExchange - 1
+    drunkBottles++
+    numExchange++
+  }
+  return drunkBottles
+
+  // Alternative
+  // let fullBottles = numBottles
+  // let emptyBottles = 0
+  // let drunkBottles = 0
+  // while (emptyBottles >= numExchange || fullBottles != 0) {
+  //   drunkBottles += fullBottles
+  //   emptyBottles += fullBottles
+  //   fullBottles = 0
+  //   while (emptyBottles >= numExchange) {
+  //     emptyBottles -= numExchange
+  //     fullBottles++
+  //     numExchange++
+  //   }
+  // }
+  // return drunkBottles
+}
+// testFunction(maxBottlesDrunk).input(13, 6).output(15) //?
