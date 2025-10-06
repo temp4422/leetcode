@@ -9145,3 +9145,26 @@ var maxBottlesDrunk = function (numBottles, numExchange) {
   // return drunkBottles
 }
 // testFunction(maxBottlesDrunk).input(13, 6).output(15) //?
+
+// 1805. Number of Different Integers in a String, Easy
+/**
+ * @param {string} word
+ * @return {number}
+ */
+var numDifferentIntegers = function (word) {
+  // // prettier-ignore
+  // let digits = word.replace(/[a-z]/g,',').split(',').filter((val) => val != '')
+  // const map = new Map()
+  // let count = 0
+  // for (let digit of digits) {
+  //   if (map.has(BigInt(digit))) continue
+  //   else map.set(BigInt(digit), 1), count++
+  // }
+  // return count
+
+  // Alternative
+  return new Set(word.match(/\d+/g)?.map(BigInt)).size
+}
+// testFunction(numDifferentIntegers).input('a123bc34d8ef34').output(3) //?
+// testFunction(numDifferentIntegers).input('a1b01c001').output(1) //?
+// testFunction(numDifferentIntegers).input('a').output(0) //?
