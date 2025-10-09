@@ -9168,3 +9168,86 @@ var numDifferentIntegers = function (word) {
 // testFunction(numDifferentIntegers).input('a123bc34d8ef34').output(3) //?
 // testFunction(numDifferentIntegers).input('a1b01c001').output(1) //?
 // testFunction(numDifferentIntegers).input('a').output(0) //?
+
+// 1488. Avoid Flood in The City, Medium
+/**
+ * @param {number[]} rains
+ * @return {number[]}
+ */
+var avoidFlood = function (rains) {
+  // // Time Limit Exceeded
+  // // This brute-force approach try to elaborate full "rains" array at once and predict what lakes to dry.
+  // // Time complexity: O(n^2) - because inner loops, Space complexity O(n) - because storing maps and answer array.
+  // const remainingLakes = new Map(rains.map((v, i) => [i, v]))
+  // const fullLakes = new Map()
+  // const answer = []
+  // for (let i = 0; i < rains.length; i++) {
+  //   if (rains[i] > 0) {
+  //     if (fullLakes.has(rains[i])) return [] // Impossible to avoid flood
+  //     fullLakes.set(rains[i], 1) // Add lake as full
+  //     answer.push(-1) // Add to asnwer
+  //   } else {
+  //     // We must predict which lake to dry in order to prevent flood.
+  //     // At dry step (rains[i] === 0) choose next lake from remaining lakes OR select one from full lakes OR select random one ("1")
+  //     let nextLake = fullLakes.keys().next().value ?? 1
+  //     // count from "i" so we count olny lakes that remain after current "rains[i]"
+  //     for (let j = i; j < remainingLakes.size; j++) {
+  //       if (fullLakes.has(remainingLakes.get(j))) {
+  //         nextLake = remainingLakes.get(j)
+  //         break
+  //       }
+  //     }
+  //     fullLakes.delete(nextLake)
+  //     answer.push(nextLake)
+  //   }
+  // }
+  // return answer
+
+  // Greedy + Binary Search
+  // Time complexity: O(n log n) due to binary search, Space complexity: O(n)
+  const fullLakes = new Map()
+  const dryDays = []
+  const answer = new Array(rains.length).fill(1)
+
+  function binarySearchDryDay(arr, target) {
+    // Find the leftmost value in arr that is greater than target, i.e. find leftmost dryDay after lastRainDay
+    let left = 0
+    let right = arr.length - 1
+
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2)
+      if (arr[mid] < target) left = mid + 1
+      else right = mid - 1
+    }
+    // Eventually left become right so we return leftmost element. arr[mid] is incorrect (mid is stale when we return)
+    return arr[left] || null
+  }
+
+  for (let i = 0; i < rains.length; i++) {
+    if (rains[i] === 0) {
+      dryDays.push(i) // Save dry days for future use
+    } else {
+      // Check if lake is already full and dry day exists between this day and last rain day
+      if (fullLakes.has(rains[i])) {
+        let lastRainDay = fullLakes.get(rains[i])
+        let dryDay = binarySearchDryDay(dryDays, lastRainDay)
+        if (!dryDay) return [] // dryDay not found, return empty array
+        dryDays.splice(dryDays.indexOf(dryDay), 1) // remove found dryDay from dryDays
+        // IMPORTANT: backward (retroactive) assignment, done with knowledge of future events - hindsight
+        answer[dryDay] = rains[i] // Set lake which to dry retroactively based on future rain info
+      }
+
+      fullLakes.set(rains[i], i) // Store rainy days or rewrite past days
+      answer[i] = -1
+    }
+  }
+
+  return answer
+}
+// testFunction(avoidFlood).input([1, 2, 3, 4]).output([-1, -1, -1, -1]) //?
+// testFunction(avoidFlood).input([1, 2, 0, 0, 2, 1]).output([-1, -1, 2, 1, -1, -1]) //?
+// testFunction(avoidFlood).input([1, 2, 0, 1, 2]).output([]) //?
+// testFunction(avoidFlood).input([69, 0, 0, 0, 69]).output([-1, 69, 1, 1, -1]) //?
+// testFunction(avoidFlood).input([1, 2, 0, 2, 3, 0, 1]).output([-1, -1, 2, -1, -1, 1, -1]) //?
+// testFunction(avoidFlood).input([1, 0, 2, 3, 0, 1, 2]).output([-1, 1, -1, -1, 2, -1, -1]) //?
+// testFunction(avoidFlood).input([1, 0, 2, 0, 2, 1]).output([-1, 1, -1, 2, -1, -1]) //?
