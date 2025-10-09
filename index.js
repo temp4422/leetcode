@@ -9251,3 +9251,22 @@ var avoidFlood = function (rains) {
 // testFunction(avoidFlood).input([1, 2, 0, 2, 3, 0, 1]).output([-1, -1, 2, -1, -1, 1, -1]) //?
 // testFunction(avoidFlood).input([1, 0, 2, 3, 0, 1, 2]).output([-1, 1, -1, -1, 2, -1, -1]) //?
 // testFunction(avoidFlood).input([1, 0, 2, 0, 2, 1]).output([-1, 1, -1, 2, -1, -1]) //?
+
+// 1827. Minimum Operations to Make the Array Increasing, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minOperations = function (nums) {
+  if (nums.length === 1) return 0
+
+  let operations = 0
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > nums[i - 1]) continue
+    nums[i]++
+    operations++
+    i--
+  }
+  return operations
+}
+// testFunction(minOperations).input([1, 1, 1]).output(3) //?
