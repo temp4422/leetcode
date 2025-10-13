@@ -9270,3 +9270,30 @@ var minOperations = function (nums) {
   return operations
 }
 // testFunction(minOperations).input([1, 1, 1]).output(3) //?
+
+// 1869. Longer Contiguous Segments of Ones than Zeros, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkZeroOnes = function (s) {
+  let maxOnes = 0
+  let maxZeroes = 0
+  let ones = 0
+  let zeroes = 0
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '1') {
+      zeroes = 0
+      ones++
+      maxOnes = Math.max(ones, maxOnes)
+    } else {
+      ones = 0
+      zeroes++
+      maxZeroes = Math.max(zeroes, maxZeroes)
+    }
+  }
+
+  return maxOnes > maxZeroes
+}
+// testFunction(checkZeroOnes).input('1101').output(true) //?
