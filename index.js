@@ -9297,3 +9297,29 @@ var checkZeroOnes = function (s) {
   return maxOnes > maxZeroes
 }
 // testFunction(checkZeroOnes).input('1101').output(true) //?
+
+// 3349. Adjacent Increasing Subarrays Detection I, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var hasIncreasingSubarrays = function (nums, k) {
+  // With help https://leetcode.com/problems/adjacent-increasing-subarrays-detection-i/solutions/7273311/efficient-solution-time-o-n-space-o-1-c-java-python-javascript
+  let subArrLength = 1
+  let lastSubArrayLength = 0
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i - 1] < nums[i]) {
+      subArrLength++
+    } else {
+      lastSubArrayLength = subArrLength
+      subArrLength = 1
+    }
+    // if two adjacent increasing array exists
+    if (subArrLength >= k * 2 || (subArrLength >= k && lastSubArrayLength >= k)) return true
+  }
+  return false
+}
+// testFunction(hasIncreasingSubarrays).input([2, 5, 7, 8, 9, 2, 3, 4, 3, 1], 3).output(true) //?
+// testFunction(hasIncreasingSubarrays).input([-15, -13, 4, 7], 2).output(true) //?
+// testFunction(hasIncreasingSubarrays).input([-3, -19, -8, -16], 2).output(false) //?
