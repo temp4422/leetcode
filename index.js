@@ -9323,3 +9323,26 @@ var hasIncreasingSubarrays = function (nums, k) {
 // testFunction(hasIncreasingSubarrays).input([2, 5, 7, 8, 9, 2, 3, 4, 3, 1], 3).output(true) //?
 // testFunction(hasIncreasingSubarrays).input([-15, -13, 4, 7], 2).output(true) //?
 // testFunction(hasIncreasingSubarrays).input([-3, -19, -8, -16], 2).output(false) //?
+
+// 1837. Sum of Digits in Base K, Easy
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number}
+ */
+var sumBase = function (n, k) {
+  // Use division and modulo operation
+  let quotient = n
+  let base = k
+  let remainder = ''
+  while (quotient) {
+    remainder = (quotient % base) + remainder
+    quotient = Math.trunc(quotient / base)
+  }
+  return parseInt(remainder.split('').reduce((a, b) => +a + +b))
+
+  // Alternative
+  // return +n.toString(k).split('').reduce((a, b)=>+a + +b)
+}
+// testFunction(sumBase).input(34, 6).output(9) //?
+// testFunction(sumBase).input(1, 2).output(1) //?
