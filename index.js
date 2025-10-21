@@ -9346,3 +9346,46 @@ var sumBase = function (n, k) {
 }
 // testFunction(sumBase).input(34, 6).output(9) //?
 // testFunction(sumBase).input(1, 2).output(1) //?
+
+// 94. Binary Tree Inorder Traversal, Easy
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+  // // Go max to left, then go right, add node.val by the way.
+  // // Remember to check if stack is empty
+  // With help https://leetcode.com/problems/binary-tree-inorder-traversal/solutions/31394/javascript-solution-with-iteration
+
+  // Alternative with inner loop
+  // const stack = []
+  // const traversedNodes = []
+  // let currentNode = root // rootNode
+  // while (currentNode || stack.length) {
+  //   while (currentNode) {
+  //     stack.push(currentNode)
+  //     currentNode = currentNode.left
+  //   }
+  //   currentNode = stack.pop()
+  //   traversedNodes.push(currentNode.val)
+  //   currentNode = currentNode.right
+  // }
+  // return traversedNodes
+
+  const stack = []
+  const traversedNodes = []
+  let currentNode = root // rootNode
+  while (currentNode || stack.length) {
+    if (currentNode) {
+      stack.push(currentNode)
+      currentNode = currentNode.left
+    } else {
+      currentNode = stack.pop()
+      traversedNodes.push(currentNode.val)
+      currentNode = currentNode.right
+    }
+  }
+  return traversedNodes
+}
+// prettier-ignore
+// testFunction(inorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([1, 3, 2]) //?
