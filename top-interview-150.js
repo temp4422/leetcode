@@ -2718,12 +2718,52 @@ var maxDepth = function (root) {
 
   return recurseDepth(root)
 }
-// const tree1 = arrayToBinaryTree([3, 9, 20, null, null, 15, 7])
-// testFunction(maxDepth).input(tree1).output(3) //?
+// testFunction(maxDepth).input(arrayToBinaryTree([3, 9, 20, null, null, 15, 7])).output(3) //?
 
 // # 100. Same Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function (p, q) {
+  const stack1 = []
+  const stack2 = []
+
+  while (p || q || stack1.length || stack2.length) {
+    if (p || q) {
+      if (p?.val != q?.val) return false
+      stack1.push(p)
+      stack2.push(q)
+      p = p.left
+      q = q.left
+    } else {
+      p = stack1.pop()
+      q = stack2.pop()
+      p = p.right
+      q = q.right
+    }
+  }
+
+  return true
+
+  // Alternative
+  // return JSON.stringify(p)===JSON.stringify(q)
+}
+// prettier-ignore
+// testFunction(isSameTree).input(arrayToBinaryTree([1, 2, 3]), arrayToBinaryTree([1, 2, 3])).output(true) //?
+// prettier-ignore
+// testFunction(isSameTree).input(arrayToBinaryTree([1, 2]), arrayToBinaryTree([1, null, 3])).output(false) //?
 
 // # 226. Invert Binary Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
