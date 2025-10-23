@@ -1,7 +1,7 @@
 'use strict'
 
 // My helper functions, speed up debugging
-import { testFunction, ListNode, arrayToLinkedList, arrayToBinaryTree } from './helper.js'
+import { testFunction, ListNode, arrayToLinkedList, TreeNode, arrayToBinaryTree } from './helper.js'
 
 /*###########################################################################*/
 /*#################### TOP INTERVIEW 150  ###################################*/
@@ -2690,10 +2690,6 @@ class LRUCache {
 //#region Binary Tree General
 /*****************************************************************************/
 /*****************************************************************************/
-
-// # 104. Maximum Depth of Binary Tree, Easy
-// Tree, Depth-First Search, Breadth-First Search, 1+
-/*****************************************************************************/
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -2702,6 +2698,10 @@ class LRUCache {
  *     this.right = (right===undefined ? null : right)
  * }
  */
+
+// # 104. Maximum Depth of Binary Tree, Easy
+// Tree, Depth-First Search, Breadth-First Search, 1+
+/*****************************************************************************/
 /**
  * @param {TreeNode} root
  * @return {number}
@@ -2723,14 +2723,6 @@ var maxDepth = function (root) {
 // # 100. Same Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
 /**
  * @param {TreeNode} p
  * @param {TreeNode} q
@@ -2768,6 +2760,77 @@ var isSameTree = function (p, q) {
 // # 226. Invert Binary Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function (root) {
+  // My own solution
+  if (!root) return null
+
+  const stack1 = []
+  const stack2 = []
+  let newTree = { ...root }
+  let newRoot = newTree
+
+  while (root || stack1.length) {
+    if (root) {
+      // Clone without reference
+      root.left ? (newTree.right = { ...root.left }) : (newTree.right = null)
+
+      stack1.push(root)
+      root = root.left
+
+      stack2.push(newTree)
+      newTree = newTree.right
+    } else {
+      root = stack1.pop()
+      newTree = stack2.pop()
+
+      root.right ? (newTree.left = { ...root.right }) : (newTree.left = null)
+
+      root = root.right
+      newTree = newTree.left
+    }
+  }
+  return newRoot
+
+  // Alternative https://leetcode.com/problems/invert-binary-tree/solutions/399221/clean-javascript-iterative-dfs-bfs-solutions
+
+  // Recursion
+  if (root == null)
+    return root // Important semicolon
+  ;[root.left, root.right] = [invertTree(root.right), invertTree(root.left)]
+  return root
+
+  // DFS
+  const stack = [root]
+  while (stack.length) {
+    const curr = stack.pop()
+    if (curr != null) {
+      ;[curr.left, curr.right] = [curr.right, curr.left]
+      stack.push(curr.left, curr.right)
+    }
+  }
+  return root
+
+  // BFS
+  const queue = [root]
+  while (queue.length) {
+    const curr = queue.shift()
+    if (curr != null) {
+      ;[curr.left, curr.right] = [curr.right, curr.left]
+      queue.push(curr.left, curr.right)
+    }
+  }
+  return root
+}
+// prettier-ignore
+// testFunction(invertTree).input(arrayToBinaryTree([4, 2, 7, 1, 3, 6, 9])).output(arrayToBinaryTree([4, 7, 2, 9, 6, 3, 1])) //?
+// prettier-ignore
+// testFunction(invertTree).input(arrayToBinaryTree([2,1,3])).output(arrayToBinaryTree([2,3,1])) //?
+// prettier-ignore
+// testFunction(invertTree).input(arrayToBinaryTree([1,2])).output(arrayToBinaryTree([1, null, 2])) //?
 
 // # 101. Symmetric Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
