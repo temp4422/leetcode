@@ -2835,6 +2835,33 @@ var invertTree = function (root) {
 // # 101. Symmetric Tree, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+console.log('OK')
+var isSymmetric = function (root) {
+  // https://leetcode.com/problems/symmetric-tree/solutions/3293275/php-javascript-recursive-iterative-solutions
+  if (!root) return true
+
+  const queue = [root.left, root.right]
+  while (queue.length) {
+    let leftNode = queue.shift()
+    let rightNode = queue.shift()
+
+    if (!leftNode && !rightNode) continue
+    if (!leftNode || !rightNode) return false
+    if (leftNode.val !== rightNode.val) return false
+
+    queue.push(leftNode.left, rightNode.right)
+    queue.push(leftNode.right, rightNode.left)
+  }
+  return true
+}
+// prettier-ignore
+// testFunction(isSymmetric).input(arrayToBinaryTree([1,2,2,3,4,4,3])).output(true) //?
+// prettier-ignore
+// testFunction(isSymmetric).input(arrayToBinaryTree([1,2,2,null,3,null,3])).output(false) //?
 
 // # 105. Construct Binary Tree from Preorder and Inorder Traversal, Medium
 // Array, Hash Table, Divide and Conquer, 2+
