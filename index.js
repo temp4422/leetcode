@@ -9389,3 +9389,42 @@ var inorderTraversal = function (root) {
 }
 // prettier-ignore
 // testFunction(inorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([1, 3, 2]) //?
+
+// 3354. Make Array Elements Equal to Zero, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+console.log('OK')
+var countValidSelections = function (nums) {
+  // const indexesOfZero = []
+  // for (let i = 0; i < nums.length; i++) {
+  //   if (nums[i] === 0) indexesOfZero.push(i)
+  // }
+
+  // let validSelections = 0
+  // for (let zeroIndex of indexesOfZero) {
+  //   let left = nums.slice(0, zeroIndex).reduce((a, b) => a + b, 0)
+  //   let right = nums.slice(zeroIndex + 1).reduce((a, b) => a + b, 0)
+
+  //   if (left === right) validSelections += 2
+  //   if (left + 1 === right || right + 1 === left) validSelections += 1
+  // }
+  // return validSelections
+
+  // Alternative
+  let left = 0
+  let right = nums.reduce((a, b) => a + b, 0)
+  let validSelections = 0
+  for (let i = 0; i < nums.length; i++) {
+    left += nums[i]
+    right -= nums[i]
+    if (nums[i] === 0) {
+      if (left === right) validSelections += 2
+      if (left + 1 === right || right + 1 === left) validSelections += 1
+    }
+  }
+  return validSelections
+}
+// testFunction(countValidSelections).input([1, 0, 2, 0, 3]).output(2) //?
+// testFunction(countValidSelections).input([16, 13, 10, 0, 0, 0, 10, 6, 7, 8, 7]).output(3) //?
