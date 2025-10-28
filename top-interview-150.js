@@ -2839,7 +2839,6 @@ var invertTree = function (root) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-console.log('OK')
 var isSymmetric = function (root) {
   // https://leetcode.com/problems/symmetric-tree/solutions/3293275/php-javascript-recursive-iterative-solutions
   if (!root) return true
@@ -2882,6 +2881,130 @@ var isSymmetric = function (root) {
 // # 112. Path Sum, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ */
+var hasPathSum = function (root, targetSum) {
+  if (!root) return false
+
+  const initialNodeAndSum = { node: root, sum: root.val }
+  const stack = [initialNodeAndSum]
+
+  while (stack.length) {
+    let { node, sum } = stack.pop()
+
+    if (!node.left && !node.right && sum === targetSum) return true
+
+    if (node.right) {
+      let rightNodeAndSum = { node: node.right, sum: node.right.val + sum }
+      stack.push(rightNodeAndSum)
+    }
+    if (node.left) {
+      let leftNodeAndSum = { node: node.left, sum: node.left.val + sum }
+      stack.push(leftNodeAndSum)
+    }
+  }
+
+  return false
+  //
+  // // ChatGPT iterative DFS
+  // if (!root) return false
+  // const stack = [{ node: root, currSum: root.val }]
+  // while (stack.length) {
+  //   const { node, currSum } = stack.pop()
+  //   // Check if it's a leaf and the sum matches
+  //   if (!node.left && !node.right && currSum === targetSum) return true
+  //   // Push children with updated sums
+  //   if (node.right) {
+  //     stack.push({ node: node.right, currSum: currSum + node.right.val })
+  //   }
+  //   if (node.left) {
+  //     stack.push({ node: node.left, currSum: currSum + node.left.val })
+  //   }
+  // }
+  // return false
+  //
+  // ChatGPT iterative DFS with one shared array
+  //
+  // if (!root) return false
+  // const stack = []
+  // const sum = []
+  // let current = root
+  // let lastVisited = null
+  // while (stack.length || current) {
+  //   // Go left as far as possible
+  //   while (current) {
+  //     stack.push(current)
+  //     sum.push(current.val)
+  //     current = current.left
+  //   }
+  //   const peek = stack[stack.length - 1]
+  //   // If it's a leaf node, check the sum
+  //   if (!peek.left && !peek.right) {
+  //     const total = sum.reduce((a, b) => a + b, 0)
+  //     if (total === targetSum) return true
+  //   }
+  //   // If right subtree exists and not yet visited, go there
+  //   if (peek.right && lastVisited !== peek.right) {
+  //     current = peek.right
+  //   } else {
+  //     // Done with this node, backtrack
+  //     lastVisited = stack.pop()
+  //     sum.pop() // remove its value from the shared array
+  //   }
+  // }
+  // return false
+  //
+  // // Alternative iterative DFS related https://leetcode.com/problems/path-sum/solutions/388724/javascript-easy-top-bottom-approach
+  //
+  // if (!root) return false
+  // let stack = [root]
+  // while (stack.length) {
+  //   let currentNode = stack.pop()
+  //   if (!currentNode.left && !currentNode.right && currentNode.val == targetSum) return true
+  //   if (currentNode.right) {
+  //     currentNode.right.val += currentNode.val
+  //     stack.push(currentNode.right)
+  //   }
+  //   if (currentNode.left) {
+  //     currentNode.left.val += currentNode.val
+  //     stack.push(currentNode.left)
+  //   }
+  // }
+  // return false
+  //
+  // // Alternative iterative BFS https://leetcode.com/problems/path-sum/solutions/388724/javascript-easy-top-bottom-approach
+  //
+  // if (!root) return false
+  // let queue = [root]
+  // while (queue.length > 0) {
+  //   let currentNode = queue.shift()
+  //   if (!currentNode.left && !currentNode.right && currentNode.val == targetSum) return true
+  //   if (currentNode.left) {
+  //     currentNode.left.val += currentNode.val
+  //     queue.push(currentNode.left)
+  //   }
+  //   if (currentNode.right) {
+  //     currentNode.right.val += currentNode.val
+  //     queue.push(currentNode.right)
+  //   }
+  // }
+  // return false
+}
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([5,4,8,11,null,13,4,7,2,null,null,null,1]), 22).output(true) //?
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([1,2,3]), 5).output(false) //?
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([-2,null,-3]), -2).output(false) //?
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([-2,null,-3]), -3).output(false) //?
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([1,-2,-3,1,3,-2,null,-1]), 3).output(false) //?
+// // prettier-ignore
+// testFunction(hasPathSum).input(arrayToBinaryTree([1,-2,-3,1,3,-2,null,-1]), -4).output(true) //?
 
 // # 129. Sum Root to Leaf Numbers, Medium
 // Tree, Depth-First Search, Binary Tree
