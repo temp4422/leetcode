@@ -9428,3 +9428,13 @@ var countValidSelections = function (nums) {
 }
 // testFunction(countValidSelections).input([1, 0, 2, 0, 3]).output(2) //?
 // testFunction(countValidSelections).input([16, 13, 10, 0, 0, 0, 10, 6, 7, 8, 7]).output(3) //?
+
+// 3370. Smallest Number With All Set Bits, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var smallestNumber = function (n) {
+  return parseInt(Array(n.toString(2).length).fill(1).join(''), 2)
+}
+// testFunction(smallestNumber).input(5).output(7) //?
