@@ -2886,28 +2886,46 @@ var isSymmetric = function (root) {
  * @param {number} targetSum
  * @return {boolean}
  */
+console.log('OK')
 var hasPathSum = function (root, targetSum) {
+  // Iterative DFS with stack
   if (!root) return false
-
-  const initialNodeAndSum = { node: root, sum: root.val }
-  const stack = [initialNodeAndSum]
+  const stack = [{ node: root, sum: root.val }]
 
   while (stack.length) {
     let { node, sum } = stack.pop()
 
-    if (!node.left && !node.right && sum === targetSum) return true
-
+    if (!node.left && !node.right) {
+      if (sum === targetSum) return true
+    }
     if (node.right) {
-      let rightNodeAndSum = { node: node.right, sum: node.right.val + sum }
-      stack.push(rightNodeAndSum)
+      stack.push({ node: node.right, sum: node.right.val + sum })
     }
     if (node.left) {
-      let leftNodeAndSum = { node: node.left, sum: node.left.val + sum }
-      stack.push(leftNodeAndSum)
+      stack.push({ node: node.left, sum: node.left.val + sum })
     }
   }
-
   return false
+  //
+  // // Iterative BFS with queue
+  //
+  // if (!root) return false
+  // const queue = [{ node: root, sum: root.val }]
+
+  // while (queue.length) {
+  //   let { node, sum } = queue.shift()
+
+  //   if (!node.left && !node.right) {
+  //     if (sum === targetSum) return true
+  //   }
+  //   if (node.left) {
+  //     queue.push({ node: node.left, sum: node.left.val + sum })
+  //   }
+  //   if (node.right) {
+  //     queue.push({ node: node.right, sum: node.right.val + sum })
+  //   }
+  // }
+  // return false
   //
   // // ChatGPT iterative DFS
   // if (!root) return false
