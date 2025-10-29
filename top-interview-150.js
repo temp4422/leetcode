@@ -3009,6 +3009,34 @@ var hasPathSum = function (root, targetSum) {
 // # 129. Sum Root to Leaf Numbers, Medium
 // Tree, Depth-First Search, Binary Tree
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumNumbers = function (root) {
+  const stack = [{ node: root, sum: root.val }]
+  let totalSum = 0
+
+  while (stack.length) {
+    let { node, sum } = stack.pop()
+
+    if (!node.left && !node.right) {
+      totalSum += Number(sum)
+    }
+
+    if (node.right) {
+      stack.push({ node: node.right, sum: `${sum}${node.right.val}` })
+    }
+
+    if (node.left) {
+      stack.push({ node: node.left, sum: `${sum}${node.left.val}` })
+    }
+  }
+
+  return totalSum
+}
+// prettier-ignore
+// testFunction(sumNumbers).input(arrayToBinaryTree([1,2,3])).output(25) //?
 
 // # 124. Binary Tree Maximum Path Sum, Hard
 // Dynamic Programming, Tree, Depth-First Search, 1+
