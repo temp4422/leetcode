@@ -2877,6 +2877,40 @@ var isSymmetric = function (root) {
 // # 114. Flatten Binary Tree to Linked List, Medium
 // Linked List, Stack, Tree, 2+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+var flatten = function (root) {
+  if (!root) return
+
+  // 1. Make linked list from binary tree
+  const stack = [root]
+  let listRoot = new TreeNode()
+  let current = listRoot
+
+  while (stack.length) {
+    let node = stack.pop()
+
+    current.right = node
+    current = current.right
+    // current.left = null // This brake!
+
+    if (node.right) stack.push(node.right)
+    if (node.left) stack.push(node.left)
+  }
+
+  // 2. Set node.left = null
+  current = listRoot
+  while (current) {
+    current.left = null
+    current = current.right
+  }
+
+  return listRoot.right
+}
+// prettier-ignore
+// testFunction(flatten).input(arrayToBinaryTree([1,2,5,3,4,null,6])).output(arrayToBinaryTree([1,null,2,null,3,null,4,null,5,null,6])) //?
 
 // # 112. Path Sum, Easy
 // Tree, Depth-First Search, Breadth-First Search, 1+
