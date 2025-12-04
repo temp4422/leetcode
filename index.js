@@ -1,7 +1,7 @@
 'use strict'
 
 // My helper functions, speed up debugging
-import { testFunction, arrayToLinkedList, arrayToBinaryTree } from './helper.js'
+import { testFunction, arrayToLinkedList, arrayToBinaryTree, TreeNode } from './helper.js'
 
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
@@ -9438,3 +9438,18 @@ var smallestNumber = function (n) {
   return parseInt(Array(n.toString(2).length).fill(1).join(''), 2)
 }
 // testFunction(smallestNumber).input(5).output(7) //?
+
+// 1480. Running Sum of 1d Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var runningSum = function (nums) {
+  const sumArray = []
+  for (let i = 0; i < nums.length; i++) {
+    let sum = nums.slice(0, i + 1).reduce((a, b) => a + b, 0)
+    sumArray.push(sum)
+  }
+  return sumArray
+}
+// testFunction(runningSum).input([1, 2, 3, 4]).output([1, 3, 6, 10]) //?
