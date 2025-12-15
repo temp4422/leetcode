@@ -9453,3 +9453,83 @@ var runningSum = function (nums) {
   return sumArray
 }
 // testFunction(runningSum).input([1, 2, 3, 4]).output([1, 3, 6, 10]) //?
+
+// 145. Binary Tree Postorder Traversal, Easy
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal = function (root) {
+  // Fastest approach with .reverse()
+  if (!root) return []
+  const stack = [root]
+  const postorderStack = []
+
+  while (stack.length) {
+    let node = stack.pop()
+    postorderStack.push(node.val)
+    if (node.left) stack.push(node.left)
+    if (node.right) stack.push(node.right)
+  }
+
+  postorderStack.reverse()
+  return postorderStack
+
+  // // Alternative slowest approach because of .unshift() operation
+  //   if (!root) return []
+  // const stack = [root]
+  // const postorderStack = []
+  // while (stack.length) {
+  //   let node = stack.pop()
+  //   postorderStack.unshift(node.val)
+  //   if (node.left) stack.push(node.left)
+  //   if (node.right) stack.push(node.right)
+  // }
+  // return postorderStack
+  //
+  // // Alternative mixed-type apparoach
+  // // Uses a heterogeneous stack (nodes + values) to simulate postorder traversal
+  // // https://leetcode.com/problems/binary-tree-postorder-traversal/solutions/1038517/javascript-2-solutions-stack-recursive-e-h6rj/comments/2590766/?parent=1613820
+  // if (!root) return []
+  // const stack = [root]
+  // const postorderStack = []
+  // while (stack.length) {
+  //   let node = stack.pop()
+  //   if (typeof node === 'number') {
+  //     postorderStack.push(node)
+  //   } else if (node) {
+  //     stack.push(node.val, node.right, node.left)
+  //   }
+  // }
+  // return postorderStack
+  //
+  // // Alternative two pass
+  // // Time Limit Exceeded
+  // if (!root) return []
+  // const stack = [root]
+  // const traversedNodes = []
+  // const viewed = new Map()
+  // while (stack.length) {
+  //   let node = stack.pop()
+  //   if (!node.left && !node.right) {
+  //     traversedNodes.push(node.val)
+  //   } else {
+  //     if (viewed.has(node.val)) {
+  //       viewed.delete(node.val)
+  //       traversedNodes.push(node.val)
+  //     } else {
+  //       viewed.set(node.val, null)
+  //       stack.push(node)
+  //       if (node.right) stack.push(node.right)
+  //       if (node.left) stack.push(node.left)
+  //     }
+  //   }
+  // }
+  // return traversedNodes
+  //
+  // Although postorderTraversalReverse traverses data twice, it outperforms postorderTraversalMixedType because it aligns far better with how the V8 engine optimizes code and memory: it uses monomorphic arrays with stable element types, enabling highly optimized machine code, while the mixed-type approach forces polymorphic arrays, frequent type checks, and prevents effective JIT optimization; additionally, the reverse-based method keeps its hot loop simple with fewer stack operations and delegates the reversal to Array.prototype.reverse(), a highly optimized native C++ routine, whereas the mixed-type version simulates ordering in JavaScript with more branching and stack churn, ultimately paying a significant “dynamic typing tax” on every node.
+}
+// prettier-ignore
+// testFunction(postorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([3, 2, 1]) //?
+// prettier-ignore
+// testFunction(postorderTraversal).input(arrayToBinaryTree([1,2,3,4,5,null,8,null,null,6,7,9])).output([4,6,7,5,2,9,8,3,1]) //?
