@@ -3101,6 +3101,28 @@ var sumNumbers = function (root) {
 // # 222. Count Complete Tree Nodes, Easy
 // Binary Search, Tree, Depth-First Search, 1+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var countNodes = function (root) {
+  if (!root) return 0
+
+  const stack = [root]
+  let count = 0
+
+  while (stack.length) {
+    let node = stack.pop()
+    count++
+
+    if (node.left) stack.push(node.left)
+    if (node.right) stack.push(node.right)
+  }
+
+  return count
+}
+// prettier-ignore
+// testFunction(countNodes).input(arrayToBinaryTree([1, 2, 3, 4, 5, 6])).output(6) //?
 
 // # 236. Lowest Common Ancestor of a Binary Tree, Medium
 // Tree, Depth-First Search, Binary Tree
