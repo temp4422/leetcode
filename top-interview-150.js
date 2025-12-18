@@ -3127,6 +3127,74 @@ var countNodes = function (root) {
 // # 236. Lowest Common Ancestor of a Binary Tree, Medium
 // Tree, Depth-First Search, Binary Tree
 /*****************************************************************************/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function (root, p, q) {
+  // With help https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/solutions/309491/different-heavily-commented-javascript-s-mlqp
+  if (!root) return root
+
+  const stack = [root]
+  // We must find p and q nodes
+  let pNode
+  let qNode
+
+  // Set node level to find same for out nodes.
+  // Our LCA will be node on same level for both p and q
+  root.level = 0
+
+  while (stack.length) {
+    if (pNode && qNode) break
+
+    let node = stack.pop()
+
+    if (node.val === p.val) pNode = node
+    if (node.val === q.val) qNode = node
+
+    if (node.right) {
+      // Increase level while search for target node
+      node.right.level = node.level + 1
+      // records who the parent is, enabling upward traversal later to find the LCA
+      node.right.parent = node
+      // move down the tree
+      stack.push(node.right)
+    }
+    if (node.left) {
+      node.left.level = node.level + 1
+      node.left.parent = node
+      stack.push(node.left)
+    }
+  }
+
+  // Now traverse back the parent nodes, that were set early to find the LCA
+  // Here we consider pNode as LCA not a pNode itself
+  // We search for common level
+  while (pNode.val != qNode.val) {
+    if (pNode.level > qNode.level) {
+      pNode = pNode.parent
+    } else if (pNode.level < qNode.level) {
+      qNode = qNode.parent
+    } else {
+      // Go up on both nodes
+      pNode = pNode.parent
+      qNode = qNode.parent
+    }
+  }
+
+  return pNode
+}
+// prettier-ignore
+// testFunction(lowestCommonAncestor).input(arrayToBinaryTree([3,5,1,6,2,0,8,null,null,7,4]), new TreeNode(5), new TreeNode(1)).output(new TreeNode(3)) //?
 //#endregion
 
 //#region Binary Tree BFS
