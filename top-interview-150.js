@@ -2920,7 +2920,6 @@ var flatten = function (root) {
  * @param {number} targetSum
  * @return {boolean}
  */
-console.log('OK')
 var hasPathSum = function (root, targetSum) {
   // Iterative DFS with stack
   if (!root) return false
@@ -3097,6 +3096,75 @@ var sumNumbers = function (root) {
 // # 173. Binary Search Tree Iterator, Medium
 // Stack, Tree, Design, 3+
 /*****************************************************************************/
+/**
+ * @param {TreeNode} root
+ */
+var BSTIterator = function (root) {
+  function inorderTraversal(root) {
+    // Standard Version
+    const result = []
+    const stack = []
+    let node = root
+    while (node || stack.length) {
+      while (node) {
+        stack.push(node)
+        node = node.left
+      }
+      node = stack.pop()
+      result.push(node.val)
+      node = node.right
+    }
+    return result
+
+    // Alternative with double .pop() and internal break
+    // const result = []
+    // const stack = [root] // Initialize with root inside the array
+    // while (stack.length) {
+    //   let node = stack.pop()
+    //   if (node) {
+    //     // 1. Go as far left as possible
+    //     while (node) {
+    //       stack.push(node)
+    //       node = node.left
+    //     }
+    //   }
+    //   // 2. If the stack is empty after the pop, we are done
+    //   // Important as we can face null pop, we can have problem here, so we must check before proceed
+    //   if (stack.length === 0) break
+    //   // 3. Process the node (it's the leftmost available)
+    //   // This is the most critical part. After skipping the left dive, the code hits the second pop(). This moves the pointer back up the tree to the next available ancestor.
+    //   node = stack.pop()
+    //   result.push(node.val)
+    //   // 4. Move to the right subtree by pushing it onto the stack
+    //   // This sets up the next iteration's "left-dive"
+    //   stack.push(node.right)
+    // }
+    // return result
+  }
+  this.inorderTraversalArray = inorderTraversal(root)
+}
+/**
+ * @return {number}
+ */
+BSTIterator.prototype.next = function () {
+  return this.inorderTraversalArray.shift()
+}
+/**
+ * @return {boolean}
+ */
+BSTIterator.prototype.hasNext = function () {
+  return this.inorderTraversalArray.length ? true : false
+}
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * var obj = new BSTIterator(root)
+ * var param_1 = obj.next()
+ * var param_2 = obj.hasNext()
+ */
+// const root = arrayToBinaryTree([7, 3, 15, null, null, 9, 20])
+// const newBSTIterator = new BSTIterator(root)
+// newBSTIterator.next()
+// newBSTIterator.hasNext()
 
 // # 222. Count Complete Tree Nodes, Easy
 // Binary Search, Tree, Depth-First Search, 1+
