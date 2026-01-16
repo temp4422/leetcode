@@ -9533,3 +9533,18 @@ var postorderTraversal = function (root) {
 // testFunction(postorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([3, 2, 1]) //?
 // prettier-ignore
 // testFunction(postorderTraversal).input(arrayToBinaryTree([1,2,3,4,5,null,8,null,null,6,7,9])).output([4,6,7,5,2,9,8,3,1]) //?
+
+// 561. Array Partition, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var arrayPairSum = function (nums) {
+  const sortedNums = nums.sort((a, b) => a - b)
+  let mamaximizedSum = 0
+  for (let i = 0; i < sortedNums.length; i += 2) {
+    mamaximizedSum += Math.min(sortedNums[i], sortedNums[i + 1])
+  }
+  return mamaximizedSum
+}
+// testFunction(arrayPairSum).input([1, 4, 3, 2]).output(4) //?
