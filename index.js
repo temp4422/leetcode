@@ -9548,3 +9548,25 @@ var arrayPairSum = function (nums) {
   return mamaximizedSum
 }
 // testFunction(arrayPairSum).input([1, 4, 3, 2]).output(4) //?
+
+// 463. Island Perimeter, Easy
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function (grid) {
+  let perimeter = 0
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j]) {
+        if (!grid[i][j - 1]) perimeter++
+        if (!grid[i - 1] || !grid[i - 1][j]) perimeter++
+        if (!grid[i][j + 1]) perimeter++
+        if (!grid[i + 1] || !grid[i + 1][j]) perimeter++
+      }
+    }
+  }
+  return perimeter
+}
+// prettier-ignore
+// testFunction(islandPerimeter).input([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]).output(16) //?
