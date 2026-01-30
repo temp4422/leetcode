@@ -84,3 +84,22 @@ var findErrorNums = function (nums) {
 // testFunction(findErrorNums).input([2, 3, 2]).output([2, 1]) //?
 // testFunction(findErrorNums).input([3, 2, 3, 4, 6, 5]).output([3, 1]) //?
 // testFunction(findErrorNums).input([3, 2, 2]).output([2, 1]) //?
+
+// Q2. How Many Numbers Are Smaller Than the Current Number, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var smallerNumbersThanCurrent = function (nums) {
+  const smallerNums = []
+  for (let i = 0; i < nums.length; i++) {
+    let count = 0
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[j] < nums[i]) count++
+    }
+    smallerNums.push(count)
+  }
+  return smallerNums
+}
+// testFunction(smallerNumbersThanCurrent).input([8, 1, 2, 2, 3]).output([4, 0, 1, 1, 3]) //?
+// testFunction(smallerNumbersThanCurrent).input([6, 5, 4, 8]).output([2, 1, 0, 3]) //?
