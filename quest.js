@@ -46,3 +46,41 @@ var findMaxConsecutiveOnes = function (nums) {
   return maxConsecutive
 }
 // testFunction(findMaxConsecutiveOnes).input([1, 1, 0, 1, 1, 1]).output(3) //?
+
+// Q1. Set Mismatch, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findErrorNums = function (nums) {
+  // 1. Find duplicate
+  let duplicate
+  const map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) duplicate = nums[i]
+    else map.set(nums[i], 1)
+  }
+  // 2. Find missing
+  let missing
+  const sequentialNums = Array.from({ length: nums.length }, (_, i) => i + 1)
+  for (let i = 0; i < sequentialNums.length; i++) {
+    if (!map.has(sequentialNums[i])) missing = sequentialNums[i]
+    else continue
+  }
+  // 3. Return both
+  return [duplicate, missing]
+  //
+  // Alternative https://leetcode.com/problems/set-mismatch/solutions/3026921/645-set-mismatch-typescript-solution-by-ft0cc
+  //
+  // const arr = new Array(nums.length + 1).fill(0)
+  // for (let i = 0; i < nums.length; i++) {
+  //   arr[nums[i]]++
+  // }
+  // return [arr.indexOf(2), arr.lastIndexOf(0)]
+}
+// testFunction(findErrorNums).input([1, 2, 2, 4]).output([2, 3]) //?
+// testFunction(findErrorNums).input([1, 1]).output([1, 2]) //?
+// testFunction(findErrorNums).input([2, 2]).output([2, 1]) //?
+// testFunction(findErrorNums).input([2, 3, 2]).output([2, 1]) //?
+// testFunction(findErrorNums).input([3, 2, 3, 4, 6, 5]).output([3, 1]) //?
+// testFunction(findErrorNums).input([3, 2, 2]).output([2, 1]) //?
