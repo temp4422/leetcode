@@ -103,3 +103,41 @@ var smallerNumbersThanCurrent = function (nums) {
 }
 // testFunction(smallerNumbersThanCurrent).input([8, 1, 2, 2, 3]).output([4, 0, 1, 1, 3]) //?
 // testFunction(smallerNumbersThanCurrent).input([6, 5, 4, 8]).output([2, 1, 0, 3]) //?
+
+// Q3. Find All Numbers Disappeared in an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function (nums) {
+  const set = new Set(nums)
+  const missedNums = []
+  for (let i = 1; i < nums.length + 1; i++) {
+    if (!set.has(i)) missedNums.push(i)
+  }
+  return missedNums
+
+  // // Time Limit Exceeded
+  // const missedNums = []
+  // for (let i = 1; i < nums.length + 1; i++) {
+  //   if (nums.indexOf(i) == -1) missedNums.push(i)
+  // }
+  // return missedNums
+  //
+  // // Time Limit Exceeded
+  // const sequentialNums = Array.from({ length: nums.length }, (_, i) => i + 1)
+  // const missedNums = []
+  // for (let i = 0; i < sequentialNums.length; i++) {
+  //   if (nums.indexOf(sequentialNums[i]) == -1) missedNums.push(sequentialNums[i])
+  // }
+  // return missedNums
+  //
+  // // Time Limit Exceeded
+  // const sequentialNums = Array.from({ length: nums.length }, (_, i) => i + 1)
+  // const missedNums = []
+  // for (let i = 0; i < sequentialNums.length; i++) {
+  //   if (!nums.includes(sequentialNums[i])) missedNums.push(sequentialNums[i])
+  // }
+  // return missedNums
+}
+// testFunction(findDisappearedNumbers).input([4, 3, 2, 7, 8, 2, 3, 1]).output([5, 6]) //?
