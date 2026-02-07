@@ -141,3 +141,60 @@ var findDisappearedNumbers = function (nums) {
   // return missedNums
 }
 // testFunction(findDisappearedNumbers).input([4, 3, 2, 7, 8, 2, 3, 1]).output([5, 6]) //?
+
+// Q1. Build an Array With Stack Operations, Medium
+/**
+ * @param {number[]} target
+ * @param {number} n
+ * @return {string[]}
+ */
+var buildArray = function (target, n) {
+  // const stream = Array.from({ length: n }, (_, i) => i + 1)
+  // const stack = []
+  // const stackOperations = []
+  // for (let i = 0; i <= n; i++) {
+  //   if (stack[i] == target[i]) {
+  //     continue
+  //   } else if (!stack[i]) {
+  //     stack.push(stream.shift())
+  //     stackOperations.push('Push')
+  //     i--
+  //   } else if (stack[i] < target[i]) {
+  //     stack.pop()
+  //     stackOperations.push('Pop')
+  //     i--
+  //   } else if (stack[i] > target[i]) {
+  //     stack.push(stream.shift())
+  //     stackOperations.push('Push')
+  //   }
+  // }
+  // return stackOperations
+  //
+  // // Alternative https://leetcode.com/problems/build-an-array-with-stack-operations/solutions/4241460/3-approaches-brute-forcetwo-pointers-sta-c6nb
+  // const stackOperations = []
+  // let current = 1
+  // for (let i = 0; i < target.length; i++) {
+  //   while (current < target[i]) {
+  //     stackOperations.push('Push')
+  //     stackOperations.push('Pop')
+  //     current++
+  //   }
+  //   stackOperations.push('Push')
+  //   current++
+  // }
+  // return stackOperations
+  //
+  // Alternative with set https://leetcode.com/problems/build-an-array-with-stack-operations/solutions/4241217/9980-iterative-set-stack-simulation-by-v-vljo
+  const targetSet = new Set(target)
+  const stackOperations = []
+  for (let i = 1; i <= target.at(-1); i++) {
+    if (targetSet.has(i)) {
+      stackOperations.push('Push')
+    } else {
+      stackOperations.push('Push')
+      stackOperations.push('Pop')
+    }
+  }
+  return stackOperations
+}
+// testFunction(buildArray).input([1, 3], 3).output(['Push', 'Push', 'Pop', 'Push']) //?
