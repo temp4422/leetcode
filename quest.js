@@ -198,3 +198,29 @@ var buildArray = function (target, n) {
   return stackOperations
 }
 // testFunction(buildArray).input([1, 3], 3).output(['Push', 'Push', 'Pop', 'Push']) //?
+
+// Q2. Evaluate Reverse Polish Notation
+/**
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function (tokens) {
+  const stack = []
+  const operators = new Set(['+', '-', '*', '/'])
+
+  for (let i = 0; i < tokens.length; i++) {
+    if (operators.has(tokens[i])) {
+      let operand1 = stack.pop()
+      let operand2 = stack.pop()
+      let operator = tokens[i]
+      let evaluation = Math.trunc(eval(`(${operand2})${operator}(${operand1})`))
+      stack.push(evaluation)
+    } else {
+      stack.push(Number(tokens[i]))
+    }
+  }
+  return stack.pop()
+}
+// testFunction(evalRPN).input(['2', '1', '+', '3', '*']).output(9) //?
+// testFunction(evalRPN).input(['4', '13', '5', '/', '+']).output(6) //?
+// testFunction(evalRPN).input(['4', '-2', '/', '2', '-3', '-', '-']).output(-7) //?
