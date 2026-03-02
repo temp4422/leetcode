@@ -224,3 +224,72 @@ var evalRPN = function (tokens) {
 // testFunction(evalRPN).input(['2', '1', '+', '3', '*']).output(9) //?
 // testFunction(evalRPN).input(['4', '13', '5', '/', '+']).output(6) //?
 // testFunction(evalRPN).input(['4', '-2', '/', '2', '-3', '-', '-']).output(-7) //?
+
+// Q3. Exclusive Time of Functions, Medium
+/**
+ * @param {number} n
+ * @param {string[]} logs
+ * @return {number[]}
+ */
+var exclusiveTime = function (n, logs) {
+  const result = new Array(n).fill(0)
+  const stack = []
+  let previousTime = 0
+
+  for (const log of logs) {
+    let [functionId, startOrEnd, timestamp] = log.split(':')
+    functionId = Number(functionId)
+    timestamp = Number(timestamp)
+
+    if (startOrEnd === 'start') {
+      // Add time to currently running function
+      if (stack.length) {
+        result[stack[stack.length - 1]] += timestamp - previousTime
+      }
+
+      stack.push(functionId)
+      previousTime = timestamp
+    } else {
+      // Function ends
+      result[stack.pop()] += timestamp - previousTime + 1
+      previousTime = timestamp + 1
+    }
+  }
+
+  return result
+  // // https://leetcode.com/problems/exclusive-time-of-functions/solutions/1430688/js-using-stack-by-wintryleo-b0qn
+  // const results = new Array(n).fill(0)
+  // const stack = []
+
+  // for (let i = 0; i < logs.length; i++) {
+  //   let [functionID, startOrEnd, timestamp] = logs[i].split(':')
+  //   functionID = Number(functionID)
+  //   timestamp = Number(timestamp)
+
+  //   if (startOrEnd === 'start') {
+  //     stack.push([functionID, timestamp])
+  //   } else {
+  //     // Get function from stack and save time to results
+  //     let [currentFunctionID, currentTime] = stack.pop()
+  //     let time = timestamp - currentTime + 1
+  //     results[functionID] += time
+
+  //     if (stack.length) {
+  //       // Modify time of function that currently on stack
+  //       let [lastFunctionID, lastTime] = stack[stack.length - 1]
+  //       results[lastFunctionID] -= time
+  //     }
+
+  //     // if (stack.length) result[stack.at(-1)[0]] -= time
+  //     // if (stack.length) result[[stack.length - 1][0]] -= time
+  //   }
+  // }
+
+  // return results
+}
+// prettier-ignore
+// testFunction(exclusiveTime).input(2, ["0:start:0","1:start:2","1:end:5","0:end:6"]).output([3,4]) //?
+// prettier-ignore
+// testFunction(exclusiveTime).input(1, ["0:start:0","0:start:2","0:end:5","0:start:6","0:end:6","0:end:7"]).output([8]) //?
+// prettier-ignore
+// testFunction(exclusiveTime).input(2, ["0:start:0","0:start:2","0:end:5","1:start:6","1:end:6","0:end:7"]).output([7,1]) //?
