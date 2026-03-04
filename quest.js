@@ -293,3 +293,22 @@ var exclusiveTime = function (n, logs) {
 // testFunction(exclusiveTime).input(1, ["0:start:0","0:start:2","0:end:5","0:start:6","0:end:6","0:end:7"]).output([8]) //?
 // prettier-ignore
 // testFunction(exclusiveTime).input(2, ["0:start:0","0:start:2","0:end:5","1:start:6","1:end:6","0:end:7"]).output([7,1]) //?
+
+// Q1. Final Prices With a Special Discount in a Shop, Easy
+/**
+ * @param {number[]} prices
+ * @return {number[]}
+ */
+var finalPrices = function (prices) {
+  const answer = [...prices]
+  for (let i = 0; i < prices.length; i++) {
+    for (let j = i + 1; j < prices.length; j++) {
+      if (prices[j] <= prices[i]) {
+        answer[i] = prices[i] - prices[j]
+        break
+      }
+    }
+  }
+  return answer
+}
+// testFunction(finalPrices).input([8, 4, 6, 2, 3]).output([4, 2, 4, 2, 3]) //?
