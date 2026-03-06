@@ -312,3 +312,39 @@ var finalPrices = function (prices) {
   return answer
 }
 // testFunction(finalPrices).input([8, 4, 6, 2, 3]).output([4, 2, 4, 2, 3]) //?
+
+// Q2. Daily Temperatures, Medium
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function (temperatures) {
+  // https://leetcode.com/problems/daily-temperatures/solutions/6027677/video-stack-solution-python-javascript-j-vndw
+  const answer = new Array(temperatures.length).fill(0)
+  const stack = []
+  for (let i = 0; i < temperatures.length; i++) {
+    while (stack.length && temperatures[i] > temperatures[stack.at(-1)]) {
+      let prevDay = stack.pop()
+      answer[prevDay] = i - prevDay
+    }
+    stack.push(i)
+  }
+  return answer
+
+  // // Time Limit Exceeded
+  // const answer = new Array(temperatures.length).fill(0)
+  // for (let i = 0; i < temperatures.length; i++) {
+  //   let days = 1
+  //   for (let j = i + 1; j < temperatures.length; j++) {
+  //     if (temperatures[i] < temperatures[j]) {
+  //       answer[i] = days
+  //       break
+  //     } else {
+  //       days++
+  //     }
+  //   }
+  // }
+  // return answer
+}
+// prettier-ignore
+// testFunction(dailyTemperatures).input([73,74,75,71,69,72,76,73]).output([1,1,4,2,1,1,0,0]) //?
