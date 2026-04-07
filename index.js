@@ -1595,7 +1595,7 @@ var findWords = function (words) {
     (word) =>
       /\b[qwertyuiop]+\b/i.test(word) ||
       /\b[asdfghjkl]+\b/i.test(word) ||
-      /\b[zxcvbnm]+\b/i.test(word)
+      /\b[zxcvbnm]+\b/i.test(word),
   )
   // https://leetcode.com/problems/keyboard-row/solutions/97867/intuitive-javascript-solution/comments/102271
 
@@ -6420,7 +6420,7 @@ var oddString = function (words) {
   }
 
   let oddIndex = diffArrays.indexOf(
-    diffArrays.find((item) => diffArrays.indexOf(item) === diffArrays.lastIndexOf(item))
+    diffArrays.find((item) => diffArrays.indexOf(item) === diffArrays.lastIndexOf(item)),
   )
 
   return words[oddIndex]
@@ -6571,7 +6571,7 @@ var closestTarget = function (words, target, startIndex) {
     if (words[i] === target) break
 
     stepsRight++
-    if (i === words.length - 1) (i = -1), (flag = true)
+    if (i === words.length - 1) ((i = -1), (flag = true))
     if (flag && i === startIndex - 1) break
   }
 
@@ -6581,7 +6581,7 @@ var closestTarget = function (words, target, startIndex) {
     if (words[i] === target) break
 
     stepsLeft++
-    if (i === 0) (i = words.length), (flag = true)
+    if (i === 0) ((i = words.length), (flag = true))
     if (flag && i === startIndex + 1) break
   }
 
@@ -9570,3 +9570,38 @@ var islandPerimeter = function (grid) {
 }
 // prettier-ignore
 // testFunction(islandPerimeter).input([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]).output(16) //?
+
+// 144. Binary Tree Preorder Traversal, Easy
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function (root) {
+  // One-line intuition:
+  // Use a stack, process node immediately, and push children in reverse order (right → left) to get preorder.
+  if (!root) return []
+
+  const stack = [root]
+  const preorderStack = []
+
+  while (stack.length) {
+    let node = stack.pop()
+    preorderStack.push(node.val)
+    if (node.right) stack.push(node.right)
+    if (node.left) stack.push(node.left)
+  }
+
+  return preorderStack
+}
+// prettier-ignore
+// testFunction(preorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([1, 2, 3]) //?
+// prettier-ignore
+// testFunction(preorderTraversal).input(arrayToBinaryTree([1,2,3,4,5,null,8,null,null,6,7,9])).output([1,2,4,5,6,7,3,8,9]) //?
