@@ -2865,6 +2865,44 @@ var isSymmetric = function (root) {
 // # 105. Construct Binary Tree from Preorder and Inorder Traversal, Medium
 // Array, Hash Table, Divide and Conquer, 2+
 /*****************************************************************************/
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var buildTree = function (preorder, inorder) {
+  // Solution by ChatGPT (I was not able to solve it by myself)
+  function TreeNode(val, left, right) {
+    this.val = val === undefined ? 0 : val
+    this.left = left === undefined ? null : left
+    this.right = right === undefined ? null : right
+  }
+
+  let inorderMap = new Map()
+  for (let i = 0; i < inorder.length; i++) {
+    inorderMap.set(inorder[i], i)
+  }
+
+  let preIndex = 0
+
+  function helper(left, right) {
+    if (left > right) return null
+
+    let rootVal = preorder[preIndex++]
+    let root = new TreeNode(rootVal)
+
+    let index = inorderMap.get(rootVal)
+
+    root.left = helper(left, index - 1)
+    root.right = helper(index + 1, right)
+
+    return root
+  }
+
+  return helper(0, inorder.length - 1)
+}
+// prettier-ignore
+// testFunction(buildTree).input([3,9,20,15,7], [9,3,15,20,7]).output(arrayToBinaryTree([3,9,20,null,null,15,7])) //?
 
 // # 106. Construct Binary Tree from Inorder and Postorder Traversal, Medium
 // Array, Hash Table, Divide and Conquer, 2+
