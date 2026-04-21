@@ -348,3 +348,20 @@ var dailyTemperatures = function (temperatures) {
 }
 // prettier-ignore
 // testFunction(dailyTemperatures).input([73,74,75,71,69,72,76,73]).output([1,1,4,2,1,1,0,0]) //?
+
+// Q3. Largest Rectangle in Histogram, Hard
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+console.log('OK')
+var largestRectangleArea = function (heights) {
+  let largestRectangle = 0
+
+  for (let i = 0; i < heights.length; i++) {
+    
+  }
+
+  return largestRectangle
+}
+testFunction(largestRectangleArea).input([2, 1, 5, 6, 2, 3]).output(10) //?

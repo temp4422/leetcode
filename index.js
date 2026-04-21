@@ -9605,3 +9605,13 @@ var preorderTraversal = function (root) {
 // testFunction(preorderTraversal).input(arrayToBinaryTree([1, null, 2, 3])).output([1, 2, 3]) //?
 // prettier-ignore
 // testFunction(preorderTraversal).input(arrayToBinaryTree([1,2,3,4,5,null,8,null,null,6,7,9])).output([1,2,4,5,6,7,3,8,9]) //?
+
+// 3783. Mirror Distance of an Integer, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var mirrorDistance = function (n) {
+  return Math.abs(n - Number(n.toString().split('').reverse().join('')))
+}
+// testFunction(mirrorDistance).input(25).output(27) //?
