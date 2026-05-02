@@ -9615,3 +9615,31 @@ var mirrorDistance = function (n) {
   return Math.abs(n - Number(n.toString().split('').reverse().join('')))
 }
 // testFunction(mirrorDistance).input(25).output(27) //?
+
+// 1337. The K Weakest Rows in a Matrix, Easy
+/**
+ * @param {number[][]} mat
+ * @param {number} k
+ * @return {number[]}
+ */
+var kWeakestRows = function (mat, k) {
+  const rowAndSoldier = []
+  for (let row = 0; row < mat.length; row++) {
+    let soldiers = 0
+    for (let col = 0; col < mat[row].length; col++) {
+      if (mat[row][col]) soldiers++
+    }
+    rowAndSoldier.push([row, soldiers])
+  }
+
+  rowAndSoldier.sort((a, b) => a[1] - b[1])
+
+  const weakestRowIndices = []
+  for (let i = 0; i < k; i++) {
+    weakestRowIndices.push(rowAndSoldier[i][0])
+  }
+
+  return weakestRowIndices
+}
+// prettier-ignore
+// testFunction(kWeakestRows).input([[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3).output([2,0,3]) //?
