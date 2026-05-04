@@ -9643,3 +9643,14 @@ var kWeakestRows = function (mat, k) {
 }
 // prettier-ignore
 // testFunction(kWeakestRows).input([[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3).output([2,0,3]) //?
+
+// 1464. Maximum Product of Two Elements in an Array, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function (nums) {
+  nums.sort((a, b) => b - a)
+  return (nums[0] - 1) * (nums[1] - 1)
+}
+// testFunction(maxProduct).input([3, 4, 5, 2]).output(12) //?
