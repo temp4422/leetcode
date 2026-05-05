@@ -9654,3 +9654,52 @@ var maxProduct = function (nums) {
   return (nums[0] - 1) * (nums[1] - 1)
 }
 // testFunction(maxProduct).input([3, 4, 5, 2]).output(12) //?
+
+// 1200. Minimum Absolute Difference, Easy
+/**
+ * @param {number[]} arr
+ * @return {number[][]}
+ */
+var minimumAbsDifference = function (arr) {
+  const sortedArr = arr.toSorted((a, b) => a - b)
+  let minimumAbsoluteDifference = Infinity
+  const pairsWithMinimumAbsoluteDifference = []
+
+  for (let i = 0; i < sortedArr.length - 1; i++) {
+    minimumAbsoluteDifference = Math.min(minimumAbsoluteDifference, sortedArr[i + 1] - sortedArr[i])
+  }
+
+  for (let i = 0; i < sortedArr.length - 1; i++) {
+    if (minimumAbsoluteDifference === sortedArr[i + 1] - sortedArr[i]) {
+      pairsWithMinimumAbsoluteDifference.push([sortedArr[i], sortedArr[i + 1]])
+    }
+  }
+
+  return pairsWithMinimumAbsoluteDifference //?
+
+  // // Time Limit Exceeded
+  // let minimumAbsoluteDifference = Infinity
+  // const pairsWithMinimumAbsoluteDifference = []
+  // for (let i = 0; i < arr.length; i++) {
+  //   for (let j = i + 1; j < arr.length; j++) {
+  //     let difference = Math.abs(arr[i] - arr[j])
+  //     if (minimumAbsoluteDifference > difference) {
+  //       minimumAbsoluteDifference = difference
+  //       pairsWithMinimumAbsoluteDifference.length = 0 // Reset array
+  //     }
+  //     if (minimumAbsoluteDifference === difference) {
+  //       let pair = arr[i] < arr[j] ? [arr[i], arr[j]] : [arr[j], arr[i]]
+  //       pairsWithMinimumAbsoluteDifference.push(pair)
+  //     }
+  //   }
+  // }
+  // console.log(pairsWithMinimumAbsoluteDifference)
+  // const sortedPairsWithMinimumAbsoluteDifference = pairsWithMinimumAbsoluteDifference.toSorted(
+  //   (a, b) => a[0] - b[0],
+  // )
+  // return sortedPairsWithMinimumAbsoluteDifference //?
+}
+// prettier-ignore
+// testFunction(minimumAbsDifference).input([4,2,1,3]).output([[1,2],[2,3],[3,4]]) //?
+// prettier-ignore
+// testFunction(minimumAbsDifference).input([3,8,-10,23,19,-4,-14,27]).output([[-14,-10],[19,23],[23,27]]) //?
