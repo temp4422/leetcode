@@ -9703,3 +9703,20 @@ var minimumAbsDifference = function (arr) {
 // testFunction(minimumAbsDifference).input([4,2,1,3]).output([[1,2],[2,3],[3,4]]) //?
 // prettier-ignore
 // testFunction(minimumAbsDifference).input([3,8,-10,23,19,-4,-14,27]).output([[-14,-10],[19,23],[23,27]]) //?
+
+// 1486. XOR Operation in an Array, Easy
+/**
+ * @param {number} n
+ * @param {number} start
+ * @return {number}
+ */
+var xorOperation = function (n, start) {
+  let xor = 0
+  for (let i = 0; i < n; i++) {
+    let num = start + 2 * i
+    xor = xor ^ num
+  }
+  return xor
+}
+// testFunction(xorOperation).input(5, 0).output(8) //?
+// testFunction(xorOperation).input(4, 3).output(8) //?
