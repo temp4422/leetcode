@@ -9720,3 +9720,26 @@ var xorOperation = function (n, start) {
 }
 // testFunction(xorOperation).input(5, 0).output(8) //?
 // testFunction(xorOperation).input(4, 3).output(8) //?
+
+// 1175. Prime Arrangements, Easy
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var numPrimeArrangements = function (n) {
+  function isPrime(num) {
+    let maxRoot = Math.trunc(Math.sqrt(num))
+    for (let i = 2; i <= maxRoot; i++) {
+      if (Number.isInteger(num / i)) return false
+    }
+    return num > 1 // this is important to check for '1' below
+  }
+
+  let res = 1
+  let MOD = 1e9 + 7
+  for (let j = 1, k = 1; n > 0; n--) {
+    res = (res * (isPrime(n) ? j++ : k++)) % MOD
+  }
+  return res
+}
+// testFunction(numPrimeArrangements).input(5).output(12) //?
