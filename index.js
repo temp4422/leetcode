@@ -9743,3 +9743,49 @@ var numPrimeArrangements = function (n) {
   return res
 }
 // testFunction(numPrimeArrangements).input(5).output(12) //?
+
+// 1572. Matrix Diagonal Sum, Easy
+/**
+ * @param {number[][]} mat
+ * @return {number}
+ */
+var diagonalSum = function (mat) {
+  let sum = 0
+  let col = mat.length - 1 // row === i
+  // Add first and last (primary and secondary) elements
+  for (let i = 0; i < mat.length; i++) {
+    sum += mat[i][i]
+    sum += mat[i][col]
+    col--
+  }
+  // Subtract middle element because length is odd
+  if (mat.length % 2 != 0) {
+    let middle = mat[Math.trunc(mat.length / 2)][Math.trunc(mat.length / 2)]
+    sum -= middle
+  }
+  return sum
+
+  // ALternative two loops
+  // const usedSlots = new Map()
+  // let sum = 0
+  // // primary diagonal
+  // let row = 0
+  // let col = 0
+  // while (row < mat.length) {
+  //   sum += mat[row][col]
+  //   usedSlots.set(`${row}${col}`)
+  //   row++
+  //   col++
+  // }
+  // // secondary diagonal
+  // row = 0
+  // col = mat.length - 1
+  // while (row < mat.length) {
+  //   if (!usedSlots.has(`${row}${col}`)) sum += mat[row][col]
+  //   row++
+  //   col--
+  // }
+  // return sum
+}
+// prettier-ignore
+// testFunction(diagonalSum).input([[1,2,3],[4,5,6],[7,8,9]]).output(25) //?
