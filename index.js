@@ -9789,3 +9789,36 @@ var diagonalSum = function (mat) {
 }
 // prettier-ignore
 // testFunction(diagonalSum).input([[1,2,3],[4,5,6],[7,8,9]]).output(25) //?
+
+// 1582. Special Positions in a Binary Matrix, Easy
+/**
+ * @param {number[][]} mat
+ * @return {number}
+ */
+var numSpecial = function (mat) {
+  // Convert clomuns into rows
+  const cols = []
+  for (let i = 0; i < mat[0].length; i++) {
+    let col = []
+    for (let j = 0; j < mat.length; j++) {
+      col.push(mat[j][i])
+    }
+    cols.push(col)
+  }
+  // Count single "1" in rows and cols
+  const sum = (arr) => arr.reduce((acc, curr) => acc + curr, 0)
+  let specialPositions = 0
+  for (let i = 0; i < mat.length; i++) {
+    if (sum(mat[i]) === 1) {
+      let indexOfOne = mat[i].indexOf(1)
+      if (sum(cols[indexOfOne]) === 1) specialPositions++
+    }
+  }
+  return specialPositions
+}
+// prettier-ignore
+// testFunction(numSpecial).input([[1,0,0],[0,0,1],[1,0,0]]).output(1) //?
+// prettier-ignore
+// testFunction(numSpecial).input([[0,0,1,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]]).output(2) //?
+// prettier-ignore
+// testFunction(numSpecial).input([[0,0],[0,0],[1,0]]).output(1) //?
