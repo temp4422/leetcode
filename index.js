@@ -9822,3 +9822,21 @@ var numSpecial = function (mat) {
 // testFunction(numSpecial).input([[0,0,1,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]]).output(2) //?
 // prettier-ignore
 // testFunction(numSpecial).input([[0,0],[0,0],[1,0]]).output(1) //?
+
+// 1637. Widest Vertical Area Between Two Points Containing No Points, Easy
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+var maxWidthOfVerticalArea = function (points) {
+  const sortedPoints = points.toSorted((a, b) => b[0] - a[0])
+  let widestVerticalArea = 0
+  for (let i = 0; i < sortedPoints.length-1; i++) {
+    widestVerticalArea = Math.max(widestVerticalArea, sortedPoints[i][0] - sortedPoints[i + 1][0])
+  }
+  return widestVerticalArea
+}
+// prettier-ignore
+// testFunction(maxWidthOfVerticalArea).input([[8,7],[9,9],[7,4],[9,7]]).output(1) //?
+// prettier-ignore
+// testFunction(maxWidthOfVerticalArea).input([[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]).output(3) //?
