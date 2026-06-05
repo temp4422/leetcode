@@ -9840,3 +9840,21 @@ var maxWidthOfVerticalArea = function (points) {
 // testFunction(maxWidthOfVerticalArea).input([[8,7],[9,9],[7,4],[9,7]]).output(1) //?
 // prettier-ignore
 // testFunction(maxWidthOfVerticalArea).input([[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]).output(3) //?
+
+// 1619. Mean of Array After Removing Some Elements, Easy
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+console.log('OK')
+var trimMean = function (arr) {
+  const sortedArr = arr.toSorted((a, b) => a - b)
+  const fivePercent = (sortedArr.length / 100) * 5
+  const cutArr = sortedArr.slice(fivePercent, sortedArr.length - fivePercent)
+  const mean = cutArr.reduce((a, b) => a + b) / cutArr.length
+  return Number(mean.toFixed(5))
+}
+// prettier-ignore
+// testFunction(trimMean).input([1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]).output(2.00000) //?
+// testFunction(trimMean).input([6,2,7,5,1,2,0,3,10,2,5,0,5,5,0,8,7,6,8,0]).output(4.00000) //?
+// testFunction(trimMean).input([6,0,7,0,7,5,7,8,3,4,0,7,8,1,6,8,1,1,2,4,8,1,9,5,4,3,8,5,10,8,6,6,1,0,6,10,8,2,3,4]).output(4.77778) //?
