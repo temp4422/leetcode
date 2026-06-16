@@ -9858,3 +9858,40 @@ var trimMean = function (arr) {
 // testFunction(trimMean).input([1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]).output(2.00000) //?
 // testFunction(trimMean).input([6,2,7,5,1,2,0,3,10,2,5,0,5,5,0,8,7,6,8,0]).output(4.00000) //?
 // testFunction(trimMean).input([6,0,7,0,7,5,7,8,3,4,0,7,8,1,6,8,1,1,2,4,8,1,9,5,4,3,8,5,10,8,6,6,1,0,6,10,8,2,3,4]).output(4.77778) //?
+
+// 1603. Design Parking System, Easy
+/**
+ * @param {number} big
+ * @param {number} medium
+ * @param {number} small
+ */
+var ParkingSystem = function (big, medium, small) {
+  this.big = big
+  this.medium = medium
+  this.small = small
+  return null
+}
+/**
+ * @param {number} carType
+ * @return {boolean}
+ */
+ParkingSystem.prototype.addCar = function (carType) {
+  if (carType == 1 && this.big) {
+    this.big--
+    return true
+  } else if (carType == 2 && this.medium) {
+    this.medium--
+    return true
+  } else if (carType == 3 && this.small) {
+    this.small--
+    return true
+  } else {
+    return false
+  }
+  return false
+}
+// const newParkingLot = new ParkingSystem(1, 1, 0)
+// newParkingLot.addCar(1) //?
+// newParkingLot.addCar(2) //?
+// newParkingLot.addCar(3) //?
+// newParkingLot.addCar(1) //?
