@@ -9895,3 +9895,23 @@ ParkingSystem.prototype.addCar = function (carType) {
 // newParkingLot.addCar(2) //?
 // newParkingLot.addCar(3) //?
 // newParkingLot.addCar(1) //?
+
+// 1588. Sum of All Odd Length Subarrays, Easy
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var sumOddLengthSubarrays = function (arr) {
+  const sum = (arr) => arr.reduce((acc, cur) => acc + cur, 0)
+  let totalSum = 0
+  for (let i = 0; i < arr.length; i++) {
+    let currSum = 0
+    for (let j = i + 1; j < arr.length + 1; j += 2) {
+      currSum += sum(arr.slice(i, j))
+    }
+    totalSum += currSum
+  }
+  return totalSum //?
+}
+// testFunction(sumOddLengthSubarrays).input([1, 4, 2, 5, 3]).output(58) //?
+// testFunction(sumOddLengthSubarrays).input([10, 11, 12]).output(66) //?
