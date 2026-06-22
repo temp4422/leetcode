@@ -9915,3 +9915,19 @@ var sumOddLengthSubarrays = function (arr) {
 }
 // testFunction(sumOddLengthSubarrays).input([1, 4, 2, 5, 3]).output(58) //?
 // testFunction(sumOddLengthSubarrays).input([10, 11, 12]).output(66) //?
+
+// 1720. Decode XORed Array, Easy
+/**
+ * @param {number[]} encoded
+ * @param {number} first
+ * @return {number[]}
+ */
+var decode = function (encoded, first) {
+  const arr = [first]
+  for (let i = 0; i < encoded.length; i++) {
+    arr.push(encoded[i] ^ arr[i]) // XOR in reverse to get original arr
+  }
+  return arr
+}
+// testFunction(decode).input([1, 2, 3], 1).output([1, 0, 2, 1]) //?
+// testFunction(decode).input([6, 2, 7, 3], 4).output([4, 2, 0, 7, 4]) //?
