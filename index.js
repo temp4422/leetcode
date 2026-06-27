@@ -9395,7 +9395,6 @@ var inorderTraversal = function (root) {
  * @param {number[]} nums
  * @return {number}
  */
-console.log('OK')
 var countValidSelections = function (nums) {
   // const indexesOfZero = []
   // for (let i = 0; i < nums.length; i++) {
@@ -9846,7 +9845,6 @@ var maxWidthOfVerticalArea = function (points) {
  * @param {number[]} arr
  * @return {number}
  */
-console.log('OK')
 var trimMean = function (arr) {
   const sortedArr = arr.toSorted((a, b) => a - b)
   const fivePercent = (sortedArr.length / 100) * 5
@@ -9931,3 +9929,41 @@ var decode = function (encoded, first) {
 }
 // testFunction(decode).input([1, 2, 3], 1).output([1, 0, 2, 1]) //?
 // testFunction(decode).input([6, 2, 7, 3], 4).output([4, 2, 0, 7, 4]) //?
+
+// 1863. Sum of All Subset XOR Totals, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var subsetXORSum = function (nums) {
+  // With help https://chatgpt.com/share/6a3f9866-fc38-83ed-acef-0c75b70e9857
+  // An array of length n has exactly 2^n subsets. Double on each iteration of array length.
+
+  // 1. Iterative subset generation
+  const subsets = [[]]
+  for (let i = 0; i < nums.length; i++) {
+    // 1.1 Make clone of original array with all subarrays
+    let subsetsClone = subsets.map((subArray) => [...subArray])
+    // let subsetsClone = structuredClone(subsets) // Modern alternative
+
+    // 1.2 Add new number to each subarray
+    for (let j = 0; j < subsetsClone.length; j++) {
+      subsetsClone[j].push(nums[i])
+    }
+
+    // 1.3 Add cloned and modified array into original array
+    subsets.push(...subsetsClone)
+  }
+
+  // 2. XOR all subarray
+  let totalXOR = 0
+  for (let i = 0; i < subsets.length; i++) {
+    totalXOR += subsets[i].reduce((a, b) => a ^ b, 0)
+    // totalXOR += eval(subsets[i].toString().split(',').join('^')) || 0 // Not safe alternative
+  }
+
+  return totalXOR //?
+}
+// testFunction(subsetXORSum).input([1, 3]).output(6) //?
+// testFunction(subsetXORSum).input([5, 1, 6]).output(28) //?
+// testFunction(subsetXORSum).input([3, 4, 5, 6, 7, 8]).output(480) //?
