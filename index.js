@@ -9967,3 +9967,59 @@ var subsetXORSum = function (nums) {
 // testFunction(subsetXORSum).input([1, 3]).output(6) //?
 // testFunction(subsetXORSum).input([5, 1, 6]).output(28) //?
 // testFunction(subsetXORSum).input([3, 4, 5, 6, 7, 8]).output(480) //?
+
+// 2094. Finding 3-Digit Even Numbers, Easy
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var findEvenNumbers = function (digits) {
+  // https://chatgpt.com/share/6a72cab9-ddb8-83eb-8bfa-4951c3f42d8f
+  const uniqueIntegers = new Set()
+  for (let i = 0; i < digits.length; i++) {
+    for (let j = 0; j < digits.length; j++) {
+      for (let k = 0; k < digits.length; k++) {
+        // 1. Skip if any indices are equal
+        if (i == j || i == k || j == k) continue
+        // 2. Skip if the first digit is zero
+        if (digits[i] == 0) continue
+        // 3. Skip if the last digit is odd
+        if (digits[k] % 2 != 0) continue
+        // 4. Build the number
+        let integer = parseInt([digits[i], digits[j], digits[k]].join(''))
+        // 5. Add it to the Set
+        uniqueIntegers.add(integer)
+      }
+    }
+  }
+  const sortedUniqueIntegers = [...uniqueIntegers].sort((a, b) => a - b)
+  return sortedUniqueIntegers
+  //
+  // // CLose but not complete permutations
+  // const uniqueIntegers = new Set()
+  // for (let each of digits) {
+  //   // Rotate digits on each iteration
+  //   let newDigits = digits.map((element) => element) // clone
+  //   newDigits = newDigits.concat(newDigits.shift())
+  //   // Generate subarrs
+  //   let sets = [[]]
+  //   for (let i = 0; i < newDigits.length; i++) {
+  //     let subSet = sets.map((subArr) => [...subArr]) // Clone original arr
+  //     for (let j = 0; j < subSet.length; j++) {
+  //       subSet[j].push(newDigits[i]) // Add num[i] to each subarr
+  //     }
+  //     sets.push(...subSet) // Add new subarr into original arr
+  //   }
+  //   // Process each digit
+  //   for (let i = 0; i < sets.length; i++) {
+  //     let integer = parseInt(sets[i].join(''))
+  //     if (integer.toString().length != 3) continue
+  //     if (integer % 2 != 0) continue
+  //     uniqueIntegers.add(integer)
+  //   }
+  // }
+  // return [...uniqueIntegers].sort() //?
+}
+// prettier-ignore
+// testFunction(findEvenNumbers).input([2,1,3,0]).output([102,120,130,132,210,230,302,310,312,320]) //?
+// testFunction(findEvenNumbers).input([2, 2, 8, 8, 2]).output([222, 228, 282, 288, 822, 828, 882]) //?
