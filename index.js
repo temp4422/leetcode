@@ -10023,3 +10023,13 @@ var findEvenNumbers = function (digits) {
 // prettier-ignore
 // testFunction(findEvenNumbers).input([2,1,3,0]).output([102,120,130,132,210,230,302,310,312,320]) //?
 // testFunction(findEvenNumbers).input([2, 2, 8, 8, 2]).output([222, 228, 282, 288, 822, 828, 882]) //?
+
+// 3925. Concatenate Array With Reverse, Easy
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var concatWithReverse = function (nums) {
+  return nums.concat(nums.toReversed())
+}
+// testFunction(concatWithReverse).input([1, 2, 3]).output([1, 2, 3, 3, 2, 1]) //?
