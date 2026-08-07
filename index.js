@@ -10033,3 +10033,22 @@ var concatWithReverse = function (nums) {
   return nums.concat(nums.toReversed())
 }
 // testFunction(concatWithReverse).input([1, 2, 3]).output([1, 2, 3, 3, 2, 1]) //?
+
+// 2006. Count Number of Pairs With Absolute Difference K, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var countKDifference = function (nums, k) {
+  let pairs = 0
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (Math.abs(nums[i] - nums[j]) == k) pairs++
+    }
+  }
+  return pairs
+}
+// testFunction(countKDifference).input([1, 2, 2, 1], 1).output(4) //?
+// testFunction(countKDifference).input([1, 3], 3).output(0) //?
+// testFunction(countKDifference).input([3, 2, 1, 5, 4], 2).output(3) //?
