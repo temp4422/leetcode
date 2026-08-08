@@ -10052,3 +10052,19 @@ var countKDifference = function (nums, k) {
 // testFunction(countKDifference).input([1, 2, 2, 1], 1).output(4) //?
 // testFunction(countKDifference).input([1, 3], 3).output(0) //?
 // testFunction(countKDifference).input([3, 2, 1, 5, 4], 2).output(3) //?
+
+// 2154. Keep Multiplying Found Values by Two, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} original
+ * @return {number}
+ */
+var findFinalValue = function (nums, original) {
+  while (nums.includes(original)) {
+    original *= 2
+  }
+  return original
+}
+// testFunction(findFinalValue).input([5, 3, 6, 1, 12], 3).output(24) //?
+// testFunction(findFinalValue).input([2, 7, 9], 4).output(4) //?
+// testFunction(findFinalValue).input([8, 19, 4, 2, 15, 3], 2).output(16) //?
