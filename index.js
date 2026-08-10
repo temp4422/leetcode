@@ -10068,3 +10068,22 @@ var findFinalValue = function (nums, original) {
 // testFunction(findFinalValue).input([5, 3, 6, 1, 12], 3).output(24) //?
 // testFunction(findFinalValue).input([2, 7, 9], 4).output(4) //?
 // testFunction(findFinalValue).input([8, 19, 4, 2, 15, 3], 2).output(16) //?
+
+// 2176. Count Equal and Divisible Pairs in an Array, Easy
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var countPairs = function (nums, k) {
+  let pairs = 0
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j] && (i * j) % k == 0) pairs++
+    }
+  }
+  return pairs //?
+}
+// testFunction(countPairs).input([3, 1, 2, 2, 2, 1, 3], 2).output(4) //?
+// testFunction(countPairs).input([1, 2, 3, 4], 1).output(0) //?
+// testFunction(countPairs).input([5,5,9,2,5,5,9,2,2,5,5,6,2,2,5,2,5,4,3], 7).output(18) //?
