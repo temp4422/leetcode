@@ -1296,8 +1296,8 @@ var findDisappearedNumbers = function (nums) {
   // return result
 }
 // testFunction(findDisappearedNumbers).input([4, 3, 2, 7, 8, 2, 3, 1]).output([5, 6]) //?
-// testFunction(findDisappearedNumbers).input([1, 1]).output([2]) //?
 
+// testFunction(findDisappearedNumbers).input([1, 1]).output([2]) //?
 // 455. Assign Cookies, Easy
 /**
  * @param {number[]} g
@@ -10087,3 +10087,20 @@ var countPairs = function (nums, k) {
 // testFunction(countPairs).input([3, 1, 2, 2, 2, 1, 3], 2).output(4) //?
 // testFunction(countPairs).input([1, 2, 3, 4], 1).output(0) //?
 // testFunction(countPairs).input([5,5,9,2,5,5,9,2,2,5,5,6,2,2,5,2,5,4,3], 7).output(18) //?
+
+// 2180. Count Integers With Even Digit Sum, Easy
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var countEven = function (num) {
+  const evenSumDigits = []
+  for (let i = 1; i <= num; i++) {
+    let numArr = i.toString().split('').map(Number)
+    let sum = numArr.reduce((a, b) => a + b, 0)
+    if (sum % 2 === 0) evenSumDigits.push(i)
+  }
+  return evenSumDigits.length
+}
+// testFunction(countEven).input(4).output(2) //?
+// testFunction(countEven).input(30).output(14) //?
