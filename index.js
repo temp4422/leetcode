@@ -10104,3 +10104,20 @@ var countEven = function (num) {
 }
 // testFunction(countEven).input(4).output(2) //?
 // testFunction(countEven).input(30).output(14) //?
+
+// 2148. Count Elements With Strictly Smaller and Greater Elements, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countElements = function (nums) {
+  const sortedNums = nums.toSorted((a, b) => a - b)
+  const min = sortedNums[0]
+  const max = sortedNums[sortedNums.length - 1]
+  let count = 0
+  for (let i = 1; i < sortedNums.length - 1; i++) {
+    if (sortedNums[i] > min && sortedNums[i] < max) count++
+  }
+  return count
+}
+// testFunction(countElements).input([11, 7, 2, 15]).output(2) //?
