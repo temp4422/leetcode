@@ -10121,3 +10121,32 @@ var countElements = function (nums) {
   return count
 }
 // testFunction(countElements).input([11, 7, 2, 15]).output(2) //?
+
+// 566. Reshape the Matrix, Easy
+/**
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+var matrixReshape = function (mat, r, c) {
+  if (r * c != mat.length * mat[0].length) return mat
+
+  const flatMat = mat.flat()
+  const reshapedMat = []
+  for (let i = 0; i < r; i++) {
+    let row = []
+    for (let j = 0; j < c; j++) {
+      row.push(flatMat.shift())
+    }
+    reshapedMat.push(row)
+  }
+
+  return reshapedMat
+}
+// prettier-ignore
+// testFunction(matrixReshape).input([[1,2],[3,4]], 1, 4).output([[1,2,3,4]]) //?
+// prettier-ignore
+// testFunction(matrixReshape).input([[1,2],[3,4]], 2, 4).output([[1,2],[3,4]]) //?
+// prettier-ignore
+// testFunction(matrixReshape).input([[1,2],[3,4]], 4, 1).output([[1],[2],[3],[4]]) //?
