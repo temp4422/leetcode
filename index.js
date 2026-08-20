@@ -10150,3 +10150,36 @@ var matrixReshape = function (mat, r, c) {
 // testFunction(matrixReshape).input([[1,2],[3,4]], 2, 4).output([[1,2],[3,4]]) //?
 // prettier-ignore
 // testFunction(matrixReshape).input([[1,2],[3,4]], 4, 1).output([[1],[2],[3],[4]]) //?
+
+// 598. Range Addition II, Easy
+/**
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
+ * @return {number}
+ */
+var maxCount = function (m, n, ops) {
+  // If there are no operations, return m*n
+  if (!ops.length) return m * n
+
+  // Count area that is incremented: maximum area = minimum op[0] × minimum op[1] - ChatGPT
+  let minRow = Infinity
+  let minColumn = Infinity
+  for (let i = 0; i < ops.length; i++) {
+    if (ops[i][0] < minRow) minRow = ops[i][0]
+    if (ops[i][1] < minColumn) minColumn = ops[i][1]
+  }
+  return minRow * minColumn
+}
+// prettier-ignore
+// testFunction(maxCount).input(3, 3, [[2,2], [3,3]]).output(4) //?
+// prettier-ignore
+// testFunction(maxCount).input(3,3,[[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3]]).output(4) //?
+// prettier-ignore
+// testFunction(maxCount).input(3, 3, []).output(9) //?
+// prettier-ignore
+// testFunction(maxCount).input(40000, 40000, []).output(1_600_000_000) //?
+// prettier-ignore
+// testFunction(maxCount).input(39999, 39999, [[19999, 19999]] ).output(399960001) //?
+// prettier-ignore
+// testFunction(maxCount).input(26, 17, [[20,10],[26,11],[2,11],[4,16],[2,3],[23,13],[7,15],[11,11],[25,13],[11,13],[13,11],[13,16],[26,17]] ).output(6) //?
