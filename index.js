@@ -10183,3 +10183,24 @@ var maxCount = function (m, n, ops) {
 // testFunction(maxCount).input(39999, 39999, [[19999, 19999]] ).output(399960001) //?
 // prettier-ignore
 // testFunction(maxCount).input(26, 17, [[20,10],[26,11],[2,11],[4,16],[2,3],[23,13],[7,15],[11,11],[25,13],[11,13],[13,11],[13,16],[26,17]] ).output(6) //?
+
+// 643. Maximum Average Subarray I
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function (nums, k) {
+  let windowSum = nums.slice(0, k).reduce((a, b) => a + b, 0)
+  let maxSum = windowSum
+
+  for (let i = 1; i <= nums.length - k; i++) {
+    windowSum = windowSum - nums[i - 1] + nums[i + k - 1]
+    if (windowSum > maxSum) maxSum = windowSum
+  }
+
+  return maxSum / k
+}
+// testFunction(findMaxAverage).input([1,12,-5,-6,50,3], 4).output(12.75) //?
+// testFunction(findMaxAverage).input([5], 1).output(5.0) //?
+// testFunction(findMaxAverage).input([-1], 1).output(-1) //?
