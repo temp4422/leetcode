@@ -10204,3 +10204,53 @@ var findMaxAverage = function (nums, k) {
 // testFunction(findMaxAverage).input([1,12,-5,-6,50,3], 4).output(12.75) //?
 // testFunction(findMaxAverage).input([5], 1).output(5.0) //?
 // testFunction(findMaxAverage).input([-1], 1).output(-1) //?
+
+// 661. Image Smoother, Easy
+/**
+ * @param {number[][]} img
+ * @return {number[][]}
+ */
+var imageSmoother = function (img) {
+  function smooth(row, col) {
+    // Lattice to get surrounding values of row and col
+    const cellArea = [
+      [[row - 1], [col - 1]],
+      [[row - 1], [col]],
+      [[row - 1], [col + 1]],
+      [[row], [col - 1]],
+      [[row], [col]],
+      [[row], [col + 1]],
+      [[row + 1], [col - 1]],
+      [[row + 1], [col]],
+      [[row + 1], [col + 1]],
+    ]
+
+    // Check if values exist
+    let smoothArea = []
+    for (let cell of cellArea) {
+      if (img[cell[0]]?.[cell[1]] !== undefined) {
+        smoothArea.push(img[cell[0]][cell[1]])
+      }
+    }
+
+    // Get average and round down
+    let floorAverage = Math.floor(smoothArea.reduce((a, b) => a + b, 0) / smoothArea.length)
+
+    // Return round down average
+    return floorAverage //?
+  }
+
+  const smoothedImg = []
+  for (let i = 0; i < img.length; i++) {
+    let smoothedRow = []
+    for (let j = 0; j < img[i].length; j++) {
+      smoothedRow.push(smooth(i, j))
+    }
+    smoothedImg.push(smoothedRow)
+  }
+  return smoothedImg
+}
+// prettier-ignore
+// testFunction(imageSmoother).input([[1,1,1],[1,0,1],[1,1,1]]).output([[0,0,0],[0,0,0],[0,0,0]]) //?
+// prettier-ignore
+// testFunction(imageSmoother).input([[100,200,100],[200,50,200],[100,200,100]]).output([[137,141,137],[141,138,141],[137,141,137]]) //?
