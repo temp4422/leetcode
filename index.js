@@ -10254,3 +10254,27 @@ var imageSmoother = function (img) {
 // testFunction(imageSmoother).input([[1,1,1],[1,0,1],[1,1,1]]).output([[0,0,0],[0,0,0],[0,0,0]]) //?
 // prettier-ignore
 // testFunction(imageSmoother).input([[100,200,100],[200,50,200],[100,200,100]]).output([[137,141,137],[141,138,141],[137,141,137]]) //?
+
+// 674. Longest Continuous Increasing Subsequence, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLengthOfLCIS = function (nums) {
+  let longestIncrease = 1
+  let currentIncrease = 1
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i - 1] < nums[i]) {
+      currentIncrease++
+      longestIncrease = Math.max(currentIncrease, longestIncrease)
+    } else {
+      currentIncrease = 1
+    }
+  }
+
+  return longestIncrease
+}
+// testFunction(findLengthOfLCIS).input([1, 3, 5, 4, 7]).output(3) //?
+// testFunction(findLengthOfLCIS).input([2, 2, 2, 2, 2]).output(1) //?
+// testFunction(findLengthOfLCIS).input([1, 3, 5, 7]).output(4) //?
