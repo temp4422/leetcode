@@ -10278,3 +10278,86 @@ var findLengthOfLCIS = function (nums) {
 // testFunction(findLengthOfLCIS).input([1, 3, 5, 4, 7]).output(3) //?
 // testFunction(findLengthOfLCIS).input([2, 2, 2, 2, 2]).output(1) //?
 // testFunction(findLengthOfLCIS).input([1, 3, 5, 7]).output(4) //?
+
+// 680. Valid Palindrome II, Easy
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var validPalindrome = function (s) {
+  // ChatGPT
+  let left = 0
+  let right = s.length - 1
+
+  while (left < right) {
+    if (s[left] === s[right]) {
+      left++
+      right--
+      continue // Characters match, move inwards
+    }
+
+    // --- Check Palindrome after skipping the left character ---
+    let skipLeft = left + 1
+    let rightSide = right
+    while (skipLeft < rightSide) {
+      if (s[skipLeft] !== s[rightSide]) break
+      skipLeft++
+      rightSide--
+    }
+    // If the rest of the string matches, it's a palindrome
+    if (skipLeft >= rightSide) return true
+
+    // --- Check Palindrome after skipping the right character ---
+    let leftSide = left
+    let skipRight = right - 1
+    while (leftSide < skipRight) {
+      if (s[leftSide] !== s[skipRight]) return false
+      leftSide++
+      skipRight--
+    }
+    // If the remaining checks pass, it's a palindrome
+    return true
+  }
+  // This line handles the case where the loop completes (e.g., single char or empty string)
+  return true
+  //
+  // // My alternativ
+  //
+  // // Exclude some non palindromes
+  // if (s.length <= 2) return true
+  // const charMap = new Map()
+  // let oddNumbers = 0
+  // for (let i = 0; i < s.length; i++) {
+  //   charMap.set(s[i], (charMap.get(s[i]) ?? 0) + 1)
+  //   if (charMap.get(s[i]) % 2) oddNumbers++
+  //   else oddNumbers--
+  // }
+  // if (oddNumbers > 2) return false
+  // // Check palindrome
+  // let newString = s
+  // let middle = Math.floor(newString.length / 2)
+  // let checkOtherSide = false
+  // for (let i = 0; i < newString.length; i++) {
+  //   if (i == middle) return true
+  //   let reverseI = newString.length - 1 - i
+  //   if (newString[i] != newString[reverseI]) {
+  //     if (checkOtherSide) {
+  //       newString = s.slice(0, reverseI + 1) + s.slice(reverseI + 1, s.length - 1)
+  //       if (newString[i] != newString[reverseI]) return false
+  //     } else {
+  //       newString = s.slice(0, i) + s.slice(i + 1, s.length)
+  //       i--
+  //       checkOtherSide = true
+  //     }
+  //   }
+  // }
+}
+// testFunction(validPalindrome).input('aba').output(true) //?
+// testFunction(validPalindrome).input('abca').output(true) //?
+// testFunction(validPalindrome).input('abc').output(false) //?
+// testFunction(validPalindrome).input('tebbem').output(false) //?
+// testFunction(validPalindrome).input('deeee').output(true) //?
+// testFunction(validPalindrome).input('cbbcc').output(true) //?
+// testFunction(validPalindrome).input('eccer').output(true) //?
+// testFunction(validPalindrome).input('yd').output(true) //?
+// testFunction(validPalindrome).input('axbcbaba').output(false) //?
