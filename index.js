@@ -10361,3 +10361,17 @@ var validPalindrome = function (s) {
 // testFunction(validPalindrome).input('eccer').output(true) //?
 // testFunction(validPalindrome).input('yd').output(true) //?
 // testFunction(validPalindrome).input('axbcbaba').output(false) //?
+
+// 693. Binary Number with Alternating Bits, Easy
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var hasAlternatingBits = function (n) {
+  const binaryNum = n.toString(2)
+  for (let i = 0; i < binaryNum.length; i++) {
+    if (binaryNum[i] === binaryNum[i + 1]) return false
+  }
+  return true
+}
+// testFunction(hasAlternatingBits).input(5).output(true) //?
