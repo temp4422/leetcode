@@ -10375,3 +10375,52 @@ var hasAlternatingBits = function (n) {
   return true
 }
 // testFunction(hasAlternatingBits).input(5).output(true) //?
+
+// 703. Kth Largest Element in a Stream, Easy
+// Time Limit Exceeded
+/**
+ * @param {number} k
+ * @param {number[]} nums
+ */
+// var KthLargest = function (k, nums) {
+//     this.k = k
+//     this.nums = nums.sort((a, b) => a - b)
+// }
+/**
+ * @param {number} val
+ * @return {number}
+ */
+// KthLargest.prototype.add = function (val) {
+//     this.nums.push(val)
+//     this.nums = this.nums.sort((a, b) => a - b)
+//     return this.nums[this.nums.length - this.k]
+// }
+class KthLargest {
+  constructor(k, nums) {
+    this.k = k
+    this.nums = nums.sort((a, b) => a - b)
+  }
+  add(val) {
+    // Binary isnsert
+    let low = 0
+    let high = this.nums.length
+    while (low < high) {
+      // let mid = Math.floor((low + high) / 2)
+      // Bitwise zero-fill right shift acts as a fast Math.floor()
+      let mid = (low + high) >>> 1
+      if (this.nums[mid] < val) low = mid + 1
+      else high = mid
+    }
+    // Insert val at the exact sorted position
+    this.nums.splice(low, 0, val)
+
+    // Return kth element
+    return this.nums[this.nums.length - this.k]
+  }
+}
+// var scores = new KthLargest(3, [4, 5, 8, 2])
+// scores.add(3) // return 4
+// scores.add(5) // return 5
+// scores.add(10) // return 5
+// scores.add(9) // return 8
+// scores.add(4) // return 8
