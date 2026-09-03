@@ -10424,3 +10424,29 @@ class KthLargest {
 // scores.add(10) // return 5
 // scores.add(9) // return 8
 // scores.add(4) // return 8
+
+// 717. 1-bit and 2-bit Characters, Easy
+/**
+ * @param {number[]} bits
+ * @return {boolean}
+ */
+var isOneBitCharacter = function (bits) {
+  // Check if ends with '1'
+  if (bits[bits.length - 1] == 1) return false
+  // Remove last bit
+  const newBits = bits.slice(0, bits.length - 1).join('')
+  // Test with regex
+  const regex = /^(?:0|10|11)*$/
+  return regex.test(newBits)
+  // Regex explained
+  // ^(?:0|10|11)*$
+  // │ │          │
+  // │ │          └── end of string
+  // │ └───────────── repeat 0, 10, or 11
+  // └─────────────── start of string
+  // From the beginning to the end, the string must contain zero or more tokens, where each token is either 0, 10, or 11.
+}
+// testFunction(isOneBitCharacter).input([1, 0, 0]).output(true) //?
+// testFunction(isOneBitCharacter).input([0, 0]).output(true) //?
+// testFunction(isOneBitCharacter).input([1, 0]).output(false) //?
+// testFunction(isOneBitCharacter).input([0, 1, 0]).output(false) //?
