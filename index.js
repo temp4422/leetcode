@@ -10450,3 +10450,24 @@ var isOneBitCharacter = function (bits) {
 // testFunction(isOneBitCharacter).input([0, 0]).output(true) //?
 // testFunction(isOneBitCharacter).input([1, 0]).output(false) //?
 // testFunction(isOneBitCharacter).input([0, 1, 0]).output(false) //?
+
+// 724. Find Pivot Index, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var pivotIndex = function (nums) {
+  let index = 0
+  let leftSum = nums.slice(0, index).reduce((a, b) => a + b, 0)
+  let rightSum = nums.slice(index + 1, nums.length).reduce((a, b) => a + b, 0)
+  while (index < nums.length) {
+    if (leftSum === rightSum) return index
+    else {
+      leftSum += nums[index]
+      rightSum -= nums[index + 1]
+      index++
+    }
+  }
+  return -1
+}
+// testFunction(pivotIndex).input([1, 7, 3, 6, 5, 6]).output(3) //?
