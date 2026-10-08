@@ -10471,3 +10471,46 @@ var pivotIndex = function (nums) {
   return -1
 }
 // testFunction(pivotIndex).input([1, 7, 3, 6, 5, 6]).output(3) //?
+
+// 733. Flood Fill, Easy
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} color
+ * @return {number[][]}
+ */
+var floodFill = function (image, sr, sc, color) {
+  if (image[sr][sc] === color) return image
+
+  const initialColor = image[sr][sc]
+
+  function isValidPixel(row, col) {
+    if (row >= image.length) return false
+    if (row < 0) return false
+    if (col >= image[0].length) return false
+    if (col < 0) return false
+    if (image[row][col] != initialColor) return false
+    return true
+  }
+
+  function paintAdjacentPixels(row, col) {
+    // Paint current pixel. This will paint each pixel in recursive.
+    image[row][col] = color
+    // Proceed:
+    // Left
+    if (isValidPixel(row, col - 1)) paintAdjacentPixels(row, col - 1)
+    // Right
+    if (isValidPixel(row, col + 1)) paintAdjacentPixels(row, col + 1)
+    // Top
+    if (isValidPixel(row - 1, col)) paintAdjacentPixels(row - 1, col)
+    // Bottom
+    if (isValidPixel(row + 1, col)) paintAdjacentPixels(row + 1, col)
+  }
+
+  paintAdjacentPixels(sr, sc)
+  return image
+  // Alternative with queue https://leetcode.com/problems/flood-fill/solutions/7112433/easiest-approch-to-solve-using-queue-by-sy44g
+}
+// prettier-ignore
+// testFunction(floodFill).input([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2).output([[2,2,2],[2,2,0],[2,0,1]]) //?
