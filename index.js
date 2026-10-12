@@ -10514,3 +10514,15 @@ var floodFill = function (image, sr, sc, color) {
 }
 // prettier-ignore
 // testFunction(floodFill).input([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2).output([[2,2,2],[2,2,0],[2,0,1]]) //?
+
+// 747. Largest Number At Least Twice of Others, Easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var dominantIndex = function (nums) {
+  const sortedNums = nums.toSorted((a, b) => b - a)
+  return sortedNums[0] >= sortedNums[1] * 2 ? nums.indexOf(sortedNums[0]) : -1
+}
+// testFunction(dominantIndex).input([3, 6, 1, 0]).output(1) //?
+// testFunction(dominantIndex).input([1, 2, 3, 4]).output(-1) //?
