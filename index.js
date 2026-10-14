@@ -10526,3 +10526,31 @@ var dominantIndex = function (nums) {
 }
 // testFunction(dominantIndex).input([3, 6, 1, 0]).output(1) //?
 // testFunction(dominantIndex).input([1, 2, 3, 4]).output(-1) //?
+
+// 832. Flipping an Image, Easy
+/**
+ * @param {number[][]} image
+ * @return {number[][]}
+ */
+var flipAndInvertImage = function (image) {
+  for (let i = 0; i < image.length; i++) {
+    image[i] = image[i]
+      .reverse()
+      .join()
+      .replace(/1/g, 'x')
+      .replace(/0/g, 1)
+      .replace(/x/g, '0')
+      .split(',')
+      .map(Number)
+  }
+  return image
+  // Alternative
+  // https://leetcode.com/problems/flipping-an-image/solutions/602813/simple-javascript-solution-by-nataliesal-hsej
+  // for (let row in image) {
+  //   image[row] = image[row].reverse()
+  //   image[row] = image[row].map((x) => 1 - x)
+  // }
+  // return image
+}
+// prettier-ignore
+// testFunction(flipAndInvertImage).input([[1,1,0],[1,0,1],[0,0,0]]).output([[1,0,0],[0,1,0],[1,1,1]]) //?
