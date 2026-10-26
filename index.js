@@ -10554,3 +10554,24 @@ var flipAndInvertImage = function (image) {
 }
 // prettier-ignore
 // testFunction(flipAndInvertImage).input([[1,1,0],[1,0,1],[0,0,0]]).output([[1,0,0],[0,1,0],[1,1,1]]) //?
+
+// 867. Transpose Matrix, Easy
+/**
+ * @param {number[][]} matrix
+ * @return {number[][]}
+ */
+var transpose = function (matrix) {
+  const transposedMatrix = []
+  for (let i = 0; i < matrix[0].length; i++) {
+    let row = []
+    for (let j = 0; j < matrix.length; j++) {
+      row.push(matrix[j][i])
+    }
+    transposedMatrix.push(row)
+  }
+  return transposedMatrix
+}
+// prettier-ignore
+// testFunction(transpose).input([[1,2,3],[4,5,6],[7,8,9]]).output([[1,4,7],[2,5,8],[3,6,9]]) //?
+// prettier-ignore
+// testFunction(transpose).input([[1,2,3],[4,5,6]]).output([[1,4],[2,5],[3,6]]) //?
