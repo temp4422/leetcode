@@ -10575,3 +10575,27 @@ var transpose = function (matrix) {
 // testFunction(transpose).input([[1,2,3],[4,5,6],[7,8,9]]).output([[1,4,7],[2,5,8],[3,6,9]]) //?
 // prettier-ignore
 // testFunction(transpose).input([[1,2,3],[4,5,6]]).output([[1,4],[2,5],[3,6]]) //?
+
+// 961. N-Repeated Element in Size 2N Array, easy
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var repeatedNTimes = function (nums) {
+  const map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], (map.get(nums[i]) ?? 0) + 1)
+  }
+  const ascMap = [...map].sort((a, b) => b[1] - a[1])
+  return ascMap[0][0]
+
+  // Alternative https://leetcode.com/problems/n-repeated-element-in-size-2n-array/solutions/7457464/clean-simple-beats-easy-to-understand-ef-gb9s
+  // const set = new Set()
+  // for (const x of nums) {
+  //   if (set.has(x)) return x
+  //   set.add(x)
+  // }
+}
+// testFunction(repeatedNTimes).input([1, 2, 3, 3]).output(3) //?
+// testFunction(repeatedNTimes).input([2, 1, 2, 5, 3, 2]).output(2) //?
+// testFunction(repeatedNTimes).input([5, 1, 5, 2, 5, 3, 5, 4]).output(5) //?
