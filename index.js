@@ -1,7 +1,7 @@
 'use strict'
 
 // My helper functions, speed up debugging
-import { testFunction, arrayToLinkedList, arrayToBinaryTree, TreeNode } from './helper.js'
+import { testFunction, arrayToLinkedList, arrayToBinaryTree, TreeNode, ListNode } from './helper.js'
 
 // 1306. Jump Game III, Medium
 // Array, Depth-first search, Breadth-first search
@@ -10599,3 +10599,41 @@ var repeatedNTimes = function (nums) {
 // testFunction(repeatedNTimes).input([1, 2, 3, 3]).output(3) //?
 // testFunction(repeatedNTimes).input([2, 1, 2, 5, 3, 2]).output(2) //?
 // testFunction(repeatedNTimes).input([5, 1, 5, 2, 5, 3, 5, 4]).output(5) //?
+
+// 876. Middle of the Linked List, Easy
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var middleNode = function (head) {
+  if (!head || !head.next) return head // Check base condition
+
+  let current = head
+  let count = 0
+  while (current) {
+    count++
+    current = current.next
+  }
+
+  let middle = Math.floor(count / 2)
+  current = head
+
+  // traversal uses zero-based number of steps
+  for (let i = 0; i < middle; i++) {
+    current = current.next
+  }
+
+  return current
+  // Alternative https://leetcode.com/problems/middle-of-the-linked-list/solutions/4834682/beat-10000-full-explanation-with-picture-ydqh
+}
+// prettier-ignore
+// testFunction(middleNode).input(arrayToLinkedList([1, 2, 3, 4, 5])).output(arrayToLinkedList([3, 4, 5])) //?
+// prettier-ignore
+// testFunction(middleNode).input(arrayToLinkedList([1,2,3,4,5,6])).output(arrayToLinkedList([4,5,6])) //?
